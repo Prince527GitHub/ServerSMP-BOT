@@ -4,6 +4,7 @@ const client = new Client({
     disableEveryone: true
 });
 require('discord-buttons')(client);
+require('dotenv').config();
 const config = require('./config.json')
 const prefix = config.prefix
 const token = config.token
@@ -25,7 +26,7 @@ const Levels = require('discord-xp');
 const botdash = require('botdash.pro');
 const express = require("express");
 const app = express();
-const _PORT = config.port || 8080;
+const _PORT = process.env.PORT || 8080;
 Levels.setURL(mongo);
 mongoose.connect(mongo, {
     useNewUrlParser: true,
