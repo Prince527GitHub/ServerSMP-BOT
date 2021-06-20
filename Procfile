@@ -1,1 +1,1 @@
-Worker: node shard.js
+web:node shard.js`
