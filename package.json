@@ -1,10 +1,10 @@
 {
-  "name": "commandhandler",
+  "name": "ServerSMP-BOT",
   "version": "1.0.0",
-  "description": "",
-  "main": "shard.js",
+  "description": "The ServerSMP - BOT",
+  "main": "index.js",
   "scripts": {
-    "start": "node shard.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
