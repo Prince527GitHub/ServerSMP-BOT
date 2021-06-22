@@ -24,9 +24,6 @@ const prefixSchema = require('./models/prefix');
 const customcom = require('./models/cc');
 const Levels = require('discord-xp');
 const botdash = require('botdash.pro');
-const express = require("express");
-const app = express();
-const _PORT = process.env.PORT || 8080;
 Levels.setURL(mongo);
 mongoose.connect(mongo, {
     useNewUrlParser: true,
@@ -56,11 +53,6 @@ client.categories = fs.readdirSync("./commands/");
 client.on('ready', () => {
     client.user.setPresence({status: 'dnd',activity: {name: `DiamondGolurk on youtube.com`,type: "WATCHING"}})
     console.log(`${client.user.username} ✅`)
-    const socketStats = require("socketstats");
-    const server = new socketStats(app, client);
-    server.listen(_PORT, () => {
-        console.log("Listening to port: "+_PORT);
-    });
 })
 client.on('message', async message =>{
     if(message.author.bot) return;
@@ -74,12 +66,19 @@ client.on('message', async message =>{
     const data = await customcom.findOne({ Guild: message.guild.id, Command: cmd });
     if(data) message.channel.send(data.Response);
     let command = client.commands.get(cmd)
-    if(command) {
+    if(!command) command = client.commands.get(client.aliases.get(cmd));
+    if (command) {
         const blacklisted = await blacklistserver.findOne({ Server: message.guild.id });
         if(blacklisted) return message.reply("This server has been blacklisted.")
-    }
-    if(!command) command = client.commands.get(client.aliases.get(cmd));
-    if(command) command.run(client, message, args) 
+        if(command.cooldown) {
+            if(Timeout.has(`${command.name}${message.author.id}`)) return message.channel.send(`You are on a \`${ms(Timeout.get(`${command.name}${message.author.id}`) - Date.now(), {long : true})}\` cooldown.`)
+            command.run(client, message, args)
+            Timeout.set(`${command.name}${message.author.id}`, Date.now() + command.cooldown)
+            setTimeout(() => {
+                Timeout.delete(`${command.name}${message.author.id}`)
+            }, command.cooldown)
+        } else command.run(client, message, args);
+    } 
 });
 
 const DisTube = require('distube');
