@@ -1,1 +1,1 @@
-web:node shard.js
+web:node index.js

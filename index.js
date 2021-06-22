@@ -5,38 +5,42 @@ const client = new Client({
 });
 require('discord-buttons')(client);
 require('dotenv').config();
-const config = require('./config.json')
-const prefix = config.prefix
-const token = config.token
-const mongo = config.mongo
+const prefix = process.env.PREFIX;
+const token = process.env.TOKEN;
+const mongo = process.env.MONGO
+const disturn = process.env.DISTURN;
+const distoken = process.env.DISTOKEN;
 module.exports = client;
-const DB = require("disbots.net");
-const db = new DB("iJFPc9yh1xWIhg0VGy5JRKw7R5dusj8ihAlBirmOFg75LNoL5xaqoafRucpIKACe", { statsInterval: 4000000 }, client);
-db.on("postServers", () => {
-    console.log("Server count ✅");
-});
-db.on("postShards", () => {
-    console.log("Shards count ✅");
-});
+if(disturn === "true") {
+  const DB = require("disbots.net");
+  const db = new DB(distoken, { statsInterval: 4000000 }, client);
+  db.on("postServers", () => {
+      console.log("Server count ✅");
+  });
+  db.on("postShards", () => {
+      console.log("Shards count ✅");
+  });
+}
 const mongoose = require('mongoose');
 const blacklistserver = require('./models/blacklist');
 const prefixSchema = require('./models/prefix');
 const customcom = require('./models/cc');
+const eco = require('./models/economy')
 const Levels = require('discord-xp');
 const botdash = require('botdash.pro');
+const Timeout = new Collection();
+const ms = require('ms')
 Levels.setURL(mongo);
 mongoose.connect(mongo, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
-    useCreateIndex: true  
+    useCreateIndex: true
 }).then(console.log('Connected to mongo db!'));
 client.prefix = async function(message) {
     let custom;
-
     const data = await prefixSchema.findOne({ Guild : message.guild.id })
         .catch(err => console.log(err))
-    
     if(data) {
         custom = data.Prefix;
     } else {
@@ -49,7 +53,7 @@ client.aliases = new Collection();
 client.categories = fs.readdirSync("./commands/");
 ["command"].forEach(handler => {
     require(`./handlers/${handler}`)(client);
-}); 
+});
 client.on('ready', () => {
     client.user.setPresence({status: 'dnd',activity: {name: `DiamondGolurk on youtube.com`,type: "WATCHING"}})
     console.log(`${client.user.username} ✅`)
@@ -78,7 +82,7 @@ client.on('message', async message =>{
                 Timeout.delete(`${command.name}${message.author.id}`)
             }, command.cooldown)
         } else command.run(client, message, args);
-    } 
+    }
 });
 
 const DisTube = require('distube');
@@ -119,5 +123,35 @@ const { DiscordTogether } = require('discord-together');
 Client.discordTogether = new DiscordTogether(client);
 
 Client.dashboard = new botdash.APIclient("3856da55-f3b3-462f-9186-0bf72c9b35a7");
+
+client.bal = (id, coins) => new Promise(async ful => {
+  const data = await eco.findOne({ id });
+  if(!data) return ful[0];
+  ful(data.coins);
+})
+
+client.add = (id, coins) => {
+  eco.findOne({ id }, async (err, data) => {
+    if(err) throw err;
+    if(data) {
+      data.coins += coins;
+    } else {
+      data = new eco({ id, coins });
+    }
+    data.save();
+  })
+}
+
+client.rmv = (id, coins) => {
+  eco.findOne({ id }, async (err, data) => {
+    if(err) throw err;
+    if(data) {
+      data.coins -= coins;
+    } else {
+      data = new eco({ id, coins: -coins });
+    }
+    data.save();
+  })
+}
 
 client.login(token)

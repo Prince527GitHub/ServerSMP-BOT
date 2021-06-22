@@ -7,13 +7,13 @@ module.exports = {
     usage: '[user id]',
     aliases : ['pau'],
     description : "Add user to preium",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(message.author.id !== '364105797162237952') return message.reply("This command can only be used by the owner!");
+        if(message.author.id !== process.env.OWNER) return message.reply("This command can only be used by the owner!");
         const id = args[0];
         const data = await schema.findOne({ User: id });
         if(data) return message.channel.send('This user is already has premium!');

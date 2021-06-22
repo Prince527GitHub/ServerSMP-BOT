@@ -8,10 +8,10 @@ module.exports = {
     category : 'nsfw',
     usage: '',
     description : "Image of erokemo.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         //const nsfwcommand = await Client.dashboard.getVal(message.guild.id, "nsfw");
@@ -23,7 +23,7 @@ module.exports = {
                 if (message.channel.id === nsfwchannel) {
         const image = await nsfw.erokemo();
         const embed = new MessageEmbed()
-            .setTitle(`Erokemo Image`)
+            .setTitle(`Erokemo Image <:CUMMYWUMMIES:842208284223602728>`)
             .setColor("GREEN")
             .setImage(image);
         message.channel.send(embed);
@@ -31,7 +31,7 @@ module.exports = {
             } else {
         const image = await nsfw.erokemo();
         const embed = new MessageEmbed()
-            .setTitle(`Erokemo Image`)
+            .setTitle(`Erokemo Image <:CUMMYWUMMIES:842208284223602728>`)
             .setColor("GREEN")
             .setImage(image);
         message.channel.send(embed);

@@ -1,1 +1,1 @@
-run = "node shard.js"
+run = "node index.js"

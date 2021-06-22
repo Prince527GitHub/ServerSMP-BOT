@@ -1,4 +1,5 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
+const backup = require("discord-backup");
 
 module.exports = {
     name: 'backupdelete',
@@ -6,10 +7,10 @@ module.exports = {
     usage: '[backupID]',
     aliases : ['bd'],
     description : "Delete a backup.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         if(!message.member.hasPermission("ADMINISTRATOR")){

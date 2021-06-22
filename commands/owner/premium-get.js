@@ -5,13 +5,13 @@ module.exports = {
     category : 'owner',
     usage: '[you or server] [reason for wanting premium]',
     description : "Report a bug to the owner of ServerSMP - BOT.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        const owner = client.users.cache.get('364105797162237952');
+        const owner = client.users.cache.get(process.env.OWNER);
         const how = args[0]
         if(!how) return message.reply("Please specify if you want premium or is it for your server (user or guild).")
         const query = args.slice(1).join(' ');;

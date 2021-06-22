@@ -7,13 +7,13 @@ module.exports = {
     category : 'owner',
     usage: '',
     description : "Show's the specs of the pc that is runing the bot!",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(message.author.id !== '364105797162237952') return message.reply("This command can only be used by the owner!");
+        if(message.author.id !== process.env.OWNER) return message.reply("This command can only be used by the owner!");
             let seconds = Math.floor(message.client.uptime / 1000);
             let minutes = Math.floor(seconds / 60);
             let hours = Math.floor(minutes / 60);

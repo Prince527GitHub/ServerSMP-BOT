@@ -11,4 +11,4 @@ COPY . .
 LABEL name "ServerSMP-BOT"
 LABEL maintainer "Prince527 <prince527gaming@gmail.com>"
 
-CMD ["node", "shard.js"]
+CMD ["node", "index.js"]

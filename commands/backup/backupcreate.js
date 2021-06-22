@@ -1,7 +1,6 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
 const backup = require("discord-backup");
-const config = require('../../config.json')
-const prefix = config.prefix
+const prefix = process.env.PREFIX;
 
 module.exports = {
     name: 'backupcreate',
@@ -9,10 +8,10 @@ module.exports = {
     usage: '',
     aliases : ['bc'],
     description : "Create a backup of you're server.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         if(!message.member.hasPermission("ADMINISTRATOR")){

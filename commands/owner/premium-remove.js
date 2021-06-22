@@ -6,13 +6,13 @@ module.exports = {
     category : 'owmer',
     usage: '[server id]',
     description : "I remove premium from guild!",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(message.author.id !== '364105797162237952') return message.reply("This command can only be used by the owner!");
+        if(message.author.id !== process.env.OWNER) return message.reply("This command can only be used by the owner!");
         const id = args[0];
         Schema.findOne({ Guild: id }, async(err, data) => {
             if(!data) return message.reply('That guild id does not exist in the database!');

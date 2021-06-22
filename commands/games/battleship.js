@@ -1,10 +1,9 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
 const { DiscordBattleShip } = require("discord-battleship");
-const config = require('../../config.json')
 
-const BattleShip = new DiscordBattleShip({ 
+const BattleShip = new DiscordBattleShip({
     embedColor: "RED",
-    prefix: config.prefix,
+    prefix: process.env.PREFIX,
 });
 
 module.exports = {
@@ -12,10 +11,10 @@ module.exports = {
     category : 'games',
     usage: '[@user]',
     description : "Play battleship against another user.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         await BattleShip.createGame(message);

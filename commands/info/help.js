@@ -1,6 +1,6 @@
 const { MessageEmbed, Client } = require("discord.js");
 const { readdirSync } = require("fs");
-const prefix = require("../../config.json").prefix;
+const prefix = process.env.PREFIX;
 
 module.exports = {
   name: "help",

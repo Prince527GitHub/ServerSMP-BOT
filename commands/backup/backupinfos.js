@@ -1,4 +1,5 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
+const backup = require("discord-backup");
 
 module.exports = {
     name: 'backupinfos',
@@ -6,10 +7,10 @@ module.exports = {
     usage: '[backupID]',
     aliases : ['bi'],
     description : "Get info on the backup.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         let backupID = args[0];
