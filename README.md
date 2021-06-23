@@ -21,7 +21,7 @@ This bot need's a bot token, so you need to add a ```.env``` for ```TOKEN``` (th
 
 ### Uptime
 
-So to keep the bot runing for 24/7 you need to copy the main website that has *"[ServerSMP - BOT] Made by Prince527"*, in 2021 or somting like that and go to [uptimerobot.com](https://uptimerobot.com/) make a account, verify you account then click "Add New Monitor"
+So to keep the bot runing for 24/7 you need to copy the main website url then go to [uptimerobot.com](https://uptimerobot.com/) make a account, verify you account then click "Add New Monitor"
 
 Then do this (it is from ```Discord.py Music Bot```)
 
