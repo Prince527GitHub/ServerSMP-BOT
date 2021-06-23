@@ -15,7 +15,7 @@ This clone's the project to [Heroku](https://heroku.com/).
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Glitch (it is from ```Disc 11 by Zhycorp```)
-You can still use Glitch and keep it online in this project, no worries 😉
+You can still use Glitch and keep it online in this project.
 
 1. Go to [glitch.com](https://glitch.com) and make an account
 2. Click **New Project**, and then **Import from GitHub**
