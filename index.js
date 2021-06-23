@@ -154,4 +154,7 @@ client.rmv = (id, coins) => {
   })
 }
 
+const { DiscordUNO } = require("discord-uno");
+client.discordUNO = new DiscordUNO();
+
 client.login(token)
