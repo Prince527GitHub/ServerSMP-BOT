@@ -2,6 +2,7 @@ const client = require('../index');
 const express = require("express");
 const path = require('path');
 const serveIndex = require('serve-index');
+const { getCommands } = require('../utils/index');
 const app = express();
 //const socketStats = require("socketstats");
 //const server = new socketStats(app, client);
@@ -13,11 +14,13 @@ client.on('ready', async () => {
     users: client.users.cache.size,
     channels: client.channels.cache.size
   }
+  app.set("view engine", "ejs");
   app.use("/", express.static('website'));
   app.use("/", serveIndex('website'));
-  //app.get("/", (req, res) => {
-  //  res.status(200).sendFile(path.join(__dirname, "..", "website", "index.html"))
-  //})
+  app.get("/commands", (req, res) => {
+    const commands = getCommands();
+    res.status(200).render('commands', { commands })
+  })
   app.get("/info", (req, res) => {
     res.status(200).send(clientDetails)
   })
