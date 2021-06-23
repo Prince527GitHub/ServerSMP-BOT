@@ -15,10 +15,9 @@ You can still use Glitch and keep it online in this project, no worries 😉
 3. Please specify the field with `https://github.com/Prince527GitHub/ServerSMP-BOT/`, then wait for a while
 4. Find the file names `.env.schema` then rename it to `.env`, let's configure that
 5. Get your bot token at [Discord developer portal](https://discord.com/developers/applications) then invite it to your server, and fill the bot prefix with anything you want
-8. To get an YouTube API v3 Key, please watch [this video](https://youtu.be/K2nqthN1xKQ?t=203) carefully
-9. Specify another options on that file. If you don't know how, there's `.env.example` so you can know what it should looks like
-10. After that, go to **Tools** > **Terminal** type `refresh`
-11. Close **Terminal** tab, then open **Tools** > **Logs**, wait for a while
-13. To make it stay online, please watch [this video](https://youtu.be/K2nqthN1xKQ?t=551) carefully.
+6. Look at the file named `.env.exsemple` then fill the stuff that it needs in `.env`
+7. After that, go to **Tools** > **Terminal** type `refresh`
+8. Close **Terminal** tab, then open **Tools** > **Logs**, wait for a while
+9. The bot should start a website copy it, then to make it stay online, please watch this video carefully.
 
 Your bot is online, and ready to use!

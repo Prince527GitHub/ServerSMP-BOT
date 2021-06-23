@@ -2,14 +2,14 @@ const { MessageEmbed, Message, Client } = require('discord.js');
 const client = require('../..');
 
 module.exports = {
-    name: 'donnate',
+    name: 'donate',
     category : 'economy',
     usage: '[@user] [money]',
     description : "Give money to users!",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         const user = message.mentions.users.first();
