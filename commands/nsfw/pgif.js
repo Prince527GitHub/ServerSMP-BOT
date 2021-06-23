@@ -23,7 +23,7 @@ module.exports = {
                 if (message.channel.id === nsfwchannel) {
         const image = await nsfw.pgif();
         const embed = new MessageEmbed()
-            .setTitle(`Porn gif <:CUMMYWUMMIES:842208284223602728>`)
+            .setTitle(`Porn gif`)
             .setColor("GREEN")
             .setImage(image);
         message.channel.send(embed);
@@ -31,7 +31,7 @@ module.exports = {
             } else {
         const image = await nsfw.pgif();
         const embed = new MessageEmbed()
-            .setTitle(`Porn gif <:CUMMYWUMMIES:842208284223602728>`)
+            .setTitle(`Porn gif`)
             .setColor("GREEN")
             .setImage(image);
         message.channel.send(embed);

@@ -7,7 +7,7 @@ module.exports = {
     name: 'wallpaper',
     category : 'nsfw',
     usage: '',
-    description : "A anime wallpaper.",
+    description : "A anime wallpaper (Has a chance to show NSFW).",
     /**
      * @param {Client} client
      * @param {Message} message
@@ -23,7 +23,7 @@ module.exports = {
                 if (message.channel.id === nsfwchannel) {
         const image = await nsfw.wallpaper();
         const embed = new MessageEmbed()
-            .setTitle(`Wallpaper <:CUMMYWUMMIES:842208284223602728>`)
+            .setTitle(`Wallpaper`)
             .setColor("GREEN")
             .setImage(image);
         message.channel.send(embed);
@@ -31,7 +31,7 @@ module.exports = {
             } else {
         const image = await nsfw.wallpaper();
         const embed = new MessageEmbed()
-            .setTitle(`Wallpaper <:CUMMYWUMMIES:842208284223602728>`)
+            .setTitle(`Wallpaper`)
             .setColor("GREEN")
             .setImage(image);
         message.channel.send(embed);

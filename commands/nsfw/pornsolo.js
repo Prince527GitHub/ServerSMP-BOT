@@ -23,7 +23,7 @@ module.exports = {
                 if (message.channel.id === nsfwchannel) {
         const image = await nsfw.solo();
         const embed = new MessageEmbed()
-            .setTitle(`Solo Image <:CUMMYWUMMIES:842208284223602728>`)
+            .setTitle(`Solo Image`)
             .setColor("GREEN")
             .setImage(image);
         message.channel.send(embed);
@@ -31,7 +31,7 @@ module.exports = {
             } else {
         const image = await nsfw.solo();
         const embed = new MessageEmbed()
-            .setTitle(`Solo Image <:CUMMYWUMMIES:842208284223602728>`)
+            .setTitle(`Solo Image`)
             .setColor("GREEN")
             .setImage(image);
         message.channel.send(embed);

@@ -23,7 +23,7 @@ module.exports = {
                 if (message.channel.id === nsfwchannel) {
         const image = await nsfw.hmidriff();
         const embed = new MessageEmbed()
-            .setTitle(`Hentai Midriff Image <:CUMMYWUMMIES:842208284223602728>`)
+            .setTitle(`Hentai Midriff Image`)
             .setColor("GREEN")
             .setImage(image);
         message.channel.send(embed);
@@ -31,7 +31,7 @@ module.exports = {
             } else {
         const image = await nsfw.hmidriff();
         const embed = new MessageEmbed()
-            .setTitle(`Hentai Midriff Image <:CUMMYWUMMIES:842208284223602728>`)
+            .setTitle(`Hentai Midriff Image`)
             .setColor("GREEN")
             .setImage(image);
         message.channel.send(embed);
