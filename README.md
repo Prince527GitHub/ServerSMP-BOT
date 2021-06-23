@@ -8,9 +8,11 @@ If you don't already have a discord bot, click [here](https://discordapp.com/dev
 ![Left panel](https://i.imgur.com/hECJYWK.png)
 
 
+
 Then, click copy under token to get your bot's token. Your bot's icon can also be changed by uploading an image.
 
 ![Bot token area](https://i.imgur.com/da0ktMC.png)
+
 
 
 ### Setup
