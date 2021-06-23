@@ -3,5 +3,35 @@
   "description": "The ServerSMP - BOT",
   "repository": "https://github.com/Prince527GitHub/ServerSMP-BOT/",
   "logo": "https://serversmp.netlify.app/assets/disconnect.png",
+  "env": {
+    "TOKEN": {
+      "description": "Your bot's token",
+      "required": true
+    },
+    "PREFIX": {
+      "description": "Your bot's prefix",
+      "required": true
+    },
+    "MONGO": {
+      "description": "Your mongodb url",
+      "required": true
+    },
+    "PORT": {
+      "description": "The port for the website",
+      "required": true
+    },
+    "DISTURN": {
+      "description": "Turn on or off the disbot stuff (true or false)",
+      "required": true
+    },
+    "DISTOKEN": {
+      "description": "Your disbot token if off just put what ever you want",
+      "required": true
+    },
+    "OWNER": {
+      "description": "The id of the owner (you)",
+      "required": true
+    }
+  },
   "keywords": ["node", "discord", "website"]
 }
