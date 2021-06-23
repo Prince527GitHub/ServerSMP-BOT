@@ -13,6 +13,7 @@ Then, click copy under token to get your bot's token. Your bot's icon can also b
 
 ### Heroku
 This clone's the project to [Heroku](https://heroku.com/).
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ### Setup
