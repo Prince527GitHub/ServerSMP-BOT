@@ -2,6 +2,13 @@
 
 This is a discord bot, that has a lot of stuff in it like meme's, economy, admin, extra, etc.
 
+## Local
+1. So start by downloading it, then extract it.
+2. Change the settings in `.env`
+3. Open cmd and use `cd` to go to the directory.
+4. Then do `npm i` to install all the required stuff.
+5. After do `npm start` and the bot starts.
+
 ## Heroku
 This clone's the project to [Heroku](https://heroku.com/).
 
@@ -25,7 +32,8 @@ Your bot is online, and ready to use!
 ## Docker
 This may work on docker, but idk how.
 
-## Replit
+## Replit (From `Discord.py Music Bot`)
+So just so you know this bot is more then 500MB, so you need the hacker plan on replit to use this bot on there.
 
 ### Pre-Setup
 
