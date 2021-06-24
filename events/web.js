@@ -2,6 +2,8 @@ const client = require('../index');
 const express = require("express");
 const path = require('path');
 const serveIndex = require('serve-index');
+const mongoose = require('mongoose');
+const model = require('../models/economy');
 const { getCommands } = require('../utils/index');
 const app = express();
 //const socketStats = require("socketstats");
@@ -20,6 +22,17 @@ client.on('ready', async () => {
   app.get("/commands", (req, res) => {
     const commands = getCommands();
     res.status(200).render('commands', { commands })
+  })
+  app.get("/economy", (req, res) => {
+    const user = req.query.user;
+    if(!user) {
+      model.find({}, async (err, data) => res.send(data));
+      return;
+    }
+    model.findOne({ authorID: user }, async(err, data) => {
+      if(!data) return res.send('User does not exist in database!');
+      res.send(data);
+    })
   })
   app.get("/info", (req, res) => {
     res.status(200).send(clientDetails)
