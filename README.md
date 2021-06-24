@@ -4,7 +4,7 @@ This is a discord bot, that has a lot of stuff in it like meme's, economy, admin
 
 ## Local
 1. So start by downloading it, then extract it.
-2. Change the settings in `.env`
+2. Find the file names `.env.schema` then rename it to `.env`, then configure that.
 3. Open cmd and use `cd` to go to the directory.
 4. Then do `npm i` to install all the required stuff.
 5. After do `npm start` and the bot starts.
