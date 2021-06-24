@@ -72,6 +72,8 @@ client.on('message', async message =>{
     let command = client.commands.get(cmd)
     if(!command) command = client.commands.get(client.aliases.get(cmd));
     if (command) {
+        if(!message.member.permissions.has(command.userPermission || [])) return message.channel.send("You do not have permission to use this command!");
+        if(!message.guild.me.permissions.has(command.botPermission || [])) return message.channel.send("I do not have permission to use this command!");
         const blacklisted = await blacklistserver.findOne({ Server: message.guild.id });
         if(blacklisted) return message.reply("This server has been blacklisted.")
         if(command.cooldown) {
