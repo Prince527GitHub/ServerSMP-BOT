@@ -6,13 +6,13 @@ module.exports = {
     category : 'prefix',
     usage: '[new prefix]',
     description : "Change the bots prefix!",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["ADMINISTRATOR"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("You need permissions!");
         const res = await args.join(" ")
         if(!res) return message.channel.send('Please specify a prefix to change to.')
         prefixSchema.findOne({ Guild : message.guild.id }, async(err, data) => {

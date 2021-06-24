@@ -5,13 +5,14 @@ module.exports = {
     category : 'moderation',
     usage: '[@user]',
     description : "Stop a user from joining vc.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["MANAGE_ROLES"],
+    botPermission: ["MANAGE_ROLES"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(!message.member.hasPermission("MANAGE_ROLES")) return;
         const target = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         if(!target) return message.reply("Please specify a member!")
         let role = message.guild.roles.cache.find((role) => role.name.toLowerCase() === 'antivc');

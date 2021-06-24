@@ -6,13 +6,13 @@ module.exports = {
     category : 'welcome/goodbye',
     usage: '',
     description : "Set the channel for the goodbye card.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["ADMINISTRATOR"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(!message.member.hasPermission("ADMINISTRATOR")) return;
         const channel = message.mentions.channels.first();
         if(!channel) return message.reply("Please mention a channel!");
         Schema.findOne({ Guild: message.guild.id }, async(err, data) => {

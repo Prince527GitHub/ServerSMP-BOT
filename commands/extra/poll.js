@@ -5,13 +5,13 @@ module.exports = {
     category : 'extra',
     usage: '[#channel] [what is the poll]',
     description : "Admins can make polls.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["MANAGE_MESSAGES"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(message.member.hasPermission('MANAGE_MESSAGES')) {
             let pollChannel = message.mentions.channels.first();
             let pollDescription = args.slice(1).join(' ');
             let embedPoll = new MessageEmbed()
@@ -21,8 +21,5 @@ module.exports = {
             let msgEmbed = await pollChannel.send(embedPoll);
             await msgEmbed.react('👍')
             await msgEmbed.react('👎')
-       } else {
-           return message.channel.send('You dont have perms.')
-       }
     }
 }

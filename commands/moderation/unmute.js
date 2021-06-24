@@ -6,10 +6,12 @@ module.exports = {
     usage: '[@user]',
     category : 'moderation',
     description : "Admins can unmute users so they can talk in text channels.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["MANAGE_MESSAGES"],
+    botPermission: ["MANAGE_ROLES"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         const Member = message.mentions.members.first() || message.guild.members.cache.get(args[0])

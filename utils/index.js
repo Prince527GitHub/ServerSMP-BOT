@@ -11,7 +11,8 @@ function getCommands () {
                 name: file.name ? file.name : 'no command name',
                 description: file.description ? file.description : 'no description',
                 aliases: file.aliases ? file.aliases : 'no aliases',
-                usage: file.usage ? file.usage : 'no usage'
+                usage: file.usage ? file.usage : 'no usage',
+                userPermission: file.userPermission ? file.userPermission : 'no permissions'
             })
         })
         let data = new Object();

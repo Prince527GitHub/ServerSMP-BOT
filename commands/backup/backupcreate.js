@@ -8,15 +8,13 @@ module.exports = {
     usage: '',
     aliases : ['bc'],
     description : "Create a backup of you're server.",
+    userPermission: ["ADMINISTRATOR"],
     /**
      * @param {Client} client
      * @param {Message} message
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(!message.member.hasPermission("ADMINISTRATOR")){
-            return message.channel.send(":x: | You must be an administrator of this server to request a backup!");
-        }
         backup.create(message.guild, {
             jsonBeautify: true
         }).then((backupData) => {

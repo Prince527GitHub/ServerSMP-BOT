@@ -6,10 +6,12 @@ module.exports = {
     usage: '[@user]',
     category : 'moderation',
     description : "Admins can mute users from messaging in a text channels.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["MANAGE_MESSAGES"],
+    botPermission: ["MANAGE_ROLES"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('You do not have permissions to use this command')

@@ -5,13 +5,13 @@ module.exports = {
     category : 'extra',
     usage: '[emoji] [emoji] [emoji] [emoji] [emoji]',
     description : "Take emojis from other servers and add them to your server.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["MANAGE_MESSAGES"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You need perms!")
         if(!args.length) return message.reply("Please specify some emoji!");
         for (const rawEmoji of args) {
             const parsedEmoji = Discord.Util.parseEmoji(rawEmoji);

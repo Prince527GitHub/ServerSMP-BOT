@@ -6,13 +6,14 @@ module.exports = {
     usage: '[1-50]',
     category : 'moderation',
     description : "Admins can clear messages.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["MANAGE_MESSAGES"],
+    botPermission: ["MANAGE_MESSAGES"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if (!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send('Lack of Perms!');
         let deleteAmount;
         if (isNaN(args[0]) || parseInt(args[0]) <= 0) { return message.reply('Please put a number only!') }
         if (parseInt(args[0]) > 50) {

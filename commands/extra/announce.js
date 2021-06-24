@@ -6,13 +6,13 @@ module.exports = {
     usage: '[#channel] [message] [-ping ?]',
     aliases : ['an'],
     description : "The bot can send your announcement!",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["MANAGE_MESSAGES"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('You do not have permission to use this command');
         let mention;
         if(!args.length) return message.channel.send('> Usage: y!announce <#channel> <message> <-ping ?>');
         const channel = message.mentions.channels.first();

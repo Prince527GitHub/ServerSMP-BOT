@@ -6,10 +6,11 @@ module.exports = {
     category : 'extra',
     usage: '[on/off]',
     description : "Turn on or off the captcha system!",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["ADMINISTRATOR"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         if(args[0] === 'on') {

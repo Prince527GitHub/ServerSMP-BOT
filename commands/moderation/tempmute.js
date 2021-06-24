@@ -6,13 +6,14 @@ module.exports = {
     usage: '[@user] [time]',
     category : 'moderation',
     description : "Admins can mute users for some time.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["MANAGE_MESSAGES"],
+    botPermission: ["MANAGE_ROLES"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('You do not have permissions to use this command')
         const Member = message.mentions.members.first() || message.guild.members.cache.get(args[0])
         const time = args[1]
         if(!Member) return message.channel.send('Member is not found.')

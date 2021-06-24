@@ -6,13 +6,13 @@ module.exports = {
     category : 'giveaway',
     usage: '[message id of giveaway]',
     description : "End the giveaway!",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["MANAGE_MESSAGES"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(!messages.member.permission.has('MANAGE_MESSAGES')) return messages.reply('You do not have sufficient permissions!')
         giveawayClient.end(args[0], false)
     }
 }

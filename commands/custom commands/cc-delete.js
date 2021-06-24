@@ -7,16 +7,15 @@ module.exports = {
     category : 'Custom Commands',
     usage: '[name of command]',
     description : "Delete custom commands!",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["ADMINISTRATOR"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         const premiumdata = await premium.findOne({ Guild: message.guild.id });
         if(!premiumdata) return message.reply('This guild does not have premium!');
-        if(!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('You do not have permissions to use this command');
-
         const name = args[0];
 
         if(!name) return message.channel.send('Please specify a command name');

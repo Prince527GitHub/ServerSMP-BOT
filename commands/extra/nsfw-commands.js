@@ -7,10 +7,11 @@ module.exports = {
     usage: '[on/off]',
     aliases : ['nsfw-c'],
     description : "Turn on or off NSFW commands!",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["ADMINISTRATOR"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         if(args[0] === 'on') {

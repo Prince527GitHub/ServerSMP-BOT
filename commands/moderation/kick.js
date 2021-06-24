@@ -5,13 +5,14 @@ module.exports = {
     usage: '[@user]',
     category : 'moderation',
     description : "Kick users.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["KICK_MEMBERS"],
+    botPermission: ["KICK_MEMBERS"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(message.member.hasPermission("KICK_MEMBERS")) {
             let member = message.mentions.members.first()
             if(!member) message.channel.send("Please mention someone")
             else {
@@ -19,8 +20,5 @@ module.exports = {
                     message.channel.send(`Kicked ${mem.user.username}!`)
                 })
             }
-        } else {
-            message.reply("You don't have permission to do that")
-        }
     }
 }

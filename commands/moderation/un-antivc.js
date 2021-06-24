@@ -5,10 +5,12 @@ module.exports = {
     category : 'moderation',
     usage: '[@user]',
     description : "Let the user join vc.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["MANAGE_ROLES"],
+    botPermission: ["MANAGE_ROLES"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         const target = message.mentions.members.first();

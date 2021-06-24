@@ -7,15 +7,13 @@ module.exports = {
     usage: '[backupID]',
     aliases : ['bd'],
     description : "Delete a backup.",
+    userPermission: ["ADMINISTRATOR"],
     /**
      * @param {Client} client
      * @param {Message} message
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(!message.member.hasPermission("ADMINISTRATOR")){
-            return message.channel.send(":x: | You must be an administrator of this server to load a backup!");
-        }
         let backupID = args[0];
         if(!backupID){
             return message.channel.send(":x: | You must specify a valid backup ID!");

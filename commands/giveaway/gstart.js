@@ -7,13 +7,13 @@ module.exports = {
     category : 'giveaway',
     usage: '[#channel] [time] [number of winners] [prize]',
     description : "Create a giveaway",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["MANAGE_MESSAGES"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(!messages.member.permission.has('MANAGE_MESSAGES')) return messages.reply('You do not have sufficient permissions!')
         const channel = message.mentions.channels.first();
         if(!channel) return messages.reply('Please specify a channel!');
         let time = args[1]; if(!time) return messages.reply('Please specify a time!');
@@ -24,7 +24,7 @@ module.exports = {
             hostedBy: message.author,
             description: 'A random giveaway!',
             winners: parseInt(args[2]),
-            prize: args.slice(3).join(" ") 
+            prize: args.slice(3).join(" ")
         })
     }
 }

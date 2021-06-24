@@ -6,13 +6,13 @@ module.exports = {
     category : 'extra',
     usage: '',
     description : "Remove the global channel.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["ADMINISTRATOR"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("You need permissions!");
         const query = { Guild: message.guild.id, Channel: message.channel.id, Activated: true }
         Schema.findOne(query, async(err, data) => {
             if(data) {

@@ -6,13 +6,14 @@ module.exports = {
     category : 'moderation',
     usage: '[on | off | list]',
     description : "Turn on/off antijoin system, this helps with raids and there is -antijoin list to see the player's that it kicked.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPermission: ["ADMINISTRATOR"],
+    botPermission: ["KICK_MEMBERS"],
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(!message.member.permissions.has('ADMINISTRATOR')) return;
         const query = args[0]?.toLowerCase();
         if(!query) return message.reply("Please specify a query!");
         const getCollection = antijoin.get(message.guild.id)

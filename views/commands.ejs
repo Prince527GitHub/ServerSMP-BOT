@@ -18,13 +18,15 @@
                         <th>Usage</th>
                         <th>Description</th>
                         <th>Aliases</th>
+                        <th>User Perms</th>
                     </tr>
-                   <% value.forEach(({ name, description, aliases, usage}) => { %>
+                   <% value.forEach(({ name, description, aliases, usage, userPermission, botPermission}) => { %>
                         <tr>
                             <td><%= name%></td>
                             <td><%= usage%></td>
                             <td><%= description%></td>
                             <td><%= typeof aliases === 'string' ? aliases : aliases.join(', ')%></td>
+                            <td><%= userPermission%></td>
                         </tr>
                     <%}) %>
                 </table>
