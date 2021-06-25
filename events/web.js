@@ -1,6 +1,7 @@
 const client = require('../index');
 const express = require("express");
 const path = require('path');
+const serveIndex = require('serve-index');
 const mongoose = require('mongoose');
 const model = require('../models/economy');
 const { getCommands } = require('../utils/index');
@@ -13,6 +14,8 @@ client.on('ready', async () => {
     users: client.users.cache.size,
     channels: client.channels.cache.size
   }
+  app.use('/web', express.static('web'));
+  app.use('/web', serveIndex('web'));
   app.get("/", (req, res) => {
     res.status(200).render('index.pug')
   })
