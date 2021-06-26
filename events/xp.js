@@ -1,11 +1,7 @@
 const client = require('../index');
-//const botdash = require('botdash.pro');
 const Levels = require('discord-xp');
-//const dashboard = new botdash.APIclient("3856da55-f3b3-462f-9186-0bf72c9b35a7");
 
 client.on('message', async(message) => {
-    //const offxp = await dashboard.getVal(message.guild.id, "offxp");
-    //if(offxp === "false") return;
     if(message.author.bot) return;
     if(!message.guild) return;
     if(!message.member) message.member = await message.guild.fetchMember(message);

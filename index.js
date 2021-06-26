@@ -14,6 +14,7 @@ const token = process.env.TOKEN;
 const mongo = process.env.MONGO
 const disturn = process.env.DISTURN;
 const distoken = process.env.DISTOKEN;
+const botdashAPI = process.env.BOTDASH;
 module.exports = client;
 if (disturn === "true") {
   const DB = require("disbots.net");
@@ -145,7 +146,7 @@ const {
 } = require('discord-together');
 Client.discordTogether = new DiscordTogether(client);
 
-Client.dashboard = new botdash.APIclient("3856da55-f3b3-462f-9186-0bf72c9b35a7");
+Client.dashboard = new botdash.APIclient(botdashAPI);
 
 client.bal = (id, coins) => new Promise(async ful => {
   const data = await eco.findOne({

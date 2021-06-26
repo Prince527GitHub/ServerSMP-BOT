@@ -3,7 +3,7 @@ const Schema = require('../models/welcome');
 const { MessageAttachment } = require('discord.js');
 const { drawCard } = require('discord-welcome-card');
 const botdash = require('botdash.pro');
-const dashboard = new botdash.APIclient("3856da55-f3b3-462f-9186-0bf72c9b35a7");
+const dashboard = new botdash.APIclient(process.env.BOTDASH);
 
 Client.on("guildMemberAdd", async(member) => {
     Schema.findOne({ Guild: member.guild.id }, async(e, data) => {
