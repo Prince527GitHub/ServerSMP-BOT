@@ -86,6 +86,7 @@ client.on('message', async message => {
       Server: message.guild.id
     });
     if (blacklisted) return message.reply("This server has been blacklisted.")
+    if(command.userPremium && !(await premiumUSchema.findOne({ User: message.author.id }))) return message.reply("You need to upgrade to premium to use this command!");
     if (command.cooldown) {
       if (Timeout.has(`${command.name}${message.author.id}`)) return message.channel.send(`You are on a \`${ms(Timeout.get(`${command.name}${message.author.id}`) - Date.now(), {long : true})}\` cooldown.`)
       command.run(client, message, args)

@@ -1,5 +1,4 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
-const premiumuser = require('../../models/premium-user');
 const fs = require("fs");
 
 module.exports = {
@@ -7,14 +6,13 @@ module.exports = {
     category : 'voice',
     usage: '',
     description : "Record a clip of you in a vc.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    userPremium: true,
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        const premiumdata = await premiumuser.findOne({ User: message.author.id });
-        if(!premiumdata) return message.reply('You do not have premium!');
         const voicechannel = message.member.voice.channel;
         if (!voicechannel) return message.channel.send("Please join a voice channel first!");
         const connection = await message.member.voice.channel.join();
