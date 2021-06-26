@@ -30,6 +30,8 @@ if (disturn === "true") {
 const mongoose = require('mongoose');
 const blacklistserver = require('./models/blacklist');
 const prefixSchema = require('./models/prefix');
+const premiumUSchema = require('./models/premium-user');
+const premiumGSchema = require('./models/premium-guild');
 const customcom = require('./models/cc');
 const eco = require('./models/economy')
 const Levels = require('discord-xp');
@@ -63,39 +65,43 @@ client.categories = fs.readdirSync("./commands/");
   require(`./handlers/${handler}`)(client);
 });
 
-client.on('message', async message => {
-  if (message.author.bot) return;
-  const p = await client.prefix(message)
-  if (!message.content.startsWith(p)) return;
-  if (!message.guild) return;
-  if (!message.member) message.member = await message.guild.fetchMember(message);
-  const args = message.content.slice(p.length).trim().split(/ +/g);
-  const cmd = args.shift().toLowerCase();
-  if (cmd.length == 0) return;
-  const data = await customcom.findOne({
-    Guild: message.guild.id,
-    Command: cmd
-  });
-  if (data) message.channel.send(data.Response);
-  let command = client.commands.get(cmd)
-  if (!command) command = client.commands.get(client.aliases.get(cmd));
-  if (command) {
-    if (!message.member.permissions.has(command.userPermission || [])) return message.channel.send("You do not have permission to use this command!");
-    if (!message.guild.me.permissions.has(command.botPermission || [])) return message.channel.send("I do not have permission to use this command!");
-    const blacklisted = await blacklistserver.findOne({
-      Server: message.guild.id
-    });
-    if (blacklisted) return message.reply("This server has been blacklisted.")
-    if(command.userPremium && !(await premiumUSchema.findOne({ User: message.author.id }))) return message.reply("You need to upgrade to premium to use this command!");
-    if (command.cooldown) {
-      if (Timeout.has(`${command.name}${message.author.id}`)) return message.channel.send(`You are on a \`${ms(Timeout.get(`${command.name}${message.author.id}`) - Date.now(), {long : true})}\` cooldown.`)
-      command.run(client, message, args)
-      Timeout.set(`${command.name}${message.author.id}`, Date.now() + command.cooldown)
-      setTimeout(() => {
-        Timeout.delete(`${command.name}${message.author.id}`)
-      }, command.cooldown)
-    } else command.run(client, message, args);
-  }
+client.on('message', async message =>{
+    if(message.author.bot) return;
+    const p = await client.prefix(message)
+    if(!message.content.startsWith(p)) return;
+    if(!message.guild) return;
+    if(!message.member) message.member = await message.guild.fetchMember(message);
+    const args = message.content.slice(p.length).trim().split(/ +/g);
+    const cmd = args.shift().toLowerCase();
+    if(cmd.length == 0 ) return;
+    const data = await customcom.findOne({ Guild: message.guild.id, Command: cmd });
+    if(data) message.channel.send(data.Response);
+    let command = client.commands.get(cmd)
+    if(!command) command = client.commands.get(client.aliases.get(cmd));
+    if (command) {
+        if(!message.member.permissions.has(command.userPermission || [])) return message.channel.send("You do not have permission to use this command!");
+        if(!message.guild.me.permissions.has(command.botPermission || [])) return message.channel.send("I do not have permission to use this command!");
+        const blacklisted = await blacklistserver.findOne({ Server: message.guild.id });
+        if(blacklisted) return message.reply("This server has been blacklisted.");
+        if(command.userPremium && !(await premiumUSchema.findOne({ User: message.author.id }))) return message.reply("You need to upgrade to premium to use this command!");
+        if(command.guildPremium) {
+          premiumGSchema.findOne({ Guild: message.guild.id }, async(err, data) => {
+            if(!data) return message.reply('This is a premium command!');
+            if(!data.Permanent && Date.now() > data.Expire) {
+              data.delete();
+              return message.reply("The premium system is expired!");
+          }
+        })
+      } else command.run(client, message, args);
+      //if(command.cooldown) {
+        //if(Timeout.has(`${command.name}${message.author.id}`)) return message.channel.send(`You are on a \`${ms(Timeout.get(`${command.name}${message.author.id}`) - Date.now(), {long : true})}\` cooldown.`)
+        //command.run(client, message, args)
+        //Timeout.set(`${command.name}${message.author.id}`, Date.now() + command.cooldown)
+        //setTimeout(() => {
+        //    Timeout.delete(`${command.name}${message.author.id}`)
+        //}, command.cooldown)
+      //} else command.run(client, message, args);
+    }
 });
 
 const DisTube = require('distube');

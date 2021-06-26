@@ -6,10 +6,11 @@ module.exports = {
     category : 'Custom Commands',
     usage: '',
     description : "List the custom commands!",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    guildPremium: true,
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         const data  = await schema.find({ Guild: message.guild.id });
@@ -18,7 +19,7 @@ module.exports = {
             new MessageEmbed()
                 .setColor('BLUE')
                 .setDescription(
-                    data.map((cmd, i) => 
+                    data.map((cmd, i) =>
                         `${i + 1}: ${cmd.Command}`
                     ).join('\n')
                 )
