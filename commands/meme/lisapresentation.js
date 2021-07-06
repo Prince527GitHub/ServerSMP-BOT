@@ -13,6 +13,7 @@ module.exports = {
      * @param {String[]} args
      */
     run: async(client, message, args) => {
+      //if (message.content.length > 303) return message.reply("Max characters of 300.")
         let text = args.slice(0).join(" ");
         if(!text) return message.reply("You need to type something!")
         let img = await new DIG.LisaPresentation().getImage(text);

@@ -8,6 +8,7 @@ const client = new Client({
   disableEveryone: true
 });
 require('discord-buttons')(client);
+require('discord-slider')(client);
 require('dotenv').config();
 const prefix = process.env.PREFIX;
 const token = process.env.TOKEN;
@@ -72,6 +73,7 @@ client.on('message', async message =>{
     if(!message.content.startsWith(p)) return;
     if(!message.guild) return;
     if(!message.member) message.member = await message.guild.fetchMember(message);
+    if (message.content.length > 2048) return;
     const args = message.content.slice(p.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
     if(cmd.length == 0 ) return;
@@ -189,6 +191,17 @@ client.rmv = (id, coins) => {
     data.save();
   })
 }
+
+client.formatNumber = n => {
+  if (n < 1e4) return n;
+  if (n >= 1e4 && n < 1e6) return +(n / 1000).toFixed(1) + "K";
+  if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + "M";
+  if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
+  if (n >= 1e12 && n < 1e15) return +(n / 1e12).toFixed(1) + "T";
+  if (n >= 1e15 && n < 1e18) return +(n / 1e15).toFixed(1) + "qD";
+  if (n >= 1e18 && n < 1e21) return +(n / 1e18).toFixed(1) + "Qn";
+};
+
 
 const {
   DiscordUNO

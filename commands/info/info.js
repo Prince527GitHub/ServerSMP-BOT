@@ -6,10 +6,10 @@ module.exports = {
     category : 'info',
     usage: '',
     description : "Give's some info on the bot.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         const embed = new MessageEmbed()
@@ -20,11 +20,11 @@ module.exports = {
             .addField("Servers:", `\`${client.guilds.cache.size}\``)
         const button1 = new MessageButton()
             .setStyle('url')
-            .setURL('https://serversmp.netlify.app/invite3.html') 
+            .setURL('https://serversmp.netlify.app/invite3.html')
             .setLabel('Invite!')
         const button2 = new MessageButton()
             .setStyle('url')
-            .setURL('https://serversmp.netlify.app/') 
+            .setURL('https://serversmp.netlify.app/')
             .setLabel('Website!')
 
         message.channel.send({
