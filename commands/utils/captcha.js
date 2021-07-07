@@ -3,7 +3,7 @@ const db = require('quick.db');
 
 module.exports = {
     name: 'captcha',
-    category : 'extra',
+    category : 'utils',
     usage: '[on/off]',
     description : "Turn on or off the captcha system!",
     userPermission: ["ADMINISTRATOR"],

@@ -11,6 +11,7 @@ module.exports = {
   aliases: ['hs'],
   description: "Shows all available bot commands in a small slider.",
   run: async (client, message, args) => {
+    if (message.author.id !== process.env.OWNER) return message.reply("This command can only be used by the owner!");
     const p = await client.prefix(message)
     const colr = '#2F3136';
     if (!args[0]) {

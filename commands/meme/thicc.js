@@ -5,8 +5,6 @@ module.exports = {
     category: 'meme',
     usage: '[@user (or not)]',
     description: "Thicc...",
-    userPermission: [],
-    botPermission: [],
     /**
      * @param {Client} client
      * @param {Message} message

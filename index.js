@@ -5,7 +5,8 @@ const {
 } = require('discord.js')
 const fs = require('fs')
 const client = new Client({
-  disableEveryone: true
+  disableEveryone: true,
+  partials: ["CHANNEL", "MESSAGE", "GUILD_MEMBER", "REACTION"],
 });
 require('discord-buttons')(client);
 require('discord-slider')(client);
@@ -16,16 +17,33 @@ const mongo = process.env.MONGO
 const disturn = process.env.DISTURN;
 const distoken = process.env.DISTOKEN;
 const botdashAPI = process.env.BOTDASH;
+const owner = process.env.OWNER;
 module.exports = client;
+if (!token) {
+  console.error("Please provide a valid Discord Bot Token.");
+  process.exit(1);
+} else if (!prefix) {
+  console.error("Please provide a prefix for the bot.");
+  process.exit(1);
+} else if (!mongo) {
+  console.error("Please provide a mongodb url for the bot.");
+  process.exit(1);
+} else if (!owner) {
+  console.error("Please provide your user id.");
+  process.exit(1);
+} else if (!botdashAPI) {
+  console.error("Please provide your botdash api token.");
+  process.exit(1);
+}
 if (disturn === "true") {
-  const DB = require("disbots.net");
-  const db = new DB(distoken, {
+  const DISBOT = require("disbots.net");
+  const disbot = new DISBOT(distoken, {
     statsInterval: 4000000
   }, client);
-  db.on("postServers", () => {
+  disbot.on("postServers", () => {
     console.log("Server count ✅");
   });
-  db.on("postShards", () => {
+  disbot.on("postShards", () => {
     console.log("Shards count ✅");
   });
 }
@@ -34,19 +52,29 @@ const blacklistserver = require('./models/blacklist');
 const prefixSchema = require('./models/prefix');
 const premiumUSchema = require('./models/premium-user');
 const premiumGSchema = require('./models/premium-guild');
+const commandstoggle = require('./models/command');
 const customcom = require('./models/cc');
 const eco = require('./models/economy')
 const Levels = require('discord-xp');
+const Nuggies = require('nuggies');
 const botdash = require('botdash.pro');
 const Timeout = new Collection();
 const ms = require('ms')
+const db = require('quick.db')
 Levels.setURL(mongo);
+Nuggies.connect(mongo)
 mongoose.connect(mongo, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true
 }).then(console.log('Connected to mongo db!'));
+client.on('clickMenu', async (menu) => {
+	Nuggies.dropclick(client, menu);
+});
+client.on('clickButton', button => {
+    Nuggies.buttonclick(client, button);
+});
 client.prefix = async function(message) {
   let custom;
   const data = await prefixSchema.findOne({
@@ -86,7 +114,19 @@ client.on('message', async message =>{
         if(!message.guild.me.permissions.has(command.botPermission || [])) return message.channel.send("I do not have permission to use this command!");
         const blacklisted = await blacklistserver.findOne({ Server: message.guild.id });
         if(blacklisted) return message.reply("This server has been blacklisted.");
+        const check = await commandstoggle.findOne({ Guild: message.guild.id })
+        if(check) {
+          if(check.Cmds.includes(command.name)) return message.channel.send('This command has been disabled by admins.');
+        }
         if(command.userPremium && !(await premiumUSchema.findOne({ User: message.author.id }))) return message.reply("You need to upgrade to premium to use this command!");
+        if(command.cooldown) {
+          if(Timeout.has(`${command.name}${message.author.id}`)) return message.channel.send(`You are on a \`${ms(Timeout.get(`${command.name}${message.author.id}`) - Date.now(), {long : true})}\` cooldown.`)
+          command.run(client, message, args)
+          Timeout.set(`${command.name}${message.author.id}`, Date.now() + command.cooldown)
+          setTimeout(() => {
+              Timeout.delete(`${command.name}${message.author.id}`)
+          }, command.cooldown)
+        }
         if(command.guildPremium) {
           premiumGSchema.findOne({ Guild: message.guild.id }, async(err, data) => {
             if(!data) return message.reply('This is a premium command!');
@@ -94,17 +134,17 @@ client.on('message', async message =>{
               data.delete();
               return message.reply("The premium system is expired!");
           }
+          if(command.cooldown) {
+            if(Timeout.has(`${command.name}${message.author.id}`)) return message.channel.send(`You are on a \`${ms(Timeout.get(`${command.name}${message.author.id}`) - Date.now(), {long : true})}\` cooldown.`)
+            command.run(client, message, args)
+            Timeout.set(`${command.name}${message.author.id}`, Date.now() + command.cooldown)
+            setTimeout(() => {
+                Timeout.delete(`${command.name}${message.author.id}`)
+            }, command.cooldown)
+          }
         })
       } else command.run(client, message, args);
-      //if(command.cooldown) {
-        //if(Timeout.has(`${command.name}${message.author.id}`)) return message.channel.send(`You are on a \`${ms(Timeout.get(`${command.name}${message.author.id}`) - Date.now(), {long : true})}\` cooldown.`)
-        //command.run(client, message, args)
-        //Timeout.set(`${command.name}${message.author.id}`, Date.now() + command.cooldown)
-        //setTimeout(() => {
-        //    Timeout.delete(`${command.name}${message.author.id}`)
-        //}, command.cooldown)
-      //} else command.run(client, message, args);
-    }
+    } //else command.run(client, message, args);
 });
 
 const DisTube = require('distube');
@@ -137,6 +177,11 @@ player
   .on("error", (message, e) => {
     console.error(e)
     message.channel.send("An error encountered: " + e);
+  })
+  .on("noRelated", message => message.channel.send("Can't find related video to play. Stop playing music."))
+  .on("initQueue", queue => {
+    queue.autoplay = false;
+    queue.volume = 50;
   })
   .on("finish", message => message.channel.send("No more song in queue"))
   .on("empty", message => message.channel.send("Channel is empty. Leaving the channel"));

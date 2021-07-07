@@ -2,7 +2,7 @@ const { MessageEmbed, Message, Client } = require('discord.js');
 
 module.exports = {
     name: 'announce',
-    category : 'extra',
+    category : 'utils',
     usage: '[#channel] [message] [-ping ?]',
     aliases : ['an'],
     description : "The bot can send your announcement!",

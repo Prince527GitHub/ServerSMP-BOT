@@ -15,6 +15,7 @@ module.exports = {
     * @param {String[]} args
     */
     run: async(client, message, args) => {
+if(message.author.id !== process.env.OWNER) return message.reply("This command can only be used by the owner!");
       const snipes = snipe.get(message.channel.id)
       if(!snipes) return message.reply('There is no message deleted in this channel!');
       const cnipe = +args[0] - 1 || 0;

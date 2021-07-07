@@ -1,5 +1,6 @@
 const { MessageEmbed, Client } = require("discord.js");
 const { readdirSync } = require("fs");
+const db = require('quick.db');
 const prefix = process.env.PREFIX;
 
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
     const nsfwcommand = await Client.dashboard.getVal(message.guild.id, "nsfw");
     const nsfwchannel = await Client.dashboard.getVal(message.guild.id, "nsfwchannel");
     const nsfwch = await Client.dashboard.getVal(message.guild.id, "nsfwch");
-    if(nsfwcommand === "false") {
+    if(db.has(`nsfw-${message.guild.id}`)=== false) {
     //NSFW HIDDED
     const roleColor =
       message.guild.me.displayHexColor === "#000000"

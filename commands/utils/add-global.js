@@ -3,7 +3,7 @@ const Schema = require('../../models/global');
 
 module.exports = {
     name: 'add-global',
-    category : 'extra',
+    category : 'utils',
     usage: '[#channel]',
     description : "Set the global chat so you can talk to players on other servers.",
     userPermission: ["ADMINISTRATOR"],

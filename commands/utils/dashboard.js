@@ -2,13 +2,13 @@ const { MessageEmbed, Message, Client } = require('discord.js');
 
 module.exports = {
     name: 'dashboard',
-    category : 'info',
+    category : 'utils',
     usage: '',
     description : "Get the dashboard link and the settings you have!",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         const nsfwchannel = await Client.dashboard.getVal(message.guild.id, "nsfwchannel");
@@ -19,7 +19,7 @@ module.exports = {
         const byesub = await Client.dashboard.getVal(message.guild.id, "byesub");
         const ticket = await Client.dashboard.getVal(message.guild.id, "ticket");
         const embed = new MessageEmbed()
-        .setColor("RANDOM")    
+        .setColor("RANDOM")
         .setTitle("Dashboard")
         .setDescription("The dashboard is [here](https://serversmp.botdash.pro/)!")
         .setAuthor(message.guild.name, message.guild.iconURL({ dynamic: true }))

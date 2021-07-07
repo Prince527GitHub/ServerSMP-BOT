@@ -3,7 +3,7 @@ const Schema = require('../../models/global');
 
 module.exports = {
     name: 'remove-global',
-    category : 'extra',
+    category : 'utils',
     usage: '',
     description : "Remove the global channel.",
     userPermission: ["ADMINISTRATOR"],

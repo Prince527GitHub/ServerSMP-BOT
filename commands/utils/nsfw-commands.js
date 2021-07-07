@@ -3,7 +3,7 @@ const db = require('quick.db');
 
 module.exports = {
     name: 'nsfw-commands',
-    category : 'extra',
+    category : 'utils',
     usage: '[on/off]',
     aliases : ['nsfw-c'],
     description : "Turn on or off NSFW commands!",
