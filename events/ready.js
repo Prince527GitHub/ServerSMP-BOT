@@ -1,5 +1,6 @@
 const client = require('../index');
 const Schema = require('../models/blackwords');
+const Nuggies = require('nuggies');
 const {
   blacklistedwords
 } = require('../collection/index');
@@ -21,4 +22,5 @@ client.on('ready', () => {
         blacklistedwords.set(val.Guild, val.Words)
       })
     })
+    Nuggies.giveaways.startAgain(client);
 })

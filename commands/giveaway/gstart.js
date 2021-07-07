@@ -1,30 +1,50 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
-const ms = require('ms');
-const giveawayClient = require('../../client/index')
+const Nuggies = require('nuggies');
+const ms = require('ms')
 
 module.exports = {
     name: 'gstart',
     category : 'giveaway',
-    usage: '[#channel] [time] [number of winners] [prize]',
-    description : "Create a giveaway",
-    userPermission: ["MANAGE_MESSAGES"],
+    usage: '<winners> <time> <prize>',
+    description : "Start a giveaway",
+    userPermission: ["MANAGE_GUILD"],
+
     /**
-     * @param {Client} client
-     * @param {Message} message
-     * @param {String[]} args
-     */
+    * @param {Client} client
+    * @param {Message} message
+    * @param {String[]} args
+    */
     run: async(client, message, args) => {
-        const channel = message.mentions.channels.first();
-        if(!channel) return messages.reply('Please specify a channel!');
-        let time = args[1]; if(!time) return messages.reply('Please specify a time!');
-        time = ms(time);
-        giveawayClient.Start({
-            channel,
-            time,
-            hostedBy: message.author,
-            description: 'A random giveaway!',
-            winners: parseInt(args[2]),
-            prize: args.slice(3).join(" ")
-        })
+      let requirements;
+    	let prize;
+    	if (!message.member.hasPermission('MANAGE_GUILD')) return message.reply('You are not allowed to use this command!');
+    	if (!args[1]) return message.reply('Please provide the options in the format of `{time} {winners} {req | optional} {prize}`');
+    	if (isNaN(parseInt((args[1])))) return message.reply('Please provide a valid number of winners', { allowedMentions: { repliedUser: false } });
+    	if (!args[1]) return message.reply('Please provide the time of the giveaway!', { allowedMentions: { repliedUser: false } });
+    	if (!ms(args[0])) return message.reply('Please provide a valid time! Example: `1m 1w`', { allowedMentions: { repliedUser: false } });
+    	if (!args.slice(2).join(' ')) return message.reply('Please provide the prize!', { allowedMentions: { repliedUser: false } });
+    	const host = message.author.id;
+    	const winners = parseInt(args[1]);
+    	if (args[2].endsWith('[role]')) {
+    		const role = args[2].replace('[role]', '');
+    		const check = message.guild.roles.cache.get(role);
+    		if (!check) return message.channel.send('please provide a valid role!');
+    		requirements = { enabled: true, roles: [role] };
+    		prize = args.slice(3).join(' ');
+    	}
+    	else {
+    		prize = args.slice(2).join(' ');
+    		requirements = { enabled: false };
+    	}
+
+    	Nuggies.giveaways.create({
+    		message: message,
+    		prize: prize,
+    		host: host,
+    		winners: winners,
+    		endAfter: args[0],
+    		requirements: requirements,
+    		channel: message.channel.id,
+    	});
     }
-}
+  }
