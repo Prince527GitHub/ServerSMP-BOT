@@ -31,6 +31,14 @@
     "OWNER": {
       "description": "The id of the owner (you)",
       "required": true
+    },
+    "BOTDASH": {
+      "description": "Your botdash token",
+      "required": true
+    },
+    "STATUS": {
+      "description": "Your bots status",
+      "required": true
     }
   },
   "keywords": ["node", "discord", "website"]

@@ -10,6 +10,7 @@ const client = new Client({
 });
 require('discord-buttons')(client);
 require('discord-slider')(client);
+require('@weky/inlinereply');
 require('dotenv').config();
 const prefix = process.env.PREFIX;
 const token = process.env.TOKEN;

@@ -15,20 +15,25 @@ module.exports = {
         const embed = new MessageEmbed()
             .setColor("RANDOM")
             .setTitle("Info")
-            .setThumbnail("https://serversmp.netlify.app/assets//disconnect.png")
+            .setThumbnail("https://serversmp.netlify.app/assets/serversmp-bot.png")
             .addField("Ping:", `\`${client.ws.ping}ms\``)
             .addField("Servers:", `\`${client.guilds.cache.size}\``)
+            .setImage("https://serversmp.netlify.app/qrcode.png")
         const button1 = new MessageButton()
             .setStyle('url')
-            .setURL('https://serversmp.netlify.app/invite3.html')
+            .setURL('https://discord.com/oauth2/authorize?client_id=778409873573412874&permissions=66579782&scope=bot')
             .setLabel('Invite!')
         const button2 = new MessageButton()
             .setStyle('url')
             .setURL('https://serversmp.netlify.app/')
             .setLabel('Website!')
+        const button3 = new MessageButton()
+            .setStyle('url')
+            .setURL('https://youtu.be/dQw4w9WgXcQ')
+            .setLabel('Support!')
 
         message.channel.send({
-            buttons: [button1, button2],
+            buttons: [button1, button2, button3],
             embed: embed
         })
     }

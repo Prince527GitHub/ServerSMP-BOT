@@ -1,40 +1,48 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
+const { RockPaperScissors } = require("weky");
 
 module.exports = {
     name: 'rockpaperscissors',
     category : 'games',
-    usage: '<rock|paper|scissors>',
+    usage: '',
     aliases : ['rpc'],
-    description : "Play rps in discord against the bot.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    description : "Play rps in discord.",
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        const acceptedReplies = ['rock', 'paper', 'scissors'];
-        const random = Math.floor((Math.random() * acceptedReplies.length));
-        const result = acceptedReplies[random];
-        const choice = args[0];
-        if (!choice) return message.channel.send(`How to play: \`${prefix}rps <rock|paper|scissors>\``);
-        if (!acceptedReplies.includes(choice)) return message.channel.send(`Only these responses are accepted: \`${acceptedReplies.join(', ')}\``);
-        if (result === choice) return message.reply("It's a tie! We had the same choice.");
-        switch (choice) {
-            case 'rock': {
-                if (result === 'paper') return message.reply('I won!');
-                else return message.reply('You won!');
-            }
-            case 'paper': {
-                if (result === 'scissors') return message.reply('I won!');
-                else return message.reply('You won!');        
-            }
-            case 'scissors': {
-                if (result === 'rock') return message.reply('I won!');
-                else return message.reply('You won!');
-            }
-            default: {
-                return message.channel.send(`Only these responses are accepted: \`${acceptedReplies.join(', ')}\``);
-            }
-        }
+      await RockPaperScissors({
+      	message: message,
+      	opponent: message.mentions.users.first(),
+      	embed: {
+      		title: 'Rock Paper Scissors',
+      		description: 'Press the button below to choose your element.',
+      		color: '#7289da',
+      		timestamp: true,
+      	},
+      	buttons: {
+      		rock: 'Rock',
+      		paper: 'Paper',
+      		scissors: 'Scissors',
+      		accept: 'Accept',
+      		deny: 'Deny',
+      	},
+      	time: 60000,
+      	acceptMessage:
+      		'<@{{challenger}}> has challenged <@{{opponent}}> for a game of Rock Paper and Scissors!',
+      	winMessage: 'GG, <@{{winner}}> won!',
+      	drawMessage: 'This game is deadlock!',
+      	endMessage: "<@{{opponent}}> didn't answer in time. So, I dropped the game!",
+      	timeEndMessage:
+      		"Both of you didn't pick something in time. So, I dropped the game!",
+      	cancelMessage:
+      		'<@{{opponent}}> refused to have a game of Rock Paper and Scissors with you!',
+      	choseMessage: 'You picked {{emoji}}',
+      	noChangeMessage: 'You cannot change your selection!',
+      	othersMessage: 'Only {{author}} can use the buttons!',
+      	returnWinner: false,
+      });
     }
 }
