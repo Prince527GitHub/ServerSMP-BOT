@@ -60,3 +60,7 @@ Go to [uptimerobot.com](https://uptimerobot.com/) and create an accout if you do
 ![Uptime robot example](https://i.imgur.com/Qd9LXEy.png)
 
 Your bot should now be good to go, with near 100% uptime.
+
+## Invite
+So ya I do host the bot if you want to invite it.
+https://discord.com/oauth2/authorize?client_id=778409873573412874&permissions=66579782&scope=bot
