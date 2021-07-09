@@ -17,6 +17,12 @@ module.exports = {
         const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]);
         if(!role) return message.channel.send('Role is not valid!')
         await db.set(`autorole-${message.guild.id}`, role.id);
+        client.modlogs({
+          Member: message.author,
+          Action: 'Autorole',
+          Color: "#7c6bff",
+          Reason: role.name
+        }, message)
         message.reply(`${role.name} is the autorole!`)
     }
 }

@@ -17,6 +17,11 @@ module.exports = {
             if(!member) message.channel.send("Please mention someone")
             else {
                 member.kick().then(mem => {
+                  client.modlogs({
+                    Member: mem,
+                    Action: 'Kick',
+                    Color: "#fc4949",
+                  }, message)
                     message.channel.send(`Kicked ${mem.user.username}!`)
                 })
             }

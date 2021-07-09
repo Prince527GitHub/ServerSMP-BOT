@@ -1,7 +1,8 @@
 const {
   Collection,
   Client,
-  Discord
+  Discord,
+  MessageEmbed
 } = require('discord.js')
 const fs = require('fs')
 const client = new Client({
@@ -54,6 +55,7 @@ const prefixSchema = require('./models/prefix');
 const premiumUSchema = require('./models/premium-user');
 const premiumGSchema = require('./models/premium-guild');
 const commandstoggle = require('./models/command');
+const modlogsSchema = require('./models/modlogs');
 const customcom = require('./models/cc');
 const eco = require('./models/economy')
 const Levels = require('discord-xp');
@@ -246,6 +248,19 @@ client.formatNumber = n => {
   if (n >= 1e12 && n < 1e15) return +(n / 1e12).toFixed(1) + "T";
   if (n >= 1e15 && n < 1e18) return +(n / 1e15).toFixed(1) + "qD";
   if (n >= 1e18 && n < 1e21) return +(n / 1e18).toFixed(1) + "Qn";
+};
+
+client.modlogs = async function({ Member, Action, Color, Reason }, message) {
+  const data = await modlogsSchema.findOne({ Guild: message.guild.id })
+  if(!data) return;
+  const channel = message.guild.channels.cache.get(data.Channel);
+  const logsEmbed = new MessageEmbed()
+    .setColor(Color)
+    .setDescription(`Reason/changed: ${Reason || 'No Reason!'}`)
+    .addField('Member', `${Member.user.tag} (${Member.id})`)
+    .setThumbnail(Member.user.displayAvatarURL())
+    .setTitle(`Action Took: ${Action}`)
+  channel.send(logsEmbed)
 };
 
 

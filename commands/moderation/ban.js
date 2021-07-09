@@ -14,10 +14,16 @@ module.exports = {
      */
     run: async(client, message, args) => {
         let toBan = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username.toLowerCase() === args.slice(0).join(" ") || x.user.username === args[0]);
-        const reason = args[1] || "There was no reason!";
+        const reason = args.slice(1).join(" ") || "There was no reason!";
         toBan.ban({
             reason: reason
         })
+        client.modlogs({
+          Member: toBan,
+          Action: 'Ban',
+          Color: "RED",
+          Reason: reason
+        }, message)
         message.channel.send(`${toBan} has been banned from the server!\nReason: ${reason}`)
     }
 }
