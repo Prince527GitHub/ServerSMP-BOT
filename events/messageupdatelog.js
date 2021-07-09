@@ -8,7 +8,11 @@ client.on('messageUpdate', async(oldMessage, newMessage) => {
     const channel = oldMessage.guild.channels.cache.get(data.Channel);
     const logsEmbed = new MessageEmbed()
       .setColor("YELLOW")
-      .setDescription(`The old message: ${oldMessage}\n The new message: ${newMessage}`)
+      .setDescription(`Message sent by <@${oldMessage.author.id}> edited in ${oldMessage.channel.name}.`)
+      .addField('Old', ` \`\`\` ${oldMessage} \`\`\` `)
+      .addField('New', ` \`\`\` ${newMessage} \`\`\` `)
       .setTitle(`Action Took: MessageChanged`)
+      .setTimestamp()
+      .setFooter(oldMessage.guild.name, oldMessage.guild.iconURL)
     channel.send(logsEmbed)
 })
