@@ -1,5 +1,5 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
-const { DiscordTicket } = require('discord_ticket_maker');
+const db = require('quick.db');
 
 module.exports = {
     name: 't-role',
@@ -14,9 +14,8 @@ module.exports = {
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        const ticket = await Client.dashboard.getVal(message.guild.id, "ticket");
-        if(ticket === "false") return message.reply("Ticket commands are disabled!");
+        if(db.has(`ticket-${message.guild.id}`) === false) return message.reply("Ticket commands are disabled!");
         const role = message.mentions.roles.first()
-        ticket.setRole(message, role) //Set the support role, that gets pinged when a new ticket is created!
+        client.ticket.setRole(message, role) //Set the support role, that gets pinged when a new ticket is created!
     }
 }

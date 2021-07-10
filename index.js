@@ -59,6 +59,7 @@ const botdash = require('botdash.pro');
 const { DiscordTogether } = require('discord-together');
 const DisTube = require('distube');
 const { DiscordUNO } = require("discord-uno");
+const { DiscordTicket } = require('discord_ticket_maker')
 Levels.setURL(mongo);
 Nuggies.connect(mongo)
 mongoose.connect(mongo, {
@@ -144,6 +145,8 @@ client.on('message', async message =>{
       } else command.run(client, message, args);
     }
 });
+
+client.ticket = new DiscordTicket()
 
 const player = new DisTube(client, {
   searchSongs: true,

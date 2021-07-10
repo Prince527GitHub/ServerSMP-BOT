@@ -1,5 +1,5 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
-const { DiscordTicket } = require('discord_ticket_maker');
+const db = require('quick.db');
 
 module.exports = {
     name: 't-close',
@@ -14,10 +14,9 @@ module.exports = {
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        const ticket = await Client.dashboard.getVal(message.guild.id, "ticket");
-        if(ticket === "false") return message.reply("Ticket commands are disabled!");
+        if(db.has(`ticket-${message.guild.id}`) === false) return message.reply("Ticket commands are disabled!");
         const ya = message.content.slice(6)
         const channel = message.mentions.channels.first() || message.guild.channels.cache.find(c => c.id == ya || c.name == ya) || message.channel
-        ticket.closeTicket(message, channel)
+        client.ticket.closeTicket(message, channel)
     }
 }

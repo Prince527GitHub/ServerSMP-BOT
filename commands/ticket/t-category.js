@@ -1,5 +1,5 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
-const { DiscordTicket } = require('discord_ticket_maker');
+const db = require('quick.db');
 
 module.exports = {
     name: 't-category',
@@ -14,10 +14,9 @@ module.exports = {
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        const ticket = await Client.dashboard.getVal(message.guild.id, "ticket");
-        if(ticket === "false") return message.reply("Ticket commands are disabled!");
+        if(db.has(`ticket-${message.guild.id}`) === false) return message.reply("Ticket commands are disabled!");
         const ID = message.content.slice(9)//must be the category id
-        ticket.Category(message, ID)
+        client.ticket.Category(message, ID)
         message.channel.send(`Ticket Category has been set!`)
     }
 }
