@@ -5,6 +5,7 @@ This is a discord bot, that has a lot of stuff in it like meme's, economy, admin
 ![banner](https://serversmp.netlify.app/banner.png)
 
 # Setup
+The bot has setup for `Local`, `Heroku`, `Glitch`, `Replit` and maybe `Docker`. But also I do host the bot if you want to `Invite` it?
 
 ## Local
 1. So start by downloading it, then extract it.
