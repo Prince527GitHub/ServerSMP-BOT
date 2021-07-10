@@ -10,7 +10,7 @@ Client.on('guildMemberAdd', async (member) => {
             fetch(url)
                 .then(res => res.json())
                 .then(async json => {
-                    console.log(json)
+                    //console.log(json)
                     const msg = await member.send(
                         new MessageEmbed()
                             .setTitle('Please enter the captcha')

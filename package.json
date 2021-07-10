@@ -22,6 +22,7 @@
     "discord-backup": "^2.5.0",
     "discord-battleship": "^1.0.4",
     "discord-buttons": "^4.0.0",
+    "discord-epagination": "^1.2.6-1",
     "discord-giveaway": "^1.1.4",
     "discord-hangman": "^1.1.1",
     "discord-image-generation": "^1.4.9",
@@ -66,6 +67,7 @@
     "socketstats": "^1.0.9",
     "string-progressbar": "^1.0.4",
     "systeminformation": "^5.7.7",
+    "ultrax": "^1.7.7",
     "weky": "^3.1.0",
     "ytdl-core": "^4.8.3"
   }
