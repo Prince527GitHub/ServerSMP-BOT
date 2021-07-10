@@ -1,3 +1,7 @@
+'.source.js':
+  'Snippet Name':
+    'prefix': '!djs'
+    'body': """
 const { MessageEmbed, Message, Client } = require('discord.js');
 
 module.exports = {
@@ -10,7 +14,7 @@ module.exports = {
     botPermission: [], // the required bot perms EX: ["MANANAGE_ROLES"]
     userPremium: , // is the command user premium EX: false
     guildPremium: , // is the command guild premium EX: false
-    cooldown: 1000 * 60 * 60 * 24, // cooldown for command (remove if not used) EX: 0
+    cooldown: , // cooldown for command (remove if not used) EX: 0
 
     /**
     * @param {Client} client
@@ -21,3 +25,4 @@ module.exports = {
 
     }
   }
+        """
