@@ -2,6 +2,8 @@
 
 This is a discord bot, that has a lot of stuff in it like meme's, economy, admin, extra, etc.
 
+![banner](https://serversmp.netlify.app/banner.png)
+
 ## Local
 1. So start by downloading it, then extract it.
 2. Find the file names `.env.schema` then rename it to `.env`, then configure that.
