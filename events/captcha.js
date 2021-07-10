@@ -39,6 +39,6 @@ Client.on('guildMemberAdd', async (member) => {
                     }
                 })
         } catch (error) {
-            console.log(error)
+            return;
         }
 })
