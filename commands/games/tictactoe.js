@@ -5,6 +5,7 @@ module.exports = {
     name: 'tictactoe',
     category : 'games',
     usage: '[@user]',
+    aliases: ['ttt'],
     description : "Play tictactoe against another user.",
     /**
      * @param {Client} client

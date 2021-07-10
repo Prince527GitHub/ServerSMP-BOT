@@ -1,14 +1,6 @@
-const {
-  Collection,
-  Client,
-  Discord,
-  MessageEmbed
-} = require('discord.js')
+const { Collection, Client, Discord, MessageEmbed } = require('discord.js')
 const fs = require('fs')
-const client = new Client({
-  disableEveryone: true,
-  partials: ["CHANNEL", "MESSAGE", "GUILD_MEMBER", "REACTION"],
-});
+const client = new Client({ disableEveryone: true, partials: ["CHANNEL", "MESSAGE", "GUILD_MEMBER", "REACTION"], });
 require('discord-buttons')(client);
 require('discord-slider')(client);
 require('@weky/inlinereply');
@@ -60,10 +52,13 @@ const customcom = require('./models/cc');
 const eco = require('./models/economy')
 const Levels = require('discord-xp');
 const Nuggies = require('nuggies');
-const botdash = require('botdash.pro');
 const Timeout = new Collection();
 const ms = require('ms')
 const db = require('quick.db')
+const botdash = require('botdash.pro');
+const { DiscordTogether } = require('discord-together');
+const DisTube = require('distube');
+const { DiscordUNO } = require("discord-uno");
 Levels.setURL(mongo);
 Nuggies.connect(mongo)
 mongoose.connect(mongo, {
@@ -147,10 +142,9 @@ client.on('message', async message =>{
           }
         })
       } else command.run(client, message, args);
-    } //else command.run(client, message, args);
+    }
 });
 
-const DisTube = require('distube');
 const player = new DisTube(client, {
   searchSongs: true,
   emitNewSongOnly: true,
@@ -191,9 +185,6 @@ player
 
 Client.player = player;
 
-const {
-  DiscordTogether
-} = require('discord-together');
 Client.discordTogether = new DiscordTogether(client);
 
 Client.dashboard = new botdash.APIclient(botdashAPI);
@@ -260,13 +251,9 @@ client.modlogs = async function({ Member, Action, Color, Reason }, message) {
     .addField('Member', `${Member.user.tag} (${Member.id})`)
     .setThumbnail(Member.user.displayAvatarURL())
     .setTitle(`Action Took: ${Action}`)
-  channel.send(logsEmbed)
+  channel.send(logsEmbed);
 };
 
-
-const {
-  DiscordUNO
-} = require("discord-uno");
 client.discordUNO = new DiscordUNO();
 
 client.login(token)

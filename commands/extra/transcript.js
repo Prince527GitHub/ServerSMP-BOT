@@ -6,10 +6,10 @@ module.exports = {
     category : 'extra',
     usage: '',
     description : "Take 50 message and turn it in to a html.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         fetchTranscript(message, 50).then((data) => {
