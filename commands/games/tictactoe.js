@@ -1,5 +1,5 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
-const { tictactoe } = require('reconlx');
+const djsGames = require('djs-games')
 
 module.exports = {
     name: 'tictactoe',
@@ -13,11 +13,7 @@ module.exports = {
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        const member = message.mentions.members.first()
-            if(!member)  return  message.channel.send('Please specify a member')
-        new tictactoe({
-            player_two: member,
-            message: message
-        })
+        const TicTacToe = new djsGames.TicTacToe()
+         TicTacToe.startGame(message)
     }
 }

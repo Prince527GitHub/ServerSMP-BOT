@@ -1,5 +1,5 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
-const GameCord = require('gamecord-fork').djs
+const djsGames = require('djs-games')
 
 module.exports = {
     name: 'connectfour',
@@ -7,15 +7,13 @@ module.exports = {
     usage: '[@user]',
     aliases : ['cf'],
     description : "Play connectfour in discord against another user.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        new GameCord.ConnectFour(message)
-        .setTitle('Connect4')
-        .setColor('#7298da')
-        .run() // Keep all your settings above and run it after all of your configuration!
+        const ConnectFour = new djsGames.ConnectFour()
+        ConnectFour.startGame(message)
     }
 }
