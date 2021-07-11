@@ -31,10 +31,9 @@ module.exports = {
             .setStyle('url')
             .setURL('https://youtu.be/dQw4w9WgXcQ')
             .setLabel('Support!')
+        let row = new MessageActionRow()
+            .addComponents(button1, button2, button3);
 
-        message.channel.send({
-            buttons: [button1, button2, button3],
-            embed: embed
-        })
+        message.channel.send(embed, row)
     }
 }
