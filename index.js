@@ -59,7 +59,7 @@ const botdash = require('botdash.pro');
 const { DiscordTogether } = require('discord-together');
 const DisTube = require('distube');
 const { DiscordUNO } = require("discord-uno");
-const { DiscordTicket } = require('discord_ticket_maker')
+const { DiscordTicket } = require('discord_ticket_maker');
 Levels.setURL(mongo);
 Nuggies.connect(mongo)
 mongoose.connect(mongo, {

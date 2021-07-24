@@ -1,7 +1,7 @@
 const client = require('../index');
-const  ultrax = require("ultrax")
 const Schema = require('../models/invites');
-ultrax.inviteLogger(client)
+const ultrax = require("ultrax")
+ultrax.inviteLogger(client);
 
 client.on('inviteJoin', (member, invite, inviter) => {
     Schema.findOne({ Guild: member.guild.id }, async(e, data) => {

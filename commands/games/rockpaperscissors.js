@@ -4,7 +4,7 @@ const { RockPaperScissors } = require("weky");
 module.exports = {
     name: 'rockpaperscissors',
     category : 'games',
-    usage: '',
+    usage: '[@user]',
     aliases : ['rpc'],
     description : "Play rps in discord.",
     /**
