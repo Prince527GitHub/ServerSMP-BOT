@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ServerSMP - Commands</title>
+    <link rel="shortcut icon" href="assets/serversmp-musicbot.png" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+    <a href="home2.html"><img src="assets/serversmp-musicbot.png" alt="Bot's Avatar" class="avatar"></a>
+    <section class="main-content">
+        <p>To get a look of the commands in discord, use +help to view the commands!</p>
+
+        <table style="width: 100%;">
+            <tr>
+                <th>Command Name</th>
+                <th>Usage</th>
+                <th>Description</th>
+                <th>Aliases</th>
+            </tr>
+
+            <tr>
+                <td>help</td>
+                <td>[command]</td>
+                <td>Show the command list.</td>
+                <td>h, command, commands, cmd, cmds</td>
+            </tr>
+
+            <tr>
+                <td>about</td>
+                <td>no usage</td>
+                <td>Send the information about the bot.</td>
+                <td>botinfo, info, stats</td>
+            </tr>
+
+            <tr>
+                <td>invite</td>
+                <td>no usage</td>
+                <td>Send the bot's invite link.</td>
+                <td>no aliases</td>
+            </tr>
+
+            <tr>
+                <td>nowplaying</td>
+                <td>no usage</td>
+                <td>Send information about the current music player.</td>
+                <td>np, now-playing</td>
+            </tr>
+			
+            <tr>
+                <td>pause</td>
+                <td>no usage</td>
+                <td>Pause the music player.</td>
+                <td>no aliases</td>
+            </tr>
+			
+            <tr>
+                <td>ping</td>
+                <td>no usage</td>
+                <td>Show the current ping of the bot.</td>
+                <td>pong, pang, pung, peng, pingpong</td>
+            </tr>
+			
+            <tr>
+                <td>play</td>
+                <td>[youtube video or playlist link | youtube video name]</td>
+                <td>Play some music.</td>
+                <td>p, add, play-music</td>
+            </tr>
+
+            <tr>
+                <td>queue</td>
+                <td>no usage</td>
+                <td>Show the current queue.</td>
+                <td>q</td>
+            </tr>
+			
+            <tr>
+                <td>repeat</td>
+                <td>[all | one | disable]</td>
+                <td>Repeat current music or the queue.</td>
+                <td>loop, music-repeat, music-loop</td>
+            </tr>
+			
+            <tr>
+                <td>resume</td>
+                <td>no usage</td>
+                <td>Resume the music player.</td>
+                <td>no aliases</td>
+            </tr>
+			
+            <tr>
+                <td>skip</td>
+                <td>no usage</td>
+                <td>Skip the current music.</td>
+                <td>s</td>
+            </tr>
+			
+            <tr>
+                <td>stop</td>
+                <td>no usage</td>
+                <td>Stop the music player.</td>
+                <td>st, disconnect, dc</td>
+            </tr>
+
+            <tr>
+                <td>volume</td>
+                <td>[new volume]</td>
+                <td>Show or change the music player's volume.</td>
+                <td>vol</td>
+            </tr>
+
+        </table>
+    </section>
+</body>
+<style>
+    table {
+        border-collapse: collapse;
+        boder-spacing: 0;
+    }
+
+    * {
+        box-size: border-box;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+        font-family: "Open Sans";
+        font-size: 16px;
+        line: height: 1.5;
+        color: #606c71;
+        background-color: black;
+    }
+
+    .main-content {
+        word-wrap: break-word;
+    }
+
+    @media screen and (min-width: 64em) {
+        .main-content {
+            max-width: 64rem;
+            padding: 2rem 6rem;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+    }
+
+    @media screen and (min-width: 42em) and (min-width: 64em) {
+        .main-content {
+            padding: 2rem 4rem;
+            font-size: 1.1rem;
+        }
+    }
+
+    @media screen and (min-width: 42em) {
+        .main-content {
+            padding: 2rem 1rem;
+            font-size: 1rem;
+        }
+    }
+
+    .main-content h1,
+    .main-content h2,
+    .main-content h3,
+    .main-content h4,
+    .main-content h5,
+    .main-content h6 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-weight: normal;
+        color: #e9ebec
+    }
+
+    .main-content table th,
+    .main-content table td {
+        padding: 0.5rem 1rem;
+        border: 1px solid #e9ebec;
+    }
+
+    .avatar {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 20%;
+        height: 20% -webkit-transform: -webkit-transform .8s ease-in-out;
+        transition: transform .8s ease-in-out;
+    }
+
+    .avatar:hover {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+
+    p {
+        text-align: center;
+    }
+</style>
+
+</html>
