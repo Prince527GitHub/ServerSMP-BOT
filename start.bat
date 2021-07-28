@@ -1,10 +1,10 @@
 @ECHO OFF
 title ServerSMP - BOT
-:Minecraft
+:Robot
 echo.
 echo ====================================
-echo Starting the server up. Please allow
-echo the server some time to start.
+echo Starting the bot up. Please allow
+echo the bot some time to start.
 echo ====================================
 echo.
 node index.js
@@ -18,4 +18,4 @@ echo ====================================
 echo.
 timeout 5
 ping 1.1.1.1 -n 1 -w 3000 >nul
-goto Minecraft
+goto Robot

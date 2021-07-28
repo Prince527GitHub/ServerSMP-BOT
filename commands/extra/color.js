@@ -20,12 +20,12 @@ module.exports = {
     run: async(client, message, args) => {
           let ramcolor = colourRandom();
           let img = await new DIG.Color().getImage(ramcolor);
-          let attach = new MessageAttachment(img, "color.png");
+          let attachment = new MessageAttachment(img, "color.png");
           const embed = new MessageEmbed()
               .setColor(ramcolor)
               .setTitle("Random Color")
               .setDescription(['Your color is `',ramcolor,'`'].join(''))
-          message.channel.send(embed);
-          message.channel.send(attach);
+              .setImage('attachment://color.png')
+          message.channel.send({ embed, files: [attachment] });
     }
 }
