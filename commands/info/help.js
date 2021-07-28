@@ -7,7 +7,6 @@ module.exports = {
   name: "help",
   description: "Shows all available bot commands.",
   run: async (client, message, args) => {
-    const nsfwcommand = await Client.dashboard.getVal(message.guild.id, "nsfw");
     const nsfwchannel = await Client.dashboard.getVal(message.guild.id, "nsfwchannel");
     const nsfwch = await Client.dashboard.getVal(message.guild.id, "nsfwch");
     if(db.has(`nsfw-${message.guild.id}`)=== false) {
