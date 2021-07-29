@@ -14,6 +14,8 @@ module.exports = {
     */
     run: async(client, message, args) => {
 
+      const roleColor = message.guild.me.displayHexColor === "#000000" ? "#ffffff" : message.guild.me.displayHexColor;
+
                   let seconds = Math.floor(message.client.uptime / 1000);
                   let minutes = Math.floor(seconds / 60);
                   let hours = Math.floor(minutes / 60);
@@ -29,7 +31,7 @@ module.exports = {
             const embed = new MessageEmbed()
                 .setThumbnail(client.user.displayAvatarURL())
                 .setTitle('Bot Stats')
-                .setColor('RANDOM')
+                .setColor(roleColor)
                 .addFields(
                     {
                         name: '🌐 Servers',
