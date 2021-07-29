@@ -7,13 +7,13 @@ module.exports = {
     usage: '[guild id]',
     aliases: ['dpg'],
     description: "Remove premium from the guild!",
+    owner: true,
     /**
      * @param {Client} client
      * @param {Message} message
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(message.author.id !== process.env.OWNER) return message.reply("This command can only be used by the owner!");
         if(!args[0]) return message.reply("Please specify a guild id!");
         schema.findOne({
             Guild: args[0]

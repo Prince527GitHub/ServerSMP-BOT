@@ -7,13 +7,13 @@ module.exports = {
     usage: '[user]',
     aliases: ['apu'],
     description: "Owner can add premium to a user!",
+    owner: true,
     /**
      * @param {Client} client
      * @param {Message} message
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(message.author.id !== process.env.OWNER) return message.reply("This command can only be used by the owner!");
         const member = message.mentions.members.first() || message.guid.members.cache.get(args[0]);
         if(!member) return message.reply("Please specify a valid member!");
         premiumSchema.findOne({

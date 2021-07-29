@@ -126,6 +126,9 @@ client.on('message', async message =>{
               Timeout.delete(`${command.name}${message.author.id}`)
           }, command.cooldown)
         }
+        if(command.owner) {
+          if(message.author.id !== process.env.OWNER) return message.reply("This command can only be used by the owner!");
+        }
         if(command.guildPremium) {
           premiumGSchema.findOne({ Guild: message.guild.id }, async(err, data) => {
             if(!data) return message.reply('This is a premium command!');

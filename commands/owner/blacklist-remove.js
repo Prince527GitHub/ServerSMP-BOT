@@ -6,13 +6,13 @@ module.exports = {
     category : 'owner',
     usage: '[serverID]',
     description : "Prince527 can unblacklist a server so they can use the bot.",
+    owner: true,
     /**
      * @param {Client} client
      * @param {Message} message
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(message.author.id !== process.env.OWNER) return message.reply("This command can only be used by the owner!");
         const id = args[0];
         if(!id) return message.reply('Please specify a guild id!');
         Schema.findOne({ Server: id }, async(err, data) => {

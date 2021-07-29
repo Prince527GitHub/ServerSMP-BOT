@@ -8,13 +8,13 @@ module.exports = {
     usage: '[guild id] [expire]',
     aliases: ['apg'],
     description: "Add premium to the guild!",
+    owner: true,
     /**
      * @param {Client} client
      * @param {Message} message
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(message.author.id !== process.env.OWNER) return message.reply("This command can only be used by the owner!");
         if(!args[0]) return message.reply("Please specify a guild id!");
         if(!client.guilds.cache.has(args[0])) return message.reply("Its an invalid guild id!");
         schema.findOne({ Guild: args[0] }, async(err, data) => {

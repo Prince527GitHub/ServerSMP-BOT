@@ -7,6 +7,7 @@ module.exports = {
     usage: '',
     aliases : ['r-c'],
     description : "I reload the command if there is an update!",
+    owner: true,
 
     /**
     * @param {Client} client
@@ -14,7 +15,6 @@ module.exports = {
     * @param {String[]} args
     */
     run: async(client, message, args) => {
-      if(message.author.id !== process.env.OWNER) return message.reply("This command can only be used by the owner!");
       client.commands.sweep(() => true)
       glob(`${__dirname}/../**/*.js`, async(err, filePaths) => {
         if(err) return console.log(err);
