@@ -14,6 +14,13 @@ module.exports = {
     */
     run: async(client, message, args) => {
 
+      const guilds = client.guilds.cache
+      .sort((a, b) => b.memberCount - a.memberCount)
+      .first(15);
+      const description = guilds.map((guild, index) => {
+         return `${index+1}) ${guild.name}: ${guild.memberCount} members`
+      }).join('\n')
+
       const roleColor = message.guild.me.displayHexColor === "#000000" ? "#ffffff" : message.guild.me.displayHexColor;
 
                   let seconds = Math.floor(message.client.uptime / 1000);
@@ -30,7 +37,7 @@ module.exports = {
 
             const embed = new MessageEmbed()
                 .setThumbnail(client.user.displayAvatarURL())
-                .setTitle('Bot Stats')
+                .setTitle(`${client.user.username}'s' Stats`)
                 .setColor(roleColor)
                 .addFields(
                     {
@@ -106,7 +113,12 @@ module.exports = {
                     {
                         name: '⌛ Uptime',
                         value: `\`\`\`md\n${days} day(s),${hours} hours, ${minutes} minutes, ${seconds} seconds\`\`\``,
-                        inline: true
+                        inline: false
+                    },
+                    {
+                        name: '🌐 Server Stats',
+                        value: `\`\`\`md\n${description}\`\`\``,
+                        inline: false
                     },
                 )
             await message.channel.send(embed)

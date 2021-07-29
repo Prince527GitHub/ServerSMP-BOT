@@ -6,17 +6,18 @@ module.exports = {
     category : 'meme',
     usage: '',
     description : "A random image of a cat.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        const { file } = await fetch('https://aws.random.cat/meow').then(response => response.json());
+        //const { file } = await fetch('https://aws.random.cat/meow').then(response => response.json());
         const embed = new MessageEmbed()
             .setColor("RANDOM")
             .setTitle("Cat")
-            .setImage(file)
+            //.setImage(file)
+            .setImage(String('https://cataas.com/cat?t=' + new Date().getTime().toString()))
         message.channel.send(embed);
     }
 }
