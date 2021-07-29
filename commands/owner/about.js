@@ -83,7 +83,7 @@ module.exports = {
                     },
                     {
                         name: '🖥 Free/Used/Total RAM',
-                        value: `\`\`\`md\n${Math.round(freeRAM)} MB / ${Math.round(usedRAM)}MB / ${Math.round(totalRAM)} MB\`\`\``,
+                        value: `\`\`\`md\n${Math.round(freeRAM)} MB / ${Math.round(usedRAM)} MB / ${Math.round(totalRAM)} MB\`\`\``,
                         inline: false
                     },
                     {
