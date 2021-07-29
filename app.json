@@ -39,6 +39,10 @@
     "STATUS": {
       "description": "Your bots status",
       "required": true
+    },
+    "HYPIXELAPI_KEY": {
+      "description": "Your Hypixel API KEY or just set to false",
+      "required": true
     }
   },
   "keywords": ["node", "discord", "website"]
