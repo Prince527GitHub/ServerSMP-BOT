@@ -1,6 +1,6 @@
 const { Collection, Client, Discord, MessageEmbed, Intents } = require('discord.js')
 const fs = require('fs')
-const client = new Client({ disableEveryone: true, partials: ["CHANNEL", "MESSAGE", "GUILD_MEMBER", "REACTION"]});
+const client = new Client({ disableEveryone: true, partials: ["CHANNEL", "MESSAGE", "GUILD_MEMBER", "REACTION"], ws: { intents: Intents.all } });
 require('discord-buttons')(client);
 require('discord-slider')(client);
 require('@weky/inlinereply');

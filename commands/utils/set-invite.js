@@ -4,7 +4,7 @@ const Schema = require('../../models/invites');
 module.exports = {
     name: 'set-invite',
     category : 'utils',
-    usage: '',
+    usage: '[#channel (or not) | off]',
     description : "Set the channel for the info on the invite.",
     userPermission: ["ADMINISTRATOR"],
     /**
@@ -13,7 +13,14 @@ module.exports = {
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        const channel = message.mentions.channels.first();
+      if(args[0] === 'off') {
+        Schema.findOne({ Guild: message.guild.id }, async(err, data) => {
+          if(data) data.delete();
+          if(!data) return message.reply("This server has no invite channel!");
+          message.channel.send("Deleted invite channel!");
+        })
+      } else {
+        const channel = message.mentions.channels.first() || message.channel;
         if(!channel) return message.reply("Please mention a channel!");
         Schema.findOne({ Guild: message.guild.id }, async(err, data) => {
             if(data) {
@@ -27,5 +34,6 @@ module.exports = {
             }
             message.reply(`${channel} has been set as the invite channel.`)
         })
+      }
     }
 }

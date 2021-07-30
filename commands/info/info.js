@@ -21,7 +21,7 @@ module.exports = {
             .setImage("https://serversmp.arpismp.ml/qrcode.png")
         const button1 = new MessageButton()
             .setStyle('url')
-            .setURL('https://discord.com/oauth2/authorize?client_id=778409873573412874&permissions=66579782&scope=bot')
+            .setURL('https://discord.com/oauth2/authorize?client_id=778409873573412874&permissions=124553522550&scope=bot%20applications.commands')
             .setLabel('Invite!')
         const button2 = new MessageButton()
             .setStyle('url')
