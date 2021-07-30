@@ -4,7 +4,7 @@ module.exports = {
     name: 'premium-application',
     category : 'owner',
     usage: '[you or server] [reason for wanting premium]',
-    description : "Report a bug to the owner of ServerSMP - BOT.",
+    description : "Get premium for you or your guild.",
     /**
      * @param {Client} client
      * @param {Message} message

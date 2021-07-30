@@ -1,7 +1,9 @@
 const {readdirSync} = require('fs');
 const ascii = require('ascii-table')
 let table = new ascii("Commands");
+let table2 = new ascii("Events");
 table.setHeading('Command', ' Load status');
+table2.setHeading('Event', ' Load status');
 module.exports= (client) => {
     readdirSync('./commands/').forEach(dir => {
         const commands = readdirSync(`./commands/${dir}/`).filter(file => file.endsWith('.js'));
@@ -22,10 +24,11 @@ module.exports= (client) => {
         const events = readdirSync("./events/").filter((file) =>
           file.endsWith(".js")
         );
-    
+        table2.addRow(file,'✅')
+
         for (let file of events) {
           let pull = require(`../events/${file}`);
-    
+
           if (pull.name) {
             client.events.set(pull.name, pull);
           } else {
@@ -33,4 +36,5 @@ module.exports= (client) => {
           }
         }
       });
+      console.log(table2.toString());
 }

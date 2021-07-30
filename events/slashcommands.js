@@ -1,13 +1,26 @@
 const client = require('../index');
 const { MessageEmbed, APIMessage } = require('discord.js');
+const ascii = require('ascii-table')
+let table = new ascii("Slash commands");
+table.setHeading('Command', ' Load status');
 
 client.on('ready', async () => {
   // Slash commands
 
-  const commands = await client.api.applications(client.user.id).commands.get()
-  console.log(commands)
+    // console log commands
 
-  //client.api.applications(client.user.id).guilds('697984979568820344').commands('870732784749137930').delete()
+    table.addRow('duck','✅')
+    table.addRow('ping','✅')
+    table.addRow('echo','✅') // Hi there Prince527 here I suck at code.
+    table.addRow('info','✅')
+    table.addRow('help','✅')
+    
+    console.log(table.toString());
+
+  //const commands = await client.api.applications(client.user.id).commands.get()
+  //console.log(commands)
+
+  //client.api.applications(client.user.id).guilds('697984979568820344').commands('870780529774039070').delete()
   //client.api.applications(client.user.id).guilds('697984979568820344').commands('870501571971125258').delete()
   //client.api.applications(client.user.id).guilds('697984979568820344').commands('870503412213616660').delete()
   //client.api.applications(client.user.id).guilds('697984979568820344').commands('870712600588058725').delete()
@@ -45,6 +58,13 @@ client.on('ready', async () => {
     data: {
       name: "info",
       description: "Give's some info on the bot."
+    }
+  });
+
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "help",
+      description: "The command list."
     }
   });
 
@@ -101,6 +121,20 @@ client.on('ready', async () => {
           .addField("Servers:", `\`${client.guilds.cache.size}\``)
           .setDescription(`[Invite](https://discord.com/oauth2/authorize?client_id=778409873573412874&permissions=124553522550&scope=bot%20applications.commands)\n[Website](https://serversmp.arpismp.ml/)\n[Support](https://youtu.be/dQw4w9WgXcQ)`)
           .setImage("https://serversmp.arpismp.ml/qrcode.png")
+      client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
+          data: await createAPIMessage(interaction, embed)
+        }
+      })
+    }
+
+    if(commnad == 'help') {
+      const embed = new MessageEmbed()
+          .setColor("RANDOM")
+          .setTitle("Help")
+          .setDescription('Do `-help` or go to the [website](https://serversmp.arpismp.ml/commands.html)!')
+          .setThumbnail("https://serversmp.arpismp.ml/assets/serversmp-bot.png")
       client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
           type: 4,
