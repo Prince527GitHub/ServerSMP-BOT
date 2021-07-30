@@ -2,4 +2,4 @@
 
 This is the Website for ServerSMP - BOT.
 
-![banner](https://serversmp.netlify.app/banner.png)
+![banner](https://serversmp.arpismp.ml/banner.png)
