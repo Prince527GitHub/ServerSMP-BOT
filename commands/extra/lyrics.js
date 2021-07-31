@@ -8,8 +8,8 @@ const lyricsFinder = require("lyrics-finder");
 module.exports = {
   name: 'lyrics',
   category: 'extra',
-  usage: '',
   description: "Get the lyrics of a song.",
+  owner: true,
 
   /**
    * @param {Client} client
@@ -17,7 +17,6 @@ module.exports = {
    * @param {String[]} args
    */
   run: async (client, message, args) => {
-    if(message.author.id !== process.env.OWNER) return message.reply("This command can only be used by the owner!");
 
     let singer;
     let song;

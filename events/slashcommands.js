@@ -14,7 +14,7 @@ client.on('ready', async () => {
     table.addRow('echo','✅') // Hi there Prince527 here I suck at code.
     table.addRow('info','✅')
     table.addRow('help','✅')
-    
+
     console.log(table.toString());
 
   //const commands = await client.api.applications(client.user.id).commands.get()

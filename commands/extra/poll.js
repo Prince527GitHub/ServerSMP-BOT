@@ -12,14 +12,14 @@ module.exports = {
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-            let pollChannel = message.mentions.channels.first();
-            let pollDescription = args.slice(1).join(' ');
-            let embedPoll = new MessageEmbed()
-            .setTitle('New Poll!')
-            .setDescription(pollDescription)
-            .setColor('YELLOW')
-            let msgEmbed = await pollChannel.send(embedPoll);
-            await msgEmbed.react('👍')
-            await msgEmbed.react('👎')
+        let pollChannel = message.mentions.channels.first();
+        let pollDescription = args.slice(1).join(' ');
+        let embedPoll = new MessageEmbed()
+        .setTitle('New Poll!')
+        .setDescription(pollDescription)
+        .setColor('YELLOW')
+        let msgEmbed = await pollChannel.send(embedPoll);
+        await msgEmbed.react('👍')
+        await msgEmbed.react('👎')
     }
 }

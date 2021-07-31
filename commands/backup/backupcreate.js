@@ -16,6 +16,7 @@ module.exports = {
      */
     run: async(client, message, args) => {
         backup.create(message.guild, {
+            maxMessagesPerChannel: 20,
             jsonBeautify: true
         }).then((backupData) => {
             message.author.send("The backup has been created! To load it, type this command on the server of your choice: `"+prefix+"backupload "+backupData.id+"`!");

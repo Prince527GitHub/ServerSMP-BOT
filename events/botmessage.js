@@ -7,11 +7,12 @@ Client.on("guildCreate", (guild) => {
         if(channel.type === "text" && !channelToSend && channel.permissionsFor(guild.me).has("SEND_MESSAGES")) channelToSend = channel;
     });
     if(!channelToSend) return;
+    const p = client.prefix(message)
     channelToSend.send(
             new MessageEmbed()
                 .setColor("RANDOM")
                 .setAuthor(guild.name, guild.iconURL({ dynamic: true }))
-                .setDescription("Thanks for inviting ServerSMP - BOT to your server!\nThe bot prefix is `-` and for the list of commands do `-help`")
+                .setDescription(`Thanks for inviting ${client.user.username} to your server!\nThe bot prefix is ${p} and for the list of commands do ${p}help`)
                 .setTimestamp()
         )
 });

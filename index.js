@@ -62,18 +62,13 @@ const { DiscordUNO } = require("discord-uno");
 const { DiscordTicket } = require('discord_ticket_maker');
 Levels.setURL(mongo);
 Nuggies.connect(mongo)
+Nuggies.handleInteractions(client)
 mongoose.connect(mongo, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true
 }).then(console.log('Connected to mongo db!'));
-client.on('clickMenu', async (menu) => {
-	Nuggies.dropclick(client, menu);
-});
-client.on('clickButton', button => {
-    Nuggies.buttonclick(client, button);
-});
 client.prefix = async function(message) {
   let custom;
   const data = await prefixSchema.findOne({
