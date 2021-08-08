@@ -8,7 +8,6 @@ require('dotenv').config();
 const prefix = process.env.PREFIX;
 const token = process.env.TOKEN;
 const mongo = process.env.MONGO
-const disturn = process.env.DISTURN;
 const distoken = process.env.DISTOKEN;
 const botdashAPI = process.env.BOTDASH;
 const owner = process.env.OWNER;
@@ -28,8 +27,11 @@ if (!token) {
 } else if (!botdashAPI) {
   console.error("Please provide your botdash api token.");
   process.exit(1);
+} else if (!distoken) {
+  console.error("Please specify your disbot token or false on distoken.");
+  process.exit(1);
 }
-if (disturn === "true") {
+if (distoken !== "false") {
   const DISBOT = require("disbots.net");
   const disbot = new DISBOT(distoken, {
     statsInterval: 4000000
@@ -68,7 +70,7 @@ mongoose.connect(mongo, {
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true
-}).then(console.log('Connected to mongo db!'));
+}).then(console.log('MongoDB ✅'));
 client.prefix = async function(message) {
   let custom;
   const data = await prefixSchema.findOne({
@@ -156,33 +158,71 @@ const status = (queue) => `Volume: \`${queue.volume}%\` | Filter: \`${queue.filt
 
 player
   .on("playSong", (message, queue, song) => message.channel.send(
-    `Playing \`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: ${song.user}\n${status(queue)}`
+    new MessageEmbed()
+        .setDescription(`▶ **|** Started playing: **[${song.name}](${song.url})**`)
+        .setThumbnail(`${song.thumbnail}`)
+        .setColor("#5400FF")
   ))
   .on("addSong", (message, queue, song) => message.channel.send(
-    `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`
+    new MessageEmbed()
+        .setDescription(`✅ **|** **[${song.name}](${song.url})** has been added to the queue`)
+        .setThumbnail(`${song.thumbnail}`)
+        .setColor("#5400FF")
   ))
   .on("playList", (message, queue, playlist, song) => message.channel.send(
-    `Play \`${playlist.name}\` playlist (${playlist.songs.length} songs).\nRequested by: ${song.user}\nNow playing \`${song.name}\` - \`${song.formattedDuration}\`\n${status(queue)}`
+    new MessageEmbed()
+        .setDescription(`✅ **|** All videos in **[${playlist.name}](${playlist.url})** playlist has been added to the queue`)
+        .setThumbnail(playlist.thumbnail)
+        .setColor("#5400FF")
   ))
   .on("addList", (message, queue, playlist) => message.channel.send(
-    `Added \`${playlist.name}\` playlist (${playlist.songs.length} songs) to queue\n${status(queue)}`
+    new MessageEmbed()
+        .setDescription(`Adding all videos in **[${playlist.name}](${playlist.url})** playlist, please wait...`)
+        .setThumbnail(playlist.thumbnail)
+        .setColor("#5400FF")
   ))
   .on("searchResult", (message, result) => {
     let i = 0;
-    message.channel.send(`**Choose an option from below**\n${result.map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``).join("\n")}\n*Enter anything else or wait 60 seconds to cancel*`);
-  })
-  .on("searchCancel", (message) => message.channel.send(`Searching canceled`))
+    message.channel.send(
+        new MessageEmbed()
+            .setTitle("Select a song!")
+            .setDescription(`\`\`\`${result.map(song => `${++i} - ${song.name}`).join("\n")}\`\`\`` + "\nPlease select one of the results ranging from **\`1-15\`**")
+            .setFooter("• Type cancel or c to cancel the music selection")
+            .setAuthor("Music Selection", message.client.user.displayAvatarURL())
+            .setColor("#5400FF")
+    )})
+  .on("searchCancel", (message) => message.channel.send(
+    new MessageEmbed()
+        .setDescription("None or invalid value entered, the music selection has canceled")
+        .setColor("YELLOW")
+  ))
   .on("error", (message, e) => {
     console.error(e)
-    message.channel.send("An error encountered: " + e);
-  })
-  .on("noRelated", message => message.channel.send("Can't find related video to play. Stop playing music."))
-  .on("initQueue", queue => {
+    message.channel.send(
+        new MessageEmbed()
+            .setColor("RED")
+            .setDescription(`An error occurred while playing music, reason: **\`${e}\`**`)
+    )})
+  .on("noRelated", (message) => message.channel.send(
+    new MessageEmbed()
+        .setDescription("Can't find related video to play. Stop playing music.")
+        .setColor("RED")
+  ))
+  .on("initQueue", (queue) => {
     queue.autoplay = false;
     queue.volume = 50;
   })
-  .on("finish", message => message.channel.send("No more song in queue"))
-  .on("empty", message => message.channel.send("Channel is empty. Leaving the channel"));
+  .on("finish", async(message) => message.channel.send(
+    new MessageEmbed()
+        .setDescription(`⏹ **|** The music has ended, use **\`${await client.prefix(message)}play\`** to play some music`)
+        .setColor("5400FF")
+  ))
+  .on("empty", (message) => message.channel.send(
+    new MessageEmbed()
+        .setTitle("Music Player Stopped")
+        .setDescription("⏹ **|** Everyone has left from the voice channel. To save resources, the queue has been deleted.")
+        .setColor("YELLOW")
+  ));
 
 Client.player = player;
 

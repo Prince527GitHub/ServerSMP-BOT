@@ -1,5 +1,6 @@
 const { MessageEmbed, Message, Client, version } = require('discord.js');
 const os = require('os');
+const ms = require('ms');
 
 module.exports = {
     name: 'about',
@@ -14,113 +15,56 @@ module.exports = {
     */
     run: async(client, message, args) => {
 
-      const guilds = client.guilds.cache
-      .sort((a, b) => b.memberCount - a.memberCount)
-      .first(15);
-      const description = guilds.map((guild, index) => {
-         return `${index+1}) ${guild.name}: ${guild.memberCount} members`
-      }).join('\n')
+            const guilds = client.guilds.cache
+            .sort((a, b) => b.memberCount - a.memberCount)
+            .first(15);
+            const description = guilds.map((guild, index) => {
+               return `${index+1} :: ${guild.name}: ${guild.memberCount} members`
+            }).join('\n')
 
-      const roleColor = message.guild.me.displayHexColor === "#000000" ? "#ffffff" : message.guild.me.displayHexColor;
+                        let seconds = Math.floor(message.client.uptime / 1000);
+                        let minutes = Math.floor(seconds / 60);
+                        let hours = Math.floor(minutes / 60);
+                        let days = Math.floor(hours / 24);
+                        var freeRAM = os.freemem / 1024**2 ;
+                        var usedRAM = (os.totalmem() - os.freemem) / 1024**2;
+                        var totalRAM = os.totalmem / 1024**2;
+                        const RAM_used_by_bot = process.memoryUsage().heapUsed / 1024 / 1024;
+                        seconds %= 60;
+                        minutes %= 60;
+                        hours %= 24;
 
-                  let seconds = Math.floor(message.client.uptime / 1000);
-                  let minutes = Math.floor(seconds / 60);
-                  let hours = Math.floor(minutes / 60);
-                  let days = Math.floor(hours / 24);
-                  var freeRAM = os.freemem / 1024**2 ;
-                  var usedRAM = (os.totalmem() - os.freemem) / 1024**2;
-                  var totalRAM = os.totalmem / 1024**2;
-                  const RAM_used_by_bot = process.memoryUsage().heapUsed / 1024 / 1024;
-                  seconds %= 60;
-                  minutes %= 60;
-                  hours %= 24;
 
-            const embed = new MessageEmbed()
-                .setThumbnail(client.user.displayAvatarURL())
-                .setTitle(`${client.user.username}'s' Stats`)
-                .setColor(roleColor)
-                .addFields(
-                    {
-                        name: '🌐 Servers',
-                        value: `\`\`\`md\nServing ${client.guilds.cache.size} servers.\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '📺 Channels',
-                        value: `\`\`\`md\nServing ${client.channels.cache.size} channels.\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '👥 Users',
-                        value: `\`\`\`md\nServing ${client.users.cache.size} users.\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '🎈 Join Date',
-                        value: `\`\`\`md\n${client.user.createdAt.toLocaleDateString("en-us")}\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '🛠 Discord Version',
-                        value: `\`\`\`md\n${version}\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '💎 Nodejs Version',
-                        value: `\`\`\`md\n${process.version}\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '🖥 ARCH',
-                        value: `\`\`\`md\n${os.arch()}\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '🖥 Platform',
-                        value: `\`\`\`md\n${os.platform()}\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '🖥 CPU',
-                        value: `\`\`\`md\n${os.cpus().map(i => `${i.model}`)[0]}\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '🖥 CPU Cores',
-                        value: `\`\`\`md\n${os.cpus().length}\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '🖥 Free/Used/Total RAM',
-                        value: `\`\`\`md\n${Math.round(freeRAM)} MB / ${Math.round(usedRAM)} MB / ${Math.round(totalRAM)} MB\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '🖥 Memory Used by Bot Process',
-                        value: `\`\`\`md\n${Math.round(RAM_used_by_bot * 100) / 100} MB\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '💎 Shards',
-                        value: `\`\`\`md\n${message.client.ws.shards.size}\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '🏓 Ping',
-                        value: `\`\`\`md\n${message.client.ws.ping}ms\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '⌛ Uptime',
-                        value: `\`\`\`md\n${days} day(s),${hours} hours, ${minutes} minutes, ${seconds} seconds\`\`\``,
-                        inline: false
-                    },
-                    {
-                        name: '🌐 Server Stats',
-                        value: `\`\`\`md\n${description}\`\`\``,
-                        inline: false
-                    },
-                )
-            await message.channel.send(embed)
+                      const embed = new MessageEmbed()
+                          .setAuthor("ServerSMP - BOT: A multiperpus bot")
+                          .setColor("#5400FF")
+                          .setDescription(`
+**Stats:**
+\`\`\`asciidoc
+Users count         :: ${client.users.cache.size}
+Channels count      :: ${client.channels.cache.size}
+Guilds count        :: ${client.guilds.cache.size}
+Join Date           :: ${client.user.createdAt.toLocaleDateString("en-us")}
+Discord.js Version  :: ${version}
+Nodejs Version      :: ${process.version}
+ARCH                :: ${os.arch}
+Platform            :: ${os.platform}
+CPU                 :: ${os.cpus().map(i => `${i.model}`)[0]}
+CPU Cores           :: ${os.cpus().length}
+Free/Used/Total RAM :: ${Math.round(freeRAM)} MB / ${Math.round(usedRAM)} MB / ${Math.round(totalRAM)} MB
+Process Memory      :: ${Math.round(RAM_used_by_bot * 100) / 100} MB
+Shards              :: ${message.client.ws.shards.size}
+Ping                :: ${message.client.ws.ping}ms
+OS Uptime           :: ${ms(os.uptime() * 1000)}
+Process Uptime      :: ${ms(process.uptime() * 1000)}
+Bot Uptime          :: ${days} day(s),${hours} hours, ${minutes} minutes, ${seconds} seconds
+Source Code         :: https://github.com/Prince527GitHub/ServerSMP-BOT/
+\`\`\`
+**Server Stats:**
+\`\`\`asciidoc
+${description}
+\`\`\`
+                        `)
+                  await message.channel.send(embed)
     }
   }

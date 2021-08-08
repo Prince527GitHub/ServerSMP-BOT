@@ -7,13 +7,28 @@ module.exports = {
     aliases : ['s'],
     usage: '',
     description : "Stop the music player.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(!message.member.voice.channel) return message.reply('Please join a voice channel!')
-        await Client.player.stop(message);
+      if(!message.member.voice.channel) return message.channel.send(
+          new MessageEmbed()
+              .setDescription("Sorry, but you need to be in a voice channel to do that")
+              .setColor("YELLOW")
+      )
+      const queue = Client.player.getQueue(message)
+      if (!queue) return message.channel.send(
+          new MessageEmbed()
+              .setDescription("There is nothing playing")
+              .setColor("YELLOW")
+      )
+      await Client.player.stop(message);
+      message.channel.send(
+          new MessageEmbed()
+              .setDescription("⏹ **|** The music player has been stopped")
+              .setColor("#5400FF")
+      )
     }
 }
