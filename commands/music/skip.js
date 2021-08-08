@@ -1,5 +1,6 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
 const DisTube = require('distube');
+const { music } = require('../../collection/index');
 
 module.exports = {
     name: 'skip',

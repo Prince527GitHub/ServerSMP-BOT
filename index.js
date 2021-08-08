@@ -11,6 +11,7 @@ const mongo = process.env.MONGO
 const distoken = process.env.DISTOKEN;
 const botdashAPI = process.env.BOTDASH;
 const owner = process.env.OWNER;
+const log_channel = process.env.LOG_CHANNEL;
 module.exports = client;
 if (!token) {
   console.error("Please provide a valid Discord Bot Token.");
@@ -57,11 +58,15 @@ const Nuggies = require('nuggies');
 const Timeout = new Collection();
 const ms = require('ms')
 const db = require('quick.db')
+const { MongoDB, Database } = require("ark.db");
+const ark_mongo = new MongoDB(mongo, "ark.db");
+const ark_json = new Database();
 const botdash = require('botdash.pro');
 const { DiscordTogether } = require('discord-together');
 const DisTube = require('distube');
 const { DiscordUNO } = require("discord-uno");
 const { DiscordTicket } = require('discord_ticket_maker');
+const { DiscordBanners } = require('discord-banners');
 Levels.setURL(mongo);
 Nuggies.connect(mongo)
 Nuggies.handleInteractions(client)
@@ -295,6 +300,11 @@ client.modlogs = async function({ Member, Action, Color, Reason }, message) {
   channel.send(logsEmbed);
 };
 
+client.db_mongo = ark_mongo;
+client.db_json = ark_json;
+
 client.discordUNO = new DiscordUNO();
+
+client.discordBanners = new DiscordBanners(client);
 
 client.login(token)

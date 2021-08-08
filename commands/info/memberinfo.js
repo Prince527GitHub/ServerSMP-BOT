@@ -29,48 +29,95 @@ module.exports = {
         nickname = "No nickname set";
       }
       const roleColor = message.guild.me.displayHexColor === "#000000" ? "#ffffff" : message.guild.me.displayHexColor;
+      const banner = await client.discordBanners.getBanner(message.author.id, { size: 2048, format: "png", dynamic: true })
 
-    const embed = new MessageEmbed()
-        .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
-        .setColor(roleColor)
-        .setTitle(`${member.user.tag}`)
-        .addFields(
-            {
-                name: "🧍 Username: ",
-                value: member.user.tag,
-                inline: false
-            },
-            {
-                name: "🧍 Nickname: ",
-                value: nickname,
-                inline: false
-            },
-            {
-                name: "🧍 Member ID: ",
-                value: member.id,
-                inline: false
-            },
-            {
-                name: "✨ Roles: ",
-                value: `<@&${member._roles.join('> <@&')}>`,
-                inline: false
-            },
-            {
-                name: "🎈 Creation Date: ",
-                value: ` ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`,
-                inline: false
-            },
-            {
-                name: "🎈 Joined the server At: ",
-                value: `${joineddate} \n> ${joined} day(S) Ago`,
-                inline: false,
-            },
-            {
-                name: "💡 Status: ",
-                value: status,
-                inline: false
-            }
-        )
-        await message.channel.send(embed)
+      if(!banner) {
+        const embed = new MessageEmbed()
+            .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
+            .setColor(roleColor)
+            .setTitle(`${member.user.tag}`)
+            .addFields(
+                {
+                    name: "🧍 Username: ",
+                    value: member.user.tag,
+                    inline: false
+                },
+                {
+                    name: "🧍 Nickname: ",
+                    value: nickname,
+                    inline: false
+                },
+                {
+                    name: "🧍 Member ID: ",
+                    value: member.id,
+                    inline: false
+                },
+                {
+                    name: "✨ Roles: ",
+                    value: `<@&${member._roles.join('> <@&')}>`,
+                    inline: false
+                },
+                {
+                    name: "🎈 Creation Date: ",
+                    value: ` ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`,
+                    inline: false
+                },
+                {
+                    name: "🎈 Joined the server At: ",
+                    value: `${joineddate} \n> ${joined} day(S) Ago`,
+                    inline: false,
+                },
+                {
+                    name: "💡 Status: ",
+                    value: status,
+                    inline: false
+                }
+            )
+            await message.channel.send(embed)
+      } else {
+        const embed = new MessageEmbed()
+            .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
+            .setColor(roleColor)
+            .setTitle(`${member.user.tag}`)
+            .addFields(
+                {
+                    name: "🧍 Username: ",
+                    value: member.user.tag,
+                    inline: false
+                },
+                {
+                    name: "🧍 Nickname: ",
+                    value: nickname,
+                    inline: false
+                },
+                {
+                    name: "🧍 Member ID: ",
+                    value: member.id,
+                    inline: false
+                },
+                {
+                    name: "✨ Roles: ",
+                    value: `<@&${member._roles.join('> <@&')}>`,
+                    inline: false
+                },
+                {
+                    name: "🎈 Creation Date: ",
+                    value: ` ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`,
+                    inline: false
+                },
+                {
+                    name: "🎈 Joined the server At: ",
+                    value: `${joineddate} \n> ${joined} day(S) Ago`,
+                    inline: false,
+                },
+                {
+                    name: "💡 Status: ",
+                    value: status,
+                    inline: false
+                }
+            )
+            .setImage(banner)
+            await message.channel.send(embed)
+      }
     }
 }

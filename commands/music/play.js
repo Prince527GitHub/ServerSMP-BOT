@@ -1,5 +1,6 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
 const DisTube = require('distube');
+const { music } = require('../../collection/index');
 
 module.exports = {
     name: 'play',
@@ -24,6 +25,27 @@ module.exports = {
               .setDescription(`Invalid usage, use **\`${await client.prefix(message)}help play\`** for more information`)
               .setColor("RED")
       )
+      if(music.has(message.guild.id)=== true) {
+          if(text === music.get(message.guild.id)) {
+            if(music.get(`music-${message.guild.id}`)=== 5) {
+              music.delete(message.guild.id);
+              music.delete(`music-${message.guild.id}`);
+              return message.channel.send(
+                new MessageEmbed()
+                  .setDescription(`Duplicated music, please use \`${await client.prefix(message)}repeat\` instead`)
+                  .setColor("RED")
+              )
+            }
+          }
+      }
+      music.set(message.guild.id, text);
+      if(music.has(`music-${message.guild.id}`)=== true) {
+        let numbers;
+        numbers = music.get(`music-${message.guild.id}`) + 1;
+        await music.set(`music-${message.guild.id}`, numbers);
+      } else {
+        music.set(`music-${message.guild.id}`, 1)
+      }
       await Client.player.play(message, text);
     }
 }

@@ -1,5 +1,6 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
 const DisTube = require('distube');
+const { music } = require('../../collection/index');
 
 module.exports = {
     name: 'stop',
@@ -24,6 +25,8 @@ module.exports = {
               .setDescription("There is nothing playing")
               .setColor("YELLOW")
       )
+      music.delete(message.guild.id);
+      music.delete(`music-${message.guild.id}`);
       await Client.player.stop(message);
       message.channel.send(
           new MessageEmbed()

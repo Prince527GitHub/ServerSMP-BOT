@@ -1,6 +1,7 @@
 const { MessageEmbed, Message, Client, version } = require('discord.js');
 const os = require('os');
 const ms = require('ms');
+const ytdl = require('ytdl-core');
 
 module.exports = {
     name: 'about',
@@ -36,7 +37,7 @@ module.exports = {
 
 
                       const embed = new MessageEmbed()
-                          .setAuthor("ServerSMP - BOT: A multiperpus bot")
+                          .setAuthor(`${client.user.username}`)
                           .setColor("#5400FF")
                           .setDescription(`
 **Stats:**
@@ -47,6 +48,7 @@ Guilds count        :: ${client.guilds.cache.size}
 Join Date           :: ${client.user.createdAt.toLocaleDateString("en-us")}
 Discord.js Version  :: ${version}
 Nodejs Version      :: ${process.version}
+YTDL Version        :: ${ytdl.version}
 ARCH                :: ${os.arch}
 Platform            :: ${os.platform}
 CPU                 :: ${os.cpus().map(i => `${i.model}`)[0]}
