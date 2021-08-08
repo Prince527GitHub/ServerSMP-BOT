@@ -1,5 +1,6 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
 const ms = require('ms');
+const Schema = require('../../models/mute');
 
 module.exports = {
     name: 'tempmute',
@@ -43,11 +44,27 @@ module.exports = {
         let role2 = message.guild.roles.cache.find(r => r.name.toLowerCase() === 'muted')
         if(Member.roles.cache.has(role2.id)) return message.channel.send(`${Member.displayName} has already been muted.`)
         await Member.roles.add(role2)
+        Schema.findOne({ Guild: message.guild.id }, async(err, data) => {
+            if(!data) {
+                new Schema({
+                    Guild: message.guild.id,
+                    Users: Member.id
+                }).save();
+            } else {
+                data.Users.push(Member.id);
+                data.save();
+            }
+        })
         message.channel.send(`${Member.displayName} is now muted.`)
 
         setTimeout(async () => {
-            await Member.roles.remove(role2)
-            message.channel.send(`${Member.displayName} is now unmuted`)
+          Schema.findOne({ Guild: message.guild.id }, async(err, data) => {
+              const user = data.Users.findIndex((prop) => prop === Member.id);
+              data.Users.splice(user, 1);
+              data.save();
+              await Member.roles.remove(role2)
+              message.channel.send(`${Member.displayName} is now unmuted`)
+            })
         }, ms(time))
     }
 }
