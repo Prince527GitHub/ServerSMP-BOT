@@ -4,7 +4,7 @@ const db = require('quick.db');
 module.exports = {
     name: 'xp',
     category : 'utils',
-    usage: '[ on | off | #channel channel | off-ch ]',
+    usage: '[ on | off | #channel | off-ch ]',
     description : "Turn on or off xp commands/system or set a channel where the logs will be sent!",
     userPermission: ["ADMINISTRATOR"],
     /**
@@ -23,7 +23,7 @@ module.exports = {
         } else if(args[0] === 'on') {
             await db.delete(`xp-${message.guild.id}`)
             message.channel.send('Turned on xp commands/system.')
-        } else if(args[1] === 'channel') {
+        } else if(message.mentions.channels.first()) {
             const channel = message.mentions.channels.first();
             await db.set(`xp-ch-on-${message.guild.id}`, true)
             await db.set(`xp-channel-${message.guild.id}`, channel.id)
