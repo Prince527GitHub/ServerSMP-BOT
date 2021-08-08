@@ -15,6 +15,7 @@
 			"    userPremium: , // is the command user premium EX: false\r",
 			"    guildPremium: , // is the command guild premium EX: false\r",
 			"    cooldown: , // cooldown for command (remove if not used) EX: 0\r",
+			"    owner: , // if command can only be used by owner EX: false\r",
 			"    /** \r",
 			"     * @param {Client} client \r",
 			"     * @param {Message} message \r",

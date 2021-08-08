@@ -15,6 +15,7 @@ module.exports = {
     userPremium: , // is the command user premium EX: false
     guildPremium: , // is the command guild premium EX: false
     cooldown: , // cooldown for command (remove if not used) EX: 0
+    owner: , // if command can only be used by owner EX: false
 
     /**
     * @param {Client} client
