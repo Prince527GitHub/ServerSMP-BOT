@@ -49,6 +49,7 @@ Join Date           :: ${client.user.createdAt.toLocaleDateString("en-us")}
 Discord.js Version  :: ${version}
 Nodejs Version      :: ${process.version}
 YTDL Version        :: ${ytdl.version}
+DisTube Version     :: ${Client.player.version}
 ARCH                :: ${os.arch}
 Platform            :: ${os.platform}
 CPU                 :: ${os.cpus().map(i => `${i.model}`)[0]}

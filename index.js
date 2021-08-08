@@ -196,38 +196,61 @@ player
             .setAuthor("Music Selection", message.client.user.displayAvatarURL())
             .setColor("#5400FF")
     )})
-  .on("searchCancel", (message) => message.channel.send(
-    new MessageEmbed()
-        .setDescription("None or invalid value entered, the music selection has canceled")
-        .setColor("YELLOW")
-  ))
+  .on("searchCancel", (message) => {
+    const { music } = require('../../collection/index');
+    music.delete(message.guild.id);
+    music.delete(`music-${message.guild.id}`);
+    message.channel.send(
+      new MessageEmbed()
+          .setDescription("None or invalid value entered, the music selection has canceled")
+          .setColor("YELLOW")
+    )
+  })
   .on("error", (message, e) => {
+    const { music } = require('../../collection/index');
+    music.delete(message.guild.id);
+    music.delete(`music-${message.guild.id}`);
     console.error(e)
     message.channel.send(
         new MessageEmbed()
             .setColor("RED")
             .setDescription(`An error occurred while playing music, reason: **\`${e}\`**`)
     )})
-  .on("noRelated", (message) => message.channel.send(
-    new MessageEmbed()
-        .setDescription("Can't find related video to play. Stop playing music.")
-        .setColor("RED")
-  ))
+  .on("noRelated", (message) => {
+      const { music } = require('../../collection/index');
+      music.delete(message.guild.id);
+      music.delete(`music-${message.guild.id}`);
+      message.channel.send(
+        new MessageEmbed()
+            .setDescription("Can't find related video to play. Stop playing music.")
+            .setColor("RED")
+      )
+  })
   .on("initQueue", (queue) => {
     queue.autoplay = false;
     queue.volume = 50;
   })
-  .on("finish", async(message) => message.channel.send(
-    new MessageEmbed()
-        .setDescription(`⏹ **|** The music has ended, use **\`${await client.prefix(message)}play\`** to play some music`)
-        .setColor("5400FF")
-  ))
-  .on("empty", (message) => message.channel.send(
-    new MessageEmbed()
-        .setTitle("Music Player Stopped")
-        .setDescription("⏹ **|** Everyone has left from the voice channel. To save resources, the queue has been deleted.")
-        .setColor("YELLOW")
-  ));
+  .on("finish", async(message) => {
+    const { music } = require('../../collection/index');
+    music.delete(message.guild.id);
+    music.delete(`music-${message.guild.id}`);
+    message.channel.send(
+      new MessageEmbed()
+          .setDescription(`⏹ **|** The music has ended, use **\`${await client.prefix(message)}play\`** to play some music`)
+          .setColor("5400FF")
+    )
+  })
+  .on("empty", (message) => {
+    const { music } = require('../../collection/index');
+    music.delete(message.guild.id);
+    music.delete(`music-${message.guild.id}`);
+    message.channel.send(
+      new MessageEmbed()
+          .setTitle("Music Player Stopped")
+          .setDescription("⏹ **|** Everyone has left from the voice channel. To save resources, the queue has been deleted.")
+          .setColor("YELLOW")
+    )
+  });
 
 Client.player = player;
 
