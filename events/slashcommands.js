@@ -119,7 +119,7 @@ client.on('ready', async () => {
           .setThumbnail("https://serversmp.arpismp.ml/assets/serversmp-bot.png")
           .addField("Ping:", `\`${client.ws.ping}ms\``)
           .addField("Servers:", `\`${client.guilds.cache.size}\``)
-          .setDescription(`[Invite](https://discord.com/oauth2/authorize?client_id=778409873573412874&permissions=124553522550&scope=bot%20applications.commands)\n[Website](https://serversmp.arpismp.ml/)\n[Support](https://youtu.be/dQw4w9WgXcQ)`)
+          .setDescription(`[Invite](https://discord.com/oauth2/authorize?client_id=778409873573412874&permissions=261992476534&redirect_uri=https%3A%2F%2Fdiscord.com%2Fchannels%2F%40me&scope=bot%20applications.commands)\n[Website](https://serversmp.arpismp.ml/)\n[Support](https://youtu.be/dQw4w9WgXcQ)`)
           .setImage("https://serversmp.arpismp.ml/qrcode.png")
       client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {

@@ -99,6 +99,12 @@ client.categories = fs.readdirSync("./commands/");
 client.on('message', async message =>{
     if(message.author.bot) return;
     const p = await client.prefix(message)
+    if (message.mentions.has(client.user.id)) {
+        if(!message.guild) return;
+        if (message.content.includes("@here") || message.content.includes("@everyone")) return;
+        if (message.content.length > 22) return;
+        message.channel.send(`**${client.user.username}**'s prefix is ${await client.prefix(message)}`);
+    };
     if(!message.content.startsWith(p)) return;
     if(!message.guild) return;
     if(!message.member) message.member = await message.guild.fetchMember(message);

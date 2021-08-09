@@ -175,6 +175,18 @@ module.exports = {
                   ? command.description
                   : "No description for this command."
               )
+              .addField(
+                "Guild Premium:",
+                command.guildPremium
+                  ? `\`${command.guildPremium}\``
+                  : "`false`"
+              )
+              .addField(
+                "User Premium:",
+                command.userPremium
+                  ? `\`${command.userPremium}\``
+                  : "`false`"
+              )
               .setFooter(
                 `Requested by ${message.author.tag}`,
                 message.author.displayAvatarURL({
