@@ -5,18 +5,32 @@ module.exports = {
     category : 'voice',
     usage: '',
     description : "Play discord poker in vc.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
     run: async(client, message, args) => {
         if(message.member.voice.channel) {
             Client.discordTogether.createTogetherCode(message.member.voice.channelID, 'poker').then(async invite => {
-            return message.channel.send(`${invite.code}`);
-            });
+              const button = new MessageButton()
+                  .setStyle("url")
+                  .setLabel("Poker Night")
+                  .setEmoji("♠️")
+                  .setURL(`${invite.code}`)
+              return message.channel.send({
+                buttons: [button],
+                embed: new MessageEmbed()
+                  .setTitle("Poker Night")
+                  .setDescription('Click the button below to play poker in vc')
+                  .setColor("WHITE")
+            })});
         } else {
-            message.channel.send("You need to be in a VC!")
+          return message.channel.send(
+            new MessageEmbed()
+                .setTitle("You must be connected to a voice channel to use this command!")
+                .setColor("RED")
+            )
         }
     }
 }

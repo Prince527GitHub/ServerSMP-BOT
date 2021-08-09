@@ -19,6 +19,7 @@
     "axios": "^0.21.1",
     "botdash.pro": "^1.0.2",
     "canvacord": "^5.2.3",
+    "coloras": "^1.3.2",
     "dayjs": "^1.10.6",
     "disbots.net": "^2.0.4",
     "discord-backup": "^2.5.0",

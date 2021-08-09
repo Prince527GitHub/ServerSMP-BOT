@@ -14,18 +14,18 @@ module.exports = {
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        const nsfwchannel = await Client.dashboard.getVal(message.guild.id, "nsfwchannel");
-        const nsfwch = await Client.dashboard.getVal(message.guild.id, "nsfwch");
         if(db.has(`nsfw-${message.guild.id}`)=== false) return message.reply("NSFW commands disabled on this guild.");
-            if(nsfwch === "true") {
-                if (message.channel.id === nsfwchannel) {
+            if(await client.db_mongo.get(`nsfw-ch-${message.guild.id}`) !== "xxxxxxxxxxxxxxxxxxxx") {
+                if (message.channel.id === await client.db_mongo.get(`nsfw-ch-${message.guild.id}`)) {
         const image = await nsfw.anal();
         const embed = new MessageEmbed()
             .setTitle(`Anal Image`)
             .setColor("GREEN")
             .setImage(image);
         message.channel.send(embed);
-                }
+      } else {
+        return message.reply(`<#${await client.db_mongo.get(`nsfw-ch-${message.guild.id}`)}> Is the NSFW channel!`);
+      }
             } else {
         const image = await nsfw.anal();
         const embed = new MessageEmbed()

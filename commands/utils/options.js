@@ -14,6 +14,8 @@ module.exports = {
     run: async(client, message, args) => {
       let xp_command;
       let xp_channel;
+      let nsfw_channel;
+      let nsfw_ch;
       if(db.has(`xp-${message.guild.id}`)=== true) {
         xp_command = false
       } else if(db.has(`xp-${message.guild.id}`)=== false) {
@@ -24,8 +26,13 @@ module.exports = {
       } else if(db.has(`xp-channel-${message.guild.id}`)=== false) {
         xp_channel = "xxxxxxxxxxxxxxxxxxxx";
       }
-      const nsfwchannel = await Client.dashboard.getVal(message.guild.id, "nsfwchannel");
-      const nsfwch = await Client.dashboard.getVal(message.guild.id, "nsfwch");
+      if(await client.db_mongo.get(`nsfw-ch-${message.guild.id}`)=== "xxxxxxxxxxxxxxxxxxxx") {
+        nsfw_channel = "xxxxxxxxxxxxxxxxxxxx";
+        nsfw_ch = "false"
+      } else {
+        nsfw_channel = await client.db_mongo.get(`nsfw-ch-${message.guild.id}`)
+        nsfw_ch = "true"
+      }
       const themes = await Client.dashboard.getVal(message.guild.id, "themes");
       const byetheme = await Client.dashboard.getVal(message.guild.id, "byetheme");
       const byemain = await Client.dashboard.getVal(message.guild.id, "byemain");
@@ -35,13 +42,13 @@ module.exports = {
         .setDescription(`
           **Command Options:**
           **NSFW** - \`${db.has(`nsfw-${message.guild.id}`)}\`
+          **NSFW Channel** - \`${nsfw_ch}\`
+          **NSFW Channel ID** - \`${nsfw_channel}\`
           **Ticket** - \`${db.has(`ticket-${message.guild.id}`)}\`
           **XP** - \`${xp_command}\`
           **XP Channel** - \`${db.has(`xp-ch-on-${message.guild.id}`)}\`
           **XP Channel ID** - \`${xp_channel}\`
           **[Dashboard Options:](https://serversmp.botdash.pro/)**
-          **NSFW Channel** - \`${nsfwch}\`
-          **NSFW Channel ID** - \`${nsfwchannel}\`
           **Welcome Theme** - \`${themes}\`
           **Goodbye Theme** - \`${byetheme}\`
           **Goodbye Main Text** - \`${byemain}\`

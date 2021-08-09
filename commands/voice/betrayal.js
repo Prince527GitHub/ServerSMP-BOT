@@ -13,10 +13,24 @@ module.exports = {
     run: async(client, message, args) => {
         if(message.member.voice.channel) {
             Client.discordTogether.createTogetherCode(message.member.voice.channelID, 'betrayal').then(async invite => {
-            return message.channel.send(`${invite.code}`);
-            });
+              const button = new MessageButton()
+                  .setStyle("url")
+                  .setLabel("Betrayal.io")
+                  .setEmoji("ඞ")
+                  .setURL(`${invite.code}`)
+              return message.channel.send({
+                buttons: [button],
+                embed: new MessageEmbed()
+                  .setTitle("Betrayal.io")
+                  .setDescription('Click the button below to play betrayal (amoug us clone) in vc')
+                  .setColor("BLUE")
+            })});
         } else {
-            message.channel.send("You need to be in a VC!")
+          return message.channel.send(
+            new MessageEmbed()
+                .setTitle("You must be connected to a voice channel to use this command!")
+                .setColor("RED")
+            )
         }
     }
 }

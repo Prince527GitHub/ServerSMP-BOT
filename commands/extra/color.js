@@ -1,5 +1,5 @@
 const { MessageEmbed, Message, Client, MessageAttachment } = require('discord.js');
-const DIG = require("discord-image-generation");
+const { Color, isColor } = require("coloras");
 
 function colourRandom() {
     var num = Math.floor(Math.random() * Math.pow(2, 24));
@@ -18,14 +18,29 @@ module.exports = {
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-          let ramcolor = colourRandom();
-          let img = await new DIG.Color().getImage(ramcolor);
-          let attachment = new MessageAttachment(img, "color.png");
-          const embed = new MessageEmbed()
-              .setColor(ramcolor)
-              .setTitle("Random Color")
-              .setDescription(['Your color is `',ramcolor,'`'].join(''))
-              .setImage('attachment://color.png')
-          message.channel.send({ embed, files: [attachment] });
+      let random;
+
+      if (!args.join(" ")) {
+        random = true;
+      } else {
+        if (!isColor(args.join(" ")).color) return message.channel.send("Not a valid color");
+      }
+
+      const value = random ? null : args.join(" ");
+      const color = new Color(value);
+
+      const embed = new MessageEmbed()
+        .setColor(color.toHex())
+        .addFields([
+          { name: "HEX", value: color.toHex(), inline: true },
+          { name: "RGB", value: color.toRgb(), inline: true },
+          { name: "HSL", value: color.toHsl(), inline: true },
+          { name: "HSV", value: color.toHsv(), inline: true },
+          { name: "CMYK", value: color.toCmyk(), inline: true },
+          { name: "ㅤ", value: `[Image Url](${color.imageUrl})`, inline: true }
+        ])
+        .setImage(color.imageUrl);
+
+      return message.channel.send(embed);
     }
 }

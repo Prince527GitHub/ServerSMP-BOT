@@ -13,11 +13,9 @@ module.exports = {
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        const nsfwchannel = await Client.dashboard.getVal(message.guild.id, "nsfwchannel");
-        const nsfwch = await Client.dashboard.getVal(message.guild.id, "nsfwch");
         if(db.has(`nsfw-${message.guild.id}`)=== false) return message.reply("NSFW commands disabled on this guild.");
-            if(nsfwch === "true") {
-                if (message.channel.id === nsfwchannel) {
+            if(await client.db_mongo.get(`nsfw-ch-${message.guild.id}`) !== "xxxxxxxxxxxxxxxxxxxx") {
+                if (message.channel.id === await client.db_mongo.get(`nsfw-ch-${message.guild.id}`)) {
                     const embed = new MessageEmbed()
                     got('https://www.reddit.com/r/hentai/random/.json').then(response => {
                         let content = JSON.parse(response.body);
@@ -35,7 +33,9 @@ module.exports = {
                         embed.setFooter(`👍 ${memeUpvotes} 👎 ${memeDownvotes} 💬 ${memeNumComments}`)
                         message.channel.send(embed);
                     });
-        }
+                  } else {
+                    return message.reply(`<#${await client.db_mongo.get(`nsfw-ch-${message.guild.id}`)}> Is the NSFW channel!`);
+                  }
             } else {
                 const embed = new MessageEmbed()
                 got('https://www.reddit.com/r/hentai/random/.json').then(response => {

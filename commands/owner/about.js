@@ -23,17 +23,10 @@ module.exports = {
                return `${index+1} :: ${guild.name}: ${guild.memberCount} members`
             }).join('\n')
 
-                        let seconds = Math.floor(message.client.uptime / 1000);
-                        let minutes = Math.floor(seconds / 60);
-                        let hours = Math.floor(minutes / 60);
-                        let days = Math.floor(hours / 24);
                         var freeRAM = os.freemem / 1024**2 ;
                         var usedRAM = (os.totalmem() - os.freemem) / 1024**2;
                         var totalRAM = os.totalmem / 1024**2;
                         const RAM_used_by_bot = process.memoryUsage().heapUsed / 1024 / 1024;
-                        seconds %= 60;
-                        minutes %= 60;
-                        hours %= 24;
 
 
                       const embed = new MessageEmbed()
@@ -60,7 +53,7 @@ Shards              :: ${message.client.ws.shards.size}
 Ping                :: ${message.client.ws.ping}ms
 OS Uptime           :: ${ms(os.uptime() * 1000)}
 Process Uptime      :: ${ms(process.uptime() * 1000)}
-Bot Uptime          :: ${days} day(s),${hours} hours, ${minutes} minutes, ${seconds} seconds
+Bot Uptime          :: ${ms(client.uptime, { long: true })}
 Source Code         :: https://github.com/Prince527GitHub/ServerSMP-BOT/
 \`\`\`
 **Server Stats:**

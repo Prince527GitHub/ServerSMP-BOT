@@ -2,7 +2,7 @@ const { MessageEmbed, Message, Client } = require('discord.js');
 const db = require('quick.db');
 
 module.exports = {
-    name: 'xp',
+    name: 'xp-options',
     category : 'utils',
     usage: '[ on | off | #channel | off-ch ]',
     description : "Turn on or off xp commands/system or set a channel where the logs will be sent!",
