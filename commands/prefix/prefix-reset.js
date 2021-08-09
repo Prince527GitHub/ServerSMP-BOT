@@ -16,6 +16,7 @@ module.exports = {
     run: async(client, message, args) => {
                 prefixSchema.findOneAndDelete({ Guild : message.guild.id }, async(err, doc) => {
                     message.channel.send(`The prefix has been reset to ${prefix}`)
+                    message.guild.members.cache.get(client.user.id).setNickname(`${client.user.username}`);
                 })
     }
 }

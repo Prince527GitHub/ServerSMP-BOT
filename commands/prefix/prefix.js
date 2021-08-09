@@ -31,6 +31,7 @@ module.exports = {
                     Prefix : res
                 })
                 data.save()
+                message.guild.members.cache.get(client.user.id).setNickname(`[${res}] ${client.user.username}`);
                 message.channel.send(`Custom prefix in this server is now set to **${res}**`)
             }
         })

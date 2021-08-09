@@ -9,7 +9,7 @@ client.on('ready', async() => {
   const activityName = process.env.STATUS
   .replace(/{guildsCount}/g, await client.guilds.cache.size)
   .replace(/{usersCount}/g, await client.users.cache.size)
-  .replace(/{channelsCount}/g, await client.channels.cache.size);
+  .replace(/{channelsCount}/g, await client.channels.cache.size)
   .replace(/{botPrefix}/g, process.env.PREFIX);
 
   client.user.setPresence({
