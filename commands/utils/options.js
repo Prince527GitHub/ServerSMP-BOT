@@ -33,6 +33,10 @@ module.exports = {
         nsfw_channel = await client.db_mongo.get(`nsfw-ch-${message.guild.id}`)
         nsfw_ch = "true"
       }
+      if(await client.db_mongo.has(`nsfw-ch-${message.guild.id}`)=== false) {
+        nsfw_ch = "false"
+        nsfw_channel = "xxxxxxxxxxxxxxxxxxxx"
+      }
       const themes = await Client.dashboard.getVal(message.guild.id, "themes");
       const byetheme = await Client.dashboard.getVal(message.guild.id, "byetheme");
       const byemain = await Client.dashboard.getVal(message.guild.id, "byemain");

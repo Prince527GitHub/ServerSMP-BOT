@@ -63,7 +63,7 @@ module.exports = {
     const converted = number.toString();
     const lastChar = converted.charAt(converted.length - 1);
     return lastChar == "1"
-     ? `${convertedst}`
+     ? `${converted}st`
      : lastChar == "2"
      ? `${converted}nd`
      : lastChar == "3"
