@@ -65,8 +65,8 @@ const botdash = require('botdash.pro');
 const { DiscordTogether } = require('discord-together');
 const DisTube = require('distube');
 const { DiscordUNO } = require("discord-uno");
-const { DiscordTicket } = require('discord_ticket_maker');
 const { DiscordBanners } = require('discord-banners');
+const { MessageButton } = require("discord-buttons");
 Levels.setURL(mongo);
 Nuggies.connect(mongo)
 Nuggies.handleInteractions(client)
@@ -156,8 +156,6 @@ client.on('message', async message =>{
       } else command.run(client, message, args);
     }
 });
-
-client.ticket = new DiscordTicket()
 
 const player = new DisTube(client, {
   searchSongs: true,
@@ -335,5 +333,50 @@ client.db_json = ark_json;
 client.discordUNO = new DiscordUNO();
 
 client.discordBanners = new DiscordBanners(client);
+
+client.on('clickButton', async (button) => {
+  if(button.id === "report_button") {
+    let ticket_number;
+    let role = button.guild.roles.cache.find(role => role.name === "ticket-mods");
+    ticket_number = await client.db_json.get(`ticket-${button.guild.id}`) + 1;
+    await client.db_json.set(`ticket-${button.guild.id}`, ticket_number)
+    if(ticket_number === 100) {
+      await client.db_json.set(`ticket-${button.guild.id}`, 0)
+    }
+    button.guild.channels.create(`ticket-${client.db_json.get(`ticket-${button.guild.id}`)}`, {
+        type: 'text',
+        permissionOverwrites: [
+          {
+            id: button.clicker.id,
+            allow: ['VIEW_CHANNEL']
+          }, {
+            id: button.guild.id,
+            deny: ['VIEW_CHANNEL']
+          }, {
+            id: role.id,
+            allow: ['VIEW_CHANNEL']
+          }
+        ]
+    }).then(result => {
+      button.reply.send(`Created ticket #${ticket_number}!`, true)
+      const channels = button.guild.channels.cache.get(result.id)
+      const ticket_close = new MessageButton()
+              .setLabel("Close")
+              .setEmoji("🔒")
+              .setID("close_ticket")
+              .setStyle("grey")
+      channels.send(`<@${button.clicker.id}> Thank you for filling bug report!`)
+      channels.send({
+      	buttons: ticket_close,
+      	embed: new MessageEmbed()
+      		.setDescription("Support will be with you shortly to close this ticket react with 🔒")
+      		.setColor("BLUE")
+      })
+    });
+  } else if(button.id === "close_ticket") {
+  	const channels = button.guild.channels.cache.get(button.channel.id)
+  	channels.delete();
+  }
+});
 
 client.login(token)

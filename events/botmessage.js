@@ -1,7 +1,7 @@
-const Client = require('../index');
+const client = require('../index');
 const { MessageEmbed } = require('discord.js');
 
-Client.on("guildCreate", async(guild) => {
+client.on("guildCreate", async(guild) => {
     let channelToSend;
     guild.channels.cache.forEach((channel) => {
         if(channel.type === "text" && !channelToSend && channel.permissionsFor(guild.me).has("SEND_MESSAGES")) channelToSend = channel;
@@ -11,7 +11,8 @@ Client.on("guildCreate", async(guild) => {
             new MessageEmbed()
                 .setColor("RANDOM")
                 .setAuthor(guild.name, guild.iconURL({ dynamic: true }))
-                .setDescription(`Thanks for inviting ${Client.user.username} to your server!\nThe bot prefix is ${await client.prefix(message)} and for the list of commands do ${p}help`)
+                .setDescription(`Thanks for inviting ${client.user.username} to your server!\nThe bot prefix is \`${process.env.PREFIX}\` and for the list of commands do \`${process.env.PREFIX}help\``)
                 .setTimestamp()
         )
+    console.log(`${client.user.username} has joined ${guild.name} witch makes the total number of guilds ${client.guilds.cache.size}`);
 });

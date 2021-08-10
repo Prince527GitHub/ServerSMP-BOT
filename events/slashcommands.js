@@ -69,7 +69,7 @@ client.on('ready', async () => {
   });
 
   client.ws.on('INTERACTION_CREATE', async interaction => {
-    const commnad = interaction.data.name.toLowerCase();
+    const commnad = interaction.data.name;
     const args = interaction.data.options;
 
     if(commnad == 'duck') {

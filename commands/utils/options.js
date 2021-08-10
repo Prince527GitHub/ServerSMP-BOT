@@ -48,7 +48,6 @@ module.exports = {
           **NSFW** - \`${db.has(`nsfw-${message.guild.id}`)}\`
           **NSFW Channel** - \`${nsfw_ch}\`
           **NSFW Channel ID** - \`${nsfw_channel}\`
-          **Ticket** - \`${db.has(`ticket-${message.guild.id}`)}\`
           **XP** - \`${xp_command}\`
           **XP Channel** - \`${db.has(`xp-ch-on-${message.guild.id}`)}\`
           **XP Channel ID** - \`${xp_channel}\`
