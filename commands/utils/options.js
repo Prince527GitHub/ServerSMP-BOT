@@ -16,6 +16,7 @@ module.exports = {
       let xp_channel;
       let nsfw_channel;
       let nsfw_ch;
+      let ticket_command;
       if(db.has(`xp-${message.guild.id}`)=== true) {
         xp_command = false
       } else if(db.has(`xp-${message.guild.id}`)=== false) {
@@ -37,6 +38,11 @@ module.exports = {
         nsfw_ch = "false"
         nsfw_channel = "xxxxxxxxxxxxxxxxxxxx"
       }
+      if(client.db_json.has(`ticket-toggle-${message.guild.id}`)=== false) {
+        ticket_command = "true"
+      } else {
+        ticket_command = "false"
+      }
       const themes = await Client.dashboard.getVal(message.guild.id, "themes");
       const byetheme = await Client.dashboard.getVal(message.guild.id, "byetheme");
       const byemain = await Client.dashboard.getVal(message.guild.id, "byemain");
@@ -51,6 +57,8 @@ module.exports = {
           **XP** - \`${xp_command}\`
           **XP Channel** - \`${db.has(`xp-ch-on-${message.guild.id}`)}\`
           **XP Channel ID** - \`${xp_channel}\`
+          **Ticket** - \`${ticket_command}\`
+          **Tickets Number** - \`${client.db_json.get(`ticket-${message.guild.id}`)}\`
           **[Dashboard Options:](https://serversmp.botdash.pro/)**
           **Welcome Theme** - \`${themes}\`
           **Goodbye Theme** - \`${byetheme}\`

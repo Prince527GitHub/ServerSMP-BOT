@@ -336,6 +336,9 @@ client.discordBanners = new DiscordBanners(client);
 
 client.on('clickButton', async (button) => {
   if(button.id === "report_button") {
+    if(client.db_json.has(`ticket-toggle-${button.guild.id}`)=== true) {
+      return button.reply.send(`Tickets are closed!`, true);
+    }
     let ticket_number;
     let role = button.guild.roles.cache.find(role => role.name === "ticket-mods");
     ticket_number = await client.db_json.get(`ticket-${button.guild.id}`) + 1;
