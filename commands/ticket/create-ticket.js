@@ -4,7 +4,7 @@ const { MessageButton } = require("discord-buttons");
 module.exports = {
     name: 'create-ticket',
     category : 'ticket',
-    description : "",
+    description : "Create the main ticket button to create tickets!",
     usage: '[ title ]',
     userPermission: ["ADMINISTRATOR"],
 
