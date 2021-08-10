@@ -66,7 +66,7 @@ const { DiscordTogether } = require('discord-together');
 const DisTube = require('distube');
 const { DiscordUNO } = require("discord-uno");
 const { DiscordBanners } = require('discord-banners');
-const { MessageButton } = require("discord-buttons");
+const { MessageButton, MessageActionRow } = require("discord-buttons");
 Levels.setURL(mongo);
 Nuggies.connect(mongo)
 Nuggies.handleInteractions(client)
@@ -361,6 +361,7 @@ client.on('clickButton', async (button) => {
           }
         ]
     }).then(result => {
+      client.db_json.set(`ticket-user-${button.guild.id}-${result.id}`, button.clicker.id)
       button.reply.send(`Created ticket #${ticket_number}!`, true)
       const channels = button.guild.channels.cache.get(result.id)
       const ticket_close = new MessageButton()
@@ -378,7 +379,61 @@ client.on('clickButton', async (button) => {
     });
   } else if(button.id === "close_ticket") {
   	const channels = button.guild.channels.cache.get(button.channel.id)
-  	channels.delete();
+    const close = new MessageButton()
+      .setStyle("red")
+      .setLabel("Close")
+      .setID("realy_close")
+    await button.reply.send("Are you sure you would like to close this ticket?", true)
+    await button.reply.edit("Are you sure you would like to close this ticket?", close)
+  } else if(button.id === "realy_close") {
+    const channels = button.guild.channels.cache.get(button.channel.id)
+    channels.overwritePermissions([
+      {
+      id: client.db_json.get(`ticket-user-${button.guild.id}-${button.channel.id}`),
+      deny: ['VIEW_CHANNEL']
+    }]);
+    channels.send(
+      new MessageEmbed()
+        .setDescription(`Ticket Closed by <@${button.clicker.id}>`)
+        .setColor("YELLOW")
+    )
+    const open = new MessageButton()
+      .setLabel("Open")
+      .setEmoji("🔓")
+      .setID("open_ticket")
+      .setStyle("grey")
+    const del_ticket = new MessageButton()
+      .setLabel("Delete")
+      .setEmoji("⛔")
+      .setID("delete_ticket")
+      .setStyle("grey")
+    const row = new MessageActionRow()
+      .addComponents(open, del_ticket);
+    await button.reply.send(new MessageEmbed().setDescription(`\`\`\`Support team ticket controls\`\`\``), true)
+    await button.reply.edit(new MessageEmbed().setDescription(`\`\`\`Support team ticket controls\`\`\``), row)
+  } else if(button.id === "open_ticket") {
+      const channels = button.guild.channels.cache.get(button.channel.id)
+      channels.overwritePermissions([
+        {
+        id: client.db_json.get(`ticket-user-${button.guild.id}-${button.channel.id}`),
+        allow: ['VIEW_CHANNEL']
+      }]);
+      channels.send(
+        new MessageEmbed()
+          .setDescription(`Ticket Opened by <@${button.clicker.id}>`)
+          .setColor("GREEN")
+      )
+      button.reply.send("Ticket re-opened!", true)
+  } else if(button.id === "delete_ticket") {
+    client.db_json.delete(`ticket-user-${button.guild.id}-${button.channel.id}`)
+      const channels = button.guild.channels.cache.get(button.channel.id)
+      channels.send(
+        new MessageEmbed()
+          .setDescription("Ticket will be deleted in a few seconds")
+          .setColor("RED")
+      ).then(msg => {
+        channels.delete(10000)
+      })
   }
 });
 
