@@ -1,3 +1,5 @@
+## Bot dev has been paused (aka: new commands & stuff) because of discord.js v13
+
 # ServerSMP - BOT
 
 This is a discord bot, that has a lot of stuff in it like meme's, economy, admin, extra, etc.
