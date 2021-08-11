@@ -1,5 +1,4 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
-const fetch = require("node-fetch");
 
 module.exports = {
     name: 'cat',
@@ -12,11 +11,9 @@ module.exports = {
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        //const { file } = await fetch('https://aws.random.cat/meow').then(response => response.json());
         const embed = new MessageEmbed()
             .setColor("RANDOM")
             .setTitle("Cat")
-            //.setImage(file)
             .setImage(String('https://cataas.com/cat?t=' + new Date().getTime().toString()))
         message.channel.send(embed);
     }

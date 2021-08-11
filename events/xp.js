@@ -3,9 +3,8 @@ const Levels = require('discord-xp');
 const db = require('quick.db');
 
 client.on('message', async(message) => {
-    if(message.author.bot) return;
-    if(!message.guild) return;
-    if(!message.member) message.member = await message.guild.fetchMember(message);
+  if (!message.guild) return;
+  if (message.author.bot) return;
     if(db.has(`xp-${message.guild.id}`)=== false) {
       const randomXp = Math.floor(Math.random() * 9) + 1; //Random amont of XP until the number you want + 1
       const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomXp);

@@ -14,7 +14,7 @@ module.exports = {
     run: async(client, message, args) => {
       await Trivia({
       	message: message,
-      	embed: { color: '#7289da', timestamp: true },
+      	embed: { color: '#7289da', timestamp: true, title: 'Trivia' },
       	difficulty: 'hard',
       	thinkMessage: 'I am thinking',
       	winMessage:

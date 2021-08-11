@@ -14,7 +14,7 @@ module.exports = {
     * @param {String[]} args
     */
     run: async(client, message, args) => {
-      if(!args[0]) return message.reply("You need a title!")
+      if(!args.slice(0).join(' ')) return message.reply("You need a title!")
       if(await client.db_json.has(`ticket-${message.guild.id}`)=== false) {
         await client.db_json.set(`ticket-${message.guild.id}`, 0)
       }
@@ -36,7 +36,7 @@ module.exports = {
       message.channel.send({
         buttons: report,
         embed: new MessageEmbed()
-          .setTitle(`${args[0]}`)
+          .setTitle(`${args.slice(0).join(' ')}`)
           .setDescription("To create a ticket react with :envelope_with_arrow:")
           .setColor("BLUE")
       })

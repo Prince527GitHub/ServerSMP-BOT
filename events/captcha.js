@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 const db = require('quick.db');
 
 Client.on('guildMemberAdd', async (member) => {
-  //if(member.author.bot) return;
+  if(member.bot) return;
     if(db.has(`captcha-${member.guild.id}`)=== false) return;
     const url = 'https://api.no-api-key.com/api/v2/captcha';
         try {

@@ -1,6 +1,10 @@
 const client = require('../index');
-const { MessageEmbed, APIMessage } = require('discord.js');
+const { MessageEmbed, APIMessage, MessageAttachment } = require('discord.js');
+const progressbar = require('string-progressbar');
 const ascii = require('ascii-table')
+const Levels = require('discord-xp');
+const db = require('quick.db');
+const superAgent = require("superagent");
 let table = new ascii("Slash commands");
 table.setHeading('Command', ' Load status');
 
@@ -14,6 +18,9 @@ client.on('ready', async () => {
     table.addRow('echo','✅') // Hi there Prince527 here I suck at code.
     table.addRow('info','✅')
     table.addRow('help','✅')
+    table.addRow('rank','✅')
+    table.addRow('cat','✅')
+    table.addRow('dog','✅')
 
     console.log(table.toString());
 
@@ -68,11 +75,32 @@ client.on('ready', async () => {
     }
   });
 
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "rank",
+      description: "Show's you're rank card (xp/level).",
+    }
+  });
+
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "cat",
+      description: "A random image of a cat.",
+    }
+  });
+
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "dog",
+      description: "A random image of a dog.",
+    }
+  });
+
   client.ws.on('INTERACTION_CREATE', async interaction => {
     const commnad = interaction.data.name;
     const args = interaction.data.options;
 
-    if(commnad == 'duck') {
+    if(commnad.toLowerCase() == 'duck') {
       const embed = new MessageEmbed()
         .setTitle("Random duck")
         .setColor("RANDOM")
@@ -86,7 +114,7 @@ client.on('ready', async () => {
       })
     }
 
-    if(commnad == 'ping') {
+    if(commnad.toLowerCase() == 'ping') {
       const embed = new MessageEmbed()
         .setTitle("Pong!")
         .setDescription(`WebSocket ping is ${client.ws.ping}MS`)
@@ -98,7 +126,7 @@ client.on('ready', async () => {
       })
     }
 
-    if(commnad == "echo") {
+    if(commnad.toLowerCase() == "echo") {
       const description = args.find(arg => arg.name.toLowerCase() == "content").value;
       const embed = new MessageEmbed()
         .setTitle("Echo!")
@@ -112,7 +140,7 @@ client.on('ready', async () => {
       })
     }
 
-    if(commnad == 'info') {
+    if(commnad.toLowerCase() == 'info') {
       const embed = new MessageEmbed()
           .setColor("RANDOM")
           .setTitle("Info")
@@ -129,12 +157,83 @@ client.on('ready', async () => {
       })
     }
 
-    if(commnad == 'help') {
+    if(commnad.toLowerCase() == 'help') {
       const embed = new MessageEmbed()
           .setColor("RANDOM")
           .setTitle("Help")
           .setDescription('Do `-help` or go to the [website](https://serversmp.arpismp.ml/commands.html)!')
           .setThumbnail("https://serversmp.arpismp.ml/assets/serversmp-bot.png")
+      client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
+          data: await createAPIMessage(interaction, embed)
+        }
+      })
+    }
+
+    if(commnad.toLowerCase() == 'rank') {
+      if(db.has(`xp-${interaction.guild_id}`)=== false) {
+        const user = await Levels.fetch(interaction.member.user.id, interaction.guild_id, true)
+        if (!user) {
+          return client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+              type: 4,
+              data: {
+                content: 'You dont have xp. try to send some messages.'
+              }
+            }
+          });
+        }
+        var total = Levels.xpFor(user.level + 1);
+        var current = user.xp;
+        let bar = progressbar.filledBar(total, current, 40, "□", "■")[0];
+        const embed = new MessageEmbed()
+          .setTitle(`${interaction.member.user.username}'s Rank`)
+          .setDescription(`**Level**: \`${user.level}\`\n**Rank**: \`${user.position}\`\n**XP**: \`${bar} ${current}/${Levels.xpFor(user.level + 1)}\``)
+          .setColor("RANDOM")
+          client.api.interactions(interaction.id, interaction.token).callback.post({
+              data: {
+                type: 4,
+                data: await createAPIMessage(interaction, embed)
+              }
+            });
+      } else {
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+          data: {
+            type: 4,
+            data: {
+              content: 'XP system is disabled on this server!'
+            }
+          }
+        });
+      }
+    }
+
+    if(commnad.toLowerCase() == 'cat') {
+      const embed = new MessageEmbed()
+          .setColor("RANDOM")
+          .setTitle("Cat")
+          .setImage(String('https://cataas.com/cat?t=' + new Date().getTime().toString()))
+      client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
+          data: await createAPIMessage(interaction, embed)
+        }
+      })
+    }
+
+    if(commnad.toLowerCase() == 'dog') {
+      var dog;
+      dog = await superAgent
+          .get("https://random.dog/woof.json");
+      while (dog.body.url.endsWith(".webm") || dog.body.url.endsWith(".mp4")) {
+          dog = await superAgent
+              .get("https://random.dog/woof.json");
+      }
+      var embed = new MessageEmbed()
+          .setColor("RANDOM")
+          .setTitle("Dog :dog:")
+          .setImage(dog.body.url);
       client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
           type: 4,

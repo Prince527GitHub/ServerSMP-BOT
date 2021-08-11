@@ -98,15 +98,15 @@ client.categories = fs.readdirSync("./commands/");
 
 client.on('message', async message =>{
     if(message.author.bot) return;
-    const p = await client.prefix(message)
     if (message.mentions.has(client.user.id)) {
         if(!message.guild) return;
         if (message.content.includes("@here") || message.content.includes("@everyone")) return;
         if (message.content.length > 22) return;
         message.channel.send(`**${client.user.username}**'s prefix is ${await client.prefix(message)}`);
     };
-    if(!message.content.startsWith(p)) return;
     if(!message.guild) return;
+    const p = await client.prefix(message)
+    if(!message.content.startsWith(p)) return;
     if(!message.member) message.member = await message.guild.fetchMember(message);
     if (message.content.length > 2048) return;
     const args = message.content.slice(p.length).trim().split(/ +/g);
@@ -201,7 +201,7 @@ player
             .setColor("#5400FF")
     )})
   .on("searchCancel", (message) => {
-    const { music } = require('../../collection/index');
+    const { music } = require('./collection/index');
     music.delete(message.guild.id);
     music.delete(`music-${message.guild.id}`);
     message.channel.send(
@@ -211,7 +211,7 @@ player
     )
   })
   .on("error", (message, e) => {
-    const { music } = require('../../collection/index');
+    const { music } = require('./collection/index');
     music.delete(message.guild.id);
     music.delete(`music-${message.guild.id}`);
     console.error(e)
@@ -221,7 +221,7 @@ player
             .setDescription(`An error occurred while playing music, reason: **\`${e}\`**`)
     )})
   .on("noRelated", (message) => {
-      const { music } = require('../../collection/index');
+      const { music } = require('./collection/index');
       music.delete(message.guild.id);
       music.delete(`music-${message.guild.id}`);
       message.channel.send(
@@ -235,7 +235,7 @@ player
     queue.volume = 50;
   })
   .on("finish", async(message) => {
-    const { music } = require('../../collection/index');
+    const { music } = require('./collection/index');
     music.delete(message.guild.id);
     music.delete(`music-${message.guild.id}`);
     message.channel.send(
@@ -245,7 +245,7 @@ player
     )
   })
   .on("empty", (message) => {
-    const { music } = require('../../collection/index');
+    const { music } = require('./collection/index');
     music.delete(message.guild.id);
     music.delete(`music-${message.guild.id}`);
     message.channel.send(
