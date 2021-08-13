@@ -59,7 +59,7 @@ module.exports = {
             const embed = new MessageEmbed()
               .setTitle("📬 Need help?")
               .setDescription(
-                `\`\`\`js\nPrefix: ${prefix}\nExtra information: If you seen error or bugs please use ${prefix}report to report it!\`\`\`\n> To check out a category, use command \`${prefix}help [category-name]\``
+                `\`\`\`js\nPrefix: ${prefix}\nExtra information: If you seen error or bugs please use ${prefix}report to report it! 'If commands dont not work the bot may need more perms!'\`\`\`\n> To check out a category, use command \`${prefix}help [category-name]\``
               )
               .addFields(categories)
               .setFooter(
