@@ -3,7 +3,6 @@ const { MessageEmbed, APIMessage, MessageAttachment } = require('discord.js');
 const progressbar = require('string-progressbar');
 const ascii = require('ascii-table')
 const Levels = require('discord-xp');
-const db = require('quick.db');
 const superAgent = require("superagent");
 let table = new ascii("Slash commands");
 table.setHeading('Command', ' Load status');
@@ -172,7 +171,7 @@ client.on('ready', async () => {
     }
 
     if(commnad.toLowerCase() == 'rank') {
-      if(db.has(`xp-${interaction.guild_id}`)=== false) {
+      if(await client.mongo_quick.has(`xp-${interaction.guild_id}`)=== false) {
         const user = await Levels.fetch(interaction.member.user.id, interaction.guild_id, true)
         if (!user) {
           return client.api.interactions(interaction.id, interaction.token).callback.post({

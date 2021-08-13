@@ -437,4 +437,9 @@ client.on('clickButton', async (button) => {
   }
 });
 
+const db_mongo_quick = require('beta.mdb')
+const mongo_new = new db_mongo_quick.Database(mongo)
+
+client.mongo_quick = mongo_new;
+
 client.login(token)

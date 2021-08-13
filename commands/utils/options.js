@@ -1,5 +1,4 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
-const db = require('quick.db');
 
 module.exports = {
     name: 'options',
@@ -17,14 +16,14 @@ module.exports = {
       let nsfw_channel;
       let nsfw_ch;
       let ticket_command;
-      if(db.has(`xp-${message.guild.id}`)=== true) {
+      if(await client.mongo_quick.has(`xp-${message.guild.id}`)=== true) {
         xp_command = false
-      } else if(db.has(`xp-${message.guild.id}`)=== false) {
+      } else if(await client.mongo_quick.has(`xp-${message.guild.id}`)=== false) {
         xp_command = true
       }
-      if(db.has(`xp-channel-${message.guild.id}`)=== true) {
-        xp_channel = db.get(`xp-channel-${message.guild.id}`)
-      } else if(db.has(`xp-channel-${message.guild.id}`)=== false) {
+      if(await client.mongo_quick.has(`xp-channel-${message.guild.id}`)=== true) {
+        xp_channel = await client.mongo_quick.get(`xp-channel-${message.guild.id}`)
+      } else if(await client.mongo_quick.has(`xp-channel-${message.guild.id}`)=== false) {
         xp_channel = "xxxxxxxxxxxxxxxxxxxx";
       }
       if(await client.db_mongo.get(`nsfw-ch-${message.guild.id}`)=== "xxxxxxxxxxxxxxxxxxxx") {
@@ -51,11 +50,11 @@ module.exports = {
         .setTitle("Options")
         .setDescription(`
           **Command Options:**
-          **NSFW** - \`${db.has(`nsfw-${message.guild.id}`)}\`
+          **NSFW** - \`${await client.mongo_quick.has(`nsfw-${message.guild.id}`)}\`
           **NSFW Channel** - \`${nsfw_ch}\`
           **NSFW Channel ID** - \`${nsfw_channel}\`
           **XP** - \`${xp_command}\`
-          **XP Channel** - \`${db.has(`xp-ch-on-${message.guild.id}`)}\`
+          **XP Channel** - \`${await client.mongo_quick.has(`xp-ch-on-${message.guild.id}`)}\`
           **XP Channel ID** - \`${xp_channel}\`
           **Ticket** - \`${ticket_command}\`
           **Tickets Number** - \`${client.db_json.get(`ticket-${message.guild.id}`)}\`
