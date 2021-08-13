@@ -16,7 +16,7 @@ module.exports = {
             await client.mongo_quick.set(`nsfw-${message.guild.id}`, true)
             message.channel.send('Turned on NSFW commands.')
         } else if(args[0] === 'off') {
-            await client.mongo_quick.delete(`nsfw-${message.guild.id}`)
+            await client.mongo_quick.remove(`nsfw-${message.guild.id}`)
             if(await client.db_mongo.has(`nsfw-ch-${message.guild.id}`)=== true) {
               await client.db_mongo.set(`nsfw-ch-${message.guild.id}`, "xxxxxxxxxxxxxxxxxxxx")
             }

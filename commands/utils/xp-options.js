@@ -14,13 +14,13 @@ module.exports = {
     run: async(client, message, args) => {
         if(args[0] === 'off') {
             if(client.mongo_quick.has(`xp-ch-on${message.guild.id}`)) {
-                await client.mongo_quick.delete(`xp-ch-on-${message.guild.id}`)
-                await client.mongo_quick.delete(`xp-channel-${message.guild.id}`)
+                await client.mongo_quick.remove(`xp-ch-on-${message.guild.id}`)
+                await client.mongo_quick.remove(`xp-channel-${message.guild.id}`)
             }
             await client.mongo_quick.set(`xp-${message.guild.id}`, true)
             message.channel.send('Turned off xp commands/system.')
         } else if(args[0] === 'on') {
-            await client.mongo_quick.delete(`xp-${message.guild.id}`)
+            await client.mongo_quick.remove(`xp-${message.guild.id}`)
             message.channel.send('Turned on xp commands/system.')
         } else if(message.mentions.channels.first()) {
             const channel = message.mentions.channels.first();
@@ -28,8 +28,8 @@ module.exports = {
             await client.mongo_quick.set(`xp-channel-${message.guild.id}`, channel.id)
             message.channel.send(`Turned on xp log channel at ${channel}.`)
         } else if(args[0] === 'off-ch') {
-            await client.mongo_quick.delete(`xp-ch-on-${message.guild.id}`)
-            await client.mongo_quick.delete(`xp-channel-${message.guild.id}`)
+            await client.mongo_quick.remove(`xp-ch-on-${message.guild.id}`)
+            await client.mongo_quick.remove(`xp-channel-${message.guild.id}`)
             message.channel.send('Turned off xp log channel.')
         } else {
           console.log(await client.mongo_quick.has(`xp-ch-on-${message.guild.id}`))

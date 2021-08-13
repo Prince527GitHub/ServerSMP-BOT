@@ -16,7 +16,7 @@ module.exports = {
             await client.mongo_quick.set(`captcha-${message.guild.id}`, true)
             message.channel.send('Turned on captcha feature')
         } else if(args[0] === 'off') {
-            await client.mongo_quick.delete(`captcha-${message.guild.id}`)
+            await client.mongo_quick.remove(`captcha-${message.guild.id}`)
             message.channel.send('Turned off captcha feature')
         }
     }

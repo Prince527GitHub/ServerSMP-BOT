@@ -438,7 +438,7 @@ client.on('clickButton', async (button) => {
 });
 
 const db_mongo_quick = require('beta.mdb')
-const mongo_new = new db_mongo_quick.Database(mongo)
+const mongo_new = new db_mongo_quick.Database(mongo, { keepAliveInitialDelay: 300000 })
 
 client.mongo_quick = mongo_new;
 
