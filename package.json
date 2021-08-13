@@ -4,7 +4,8 @@
   "description": "The ServerSMP - BOT",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -60,6 +61,7 @@
     "mongoose": "^5.13.5",
     "ms": "^2.1.3",
     "node-fetch": "^2.6.1",
+    "node-osu": "^2.2.1",
     "nodemon": "^2.0.12",
     "nodesu": "^0.7.2",
     "nuggies": "^1.4.3",

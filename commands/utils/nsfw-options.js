@@ -17,8 +17,8 @@ module.exports = {
             message.channel.send('Turned on NSFW commands.')
         } else if(args[0] === 'off') {
             await client.mongo_quick.remove(`nsfw-${message.guild.id}`)
-            if(await client.db_mongo.has(`nsfw-ch-${message.guild.id}`)=== true) {
-              await client.db_mongo.set(`nsfw-ch-${message.guild.id}`, "xxxxxxxxxxxxxxxxxxxx")
+            if(await client.mongo_quick.has(`nsfw-ch-${message.guild.id}`)=== true) {
+              await client.mongo_quick.remove(`nsfw-ch-${message.guild.id}`)
             }
             message.channel.send('Turned off NSFW commands.')
         } else if(message.mentions.channels.first()) {
@@ -26,11 +26,11 @@ module.exports = {
             await client.mongo_quick.set(`nsfw-${message.guild.id}`, true)
           }
           const channel = message.mentions.channels.first();
-          await client.db_mongo.set(`nsfw-ch-${message.guild.id}`, channel.id)
+          await client.mongo_quick.set(`nsfw-ch-${message.guild.id}`, channel.id)
           message.channel.send(`Set NSFW channel to ${channel}.`)
         } else if(args[0] === "off-ch") {
-          if(await client.db_mongo.has(`nsfw-ch-${message.guild.id}`)=== true) {
-            await client.db_mongo.set(`nsfw-ch-${message.guild.id}`, "xxxxxxxxxxxxxxxxxxxx")
+          if(await client.mongo_quick.has(`nsfw-ch-${message.guild.id}`)=== true) {
+            await client.mongo_quick.set(`nsfw-ch-${message.guild.id}`, "xxxxxxxxxxxxxxxxxxxx")
             message.channel.send("Turned off nsfw channel!")
           } else {
             message.channel.send("Data does not exist!")

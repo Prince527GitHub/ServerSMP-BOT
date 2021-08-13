@@ -1,10 +1,12 @@
 const Client = require('../index');
 const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
+const db_mongo_quick = require('beta.mdb')
+const mongo_quick = new db_mongo_quick.Database(process.env.mongo, { keepAliveInitialDelay: 300000 })
 
 Client.on('guildMemberAdd', async (member) => {
   if(member.bot) return;
-    if(await client.mongo_quick.has(`captcha-${member.guild.id}`)=== false) return;
+    if(await mongo_quick.has(`captcha-${member.guild.id}`)=== false) return;
     const url = 'https://api.no-api-key.com/api/v2/captcha';
         try {
             fetch(url)

@@ -64,6 +64,7 @@ const ark_json = new Database();
 const botdash = require('botdash.pro');
 const { DiscordTogether } = require('discord-together');
 const DisTube = require('distube');
+const osu = require('node-osu');
 const { DiscordUNO } = require("discord-uno");
 const { DiscordBanners } = require('discord-banners');
 const { MessageButton, MessageActionRow } = require("discord-buttons");
@@ -438,8 +439,12 @@ client.on('clickButton', async (button) => {
 });
 
 const db_mongo_quick = require('beta.mdb')
-const mongo_new = new db_mongo_quick.Database(mongo, { keepAliveInitialDelay: 300000 })
+client.mongo_quick = new db_mongo_quick.Database(mongo, { keepAliveInitialDelay: 300000 })
 
-client.mongo_quick = mongo_new;
+client.osuApi = new osu.Api(process.env.OSU_API, {
+	notFoundAsError: true,
+	completeScores: false,
+	parseNumeric: false
+});
 
 client.login(token)

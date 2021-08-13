@@ -13,8 +13,7 @@ module.exports = {
      */
     run: async(client, message, args) => {
         if(args[0] === 'off') {
-            if(client.mongo_quick.has(`xp-ch-on${message.guild.id}`)) {
-                await client.mongo_quick.remove(`xp-ch-on-${message.guild.id}`)
+            if(await client.mongo_quick.has(`xp-channel-${message.guild.id}`)=== true) {
                 await client.mongo_quick.remove(`xp-channel-${message.guild.id}`)
             }
             await client.mongo_quick.set(`xp-${message.guild.id}`, true)
@@ -24,13 +23,15 @@ module.exports = {
             message.channel.send('Turned on xp commands/system.')
         } else if(message.mentions.channels.first()) {
             const channel = message.mentions.channels.first();
-            await client.mongo_quick.set(`xp-ch-on-${message.guild.id}`, true)
             await client.mongo_quick.set(`xp-channel-${message.guild.id}`, channel.id)
             message.channel.send(`Turned on xp log channel at ${channel}.`)
         } else if(args[0] === 'off-ch') {
-            await client.mongo_quick.remove(`xp-ch-on-${message.guild.id}`)
+          if(await client.mongo_quick.has(`xp-channel-${message.guild.id}`)=== true) {
             await client.mongo_quick.remove(`xp-channel-${message.guild.id}`)
             message.channel.send('Turned off xp log channel.')
+          } else {
+            message.reply("There was not data!")
+          }
         } else {
           console.log(await client.mongo_quick.has(`xp-ch-on-${message.guild.id}`))
             message.reply("Query is invalid.");

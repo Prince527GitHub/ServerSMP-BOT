@@ -14,7 +14,6 @@ module.exports = {
       let xp_command;
       let xp_channel;
       let nsfw_channel;
-      let nsfw_ch;
       let ticket_command;
       if(await client.mongo_quick.has(`xp-${message.guild.id}`)=== true) {
         xp_command = false
@@ -22,20 +21,14 @@ module.exports = {
         xp_command = true
       }
       if(await client.mongo_quick.has(`xp-channel-${message.guild.id}`)=== true) {
-        xp_channel = await client.mongo_quick.get(`xp-channel-${message.guild.id}`)
+        xp_channel = `<#${await client.mongo_quick.get(`xp-channel-${message.guild.id}`)}>`
       } else if(await client.mongo_quick.has(`xp-channel-${message.guild.id}`)=== false) {
-        xp_channel = "xxxxxxxxxxxxxxxxxxxx";
+        xp_channel = "`no channel set`";
       }
-      if(await client.db_mongo.get(`nsfw-ch-${message.guild.id}`)=== "xxxxxxxxxxxxxxxxxxxx") {
-        nsfw_channel = "xxxxxxxxxxxxxxxxxxxx";
-        nsfw_ch = "false"
+      if(await client.mongo_quick.get(`nsfw-ch-${message.guild.id}`)=== false) {
+        nsfw_channel = "`no channel set`";
       } else {
-        nsfw_channel = await client.db_mongo.get(`nsfw-ch-${message.guild.id}`)
-        nsfw_ch = "true"
-      }
-      if(await client.db_mongo.has(`nsfw-ch-${message.guild.id}`)=== false) {
-        nsfw_ch = "false"
-        nsfw_channel = "xxxxxxxxxxxxxxxxxxxx"
+        nsfw_channel = `<#${await client.mongo_quick.get(`nsfw-ch-${message.guild.id}`)}>`
       }
       if(client.db_json.has(`ticket-toggle-${message.guild.id}`)=== false) {
         ticket_command = "true"
@@ -51,11 +44,9 @@ module.exports = {
         .setDescription(`
           **Command Options:**
           **NSFW** - \`${await client.mongo_quick.has(`nsfw-${message.guild.id}`)}\`
-          **NSFW Channel** - \`${nsfw_ch}\`
-          **NSFW Channel ID** - \`${nsfw_channel}\`
+          **NSFW Channel** - ${nsfw_channel}
           **XP** - \`${xp_command}\`
-          **XP Channel** - \`${await client.mongo_quick.has(`xp-ch-on-${message.guild.id}`)}\`
-          **XP Channel ID** - \`${xp_channel}\`
+          **XP Channel** - ${xp_channel}
           **Ticket** - \`${ticket_command}\`
           **Tickets Number** - \`${client.db_json.get(`ticket-${message.guild.id}`)}\`
           **[Dashboard Options:](https://serversmp.botdash.pro/)**
