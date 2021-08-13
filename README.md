@@ -1,4 +1,4 @@
-## Bot dev has been paused (aka: new commands & stuff) because of discord.js v13
+## BOT MAY NOT UPDATE TO V13 OF DISCORD.JS
 
 # ServerSMP - BOT
 
