@@ -1,4 +1,5 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
+const db = require('quick.db');
 
 module.exports = {
     name: 'captcha',
@@ -13,10 +14,10 @@ module.exports = {
      */
     run: async(client, message, args) => {
         if(args[0] === 'on') {
-            await client.mongo_quick.set(`captcha-${message.guild.id}`, true)
+            db.set(`captcha-${message.guild.id}`, true)
             message.channel.send('Turned on captcha feature')
         } else if(args[0] === 'off') {
-            await client.mongo_quick.remove(`captcha-${message.guild.id}`)
+            db.delete(`captcha-${message.guild.id}`)
             message.channel.send('Turned off captcha feature')
         }
     }
