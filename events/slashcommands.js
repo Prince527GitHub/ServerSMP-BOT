@@ -99,7 +99,7 @@ client.on('ready', async () => {
     const commnad = interaction.data.name;
     const args = interaction.data.options;
 
-    if(commnad.toLowerCase() == 'duck') {
+    if(commnad == 'duck') {
       const embed = new MessageEmbed()
         .setTitle("Random duck")
         .setColor("RANDOM")
@@ -113,7 +113,7 @@ client.on('ready', async () => {
       })
     }
 
-    if(commnad.toLowerCase() == 'ping') {
+    if(commnad == 'ping') {
       const embed = new MessageEmbed()
         .setTitle("Pong!")
         .setDescription(`WebSocket ping is ${client.ws.ping}MS`)
@@ -125,7 +125,7 @@ client.on('ready', async () => {
       })
     }
 
-    if(commnad.toLowerCase() == "echo") {
+    if(commnad == "echo") {
       const description = args.find(arg => arg.name.toLowerCase() == "content").value;
       const embed = new MessageEmbed()
         .setTitle("Echo!")
@@ -139,7 +139,7 @@ client.on('ready', async () => {
       })
     }
 
-    if(commnad.toLowerCase() == 'info') {
+    if(commnad == 'info') {
       const embed = new MessageEmbed()
           .setColor("RANDOM")
           .setTitle("Info")
@@ -156,7 +156,7 @@ client.on('ready', async () => {
       })
     }
 
-    if(commnad.toLowerCase() == 'help') {
+    if(commnad == 'help') {
       const embed = new MessageEmbed()
           .setColor("RANDOM")
           .setTitle("Help")
@@ -170,7 +170,7 @@ client.on('ready', async () => {
       })
     }
 
-    if(commnad.toLowerCase() == 'rank') {
+    if(commnad == 'rank') {
       if(await client.mongo_quick.has(`xp-${interaction.guild_id}`)=== false) {
         const user = await Levels.fetch(interaction.member.user.id, interaction.guild_id, true)
         if (!user) {
@@ -208,7 +208,7 @@ client.on('ready', async () => {
       }
     }
 
-    if(commnad.toLowerCase() == 'cat') {
+    if(commnad == 'cat') {
       const embed = new MessageEmbed()
           .setColor("RANDOM")
           .setTitle("Cat")
@@ -221,7 +221,7 @@ client.on('ready', async () => {
       })
     }
 
-    if(commnad.toLowerCase() == 'dog') {
+    if(commnad == 'dog') {
       var dog;
       dog = await superAgent
           .get("https://random.dog/woof.json");

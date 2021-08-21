@@ -26,7 +26,7 @@ module.exports = {
       } else if(await db.has(`xp-channel-${message.guild.id}`)=== false) {
         xp_channel = "`no channel set`";
       }
-      if(await client.mongo_quick.get(`nsfw-ch-${message.guild.id}`)=== false) {
+      if(await client.mongo_quick.has(`nsfw-ch-${message.guild.id}`)=== false) {
         nsfw_channel = "`no channel set`";
       } else {
         nsfw_channel = `<#${await client.mongo_quick.get(`nsfw-ch-${message.guild.id}`)}>`
