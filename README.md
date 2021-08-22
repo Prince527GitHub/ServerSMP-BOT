@@ -1,4 +1,4 @@
-## BOT MAY NOT UPDATE TO V13 OF DISCORD.JS
+## THIS IS THE DISCORD.JS V12 VERSION OF THE BOT!
 
 # ServerSMP - BOT
 
@@ -7,7 +7,7 @@ This is a discord bot, that has a lot of stuff in it like meme's, economy, admin
 ![banner](https://serversmp.arpismp.ml/banner.png)
 
 # Setup
-The bot has setup for `Local`, `Heroku`, `Glitch`, `Replit` and maybe `Docker`. But also I do host the bot if you want to `Invite` it?
+The bot has setup for `Local`, `Heroku`, `Glitch`, `Replit` and maybe `Docker`.
 
 ## Local
 1. So start by downloading it, then extract it.
@@ -19,7 +19,7 @@ The bot has setup for `Local`, `Heroku`, `Glitch`, `Replit` and maybe `Docker`. 
 ## Heroku
 This clone's the project to [Heroku](https://heroku.com/).
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Prince527GitHub/ServerSMP-BOT/tree/v12)
 
 ## Glitch (it is from ```Disc 11 by Zhycorp```)
 You can still use Glitch and keep it online in this project.
@@ -69,9 +69,3 @@ Go to [uptimerobot.com](https://uptimerobot.com/) and create an accout if you do
 ![Uptime robot example](https://i.imgur.com/Qd9LXEy.png)
 
 Your bot should now be good to go, with near 100% uptime.
-
-## Invite
-So ya I do host the bot if you want to invite it.
-
-[Invite](https://discord.com/oauth2/authorize?client_id=778409873573412874&permissions=66579782&scope=bot)
-[Dashboard](https://serversmp.botdash.pro/)
