@@ -1,0 +1,25 @@
+{
+  "name": "ServerSMP - BOT",
+  "description": "The ServerSMP - BOT",
+  "repository": "https://github.com/Prince527GitHub/ServerSMP-BOT/tree/python",
+  "logo": "https://github.com/Prince527GitHub/ServerSMP-BOT/blob/web/assets/serversmp-bot.png?raw=true",
+  "env": {
+    "TOKEN": {
+      "description": "Your Discord bot's token (options: your-bots-token)",
+      "required": true
+    },
+    "PREFIX": {
+      "description": "Your bot's prefix (options: your-bots-prefix)",
+      "required": true
+    },
+    "STATUS": {
+      "description": "What status does the bot display (options: what-ever-you-want)",
+      "required": true
+    },
+    "PORT": {
+      "description": "What port you want the webserver to host on (options: port)",
+      "required": true
+    }
+  },
+  "keywords": ["python", "discord"]
+}
