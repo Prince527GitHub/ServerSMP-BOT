@@ -1,7 +1,7 @@
 {
   "name": "ServerSMP - BOT",
   "description": "The ServerSMP - BOT",
-  "repository": "https://github.com/Prince527GitHub/ServerSMP-BOT/",
+  "repository": "https://github.com/Prince527GitHub/ServerSMP-BOT/tree/v12",
   "logo": "https://github.com/Prince527GitHub/ServerSMP-BOT/blob/web/assets/serversmp-bot.png?raw=true",
   "env": {
     "TOKEN": {
