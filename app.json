@@ -2,7 +2,7 @@
   "name": "ServerSMP - BOT",
   "description": "The ServerSMP - BOT",
   "repository": "https://github.com/Prince527GitHub/ServerSMP-BOT/",
-  "logo": "https://serversmp.netlify.app/assets/disconnect.png",
+  "logo": "https://github.com/Prince527GitHub/ServerSMP-BOT/blob/web/assets/serversmp-bot.png?raw=true",
   "env": {
     "TOKEN": {
       "description": "Your bot's token",
