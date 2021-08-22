@@ -51,5 +51,15 @@ class Memes(commands.Cog):
         )
         await ctx.send(embed=embed)
 
+    # Duck Command
+    @commands.command()
+    async def cat(self, ctx):
+        embed = discord.Embed(
+            title = "Cat",
+            colour = discord.Colour.red()
+        )
+        embed.set_image(url=f'https://cataas.com/cat?t={datetime.now().strftime("%H%M%S")}')
+        await ctx.send(embed=embed)
+
 def setup(client):
     client.add_cog(Memes(client))
