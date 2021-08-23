@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ServerSMP / ArpiSMP > Mobile</title>
-        <link rel="shortcut icon" href="../assets/icon.png">
+        <title>ServerSMP</title>
+        <link rel="shortcut icon" href="../../assets/icon.png">
         <link rel=" preconnect" href="https://fonts.googleapis.com">
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&amp;display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Knewave&amp;display=swap" rel="stylesheet">
@@ -17,16 +17,34 @@
 
     <div>
     <body>
+    <div class="w3-sidebar w3-bar-block w3-black" style="display:none" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hover-none w3-hover-text-gray" onclick="w3_close()">Close &times;</button>
+        <a href="./bot(node)/index.html" class="w3-bar-item w3-button w3-hover-none w3-hover-text-blue">ServerSMP - BOT</a>
+        <a href="./music/index.html" class="w3-bar-item w3-button w3-hover-none w3-hover-text-blue">ServerSMP - MusicBot</a>
+        <a href="./bot(python)/index.html" class="w3-bar-item w3-button w3-hover-none w3-hover-text-blue">ServerSMP - BOT (Python)</a>
+    </div>
     <header class="w3-container">
-        <div class="child">
-            <div class="buttons" class="w3-container">
-                <button class="btn" onclick="location.href='./serversmp/index.html'">ServerSMP</button>
-                <button class="btn" onclick="location.href='https://arpismp.ml/index.html'">ArpiSMP</button>
-            </div>
-        </div>
+	    <button class="w3-button w3-black w3-xxlarge" onclick="w3_open()">&#9776;</button>
+        <h1><a href="../index.html">ServerSMP</a></h1>
+		<p></p>
+        <p class="description">So I'm Prince527 I make Discord bots.</p>
+    </header>
+    <div class="buttons" class="w3-container">
+		<button class="btn" onclick="location.href='https://discord.com/oauth2/authorize?client_id=791051138459762729&permissions=53857345&scope=bot'">Add ServerSMP - MusicBot</button>
+		<button class="btn" onclick="location.href='https://discord.com/api/oauth2/authorize?client_id=778409873573412874&permissions=124553522550&scope=bot%20applications.commands'">Add ServerSMP - BOT</button>
+        <button class="btn" onclick="location.href='https://discord.com/api/oauth2/authorize?client_id=698417651608715355&permissions=27654&scope=bot'">Add ServerSMP - BOT (Python)</button>
+	</div>
+	<p></p>
     </div>
 
-
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
     </body>
 
     <style>
@@ -68,23 +86,11 @@
             font-family: 'Happy Monkey';
             color: #606c71;
         }
-        
-        h4,
-        h5,
-        h6,
+    
         h1 {
             font-family: 'Fredoka One';
             text-align: center;
             font-size: 300%;
-            color: white;
-        }
-
-        h4,
-        h5,
-        h6 {
-            font-family: 'Fredoka One';
-            text-align: center;
-            font-size: 200%;
             color: white;
         }
     
@@ -133,7 +139,7 @@
             border-color: white;
         }
         a {
-            color: #606c71;
+            color: white;
             text-decoration: none;
         }
         a:hover {
@@ -147,16 +153,6 @@
         }
         * {
             box-sizing: border-box;
-            text-align: center;
-        }
-        .container {
-            position: relative;
-        }
-        .child {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin: -25px 0 0 -100px; /* apply negative top and left margins to truly center the element */
         }
     </style>
 
