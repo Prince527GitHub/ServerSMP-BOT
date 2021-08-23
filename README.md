@@ -1,5 +1,7 @@
-# ServerSMP - BOT
+# ServerSMP
 
-This is the Website for ServerSMP - BOT.
+This is the website for ServerSMP!
 
-![banner](https://serversmp.arpismp.ml/banner.png)
+You can view this page [here](https://serversmp.arpismp.ml/index.html)
+
+![banner](https://serversmp.arpismp.ml/assets/banner-smp.png)
