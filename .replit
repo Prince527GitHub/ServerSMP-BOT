@@ -1,1 +1,1 @@
-run = "python index.js"
+run = "python index.py"
