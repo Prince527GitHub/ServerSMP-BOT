@@ -1,1 +1,1 @@
-web: python index.js
+web: python index.py
