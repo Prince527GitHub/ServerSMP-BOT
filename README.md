@@ -2,7 +2,7 @@
 
 Hi, this is a version of ServerSMP - BOT for python it's super simple. 
 
-![banner](https://serversmp.arpismp.ml/banner.png)
+![banner](https://github.com/Prince527GitHub/ServerSMP-BOT/blob/web/assets/banner-bot.png?raw=true)
 
 # Setup
 Local: ✔️
