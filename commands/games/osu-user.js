@@ -1,9 +1,18 @@
 const { MessageEmbed, Message, Client, MessageAttachment } = require('discord.js');
-const { createCanvas, loadImage } = require('canvas')
+const { createCanvas, loadImage } = require('canvas');
+const osu = require('node-osu');
+
+let osuApi
+if(process.env.OSU_API !== "false") {
+  osuApi = new osu.Api(process.env.OSU_API, {
+    notFoundAsError: true,
+    completeScores: false,
+    parseNumeric: false
+  });
+}
 
 module.exports = {
     name: 'osu-user',
-    category : 'games',
     usage: '[ username ]',
     description : "Get's info on a osu user! (not the best command.)",
 
@@ -13,8 +22,9 @@ module.exports = {
     * @param {String[]} args
     */
     run: async(client, message, args) => {
+      if(process.env.OSU_API === "false") return message.reply("OSU command is off.");
       if(!args[0]) return message.reply("Please specify a osu user!")
-      client.osuApi.apiCall('/get_user', { u: args[0] }).then(async(user) => {
+      osuApi.apiCall('/get_user', { u: args[0] }).then(async(user) => {
 
         const canvas = createCanvas(960, 160)
         const ctx = canvas.getContext('2d')
@@ -74,7 +84,7 @@ module.exports = {
         ctx.fillText(`${Math.round(user[0].level)}`, 900, 50)
 
         const attachment = new MessageAttachment(canvas.toBuffer(), 'osu.png');
-        message.channel.send(attachment)
+        message.channel.send({ files: [attachment] })
       })
     }
   }

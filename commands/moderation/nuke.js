@@ -1,23 +1,19 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
+const { antijoin } = require('../../collection/index');
 
 module.exports = {
-    name: 'nuke',
-    category : 'moderation',
-    usage: '',
-    description : "Delete the channel the the command was done in and remake it, so it is purge but for channels.",
-    userPermission: ["MANAGE_CHANNELS"],
-    botPermission: ["MANAGE_CHANNELS"],
+    name: "nuke",
+    aliases: ["nukechannel", "channelnuke", "channelclear", "clearchannel"],
+    cooldown: 1000 * 120,
+    description: "This command deletes all messages in the channel it was ran in.",
+    userPermission: ["ADMINISTRATOR"],
     /**
      * @param {Client} client
      * @param {Message} message
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        await message.channel.clone().then((ch) => {
-            ch.setParent(message.channel.parentID);
-            ch.setPosition(message.channel.position);
-            message.channel.delete();
-            ch.send('This channel has been nuked.')
-        })
+        message.channel.delete()
+        message.channel.clone()
     }
 }

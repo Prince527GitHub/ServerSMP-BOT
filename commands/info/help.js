@@ -1,19 +1,17 @@
-const { MessageEmbed, Message, Client } = require("discord.js");
+const { Message, Client, MessageActionRow, MessageButton, MessageSelectMenu, MessageEmbed, Interaction } = require("discord.js");
 const { readdirSync } = require("fs");
 const db = require('quick.db');
 
 module.exports = {
-  name: "help",
-  description: "Shows all available bot commands.",
-  /**
+    name: "help",
+    description: "List all the commands.",
+    /**
      *
      * @param {Client} client
      * @param {Message} message
-     * @param {String} args
-     * @returns
-
+     * @param {String[]} args
      */
-  run: async (client, message, args) => {
+    run: async (client, message, args) => {
     const prefix = await client.prefix(message);
     const color = message.guild.me.displayHexColor === "#000000" ? "#ffffff" : message.guild.me.displayHexColor;
         if (!args[0]) {
@@ -76,7 +74,7 @@ module.exports = {
               )
               .setColor(color);
 
-            return message.channel.send(embed);
+            return message.channel.send({ embeds: [embed] });
           } else {
             let cots = [];
             let catts = [];
@@ -118,8 +116,6 @@ module.exports = {
               cots.push(dir.toLowerCase());
             });
 
-            console.log(cots);
-
             const command =
               client.commands.get(args[0].toLowerCase()) ||
               client.commands.find(
@@ -139,7 +135,7 @@ module.exports = {
                 .addFields(catts)
                 .setColor(color);
 
-              return message.channel.send(combed);
+              return message.channel.send({ embeds: [combed] });
             }
 
             if (!command) {
@@ -148,7 +144,7 @@ module.exports = {
                   `Invalid command! Use \`${prefix}help\` for all of my commands!`
                 )
                 .setColor("RED");
-              return message.channel.send(embed);
+              return message.channel.send({ embeds: [embed] });
             }
 
             const embed = new MessageEmbed()
@@ -195,7 +191,7 @@ module.exports = {
               )
               .setTimestamp()
               .setColor(color);
-            return message.channel.send(embed);
+            return message.channel.send({ embeds: [embed] });
         }
     },
 };

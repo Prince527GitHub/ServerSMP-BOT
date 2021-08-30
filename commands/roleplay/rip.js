@@ -3,7 +3,6 @@ const DIG = require("discord-image-generation");
 
 module.exports = {
     name: 'rip',
-    category : 'roleplay',
     usage: '[@user (or not)]',
     description : "Press f to pay respect.",
     /** 
@@ -17,6 +16,6 @@ module.exports = {
         let avatar = user.user.displayAvatarURL({ dynamic: false, format: 'png' });
         let img = await new DIG.Rip().getImage(avatar);
         let attach = new MessageAttachment(img, "delete.png");
-        message.channel.send(attach);
+        message.channel.send({ files: [attach] });
     }
 }

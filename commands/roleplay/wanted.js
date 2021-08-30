@@ -3,7 +3,6 @@ const DIG = require("discord-image-generation");
 
 module.exports = {
     name: 'wanted',
-    category : 'roleplay',
     usage: '[@user (or not)]',
     description : "Wanted dead or alive.",
     /** 
@@ -17,6 +16,6 @@ module.exports = {
         let avatar = user.user.displayAvatarURL({ dynamic: false, format: 'png' });
         let img = await new DIG.Wanted().getImage(avatar, "5");
         let attach = new MessageAttachment(img, "wanted.png");
-        message.channel.send(attach);
+        message.channel.send({ files: [attach] });
     }
 }

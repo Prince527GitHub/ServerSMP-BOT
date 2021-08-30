@@ -1,18 +1,17 @@
-const { MessageEmbed, Message, Client } = require('discord.js');
+const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require("discord.js");
 const got = require('got');
+
 module.exports = {
     name : 'meme',
-    category : 'meme',
     aliases : ['m'],
     description : "Show's a random meme from r/memes",
-
     /**
+     *
      * @param {Client} client
      * @param {Message} message
      * @param {String[]} args
      */
-
-    run : async(client, message, args) => {
+    run: async (client, message, args) => {
         const embed = new MessageEmbed()
         got('https://www.reddit.com/r/memes/random/.json').then(response => {
             let content = JSON.parse(response.body);
@@ -28,8 +27,7 @@ module.exports = {
             embed.setImage(memeImage)
             embed.setColor('RANDOM')
             embed.setFooter(`👍 ${memeUpvotes} 👎 ${memeDownvotes} 💬 ${memeNumComments}`)
-            message.channel.send(embed);
+            message.channel.send({ embeds: [embed] });
         })
-
-    }
-}
+    },
+};

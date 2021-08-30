@@ -3,9 +3,7 @@ const schema = require('../../models/cc');
 
 module.exports = {
     name: 'cc-list',
-    category : 'Custom Commands',
-    usage: '',
-    description : "List the custom commands!",
+    description: "List the custom commands!",
     guildPremium: true,
     /**
      * @param {Client} client
@@ -15,7 +13,7 @@ module.exports = {
     run: async(client, message, args) => {
         const data  = await schema.find({ Guild: message.guild.id });
         if(!!data === false) return message.channel.send('There is no custom commands!');
-        message.channel.send(
+        message.channel.send({ embeds: [
             new MessageEmbed()
                 .setColor('BLUE')
                 .setDescription(
@@ -23,6 +21,6 @@ module.exports = {
                         `${i + 1}: ${cmd.Command}`
                     ).join('\n')
                 )
-        )
+        ]})
     }
 }

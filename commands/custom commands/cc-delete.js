@@ -3,7 +3,6 @@ const schema = require('../../models/cc');
 
 module.exports = {
     name: 'cc-delete',
-    category : 'Custom Commands',
     usage: '[name of command]',
     description : "Delete custom commands!",
     userPermission: ["ADMINISTRATOR"],

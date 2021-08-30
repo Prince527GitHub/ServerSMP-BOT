@@ -1,16 +1,15 @@
-const { MessageEmbed, Message, Client } = require('discord.js');
+const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require('discord.js');
 
 module.exports = {
     name: 'antivc',
-    category : 'moderation',
     usage: '[@user]',
     description : "Stop a user from joining vc.",
     userPermission: ["MANAGE_ROLES"],
     botPermission: ["MANAGE_ROLES"],
-    /**
-     * @param {Client} client
-     * @param {Message} message
-     * @param {String[]} args
+    /** 
+     * @param {Client} client 
+     * @param {Message} message 
+     * @param {String[]} args 
      */
     run: async(client, message, args) => {
         const target = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
@@ -19,14 +18,9 @@ module.exports = {
         if(!role) {
             try {
                 message.channel.send("Attempting to create antivc role!");
-                role = await message.guild.roles.create({
-                    data: {
-                        name: 'antivc',
-                        permissions: [],
-                    },
-                });
+                role = await message.guild.roles.create({ name: 'antivc', permissions: [] });
                 message.guild.channels.cache.filter((c) => c.type === 'voice').forEach(async channel => {
-                    await channel.createOverwrite(role, {
+                    await channel.permissionOverwrites.create(role, {
                         VIEW_CHANNEL: true,
                         CONNECT: false
                     });

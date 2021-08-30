@@ -1,33 +1,35 @@
-const { MessageEmbed, Message, Client } = require('discord.js');
-const { Trivia } = require("weky");
+const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require('discord.js');
+const { Trivia } = require('discord-gamecord');
 
 module.exports = {
     name: 'trivia',
     category : 'games',
-    usage: '',
     description : "Play a trivia game in discord.",
-    /**
-     * @param {Client} client
-     * @param {Message} message
-     * @param {String[]} args
+    /** 
+     * @param {Client} client 
+     * @param {Message} message 
+     * @param {String[]} args 
      */
     run: async(client, message, args) => {
-      await Trivia({
-      	message: message,
-      	embed: { color: '#7289da', timestamp: true, title: 'Trivia' },
-      	difficulty: 'hard',
-      	thinkMessage: 'I am thinking',
-      	winMessage:
-      		'GG, It was **{{answer}}**. You gave the correct answer in **{{time}}**.',
-      	loseMessage: 'Better luck next time! The correct answer was **{{answer}}**.',
-      	emojis: {
-      		one: '1️⃣',
-      		two: '2️⃣',
-      		three: '3️⃣',
-      		four: '4️⃣',
-      	},
-      	othersMessage: 'Only <@{{author}}> can use the buttons!',
-      	returnWinner: false,
-      });
+        new Trivia({
+            message: message,
+            opponent: message.mentions.users.first(),
+            embed: {
+              title: 'Trivia',
+              description: 'You have {time} seconds to respond!',
+              color: '#5865F2',
+            },
+            time: 60000,
+              difficulty: 'hard',
+            buttons: {
+              one: '1️⃣',
+              two: '2️⃣',
+              three: '3️⃣',
+              four: '4️⃣',
+            },
+              winMessage: 'GG, Your answer was correct! It was **{answer}**',
+            loseMessage: 'Your answer was Incorrect! The correct answer was **{answer}**',
+            othersMessage: 'You are not allowed to use buttons for this message!'
+          }).startGame();
     }
 }

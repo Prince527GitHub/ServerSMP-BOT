@@ -1,20 +1,18 @@
-const { MessageEmbed, Message, Client } = require('discord.js');
+const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require('discord.js');
 const Schema = require('../../models/mute');
 
 module.exports = {
     name: 'mute',
     usage: '[@user]',
-    category : 'moderation',
     description : "Admins can mute users from messaging in a text channels.",
     userPermission: ["MANAGE_MESSAGES"],
     botPermission: ["MANAGE_ROLES"],
-    /**
-     * @param {Client} client
-     * @param {Message} message
-     * @param {String[]} args
+    /** 
+     * @param {Client} client 
+     * @param {Message} message 
+     * @param {String[]} args 
      */
     run: async(client, message, args) => {
-        if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('You do not have permissions to use this command')
         const Member = message.mentions.members.first() || message.guild.members.cache.get(args[0])
         if(!Member) return message.channel.send('Member is not found.')
         const role = message.guild.roles.cache.find(role => role.name.toLowerCase() === 'muted')
@@ -22,14 +20,9 @@ module.exports = {
             try {
                 message.channel.send('Muted role is not found, attempting to create muted role.')
 
-                let muterole = await message.guild.roles.create({
-                    data : {
-                        name : 'muted',
-                        permissions: []
-                    }
-                });
+                let muterole = await message.guild.roles.create({ name: 'muted', permissions: [] });
                 message.guild.channels.cache.filter(c => c.type === 'text').forEach(async (channel, id) => {
-                    await channel.createOverwrite(muterole, {
+                    await channel.permissionOverwrites.create(muterole, {
                         SEND_MESSAGES: false,
                         ADD_REACTIONS: false
                     })

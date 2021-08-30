@@ -1,16 +1,15 @@
-const { MessageEmbed, Message, Client } = require('discord.js');
+const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require('discord.js');
 const Schema = require('../../models/warn');
 
 module.exports = {
     name: 'warn',
-    category : 'moderation',
     usage: '[@user] [reason]',
     description : "Give a warn to a user.",
     userPermission: ["ADMINISTRATOR"],
-    /**
-     * @param {Client} client
-     * @param {Message} message
-     * @param {String[]} args
+    /** 
+     * @param {Client} client 
+     * @param {Message} message 
+     * @param {String[]} args 
      */
     run: async(client, message, args) => {
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
@@ -38,12 +37,14 @@ module.exports = {
             }
             data.save()
         });
-        user.send(new MessageEmbed()
-            .setDescription(`You have been warned for ${reason}`)
-            .setColor("RED")
-        )
-        message.channel.send(new MessageEmbed()
-            .setDescription(`Warned ${user} for ${reason}`).setColor('BLUE')
-        )
+        user.send({ embeds: [
+            new MessageEmbed()
+                .setDescription(`You have been warned for ${reason}`)
+                .setColor("RED")
+        ]})
+        message.channel.send({ embeds: [
+            new MessageEmbed()
+                .setDescription(`Warned ${user} for ${reason}`).setColor('BLUE')
+        ]})
     }
 }

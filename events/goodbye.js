@@ -1,5 +1,5 @@
 const Client = require('../index');
-const { MessageAttachment } = require('discord.js');
+const { MessageAttachment, MessageEmbed } = require('discord.js');
 const { drawCard } = require('discord-welcome-card');
 const botdash = require('botdash.pro');
 const Schema = require('../models/goodbye');
@@ -24,6 +24,6 @@ Client.on('guildMemberRemove', async(member) => {
             });
             const attachment = new MessageAttachment(image, 'bye.png');
             const channel = member.guild.channels.cache.get(data.Channel);
-            channel.send(attachment);
+            channel.send({ files: [attachment] });
         });
 });

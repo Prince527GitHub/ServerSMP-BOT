@@ -1,17 +1,16 @@
-const { MessageEmbed, Message, Client } = require('discord.js');
+const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require('discord.js');
 const Schema = require('../../models/mute');
 
 module.exports = {
     name: 'unmute',
     usage: '[@user]',
-    category : 'moderation',
     description : "Admins can unmute users so they can talk in text channels.",
     userPermission: ["MANAGE_MESSAGES"],
     botPermission: ["MANAGE_ROLES"],
-    /**
-     * @param {Client} client
-     * @param {Message} message
-     * @param {String[]} args
+    /** 
+     * @param {Client} client 
+     * @param {Message} message 
+     * @param {String[]} args 
      */
     run: async(client, message, args) => {
         const Member = message.mentions.members.first() || message.guild.members.cache.get(args[0])

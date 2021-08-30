@@ -1,11 +1,10 @@
 const { MessageEmbed, Message, Client, version } = require('discord.js');
+const ytdl = require('ytdl-core');
 const os = require('os');
 const ms = require('ms');
-const ytdl = require('ytdl-core');
 
 module.exports = {
     name: 'about',
-    category : 'owner',
     description : "Send detailed info about the client",
     owner: true,
 
@@ -42,7 +41,6 @@ Join Date           :: ${client.user.createdAt.toLocaleDateString("en-us")}
 Discord.js Version  :: ${version}
 Nodejs Version      :: ${process.version}
 YTDL Version        :: ${ytdl.version}
-DisTube Version     :: ${Client.player.version}
 ARCH                :: ${os.arch}
 Platform            :: ${os.platform}
 CPU                 :: ${os.cpus().map(i => `${i.model}`)[0]}
@@ -61,6 +59,6 @@ Source Code         :: https://github.com/Prince527GitHub/ServerSMP-BOT/
 ${description}
 \`\`\`
                         `)
-                  await message.channel.send(embed)
+                  await message.channel.send({ embeds: [embed] })
     }
   }

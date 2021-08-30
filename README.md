@@ -1,10 +1,8 @@
-## BOT MAY NOT UPDATE TO V13 OF DISCORD.JS
-
 # ServerSMP - BOT
 
 This is a discord bot, that has a lot of stuff in it like meme's, economy, admin, extra, etc.
 
-![banner](https://github.com/Prince527GitHub/ServerSMP-BOT/blob/web/assets/banner-bot.png?raw=true)
+![banner](https://serversmp.arpismp.ml/banner.png)
 
 # Setup
 The bot has setup for `Local`, `Heroku`, `Glitch`, `Replit` and maybe `Docker`. But also I do host the bot if you want to `Invite` it?
@@ -40,7 +38,7 @@ Your bot is online, and ready to use!
 This may work on docker, but idk how.
 
 ## Replit (From `Discord.py Music Bot`)
-So just so you know this bot is more then 500MB, so you need the hacker plan on replit to use this bot on there.
+So just so you know this bot is more then `500MB`, so you need the `hacker plan` on replit to use this bot on there.
 
 ### Pre-Setup
 
@@ -57,7 +55,7 @@ Look at the file `.env.exsemple` then copy the main stuff of that so like `TOKEN
 
 ### Uptime
 
-All you have to do to keep your bot up is setup something to ping the site your bot made every 5 minutes or so.
+All you have to do to keep your bot up is setup something to ping the site your bot made every 5 minutes or so. But because you paid you can just change a setting to allways run the replit.
 
 Go to [uptimerobot.com](https://uptimerobot.com/) and create an accout if you dont have one.  After verifying your account, click "Add New Monitor".
 
@@ -73,5 +71,4 @@ Your bot should now be good to go, with near 100% uptime.
 ## Invite
 So ya I do host the bot if you want to invite it.
 
-[Invite](https://discord.com/oauth2/authorize?client_id=778409873573412874&permissions=66579782&scope=bot)
-[Dashboard](https://serversmp.botdash.pro/)
+[Invite](https://discord.com/oauth2/authorize?client_id=778409873573412874&permissions=66579782&scope=bot) [Dashboard](https://serversmp.botdash.pro/)

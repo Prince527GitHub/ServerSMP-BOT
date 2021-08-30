@@ -15,5 +15,5 @@ client.on('messageUpdate', async(oldMessage, newMessage) => {
       .setTitle(`Action Took: MessageChanged`)
       .setTimestamp()
       .setFooter(oldMessage.guild.name, oldMessage.guild.iconURL)
-    channel.send(logsEmbed)
+    channel.send({ embeds: [logsEmbed] })
 })

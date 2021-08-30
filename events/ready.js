@@ -1,32 +1,32 @@
-const client = require('../index');
-const Schema = require('../models/blackwords');
-const Nuggies = require('nuggies');
 const { blacklistedwords } = require('../collection/index');
-require('dotenv').config();
+const Schema = require('../models/blackwords');
+//const Nuggies = require('nuggies');
+const client = require("../index");
 
-client.on('ready', async() => {
+client.on("ready", async() => {
 
+  // Change status
   const activityName = process.env.STATUS
-  .replace(/{guildsCount}/g, await client.guilds.cache.size)
-  .replace(/{usersCount}/g, await client.users.cache.size)
-  .replace(/{channelsCount}/g, await client.channels.cache.size)
-  .replace(/{botPrefix}/g, process.env.PREFIX);
+    .replace(/{guildsCount}/g, await client.guilds.cache.size)
+    .replace(/{usersCount}/g, await client.users.cache.size)
+    .replace(/{channelsCount}/g, await client.channels.cache.size)
+    .replace(/{botPrefix}/g, process.env.PREFIX);
 
-  client.user.setPresence({
-    status: 'dnd',
-    activity: {
-      name: activityName ?? "DiamondGolurk on youtube.com",
-      type: process.env.STATUS_TYPE.toUpperCase() | null ?? "WATCHING"
-    }
-  }).catch(e => {
-    console.log("Error while setting the presence, reason: " + e)
-  })
+  // Set presence
+  client.user.setPresence({ activities: [{ name: activityName ?? "DiamondGolurk on youtube.com", type: process.env.STATUS_TYPE.toUpperCase() }], status: 'dnd' })
+
+  // Log start
   console.log(`${client.user.username} ✅`)
+
+  // Blacklisted words
   Schema.find()
     .then((data) => {
       data.forEach((val) => {
         blacklistedwords.set(val.Guild, val.Words)
-      })
     })
-    Nuggies.giveaways.startAgain(client);
-})
+  })
+
+  // Giveaway
+  //Nuggies.giveaways.startAgain(client);
+
+});

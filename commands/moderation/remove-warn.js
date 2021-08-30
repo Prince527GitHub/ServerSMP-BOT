@@ -1,17 +1,16 @@
-const { MessageEmbed, Message, Client } = require('discord.js');
+const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require('discord.js');
 const Schema = require('../../models/warn');
 
 module.exports = {
     name: 'remove-warn',
-    category : 'moderation',
     usage: '[@user]',
     aliases : ['r-warn'],
     description : "Remove 1 warn from user.",
     userPermission: ["ADMINISTRATOR"],
-    /**
-     * @param {Client} client
-     * @param {Message} message
-     * @param {String[]} args
+    /** 
+     * @param {Client} client 
+     * @param {Message} message 
+     * @param {String[]} args 
      */
     run: async(client, message, args) => {
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);

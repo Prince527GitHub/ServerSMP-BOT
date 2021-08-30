@@ -1,15 +1,14 @@
-const { MessageEmbed, Message, Client } = require('discord.js');
+const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require('discord.js');
 
 module.exports = {
     name: 'poll',
-    category : 'extra',
     usage: '[#channel] [what is the poll]',
     description : "Admins can make polls.",
     userPermission: ["MANAGE_MESSAGES"],
-    /**
-     * @param {Client} client
-     * @param {Message} message
-     * @param {String[]} args
+    /** 
+     * @param {Client} client 
+     * @param {Message} message 
+     * @param {String[]} args 
      */
     run: async(client, message, args) => {
         let pollChannel = message.mentions.channels.first();
@@ -18,7 +17,7 @@ module.exports = {
         .setTitle('New Poll!')
         .setDescription(pollDescription)
         .setColor('YELLOW')
-        let msgEmbed = await pollChannel.send(embedPoll);
+        let msgEmbed = await pollChannel.send({ embeds: [embedPoll] });
         await msgEmbed.react('👍')
         await msgEmbed.react('👎')
     }

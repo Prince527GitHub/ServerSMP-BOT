@@ -1,16 +1,15 @@
-const { MessageEmbed, Message, Client } = require('discord.js');
+const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require('discord.js');
 
 module.exports = {
     name: 'un-antivc',
-    category : 'moderation',
     usage: '[@user]',
     description : "Let the user join vc.",
     userPermission: ["MANAGE_ROLES"],
     botPermission: ["MANAGE_ROLES"],
-    /**
-     * @param {Client} client
-     * @param {Message} message
-     * @param {String[]} args
+    /** 
+     * @param {Client} client 
+     * @param {Message} message 
+     * @param {String[]} args 
      */
     run: async(client, message, args) => {
         const target = message.mentions.members.first();

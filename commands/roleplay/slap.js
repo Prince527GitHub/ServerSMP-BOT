@@ -3,7 +3,6 @@ const DIG = require("discord-image-generation");
 
 module.exports = {
     name: 'slap',
-    category : 'roleplay',
     usage: '[@user]',
     description : "Slap someone.",
     /** 
@@ -18,6 +17,6 @@ module.exports = {
         let avata = message.author.displayAvatarURL({ dynamic: false, format: 'png' });
         let img = await new DIG.Batslap().getImage(avata, avatar);
         let attach = new MessageAttachment(img, "slap.png");
-        message.channel.send(attach);
+        message.channel.send({ files: [attach] });
     }
 }

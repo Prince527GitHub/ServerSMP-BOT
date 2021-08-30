@@ -1,37 +1,32 @@
-const { MessageEmbed, Message, Client } = require('discord.js');
-const { Snake } = require("weky");
+const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require('discord.js');
+const { Snake } = require('discord-gamecord');
 
 module.exports = {
     name: 'snake',
-    category : 'games',
-    usage: '',
     aliases : ['snakegame'],
     description : "You can play snake on discord.",
-    /**
-     * @param {Client} client
-     * @param {Message} message
-     * @param {String[]} args
+    /** 
+     * @param {Client} client 
+     * @param {Message} message 
+     * @param {String[]} args 
      */
     run: async(client, message, args) => {
-      await Snake({
-      	message: message,
-      	embed: {
-      		title: 'Snake',
-      		description: 'GG, you scored **{{score}}** points!',
-      		color: '#7289da',
-      		timestamp: true,
-      	},
-      	emojis: {
-      		empty: '⬛',
-      		snakeBody: '🟩',
-      		food: '🍎',
-      		up: '⬆️',
-      		right: '⬅️',
-      		down: '⬇️',
-      		left: '➡️',
-      	},
-      	othersMessage: 'Only <@{{author}}> can use the buttons!',
-      	buttonText: 'Cancel',
-      });
+        new Snake({
+            message: message,
+            embed: {
+              title: 'Snake Game',
+              color: '#7289da',
+              OverTitle: "Game Over",
+            },
+            snake: { head: '🟢', body: '🟩', tail: '🟢' },
+            emojis: {
+              board: '⬛', 
+              food: '🍎',
+              up: '⬆️', 
+              right: '➡️',
+              down: '⬇️',
+              left: '⬅️',
+            },
+        }).startGame()
     }
 }

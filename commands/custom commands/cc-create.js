@@ -3,9 +3,8 @@ const schema = require('../../models/cc');
 
 module.exports = {
     name: 'cc-create',
-    category : 'Custom Commands',
     usage: '[name] [what it do]',
-    description : "Create custom commands!",
+    description: "Create custom commands!",
     userPermission: ["ADMINISTRATOR"],
     guildPremium: true,
     /**

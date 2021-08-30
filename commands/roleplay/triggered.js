@@ -3,8 +3,6 @@ const canvacord = require("canvacord");
 
 module.exports = {
     name: 'triggered',
-    category : 'roleplay',
-    usage: '',
     description : "Make's a gif of you being triggered.",
     /** 
      * @param {Client} client 
@@ -12,9 +10,11 @@ module.exports = {
      * @param {String[]} args 
      */
     run: async(client, message, args) => {
-        let avatar = message.author.displayAvatarURL({ dynamic: false, format: 'png' });
+        let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+        if(!user) user = message.member;
+        let avatar = user.user.displayAvatarURL({ dynamic: false, format: 'png' });
         let image = await canvacord.Canvas.trigger(avatar);
         let attachment = new MessageAttachment(image, "triggered.gif");
-        return message.channel.send(attachment);
+        message.channel.send({ files: [attachment] });
     }
 }

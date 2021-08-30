@@ -1,21 +1,20 @@
-const { MessageEmbed, Message, Client } = require('discord.js');
+const { Message, Client, MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: 'badapple',
-    category : 'meme',
-    usage: '',
-    description : "Play's a gif of bad apple.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    name: "badapple",
+    description: "Play's a gif of bad apple.",
+    /**
+     *
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
-    run: async(client, message, args) => {
+    run: async (client, message, args) => {
         const embed = new MessageEmbed()
             .setColor("RANDOM")
             .setTitle("Badapple")
             .setDescription("Yes this is a command.")
-        message.channel.send(embed)
-        message.channel.send("https://imgur.com/a/29ND22e")
-    }
-}
+            .setImage("https://prince527.reeee.ee/572yVt9US.gif")
+        message.channel.send({ embeds: [embed] })
+    },
+};

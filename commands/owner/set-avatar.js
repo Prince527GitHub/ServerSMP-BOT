@@ -2,7 +2,6 @@ const { MessageEmbed, Message, Client } = require('discord.js');
 
 module.exports = {
     name: 'set-avatar',
-    category : 'owner',
     usage: '[ url of image ]',
     aliases : ['set-avatar-bot'],
     description : "Set avatar bot.",
@@ -21,7 +20,7 @@ module.exports = {
           .setTitle('New Avatar Set')
           .setImage(`${avatarurl}`)
           .setTimestamp()
-       message.channel.send(embed)
+       message.channel.send({ embeds: [embed] })
        .catch(e => {
            console.log(e)
            return message.channel.send("Something Went Wrong!")

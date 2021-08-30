@@ -2,9 +2,7 @@ const { MessageEmbed, Message, Client } = require('discord.js');
 
 module.exports = {
     name: 'moji',
-    category : 'extra',
-    usage: '',
-    description : "A random unicode emoji.",
+    description: "A random unicode emoji.",
     /** 
      * @param {Client} client 
      * @param {Message} message 
@@ -79,7 +77,7 @@ module.exports = {
             '~(˘▾˘~)',
             '| (• ◡•)| (❍ᴥ❍ʋ)'
             ];
-            let index = Math.floor(Math.random() * (emojis.length)) // Math.random() returns a float from 0 - 1.
+            let index = Math.floor(Math.random() * (emojis.length))
             message.channel.send(emojis[index])
     }
 }

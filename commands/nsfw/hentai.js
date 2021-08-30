@@ -1,10 +1,8 @@
 const { MessageEmbed, Message, Client } = require('discord.js');
-const db = require('quick.db');
 const got = require('got');
 
 module.exports = {
     name: 'hentai',
-    category : 'nsfw',
     aliases : ['h'],
     description : "Show's a random hentai from r/hentai.",
     /**
@@ -13,8 +11,8 @@ module.exports = {
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        if(db.has(`nsfw-${message.guild.id}`)=== false) return message.reply("NSFW commands disabled on this guild.");
-            if(await client.mongo_quick.get(`nsfw-ch-${message.guild.id}`) !== "xxxxxxxxxxxxxxxxxxxx") {
+        if(await client.mongo_quick.has(`nsfw-${message.guild.id}`)=== false) return message.reply("NSFW commands disabled on this guild.");
+            if(await client.mongo_quick.has(`nsfw-ch-${message.guild.id}`) === true) {
                 if (message.channel.id === await client.mongo_quick.get(`nsfw-ch-${message.guild.id}`)) {
                     const embed = new MessageEmbed()
                     got('https://www.reddit.com/r/hentai/random/.json').then(response => {
@@ -31,11 +29,9 @@ module.exports = {
                         embed.setImage(memeImage)
                         embed.setColor('RANDOM')
                         embed.setFooter(`👍 ${memeUpvotes} 👎 ${memeDownvotes} 💬 ${memeNumComments}`)
-                        message.channel.send(embed);
+                        message.channel.send({ embeds: [embed] });
                     });
-                  } else {
-                    return message.reply(`<#${await client.mongo_quick.get(`nsfw-ch-${message.guild.id}`)}> Is the NSFW channel!`);
-                  }
+                  } else return message.reply(`<#${await client.mongo_quick.get(`nsfw-ch-${message.guild.id}`)}> Is the NSFW channel!`);
             } else {
                 const embed = new MessageEmbed()
                 got('https://www.reddit.com/r/hentai/random/.json').then(response => {
@@ -52,7 +48,7 @@ module.exports = {
                     embed.setImage(memeImage)
                     embed.setColor('RANDOM')
                     embed.setFooter(`👍 ${memeUpvotes} 👎 ${memeDownvotes} 💬 ${memeNumComments}`)
-                    message.channel.send(embed);
+                    message.channel.send({ embeds: [embed] });
                 });
             }
     }

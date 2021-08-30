@@ -1,17 +1,16 @@
-const { MessageEmbed, Message, Client } = require('discord.js');
+const { Message, Client, MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: 'deep-quotes',
-    category : 'meme',
-    usage: '',
+    name: "deep-quotes",
     aliases : ['dq'],
     description : "A kinda random deep quote.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     *
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
-    run: async(client, message, args) => {
+    run: async (client, message, args) => {
         const deep_quotes = [
             "How can mirrors be real if our eyes aren\'t real?",
             "It's true that we don't know what we've got until we lose it, but it's also true that we don't know what we've been missing until it arrives.",
@@ -79,5 +78,5 @@ module.exports = {
             ];
             let index = Math.floor(Math.random() * (deep_quotes.length)) // Math.random() returns a float from 0 - 1.
             message.channel.send(deep_quotes[index])
-    }
-}
+    },
+};

@@ -1,17 +1,16 @@
-const { MessageEmbed, Message, Client } = require('discord.js');
+const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require("discord.js");
 const superAgent = require("superagent");
 
 module.exports = {
-    name: 'dog',
-    category : 'meme',
-    usage: '',
+    name: "dog",
     description : "A random image of a dog.",
-    /** 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
+    /**
+     *
+     * @param {Client} client
+     * @param {Message} message
+     * @param {String[]} args
      */
-    run: async(client, message, args) => {
+    run: async (client, message, args) => {
         var dog;
         dog = await superAgent
             .get("https://random.dog/woof.json");
@@ -23,6 +22,6 @@ module.exports = {
             .setColor("RANDOM")
             .setTitle("Dog :dog:")
             .setImage(dog.body.url);
-        message.channel.send(embed);
-    }
-}
+        message.channel.send({ embeds: [embed] });
+    },
+};
