@@ -1,6 +1,6 @@
-# Change log v1.2.0
+**Change log v1.2.0**
 
-## Events:
+**Events:**
 
 **EVENT** - `deleteUserData`
 - When a user leaves a server the economy data will not get deleted.
@@ -8,7 +8,7 @@
 **EVENT** - `dashboard`
 - Deleted this event.
 
-## Commads:
+**Commads:**
 
 **COMMAND** - `update`
 - Made this command better and less manual.
@@ -22,7 +22,7 @@
 **COMMAND** - `Music stuff` (slash commands & normal commands)
 - Fix a bug in -play and created slash commands for music.
 
-## Other:
+**Other:**
 
 **OTHER** - `Patch-notes`
 - Created thr first patch notes and uploaded them to github.
