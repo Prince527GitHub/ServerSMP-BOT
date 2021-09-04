@@ -1,0 +1,20 @@
+# Change log v1.0.0
+
+```Note: this is mostly copy of the command "update" at this time.```
+
+## ServerSMP - BOT [ MEGA UPDATE ]
+
+`ServerSMP - BOT` has updated to `discord.js v13` and a lot of changes happened.
+
+**Pros**
+
+1. The bot is easy to use.
+2. And is better on my site. `Future me: what did I mean?`
+
+**Cons**
+
+1. All data will be deleted for `welcome`, `xp`.
+2. Some databases where changed so the old data will be deleted.
+
+> ```Note: the reason why I had to delete the xp data was because when a user leaves a server then anoter user uses -lp it would fail and crash the bot.```
+> ```AKA: discord.js v13 will crash to any error.```
