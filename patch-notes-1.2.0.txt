@@ -2,50 +2,50 @@
 
 ## Events:
 
-**EVENT** - ```deleteUserData```
+**EVENT** - `deleteUserData`
 - When a user leaves a server the economy data will not get deleted.
 
-**EVENT** - ```dashboard```
+**EVENT** - `dashboard`
 - Deleted this event.
 
 ## Commads:
 
-**COMMAND** - ```update```
+**COMMAND** - `update`
 - Made this command better and less manual.
 
-**COMMAND** - ```user duck``` *(Context menu command)*
+**COMMAND** - `user duck` *(Context menu command)*
 - Created this command! This command will set a url image of a duck to your id in the database.
 
-**COMMAND** - ```report``` (slash command & normal command)
+**COMMAND** - `report` (slash command & normal command)
 - Updated / created.
 
-**COMMAND** - ```Music stuff``` (slash commands & normal commands)
+**COMMAND** - `Music stuff` (slash commands & normal commands)
 - Fix a bug in -play and created slash commands for music.
 
 ## Other:
 
-**OTHER** - ```Patch-notes```
+**OTHER** - `Patch-notes`
 - Created thr first patch notes and uploaded them to github.
 
-**OTHER** - ```website in the bot```
+**OTHER** - `website in the bot`
 - Changed the icon name from `serversmp-bot.png` to `icon.png`.
 - Fix the economy when you search a user.
 
-**OTHER** - ```user duck``` (Models)
+**OTHER** - `user duck` (Models)
 - Created this for the `user duck` command.
 
-**OTHER** - ```index.js```
+**OTHER** - `index.js`
 - Removed the dashboard.
 
-**OTHER** - ```chat bot```
+**OTHER** - `chat bot`
 - Updated it to have more options.
 
-**OTHER** - ```.env.exsemble & .env.schema```
+**OTHER** - `.env.exsemble & .env.schema`
 - Removed the `BOTDASH` variable.
 - Updated.
 
-**OTHER** - ```reconDB```
+**OTHER** - `reconDB`
 Added this db.
 
-**OTHER** - ```Wiki```
+**OTHER** - `Wiki`
 - Big update.
