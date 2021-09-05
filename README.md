@@ -6,4 +6,4 @@ This bot is not for help! When you dm this bot it will get you in contact with a
 
 ## Wiki
 
-For the wiki go [here]().
+For the wiki go [here](https://github.com/Prince527GitHub/ServerSMP/wiki/T.N.S.H.B).
