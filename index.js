@@ -45,7 +45,7 @@ if (process.env.DISTOKEN !== "false") {
 // Discord.js client
 const client = new Client({
     intents: 32767,
-    partials: ["CHANNEL", "MESSAGE", "GUILD_MEMBER", "REACTION"],
+    partials: ["CHANNEL", "MESSAGE", "GUILD_MEMBER", "REACTION", "GUILD_INVITES"],
 });
 module.exports = client;
 

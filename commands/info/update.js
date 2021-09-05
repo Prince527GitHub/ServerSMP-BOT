@@ -17,7 +17,7 @@ module.exports = {
 
         if(query === "current") {
             try {
-                fetch(`https://raw.githubusercontent.com/Prince527GitHub/ServerSMP-BOT/update/patch-notes-${version}.txt`)
+                fetch(`https://raw.githubusercontent.com/Prince527GitHub/ServerSMP/ServerSMP-BOT-(Change-Log)/patch-notes-${version}.txt`)
                 .then(res => res.text())
                 .then(body => message.channel.send(body));
             } catch(err) {
@@ -26,11 +26,11 @@ module.exports = {
 
         } else if(query === "latest") {
             try {
-                fetch(`https://raw.githubusercontent.com/Prince527GitHub/ServerSMP-BOT/update/version.json`)
+                fetch(`https://raw.githubusercontent.com/Prince527GitHub/ServerSMP/ServerSMP-BOT-(Change-Log)/version.json`)
                 .then(version => version.json())
                 .then(async(data) => {
                     const latest_version = data.version;
-                    fetch(`https://raw.githubusercontent.com/Prince527GitHub/ServerSMP-BOT/update/patch-notes-${await latest_version}.txt`)
+                    fetch(`https://raw.githubusercontent.com/Prince527GitHub/ServerSMP/ServerSMP-BOT-(Change-Log)/patch-notes-${await latest_version}.txt`)
                     .then(res => res.text())
                     .then(body => message.channel.send(body));
                 })
