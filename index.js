@@ -49,20 +49,33 @@ client.on("ready", async() => {
     modmailClient.ready();
     app.get("/", (req, res) => {
         res.sendFile(path.join(__dirname, '/index.html'));
-    })
-    app.listen(process.env.PORT)
+    });
+    app.listen(process.env.PORT);
     console.log(`WebServer ✅ (${process.env.PORT})`);
+    await client.guilds.cache.get(process.env.GUILD).commands.create({
+        name: 'close',
+        description: 'Close the ModMail.',
+        options: [{
+            name: 'reason',
+            type: 'STRING',
+            description: 'The reason you want to close this modmail.',
+            required: true,
+        }],
+    });
     console.log(`${client.user.username} ✅`);
 });
 
 client.on("messageCreate", async(message) => {
     modmailClient.modmailListener(message);
-    if(message.author.bot || !message.guild || !message.content.startsWith(process.env.PREFIX)) return;
-    if(message.guild.id !== process.env.GUILD) return;
-    const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
-    if(message.content === `${process.env.PREFIX}close`) {
-        const reason = args.join(" ") || "no reason";
-        modmailClient.deleteMail({ channel: message.channel.id, reason });
+});
+
+client.on('interactionCreate', async(interaction) => {
+    if (!interaction.isCommand()) return;
+    if (interaction.commandName === 'close') {
+        if(!interaction.member.roles.cache.has(process.env.ROLE)) return await interaction.reply({ content: 'You do not have permission.', ephemeral: true });
+        const { value: string } = interaction.options.get('reason');
+        modmailClient.deleteMail({ channel: interaction.channel.id, string });
+        await interaction.reply({ content: 'Close ModMail.', ephemeral: true });
     }
 });
 
