@@ -1,0 +1,13 @@
+{
+  "name": "go pico",
+  "description": "The go pico user bot",
+  "repository": "https://github.com/Prince527GitHub/ServerSMP/tree/%22go-pico%22",
+  "logo": "https://github.com/Prince527GitHub/ServerSMP-BOT/blob/web/assets/icon.png",
+  "env": {
+    "TOKEN": {
+      "description": "A user token.",
+      "required": true
+    }
+  },
+  "keywords": ["python", "discord"]
+}
