@@ -21,7 +21,7 @@ module.exports = {
         const text = args.join(" ");
         if(!text) return message.channel.send(
             new MessageEmbed()
-                .setDescription(`Invalid usage, use **\`${await client.prefix(message)}help play\`** for more information`)
+                .setDescription(`Invalid usage, use **\`help play\`** for more information`)
                 .setColor("RED")
         )
         await client.player.play(message, text);

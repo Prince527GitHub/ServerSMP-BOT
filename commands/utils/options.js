@@ -1,10 +1,11 @@
-const { MessageEmbed, Message, Client, MessageReaction, MessageActionRow, MessageButton } = require('discord.js');
+const { MessageEmbed, Message, Client, MessageReaction, MessageActionRow, MessageButton, MessageAttachment } = require('discord.js');
 const { blacklistedwords } = require('../../collection/index');
 const SchemaChatBot = require('../../models/chatbot-channel');
 const SchemaBlacklist = require('../../models/blackwords');
 const SchemaModLogs = require('../../models/modlogs');
 const SchemaGoodbye = require('../../models/goodbye');
 const SchemaWelcome = require('../../models/welcome');
+const { drawCard } = require('discord-welcome-card');
 const prefixSchema = require('../../models/prefix');
 const SchemaGlobal = require('../../models/global');
 const SchemaCMD = require('../../models/command');
@@ -54,7 +55,7 @@ module.exports = {
                 **Blacklist**:
                 \`${prefix}options blacklist [ add | remove | display ] [ word | word | nothng ]\`
                 **Goodbye**:
-                \`${prefix}options goodbye [ set | remove ] [ #channel | nothing ]\`
+                \`${prefix}options goodbye [ set | remove | show ] [ { subtitle | title | { dark | sakura | blue | bamboo | desert | code } } | nothing | nothing ] [ text | text | #channel ]\`
                 **Welcome**:
                 \`${prefix}options welcome [ set | remove ] [ { simple | custom } | nothing ] [ #channel | { dark | sakura | blue | bamboo | desert | code } ] [ nothing | #channel ]\`
                 **CMD**:
@@ -78,7 +79,7 @@ module.exports = {
                 \`${prefix}options invite remove\`
                 **Invite**: set
                 \`${prefix}options invite set #channel\`
-                
+
                 **XP**: off
                 \`${prefix}options xp off\`
                 **XP**: on
@@ -124,8 +125,24 @@ module.exports = {
                 **Blacklist**: display
                 \`${prefix}options blacklist display\`
 
-                **Goodbye**: set
-                \`${prefix}options goodbye set #channel\`
+                **Goodbye**: set subtitle
+                \`${prefix}options goodbye set subtitle You won't be missed!\`
+                **Goodbye**: set title
+                \`${prefix}options goodbye set title Goodbye,\`
+                **Goodbye**: show
+                \`${prefix}options goodbye show\`
+                **Goodbye**: set dark
+                \`${prefix}options goodbye set dark #channel\`
+                **Goodbye**: set sakura
+                \`${prefix}options goodbye set sakura #channel\`
+                **Goodbye**: set blue
+                \`${prefix}options goodbye set blue #channel\`
+                **Goodbye**: set bamboo
+                \`${prefix}options goodbye set bamboo #channel\`
+                **Goodbye**: set desert
+                \`${prefix}options goodbye set desert #channel\`
+                **Goodbye**: set code
+                \`${prefix}options goodbye set code #channel\`
                 **Goodbye**: remove
                 \`${prefix}options goodbye remove\`
 
@@ -165,7 +182,7 @@ module.exports = {
             time: 50000,
         })
     }
-    
+
         if(query === "invite") {
             if(options === "remove") {
                 Schema.findOne({ Guild: message.guild.id }, async(err, data) => {
@@ -405,28 +422,117 @@ module.exports = {
 
         } else if(query === "goodbye") {
             if(options === "set") {
-                const channel = message.mentions.channels.last();
-                if(!channel) return message.reply("Please mention a channel!");
-                SchemaGoodbye.findOne({ Guild: message.guild.id }, async(err, data) => {
-                    if(data) {
-                        data.Channel = channel.id;
-                        data.save();
-                    } else {
-                        new SchemaGoodbye({
-                            Guild: message.guild.id,
-                            Channel: channel.id,
-                        }).save();
-                    }
-                    message.reply(`${channel} has been set as the goodbye channel.`)
-                })
+
+                if(args[2].toLowerCase() === "subtitle") {
+                  const goodbye_description = args.slice(3).join(' ');
+                  if(!goodbye_description) return message.reply("Please type what you want the subtitle of the goodbye card to be.")
+                  if(message.content.length > 220) return message.reply("Subtitle to **long**! (That's what she sayed.)")
+                  await client.mongo_quick.set(`goodbye-text-${message.guild.id}`, goodbye_description)
+                  message.channel.send(`Set **${goodbye_description}** to subtitle`)
+
+                } else if(args[2].toLowerCase() === "title") {
+                  const goodbye_title = args.slice(3).join(' ');
+                  if(!goodbye_title) return message.reply("Please type what you want the subtitle of the goodbye card to be.")
+                  if(message.content.length > 220) return message.reply("Title to **long**! (That's what she sayed.)")
+                  await client.mongo_quick.set(`goodbye-title-${message.guild.id}`, goodbye_title)
+                  message.channel.send(`Set **${goodbye_description}** to title`)
+
+                } else {
+                  if(!args[2]) return message.reply("Themes are `dark`, `sakura`, `blue`, `bamboo`, `desert`, `code`")
+
+                  const channel = message.mentions.channels.last();
+                  if(!channel) return message.reply("Please mention a channel!");
+
+                  if(args[2].toLowerCase() === "dark") {
+                    await client.mongo_quick.set(`goodbye-theme-${message.guild.id}`, "dark")
+                    message.channel.send("Goodbye options set theme to `dark`")
+
+                  } else if(args[2].toLowerCase() === "sakura") {
+                    await client.mongo_quick.set(`goodbye-theme-${message.guild.id}`, "sakura")
+                    message.channel.send("Goodbye options set theme to `sakura`")
+
+                  } else if(args[2].toLowerCase() === "blue") {
+                    await client.mongo_quick.set(`goodbye-theme-${message.guild.id}`, "blue")
+                    message.channel.send("Goodbye options set theme to `blue`")
+
+                  } else if(args[2].toLowerCase() === "bamboo") {
+                    await client.mongo_quick.set(`goodbye-theme-${message.guild.id}`, "bamboo")
+                    message.channel.send("Goodbye options set theme to `bamboo`")
+
+                  } else if(args[2].toLowerCase() === "desert") {
+                    await client.mongo_quick.set(`goodbye-theme-${message.guild.id}`, "desert")
+                    message.channel.send("Goodbye options set theme to `desert`")
+
+                  } else if(args[2].toLowerCase() === "code") {
+                    await client.mongo_quick.set(`goodbye-theme-${message.guild.id}`, "code")
+                    message.channel.send("Goodbye options set theme to `code`")
+
+                  } else return message.reply("Theme is invalid!")
+
+                  SchemaGoodbye.findOne({ Guild: message.guild.id }, async(err, data) => {
+                      if(data) {
+                          data.Channel = channel.id;
+                          data.save();
+                      } else {
+                          new SchemaGoodbye({
+                              Guild: message.guild.id,
+                              Channel: channel.id,
+                          }).save();
+                      }
+                      message.reply(`${channel} has been set as the goodbye channel.`)
+                  })
+
+                }
+
             } else if(options === "remove") {
+                if(await client.mongo_quick.has(`goodbye-theme-${message.guild.id}`) === true) await client.mongo_quick.remove(`goodbye-theme-${message.guild.id}`)
+                if(await client.mongo_quick.has(`goodbye-title-${message.guild.id}`) === true) await client.mongo_quick.remove(`goodbye-title-${message.guild.id}`)
+                if(await client.mongo_quick.has(`goodbye-text-${member.guild.id}`) === true) await client.mongo_quick.remove(`goodbye-text-${member.guild.id}`)
                 SchemaGoodbye.findOne({ Guild: message.guild.id }, async(err, data) => {
                   if(!data) return message.reply("Goodbye channel is not set.")
                   data.delete()
                   message.channel.send("The goodbye channel has been reset!")
                 })
+
+            } else if(options === "show") {
+              let goodbye_subtitle;
+              if(await client.mongo_quick.has(`goodbye-text-${message.guild.id}`) === true) {
+                  goodbye_subtitle = `${await client.mongo_quick.get(`goodbye-text-${message.guild.id}`)}`
+              } else {
+                  goodbye_subtitle = " "
+              }
+
+              let goodbye_title;
+              if(await client.mongo_quick.has(`goodbye-title-${message.guild.id}`) === true) {
+                goodbye_title = `${await client.mongo_quick.get(`goodbye-title-${message.guild.id}`)}`
+              } else {
+                goodbye_title = "Goodbye,"
+              }
+
+              let goodbye_theme;
+              if(await client.mongo_quick.has(`goodbye-theme-${message.guild.id}`) === true) {
+                goodbye_theme = `${await client.mongo_quick.get(`goodbye-theme-${message.guild.id}`)}`
+              } else {
+                goodbye_theme = "dark"
+              }
+
+              const user = message.member.user;
+              const image = await drawCard({
+                blur: true,
+                title: goodbye_title,
+                theme: goodbye_theme,
+                text: `${user.username}#${user.discriminator}!`,
+                subtitle: goodbye_subtitle,
+                rounded: true,
+                border: true,
+                avatar: user.displayAvatarURL({ format: 'png' })
+              });
+
+              const attachment = new MessageAttachment(image, 'bye.png');
+              message.channel.send({ files: [attachment] });
+
             } else return message.reply("Option is not correct!")
-            
+
         } else if(query === "welcome") {
             if(options === "set") {
 
@@ -517,14 +623,14 @@ module.exports = {
             } else return message.reply("Option is not correct!")
 
         } else if(query === "list") {
-          
+
             let xp_command;
             if(await db.has(`xp-${message.guild.id}`) === true) {
               xp_command = false
             } else if(await db.has(`xp-${message.guild.id}`) === false) {
               xp_command = true
             }
-          
+
             let xp_channel;
             if(await db.has(`xp-channel-${message.guild.id}`) === true) {
               xp_channel = `<#${db.get(`xp-channel-${message.guild.id}`)}>`
@@ -537,13 +643,6 @@ module.exports = {
               nsfw_channel = "`no channel set`";
             } else {
               nsfw_channel = `<#${await client.mongo_quick.get(`nsfw-ch-${message.guild.id}`)}>`
-            }
-
-            let ticket_command;
-            if(client.db_json.has(`ticket-toggle-${message.guild.id}`) === false) {
-              ticket_command = "true"
-            } else {
-              ticket_command = "false"
             }
 
             let autorole;
@@ -609,9 +708,26 @@ module.exports = {
               welcome_theme = "welcome theme not set"
             }
 
-            const byetheme = await client.dashboard.getVal(message.guild.id, "byetheme");
-            const byemain = await client.dashboard.getVal(message.guild.id, "byemain");
-            const byesub = await client.dashboard.getVal(message.guild.id, "byesub");
+            let goodbye_subtitle;
+            if(await client.mongo_quick.has(`goodbye-text-${message.guild.id}`) === true) {
+                goodbye_subtitle = `${await client.mongo_quick.get(`goodbye-text-${message.guild.id}`)}`
+            } else {
+                goodbye_subtitle = " "
+            }
+
+            let goodbye_title;
+            if(await client.mongo_quick.has(`goodbye-title-${message.guild.id}`) === true) {
+              goodbye_title = `${await client.mongo_quick.get(`goodbye-title-${message.guild.id}`)}`
+            } else {
+              goodbye_title = "Goodbye,"
+            }
+
+            let goodbye_theme;
+            if(await client.mongo_quick.has(`goodbye-theme-${message.guild.id}`) === true) {
+              goodbye_theme = `${await client.mongo_quick.get(`goodbye-theme-${message.guild.id}`)}`
+            } else {
+              goodbye_theme = "dark"
+            }
 
             const embed = new MessageEmbed()
               .setTitle("Options")
@@ -621,8 +737,6 @@ module.exports = {
                 **NSFW Channel** - ${nsfw_channel}
                 **XP** - \`${xp_command}\`
                 **XP Channel** - ${xp_channel}
-                **Ticket** - \`${ticket_command}\`
-                **Tickets Number** - \`${client.db_json.get(`ticket-${message.guild.id}`)}\`
                 **Autorole** - ${autorole}
                 **Invite** - ${invite}
                 **Captcha** - \`${await db.has(`captcha-${message.guild.id}`)}\`
@@ -631,14 +745,12 @@ module.exports = {
                 **Global** - ${global}
                 **Prefix** - \`${await client.prefix(message)}\`
                 **Goodbye** - ${goodbye}
+                **Goodbye Theme** - \`${goodbye_theme}\`
+                **Goodbye Main Text** - \`${goodbye_title}\`
+                **Goodbye Sub Text** - \`${goodbye_subtitle}\`
                 **Welcome** - ${welcome}
                 **Welcome Type** - \`${welcome_type}\`
                 **Welcome Theme** - \`${welcome_theme}\`
-
-                **[Dashboard Options:](https://serversmp.botdash.pro/)**
-                **Goodbye Theme** - \`${byetheme}\`
-                **Goodbye Main Text** - \`${byemain}\`
-                **Goodbye Sub Text** - \`${byesub}\`
                 `)
                 .setColor("RANDOM")
               await message.channel.send({ embeds: [embed] })
@@ -655,11 +767,11 @@ module.exports = {
                   if (data) {
                     if (data.Cmds.includes(cmd)) {
                       let commandNumber;
-            
+
                       for (let i = 0; i < data.Cmds.length; i++) {
                         if (data.Cmds[i] === cmd) data.Cmds.splice(i, 1)
                       }
-            
+
                       await data.save()
                       message.channel.send(`Enabled ${cmd}!`)
                     } else return message.channel.send('That command isnt turned off.')
@@ -686,7 +798,7 @@ module.exports = {
                   message.channel.send(`Command ${cmd} has been disabled`)
                 })
             } else return message.reply("Option is not correct!")
-          
+
         } else if(query === "autorole") {
           if(options === "on") {
             const role = message.mentions.roles.last()
@@ -704,7 +816,7 @@ module.exports = {
             await client.mongo_quick.remove(`autorole-${message.guild.id}`)
             message.reply("Removed autorole!")
           } else return message.reply("Option is not correct!")
-          
+
         } else return message.reply("Query is not correct!")
     }
 }

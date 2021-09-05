@@ -4,7 +4,7 @@ const serveIndex = require('serve-index');
 const model = require('../models/economy');
 const { getCommands } = require('../web/utils/index');
 const app = express();
-const _PORT = process.env.PORT || 8080;
+const _PORT = process.env.PORT;
 
 client.on('ready', async () => {
   const clientDetails = {
@@ -27,7 +27,7 @@ client.on('ready', async () => {
       model.find({}, async (err, data) => res.send(data));
       return;
     }
-    model.findOne({ authorID: user }, async(err, data) => {
+    model.findOne({ id: user }, async(err, data) => {
       if(!data) return res.send('User does not exist in database!');
       res.send(data);
     })

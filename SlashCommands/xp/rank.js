@@ -30,7 +30,7 @@ module.exports = {
             if(description) {
                 if(description === client.user.id) {
                     const user = await Levels.fetch(interaction.member.user.id, interaction.guild.id, true)
-                    if (!user) return interaction.followUp("You dont have xp. try to send some messages.", true)
+                    if (!user) return interaction.followUp({ content: "You dont have xp. try to send some messages.", ephemeral: true });
                     var total = Levels.xpFor(user.level + 1);
                     var current = user.xp;
                     let bar = progressbar.filledBar(total, current, 40, "□", "■")[0];
@@ -44,7 +44,7 @@ module.exports = {
                     const guild = client.guilds.cache.get(interaction.guild.id)
                     const user_find = guild.members.cache.get(description)
                     const user = await Levels.fetch(description, interaction.guild.id, true)
-                    if (!user) return interaction.followUp("That user dont have xp.", true)
+                    if (!user) return interaction.followUp({ content: "That user dont have xp.", ephemeral: true });
                     try {
                       status = user_find.presence.status
                     } catch(err) {
@@ -68,7 +68,7 @@ module.exports = {
                 }
             } else {
               const user = await Levels.fetch(interaction.member.user.id, interaction.guild.id, true)
-              if (!user) return interaction.followUp("You dont have xp. try to send some messages.", true)
+              if (!user) return interaction.followUp({ content: "You dont have xp. try to send some messages.", ephemeral: true });
               try {
                 status = interaction.member.presence.status
               } catch(err) {
@@ -91,7 +91,7 @@ module.exports = {
                 })
             }
           } else {
-            return interaction.followUp("XP system is disabled on this server!", true);
+            return interaction.followUp({ content: "XP system is disabled on this server!", ephemeral: true });
           }
 
     },

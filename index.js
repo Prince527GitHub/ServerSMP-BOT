@@ -109,10 +109,6 @@ client.prefix = async function(message) {
   return custom;
 }
 
-// Dashboard
-const botdash = require('botdash.pro');
-client.dashboard = new botdash.APIclient(process.env.BOTDASH);
-
 // Economy
 client.bal = (id, coins) => new Promise(async ful => {
   const data = await eco.findOne({

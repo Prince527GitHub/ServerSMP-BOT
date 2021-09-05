@@ -1,7 +1,7 @@
 const client = require("../index");
 
 client.on("interactionCreate", async (interaction) => {
-    
+
     // Slash Command Handling
     if (interaction.isCommand()) {
         await interaction.deferReply({ ephemeral: false }).catch(() => {});
@@ -20,16 +20,10 @@ client.on("interactionCreate", async (interaction) => {
                 });
             } else if (option.value) args.push(option.value);
         }
-        
-        const userperm = interaction.member.permissions.has(cmd.userperm);
-        if (!userperm) return interaction.followUp({content: `You need \`${cmd.userperm || []}\` Permissions` });
-
-        const botperm = interaction.guild.me.permissions.has(cmd.botperm);
-        if (!botperm) return interaction.followUp({content: `I need \`${cmd.botperm || []}\` Permissions` });
-
 
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
 
+        if(!interaction.member.permissions.has(cmd.userPermissions || [])) return interaction.followUp({ content: "You do not have permissions to use this command!", ephemeral: true })
 
         cmd.run(client, interaction, args);
     }

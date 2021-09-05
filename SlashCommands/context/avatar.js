@@ -1,7 +1,7 @@
 const { Client, CommandInteraction, MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 
 module.exports = {
-    name: "info",
+    name: "avatar",
     type: "USER",
 
     /**
@@ -11,13 +11,15 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        const user = client.users.fetch(interaction.targetId);
+
+        const guild = client.guilds.cache.get(interaction.guild.id)
+        const user_find = guild.members.cache.get(interaction.targetId)
 
         interaction.followUp({ embeds: [
             new MessageEmbed()
-                .setAuthor(user.tag)
+                .setAuthor(`${user_find.user.tag}`)
                 .setColor("RANDOM")
-                .setImage(user.displayAvatarURL({ dynamic: true }))
+                .setImage(user_find.user.displayAvatarURL({ dynamic: true }))
         ]});
     },
 };
