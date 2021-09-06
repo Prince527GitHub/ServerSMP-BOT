@@ -214,7 +214,6 @@ player
         new MessageEmbed()
             .setTitle("Select a song!")
             .setDescription(`\`\`\`${results.map(song => `${++i} - ${song.name}`).join("\n")}\`\`\`` + "\nPlease select one of the results ranging from **\`1-15\`**")
-            .setFooter("• Type cancel or c to cancel the music selection")
             .setAuthor("Music Selection", message.client.user.displayAvatarURL())
             .setColor("#5400FF")
     ]})})
@@ -249,7 +248,7 @@ player
   .on("finish", async(queue) => {
     queue.textChannel.send({ embeds: [
         new MessageEmbed()
-            .setDescription(`⏹ **|** The music has ended, use **\`${await client.prefix(queue)}play\`** to play some music`)
+            .setDescription(`⏹ **|** The music has ended, use **\`play\`** to play some music`)
             .setColor("5400FF")
     ]})
   })
