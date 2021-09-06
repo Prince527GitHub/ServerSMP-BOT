@@ -1,4 +1,4 @@
-# Totaly Not ServerSMP's Help Bot (T.N.S.H.B)
+# Totally Not ServerSMP's Help Bot (T.N.S.H.B)
 
 This bot is not for help! When you dm this bot it will get you in contact with a mod so that he can not help.
 
@@ -6,4 +6,4 @@ This bot is not for help! When you dm this bot it will get you in contact with a
 
 ## Wiki
 
-For the wiki go [here]().
+For the wiki go [here](https://github.com/Prince527GitHub/ServerSMP/wiki/T.N.S.H.B).
