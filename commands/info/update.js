@@ -1,6 +1,6 @@
 const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require('discord.js');
 const fetch = require('node-fetch').default;
-const version = "1.2.0";
+const version = "1.2.5";
 
 module.exports = {
     name: 'update',
