@@ -1,0 +1,42 @@
+**Change log v1.2.5**
+
+**Commands**
+
+**COMMAND** - `reddit`
+
+ - Created this command. It get's info on a subreddit.
+
+**COMMAND** - `eval`
+
+ - Created this command. It can test code.
+
+**COMMAND** - `clear`
+
+ - Updated this command. It will now show the number of message that it deleted for each user.
+
+**COMMAND** - `ping` (normal cmd & slash cmd & context cmd)
+
+ - Updated the command. It's better.
+
+**COMMAND** - `options`
+
+ - Removed the modlogs stuff when you add autorole.
+ - Update modlogs.
+
+**Events:**
+
+**EVENT** - `logs`
+
+ - Created this. It's for modlogs.
+
+**EVENT** - `modlogs-button`
+
+ - This does the code for modlogs buttons.
+
+**EVENT** - `interactionCreate`
+
+ - Made it so you can't crash the bot by doing slash commands in dms.
+
+**EVENT** - `welcome`
+
+ - Updated the simple welcome card.
