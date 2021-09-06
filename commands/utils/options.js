@@ -79,7 +79,7 @@ module.exports = {
                 \`${prefix}options invite remove\`
                 **Invite**: set
                 \`${prefix}options invite set #channel\`
-
+                
                 **XP**: off
                 \`${prefix}options xp off\`
                 **XP**: on
@@ -182,7 +182,7 @@ module.exports = {
             time: 50000,
         })
     }
-
+    
         if(query === "invite") {
             if(options === "remove") {
                 Schema.findOne({ Guild: message.guild.id }, async(err, data) => {
@@ -310,10 +310,97 @@ module.exports = {
                 })
             } else if(options === "remove") {
                 SchemaModLogs.findOne({ Guild: message.guild.id }, async(err, data) => {
-                    if(data) data.delete();
+                    if(data) {
+                      data.delete();
+                      if(await client.mongo_quick.has(`modlog-chc-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-chc-${message.guild.id}`);
+                      if(await client.mongo_quick.has(`modlog-chd-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-chd-${message.guild.id}`);
+                      if(await client.mongo_quick.has(`modlog-chpu-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-chpu-${message.guild.id}`);
+                      if(await client.mongo_quick.has(`modlog-chu-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-chu-${message.guild.id}`);
+                      if(await client.mongo_quick.has(`modlog-ed-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-ed-${message.guild.id}`);
+                      if(await client.mongo_quick.has(`modlog-ec-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-ec-${message.guild.id}`);
+                      if(await client.mongo_quick.has(`modlog-eu-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-eu-${message.guild.id}`);
+                      if(await client.mongo_quick.has(`modlog-gba-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-gba-${message.guild.id}`);
+                      if(await client.mongo_quick.has(`modlog-gbr-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-gbr-${message.guild.id}`);
+                      if(await client.mongo_quick.has(`modlog-gma-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-gma-${message.guild.id}`);
+                      if(await client.mongo_quick.has(`modlog-gmr-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-gmr-${message.guild.id}`);
+                      if(await client.mongo_quick.has(`modlog-gmc-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-gmc-${message.guild.id}`);
+                      if(await client.mongo_quick.has(`modlog-gmu-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-gmu-${message.guild.id}`)
+                      message.channel.send("Deleted modlogs channel!");
+                    }
                     if(!data) return message.reply("This server has no modlogs channel!");
-                    message.channel.send("Deleted modlogs channel!");
                   })
+            } else if(options === "options") {
+              SchemaModLogs.findOne({ Guild: message.guild.id }, async(err, data) => {
+                if(!data) return message.reply("This server has no modlogs channel!");
+
+                const row = new MessageActionRow().addComponents(
+                  new MessageButton()
+                    .setCustomId("modlog-chc")
+                    .setLabel("channelCreate")
+                    .setStyle("PRIMARY"),
+                  new MessageButton()
+                    .setCustomId("modlog-chd")
+                    .setLabel("channelDelete")
+                    .setStyle("PRIMARY"),
+                  new MessageButton()
+                    .setCustomId("modlog-chpu")
+                    .setLabel("channelPinsUpdate")
+                    .setStyle("PRIMARY"),
+                  new MessageButton()
+                    .setCustomId("modlog-chu")
+                    .setLabel("channelUpdate")
+                    .setStyle("PRIMARY"),
+                  new MessageButton()
+                    .setCustomId("modlog-ed")
+                    .setLabel("emojiDelete")
+                    .setStyle("SECONDARY")
+                )
+
+                const row2 = new MessageActionRow().addComponents(
+                  new MessageButton()
+                    .setCustomId("modlog-ec")
+                    .setLabel("emojiCreate")
+                    .setStyle("SECONDARY"),
+                  new MessageButton()
+                    .setCustomId("modlog-eu")
+                    .setLabel("emojiUpdate")
+                    .setStyle("SECONDARY"),
+                  new MessageButton()
+                    .setCustomId("modlog-gba")
+                    .setLabel("guildBanAdd")
+                    .setStyle("DANGER"),
+                  new MessageButton()
+                    .setCustomId("modlog-gbr")
+                    .setLabel("guildBanRemove")
+                    .setStyle("DANGER"),
+                  new MessageButton()
+                    .setCustomId("modlog-gma")
+                    .setLabel("guildMemberAdd")
+                    .setStyle("DANGER")
+                )
+
+                const row3 = new MessageActionRow().addComponents(
+                  new MessageButton()
+                    .setCustomId("modlog-gmr")
+                    .setLabel("guildMemberRemove")
+                    .setStyle("DANGER"),
+                  new MessageButton()
+                    .setCustomId("modlog-gmc")
+                    .setLabel("guildMemberChunk")
+                    .setStyle("DANGER"),
+                  new MessageButton()
+                    .setCustomId("modlog-gmu")
+                    .setLabel("guildMemberUpdate")
+                    .setStyle("DANGER")
+                )
+
+                const embed = new MessageEmbed()
+                  .setTitle("ModLogs - Options")
+                  .setDescription("Click on the buttons to change stuff.")
+                  .setColor("AQUA")
+
+                message.channel.send({ embeds: [embed], components: [row, row2, row3] });
+              });
             } else return message.reply("Option is not correct!")
 
         } else if(query === "global") {
@@ -429,7 +516,7 @@ module.exports = {
                   if(message.content.length > 220) return message.reply("Subtitle to **long**! (That's what she sayed.)")
                   await client.mongo_quick.set(`goodbye-text-${message.guild.id}`, goodbye_description)
                   message.channel.send(`Set **${goodbye_description}** to subtitle`)
-
+                
                 } else if(args[2].toLowerCase() === "title") {
                   const goodbye_title = args.slice(3).join(' ');
                   if(!goodbye_title) return message.reply("Please type what you want the subtitle of the goodbye card to be.")
@@ -439,36 +526,36 @@ module.exports = {
 
                 } else {
                   if(!args[2]) return message.reply("Themes are `dark`, `sakura`, `blue`, `bamboo`, `desert`, `code`")
-
+  
                   const channel = message.mentions.channels.last();
                   if(!channel) return message.reply("Please mention a channel!");
 
                   if(args[2].toLowerCase() === "dark") {
                     await client.mongo_quick.set(`goodbye-theme-${message.guild.id}`, "dark")
                     message.channel.send("Goodbye options set theme to `dark`")
-
+  
                   } else if(args[2].toLowerCase() === "sakura") {
                     await client.mongo_quick.set(`goodbye-theme-${message.guild.id}`, "sakura")
                     message.channel.send("Goodbye options set theme to `sakura`")
-
+  
                   } else if(args[2].toLowerCase() === "blue") {
                     await client.mongo_quick.set(`goodbye-theme-${message.guild.id}`, "blue")
                     message.channel.send("Goodbye options set theme to `blue`")
-
+  
                   } else if(args[2].toLowerCase() === "bamboo") {
                     await client.mongo_quick.set(`goodbye-theme-${message.guild.id}`, "bamboo")
                     message.channel.send("Goodbye options set theme to `bamboo`")
-
+  
                   } else if(args[2].toLowerCase() === "desert") {
                     await client.mongo_quick.set(`goodbye-theme-${message.guild.id}`, "desert")
                     message.channel.send("Goodbye options set theme to `desert`")
-
+  
                   } else if(args[2].toLowerCase() === "code") {
                     await client.mongo_quick.set(`goodbye-theme-${message.guild.id}`, "code")
                     message.channel.send("Goodbye options set theme to `code`")
-
+  
                   } else return message.reply("Theme is invalid!")
-
+  
                   SchemaGoodbye.findOne({ Guild: message.guild.id }, async(err, data) => {
                       if(data) {
                           data.Channel = channel.id;
@@ -485,7 +572,7 @@ module.exports = {
                 }
 
             } else if(options === "remove") {
-                if(await client.mongo_quick.has(`goodbye-theme-${message.guild.id}`) === true) await client.mongo_quick.remove(`goodbye-theme-${message.guild.id}`)
+                if(await client.mongo_quick.has(`goodbye-theme-${message.guild.id}`) === true) await client.mongo_quick.remove(`goodbye-theme-${message.guild.id}`) 
                 if(await client.mongo_quick.has(`goodbye-title-${message.guild.id}`) === true) await client.mongo_quick.remove(`goodbye-title-${message.guild.id}`)
                 if(await client.mongo_quick.has(`goodbye-text-${member.guild.id}`) === true) await client.mongo_quick.remove(`goodbye-text-${member.guild.id}`)
                 SchemaGoodbye.findOne({ Guild: message.guild.id }, async(err, data) => {
@@ -493,7 +580,7 @@ module.exports = {
                   data.delete()
                   message.channel.send("The goodbye channel has been reset!")
                 })
-
+                
             } else if(options === "show") {
               let goodbye_subtitle;
               if(await client.mongo_quick.has(`goodbye-text-${message.guild.id}`) === true) {
@@ -532,7 +619,7 @@ module.exports = {
               message.channel.send({ files: [attachment] });
 
             } else return message.reply("Option is not correct!")
-
+            
         } else if(query === "welcome") {
             if(options === "set") {
 
@@ -623,14 +710,14 @@ module.exports = {
             } else return message.reply("Option is not correct!")
 
         } else if(query === "list") {
-
+          
             let xp_command;
             if(await db.has(`xp-${message.guild.id}`) === true) {
               xp_command = false
             } else if(await db.has(`xp-${message.guild.id}`) === false) {
               xp_command = true
             }
-
+          
             let xp_channel;
             if(await db.has(`xp-channel-${message.guild.id}`) === true) {
               xp_channel = `<#${db.get(`xp-channel-${message.guild.id}`)}>`
@@ -732,7 +819,6 @@ module.exports = {
             const embed = new MessageEmbed()
               .setTitle("Options")
               .setDescription(`
-                **Command Options:**
                 **NSFW** - \`${await client.mongo_quick.has(`nsfw-${message.guild.id}`)}\`
                 **NSFW Channel** - ${nsfw_channel}
                 **XP** - \`${xp_command}\`
@@ -767,11 +853,11 @@ module.exports = {
                   if (data) {
                     if (data.Cmds.includes(cmd)) {
                       let commandNumber;
-
+            
                       for (let i = 0; i < data.Cmds.length; i++) {
                         if (data.Cmds[i] === cmd) data.Cmds.splice(i, 1)
                       }
-
+            
                       await data.save()
                       message.channel.send(`Enabled ${cmd}!`)
                     } else return message.channel.send('That command isnt turned off.')
@@ -798,17 +884,11 @@ module.exports = {
                   message.channel.send(`Command ${cmd} has been disabled`)
                 })
             } else return message.reply("Option is not correct!")
-
+          
         } else if(query === "autorole") {
           if(options === "on") {
             const role = message.mentions.roles.last()
             if(!role) return message.reply("Please mention a role.")
-            client.modlogs({
-              Member: message.author,
-              Action: 'Autorole',
-              Color: "#7c6bff",
-              Reason: role.name
-            }, message)
             await client.mongo_quick.set(`autorole-${message.guild.id}`, role.id)
             message.reply(`${role.name} is the autorole!`)
           } else if(options === "off") {
@@ -816,7 +896,7 @@ module.exports = {
             await client.mongo_quick.remove(`autorole-${message.guild.id}`)
             message.reply("Removed autorole!")
           } else return message.reply("Option is not correct!")
-
+          
         } else return message.reply("Query is not correct!")
     }
 }

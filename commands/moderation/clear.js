@@ -13,14 +13,27 @@ module.exports = {
      * @param {String[]} args 
      */
     run: async(client, message, args) => {
-        let deleteAmount;
-        if (isNaN(args[0]) || parseInt(args[0]) <= 0) { return message.reply('Please put a number only!') }
-        if (parseInt(args[0]) > 50) {
-            return message.reply('You can only delete 50 messages at a time!')
-        } else {
-            deleteAmount = parseInt(args[0]);
+        let int = args[0];
+        if (int > 100) int = 50;
+
+        try {
+            await message.delete()
+            const fetch = await message.channel.messages.fetch({ limit: int });
+            const deletedMessages = await message.channel.bulkDelete(fetch, true);
+
+            const results = {};
+            for (const [, deleted] of deletedMessages) {
+                const user = `${deleted.author.username}#${deleted.author.discriminator}`;
+                if (!results[user]) results[user] = 0;
+                results[user]++;
+            }
+
+            const userMessageMap = Object.entries(results);
+
+            const finalResult = `${deletedMessages.size} message${deletedMessages.size > 1 ? 's' : ''} were removed!\n\n${userMessageMap.map(([user, messages]) => `**${user}** : ${messages}`).join('\n')}`;
+            await message.channel.send({ content: finalResult }).then(async (msg) => setTimeout(() => msg.delete(), 5000))
+        } catch (err) {
+            if (String(err).includes('Unknown Message')) return console.log('[ERROR!] Unknown Message');
         }
-        message.channel.bulkDelete(deleteAmount + 1, true);
-        message.reply(`**Successfully** Deleted ***${deleteAmount}*** Messages.`)
     }
 }

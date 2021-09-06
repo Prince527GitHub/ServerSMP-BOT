@@ -2,9 +2,6 @@ const client = require('../index');
 const Schema = require('../models/welcome');
 const { MessageAttachment } = require('discord.js');
 const { drawCard } = require('discord-welcome-card');
-const  ultrax = require('ultrax')
-const { registerFont } = require('canvas')
-registerFont('ShadowsIntoLight-Regular.ttf', { family:  "Shadows Into Light" });
 
 client.on("guildMemberAdd", async(member) => {
     Schema.findOne({ Guild: member.guild.id }, async(e, data) => {
@@ -15,21 +12,9 @@ client.on("guildMemberAdd", async(member) => {
 
         if(await client.mongo_quick.get(`welcome-type-${member.guild.id}`) === "simple") {
 
-          let  bg = 'https://cdn.discordapp.com/attachments/850808002545319957/859359637106065408/bg.png'
-          let  avatar = member.user.displayAvatarURL({ format:  "png" })
-          let  text1 = "welcome"
-          let  text2 = member.user.tag
-          let  text3 = `You're the ${member.guild.memberCount}th member`
-          let  color = '#ffffff'
-          const  options = {
-              font:  "Shadows Into Light",
-              attachmentName:  `welcome-${member.id}`,
-              text1_fontSize: 80,
-              text2_fontSize: 50,
-              text3_fontSize: 30
-          }
-          const image = await  ultrax.welcomeImage(bg, avatar, text1, text2, text3, color, options)
-          channel.send({ files: [image] });
+          const simple_welcome = new MessageAttachment(`https://api.popcat.xyz/welcomecard?background=https://cdn.discordapp.com/attachments/850808002545319957/859359637106065408/bg.png&text1=${member.user.username}&text2=Welcome+To+${member.guild.name}&text3=Member+${member.guild.memberCount}&avatar=${member.user.displayAvatarURL({ format:  "png" })}`, `welcome-${member.guild.id}.png`)
+
+          channel.send({ files: [simple_welcome] });
 
         } else if(await client.mongo_quick.get(`welcome-type-${member.guild.id}`) === "custom") {
 
