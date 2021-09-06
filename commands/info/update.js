@@ -1,6 +1,6 @@
 const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require('discord.js');
+const ver_file = require("../../version.json");
 const fetch = require('node-fetch').default;
-const version = "1.2.5";
 
 module.exports = {
     name: 'update',
@@ -17,6 +17,7 @@ module.exports = {
 
         if(query === "current") {
             try {
+                const version = ver_file.version;
                 fetch(`https://raw.githubusercontent.com/Prince527GitHub/ServerSMP/ServerSMP-BOT-(Change-Log)/patch-notes-${version}.txt`)
                 .then(res => res.text())
                 .then(body => message.channel.send(body));
