@@ -216,7 +216,7 @@ player
     channel.send({ embeds: [
         new MessageEmbed()
             .setColor("RED")
-            .setDescription(`An error occurred while playing music, reason: **\`${error.slice(0, 2000)}\`**`)
+            .setDescription(`An error occurred while playing music, reason: **\`${error.slice(0, 1940)}\`**`)
     ]})})
   .on("noRelated", (queue) => {
       queue.textChannel.send({ embeds: [
