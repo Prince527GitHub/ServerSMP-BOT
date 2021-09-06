@@ -152,35 +152,19 @@ client.rmv = (id, coins) => {
   })
 }
 
-// Modlogs
-client.modlogs = async function({ Member, Action, Color, Reason }, message) {
-  const data = await modlogsSchema.findOne({ Guild: message.guild.id })
-  if(!data) return;
-  const channel = message.guild.channels.cache.get(data.Channel);
-  const logsEmbed = new MessageEmbed()
-    .setColor(Color)
-    .setDescription(`Reason/changed: ${Reason || 'No Reason!'}`)
-    .addField('Member', `${Member.user.tag} (${Member.id})`)
-    .setThumbnail(Member.user.displayAvatarURL())
-    .setTitle(`Action Took: ${Action}`)
-  channel.send(logsEmbed);
-};
-
 // Distube
 const { SpotifyPlugin } = require("@distube/spotify");
 const { SoundCloudPlugin } = require("@distube/soundcloud");
 const DisTube = require('distube');
 
 const player = new DisTube.DisTube(client, {
-  searchSongs: 15,
-  emitNewSongOnly: true,
-  leaveOnFinish: true,
-  plugins: [
-      new SpotifyPlugin()
-  ],
-  plugins: [
-    new SoundCloudPlugin()
-  ],
+  searchSongs: 1,
+	searchCooldown: 30,
+	leaveOnEmpty: true,
+	emptyCooldown: 0,
+	leaveOnFinish: true,
+	leaveOnStop: true,
+	plugins: [new SoundCloudPlugin(), new SpotifyPlugin()],
 });
 
 player
@@ -232,7 +216,7 @@ player
     channel.send({ embeds: [
         new MessageEmbed()
             .setColor("RED")
-            .setDescription(`An error occurred while playing music, reason: **\`${error}\`**`)
+            .setDescription(`An error occurred while playing music, reason: **\`${error.slice(0, 2000)}\`**`)
     ]})})
   .on("noRelated", (queue) => {
       queue.textChannel.send({ embeds: [

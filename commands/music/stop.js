@@ -1,5 +1,4 @@
 const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require("discord.js");
-const canvacord = require("canvacord");
 
 module.exports = {
     name: 'stop',
@@ -23,8 +22,6 @@ module.exports = {
                 .setDescription("There is nothing playing")
                 .setColor("YELLOW")
         ]})
-        music.delete(message.guild.id);
-        music.delete(`music-${message.guild.id}`);
         await client.player.stop(message);
         message.channel.send({ embeds: [
             new MessageEmbed()
