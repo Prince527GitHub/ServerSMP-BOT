@@ -158,7 +158,7 @@ const { SoundCloudPlugin } = require("@distube/soundcloud");
 const DisTube = require('distube');
 
 const player = new DisTube.DisTube(client, {
-  searchSongs: 1,
+  searchSongs: 10,
 	searchCooldown: 30,
 	leaveOnEmpty: true,
 	emptyCooldown: 0,
@@ -197,7 +197,7 @@ player
     message.channel.send({ embeds: [
         new MessageEmbed()
             .setTitle("Select a song!")
-            .setDescription(`\`\`\`${results.map(song => `${++i} - ${song.name}`).join("\n")}\`\`\`` + "\nPlease select one of the results ranging from **\`1-15\`**")
+            .setDescription(`\`\`\`${results.map(song => `${++i} - ${song.name}`).join("\n")}\`\`\`` + "\nPlease select one of the results ranging from **\`1-10\`**")
             .setAuthor("Music Selection", message.client.user.displayAvatarURL())
             .setColor("#5400FF")
     ]})})
