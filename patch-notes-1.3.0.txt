@@ -19,7 +19,7 @@
 
  - Added `WEBHOOK` setting.
 
- **OTHER - `index`
+ **OTHER** - `index`
 
  - Added webhooks error reporting.
 
