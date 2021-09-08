@@ -16,7 +16,7 @@ client.on("ready", async() => {
   client.user.setPresence({ activities: [{ name: activityName ?? "DiamondGolurk on youtube.com", type: process.env.STATUS_TYPE.toUpperCase() }], status: 'dnd' })
 
   // Log start
-  console.log(`${client.user.username} ✅`)
+  console.log(`${client.user.username} ✔️`)
 
   // Blacklisted words
   Schema.find()

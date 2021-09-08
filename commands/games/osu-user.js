@@ -28,63 +28,87 @@ module.exports = {
 
         const canvas = createCanvas(960, 160)
         const ctx = canvas.getContext('2d')
+
+        // Avatar
         const userdisplay = await loadImage(`https://a.ppy.sh/${user[0].user_id}`)
         ctx.drawImage(userdisplay, 15, 15, 128, 128)
-        const background = await loadImage('https://prince527.reeee.ee/571rBMXMs.png')
+
+        // Background
+        const background = await loadImage('./assets/osu.png')
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
 
-        ctx.font = 'italic 15px Impact'
+        // Username and rank
+        ctx.font = 'italic 15px Arial'
         ctx.rotate(0)
         ctx.fillStyle = "#ffffff";
+        ctx.textAlign = "left";
         ctx.fillText(`${user[0].username} #${user[0].pp_rank}`, 155, 30)
 
-        ctx.font = 'italic 15px Impact'
+        // Country and rank
+        ctx.font = 'italic 15px Arial'
         ctx.rotate(0)
         ctx.fillStyle = "#ffffff";
+        ctx.textAlign = "left";
         ctx.fillText(`${user[0].country} #${user[0].pp_country_rank}`, 155, 55)
 
-        ctx.font = 'italic 15px Impact'
+        // pp
+        ctx.font = 'italic 15px Arial'
         ctx.rotate(0)
         ctx.fillStyle = "#ffffff";
-        ctx.fillText(`${Math.round(user[0].pp_raw)}pp`, 575, 30)
+        ctx.textAlign = "right";
+        ctx.fillText(`${Math.round(user[0].pp_raw)}pp`, 633, 30)
 
-        ctx.font = 'italic 13px Impact'
+        // Accuracy
+        ctx.font = 'italic 13px Arial'
         ctx.rotate(0)
         ctx.fillStyle = "#ffffff";
-        ctx.fillText(`${Math.round(user[0].accuracy)}% acc`, 570, 55)
+        ctx.textAlign = "right";
+        ctx.fillText(`${Math.round(user[0].accuracy)}% acc`, 628, 55)
 
-        ctx.font = '13px Impact'
+        // Rank ssh
+        ctx.font = '13px Arial'
         ctx.rotate(0)
         ctx.fillStyle = "#ffffff";
-        ctx.fillText(`${user[0].count_rank_ssh}`, 680, 60)
+        ctx.textAlign = "center";
+        ctx.fillText(`${user[0].count_rank_ssh}`, 685, 60)
 
-        ctx.font = '13px Impact'
+        // Rank ss
+        ctx.font = '13px Arial'
         ctx.rotate(0)
         ctx.fillStyle = "#ffffff";
-        ctx.fillText(`${user[0].count_rank_ss}`, 725, 60)
+        ctx.textAlign = "center";
+        ctx.fillText(`${user[0].count_rank_ss}`, 730, 60)
 
-        ctx.font = '13px Impact'
+        // Rank sh
+        ctx.font = '13px Arial'
         ctx.rotate(0)
         ctx.fillStyle = "#ffffff";
-        ctx.fillText(`${user[0].count_rank_sh}`, 768, 60)
+        ctx.textAlign = "center";
+        ctx.fillText(`${user[0].count_rank_sh}`, 772, 60)
 
-        ctx.font = '13px Impact'
+        // Rank s
+        ctx.font = '13px Arial'
         ctx.rotate(0)
         ctx.fillStyle = "#ffffff";
-        ctx.fillText(`${user[0].count_rank_s}`, 805, 60)
+        ctx.textAlign = "center";
+        ctx.fillText(`${user[0].count_rank_s}`, 815, 60)
 
-        ctx.font = '13px Impact'
+        // Rank a
+        ctx.font = '13px Arial'
         ctx.rotate(0)
         ctx.fillStyle = "#ffffff";
-        ctx.fillText(`${user[0].count_rank_a}`, 850, 60)
+        ctx.textAlign = "center";
+        ctx.fillText(`${user[0].count_rank_a}`, 860, 60)
 
-        ctx.font = '15px Impact'
+        // Level
+        ctx.font = '15px Arial'
         ctx.rotate(0)
         ctx.fillStyle = "#ffffff";
-        ctx.fillText(`${Math.round(user[0].level)}`, 900, 50)
+        ctx.textAlign = "center";
+        ctx.fillText(`${Math.round(user[0].level)}`, 907, 49)
 
         const attachment = new MessageAttachment(canvas.toBuffer(), 'osu.png');
         message.channel.send({ files: [attachment] })
-      })
+      }).catch(err => message.reply("User does not exist!"))
     }
   }

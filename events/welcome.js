@@ -1,5 +1,6 @@
 const client = require('../index');
 const Schema = require('../models/welcome');
+const { welcomecard } = require('popcat-wrapper');
 const { MessageAttachment } = require('discord.js');
 const { drawCard } = require('discord-welcome-card');
 
@@ -12,7 +13,7 @@ client.on("guildMemberAdd", async(member) => {
 
         if(await client.mongo_quick.get(`welcome-type-${member.guild.id}`) === "simple") {
 
-          const simple_welcome = new MessageAttachment(`https://api.popcat.xyz/welcomecard?background=https://cdn.discordapp.com/attachments/850808002545319957/859359637106065408/bg.png&text1=${member.user.username}&text2=Welcome+To+${member.guild.name}&text3=Member+${member.guild.memberCount}&avatar=${member.user.displayAvatarURL({ format:  "png" })}`, `welcome-${member.guild.id}.png`)
+          const simple_welcome = new MessageAttachment(await welcomecard("https://cdn.discordapp.com/attachments/850808002545319957/859359637106065408/bg.png", member.user.displayAvatarURL({ format:  "png" }), member.user.username, `Welcome To ${member.guild.name}`, `Member ${member.guild.memberCount}`), `welcome-${member.guild.id}.png`)
 
           channel.send({ files: [simple_welcome] });
 

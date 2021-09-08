@@ -1,3 +1,4 @@
+const simplydjs = require('simply-djs');
 const client = require("../index");
 
 client.on("interactionCreate", async (interaction) => {
@@ -135,4 +136,6 @@ client.on("interactionCreate", async (interaction) => {
         }
 
     }
+
+    simplydjs.clickBtn(interaction)
 });

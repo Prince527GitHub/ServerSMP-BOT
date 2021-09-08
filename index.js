@@ -1,4 +1,5 @@
-const { Client, Collection, MessageEmbed } = require("discord.js");
+const { Client, Collection, MessageEmbed, WebhookClient } = require("discord.js");
+const fetch = require('node-fetch').default;
 require('dotenv').config()
 
 // Settings check
@@ -35,10 +36,10 @@ if (process.env.DISTOKEN !== "false") {
     statsInterval: 4000000
   }, client);
   disbot.on("postServers", () => {
-    console.log("Server count ✅");
+    console.log("Server count ✔️");
   });
   disbot.on("postShards", () => {
-    console.log("Shards count ✅");
+    console.log("Shards count ✔️");
   });
 }
 
@@ -65,7 +66,29 @@ mongoose.connect(process.env.MONGO, {
   useFindAndModify: true,
   useUnifiedTopology: true,
   useNewUrlParser: true,
-}).then(console.log('MongoDB ✅'));
+});
+
+mongoose.connection.on('connected', () => console.log('MongoDB ✔️'));
+mongoose.connection.on('disconnected', () => console.log('MongoDB ❌'));
+mongoose.connection.on('error', (err) => {
+  console.log(err);
+  if(process.env.WEBHOOK || process.env.WEBHOOK !== false) {
+    fetch(process.env.WEBHOOK)
+    .then(response => response.json())
+    .then(data => {
+      const embedMongo = new MessageEmbed()
+        .setAuthor(`An error occurred | MongoDB`, "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F9%2F97%2FDialog-error-round.svg%2F768px-Dialog-error-round.svg.png&f=1&nofb=1")
+        .setDescription(`\`\`\`${err}\`\`\``)
+        .setColor("RED")
+        .setTimestamp()
+
+      simplydjs.webhooks(client, {
+        chid: data.channel_id, // required
+        embed: embedMongo,
+      });
+    });
+  }
+});
 
 // Discord-XP
 const Levels = require("discord-xp");
@@ -82,6 +105,15 @@ client.db_mongo = new MongoDB(process.env.MONGO, "ark.db");
 const db_mongo_quick = require('@prince527/beta.mdb')
 
 client.mongo_quick = new db_mongo_quick.Database(process.env.MONGO, { keepAliveInitialDelay: 300000 })
+
+// WebHook (this is for errors)
+if(process.env.WEBHOOK || process.env.WEBHOOK !== false) {
+  fetch(process.env.WEBHOOK)
+  .then(response => response.json())
+  .then(data => {
+    client.webhookError = new WebhookClient({ id: data.id, token: data.token });
+  })
+}
 
 // Nuggies
 const Nuggies = require('nuggies');
@@ -176,13 +208,13 @@ player
   ]}))
   .on("addSong", (queue, song) => queue.textChannel.send({ embeds: [
     new MessageEmbed()
-        .setDescription(`✅ **|** **[${song.name}](${song.url})** has been added to the queue`)
+        .setDescription(`✔️ **|** **[${song.name}](${song.url})** has been added to the queue`)
         .setThumbnail(`${song.thumbnail}`)
         .setColor("#5400FF")
   ]}))
   .on("playList", (message, queue, playlist, song) => message.channel.send({ embeds: [
     new MessageEmbed()
-        .setDescription(`✅ **|** All videos in **[${playlist.name}](${playlist.url})** playlist has been added to the queue`)
+        .setDescription(`✔️ **|** All videos in **[${playlist.name}](${playlist.url})** playlist has been added to the queue`)
         .setThumbnail(playlist.thumbnail)
         .setColor("#5400FF")
   ]}))

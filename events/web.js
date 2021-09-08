@@ -36,5 +36,5 @@ client.on('ready', async () => {
     res.status(200).send(clientDetails)
   })
   app.listen(_PORT)
-  console.log(`WebServer ✅ (${_PORT})`);
+  console.log(`WebServer ✔️ (${_PORT})`);
 })
