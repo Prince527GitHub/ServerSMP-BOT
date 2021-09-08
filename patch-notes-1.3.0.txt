@@ -1,0 +1,26 @@
+**Change log v1.3.0**
+
+**COMMANDS** - `options`
+
+ - Added starboard settings.
+ 
+ **COMMANDS** - `text-art`
+
+ - Added error reporting.
+ - Made it better.
+
+**COMMANDS** - `calculator`
+
+ - Created this command.
+
+ **Other**
+
+ **OTHER** - `.env`
+
+ - Added `WEBHOOK` setting.
+
+ **OTHER - `index`
+
+ - Added webhooks error reporting.
+
+**There was more but i'm lazy!**
