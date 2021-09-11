@@ -13,7 +13,6 @@
 Welcome To ServerSMP Github!
 
 **Discord bots**
- - `ServerSMP - MusicBot` [link](https://discord.com/oauth2/authorize?client_id=791051138459762729&permissions=53857345&scope=bot)
  - `ServerSMP - BOT (v13)` [link](https://github.com/Prince527GitHub/ServerSMP/tree/ServerSMP-BOT-(v13))
  - `ServerSMP - BOT (v12)` [link](https://github.com/Prince527GitHub/ServerSMP/tree/ServerSMP-BOT-(v12))
  - `ServerSMP - BOT (Python)` [link](https://github.com/Prince527GitHub/ServerSMP/tree/ServerSMP-BOT-(Python))
