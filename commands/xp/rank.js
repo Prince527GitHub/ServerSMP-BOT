@@ -80,7 +80,7 @@ module.exports = {
                 let rank;
                 if(background !== "default") {
                   rank = new canvacord.Rank()
-                    .setAvatar(message.author.displayAvatarURL({format: 'png', size: 512}))
+                    .setAvatar(mentioned_user.user.displayAvatarURL({format: 'png', size: 512}))
                     .setBackground("IMAGE", background)
                     .setCurrentXP(user.xp)
                     .setRequiredXP(Levels.xpFor(user.level + 1))
