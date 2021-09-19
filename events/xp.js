@@ -9,8 +9,8 @@ client.on("messageCreate", async (message) => {
         const randomXp = Math.floor(Math.random() * 9) + 1; //Random amont of XP until the number you want + 1
         const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomXp);
         if (hasLeveledUp) {
-            if(db.has(`xp-channel-${message.guild.id}`)=== true) {
-              const channel = message.guild.channels.cache.get(await client.mongo_quick.get(`xp-channel-${message.guild.id}`));
+            if(db.has(`xp-channel-${message.guild.id}`) === true) {
+              const channel = message.guild.channels.cache.get(await db.get(`xp-channel-${message.guild.id}`));
               const user = await Levels.fetch(message.author.id, message.guild.id);
               channel.send(`${message.author} leveled up to ${user.level}! Keep it going!`);
             } else {

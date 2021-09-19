@@ -1,0 +1,19 @@
+{
+    "website": {
+        "email": "prince527gaming@gmail.com",
+        "url": "http://localhost:8000"
+    },
+    "card": {
+        "title": "ServerSMP - BOT",
+        "description": "A bot for all your needs! May it be moderation, info on things from your server, or even random pictures of ducks. We have it all!",
+        "image": "https://github.com/Prince527GitHub/ServerSMP/blob/web/assets/banner-bot.png?raw=true"
+    },
+    "information": {
+        "description": "To manage your bot, go to the <a href='/manage'>Server Management page</a>.<br><br>For a list of commands, go to the <a href='/commands'>Commands page</a>."
+    },
+    "config": {
+        "domain": "http://localhost",
+        "redirectUri": "http://localhost:8000/discord/callback",
+        "port": 8000
+    }
+}

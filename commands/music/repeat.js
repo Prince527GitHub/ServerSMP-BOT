@@ -12,6 +12,11 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, message, args) => {
+        if(process.env.MUSIC === "false") return message.reply({ embeds: [
+          new MessageEmbed()
+            .setAuthor(`${client.user.username} will not be doing music anymore, please \`${client.prefix(message)}youtube\``)
+            .setColor("BLUE")
+        ]})
         if(!message.member.voice.channel) return message.channel.send({ embed: [
             new MessageEmbed()
                 .setDescription("Sorry, but you need to be in a voice channel to do that")

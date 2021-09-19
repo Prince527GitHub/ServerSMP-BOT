@@ -3,6 +3,8 @@ const progressbar = require('string-progressbar');
 const canvacord = require("canvacord");
 const Levels = require('discord-xp');
 const db = require('quick.db');
+const guildRankcard = require("../../models/guild-rankcard");
+const userRankcard = require("../../models/user-rankcard");
 
 module.exports = {
     name: "rank",
@@ -37,23 +39,77 @@ module.exports = {
                 } catch(err) {
                   status = "offline"
                 }
+                let progresscolor;
+                let background;
+                let statustype;
+                await userRankcard.findOne({ User: mentioned_user.id }, async(err, data) => {
+                  if(data) {
+                    progresscolor = data.ProgressBar
+                    statustype = data.StatusStyle
+                    if(data.StatusType !== "false") {
+                      status = data.StatusType
+                    }
+                    if(data.Background === "default") {
+                      background = "default"
+                    } else {
+                      background = data.Background
+                    }
+                  } else {
+                    await guildRankcard.findOne({ Guild: mentioned_user.guild.id }, async(err, data) => {
+                      if(data) {
+                        if(data.ProgressOption === true) {
+                          progresscolor = data.ProgressBar
+                        }
+                        if(data.BackgroundOption === true) {
+                          if(data.Background === "default") {
+                            background = "default"
+                          } else {
+                            background = data.Background
+                          }
+                        }
+                        statustype = data.StatusStyle
+                      } else {
+                        progresscolor = "#FFFFFF"
+                        background = "default"
+                      }
+                    })
+                  }
+                })
                 const user = await Levels.fetch(mentioned_user.id, message.guild.id, true)
                 if (!user) return message.reply("That user dont have xp.")
-                const rank = new canvacord.Rank()
+                let rank;
+                if(background !== "default") {
+                  rank = new canvacord.Rank()
+                    .setAvatar(message.author.displayAvatarURL({format: 'png', size: 512}))
+                    .setBackground("IMAGE", background)
+                    .setCurrentXP(user.xp)
+                    .setRequiredXP(Levels.xpFor(user.level + 1))
+                    .setRank(user.position)
+                    .setLevel(user.level)
+                    .setStatus(status, statustype)
+                    .setProgressBar(progresscolor)
+                    .renderEmojis(true)
+                    .setOverlay("#FFFFFF", 0, false)
+                    .setUsername(mentioned_user.user.username)
+                    .setDiscriminator(mentioned_user.user.discriminator);
+                } else {
+                  rank = new canvacord.Rank()
                     .setAvatar(mentioned_user.user.displayAvatarURL({format: 'png', size: 512}))
                     .setCurrentXP(user.xp)
                     .setRequiredXP(Levels.xpFor(user.level + 1))
                     .setRank(user.position)
                     .setLevel(user.level)
-                    .setStatus(status)
-                    .setProgressBar("#FFFFFF")
+                    .setStatus(status, statustype)
+                    .setProgressBar(progresscolor)
+                    .renderEmojis(true)
                     .setUsername(mentioned_user.user.username)
                     .setDiscriminator(mentioned_user.user.discriminator);
+                }
                 rank.build()
-                  .then(data => {
-                    const attachment = new MessageAttachment(data, "RankCard.png");
-                    message.channel.send({ files: [attachment] });
-                  })
+                .then(data => {
+                  const attachment = new MessageAttachment(data, "RankCard.png");
+                  message.channel.send({ files: [attachment] });
+                })
               }
             } else {
               try {
@@ -61,23 +117,77 @@ module.exports = {
               } catch(err) {
                 status = "offline"
               }
+              let progresscolor;
+              let background;
+              let statustype;
+              await userRankcard.findOne({ User: message.author.id }, async(err, data) => {
+                if(data) {
+                  progresscolor = data.ProgressBar
+                  statustype = data.StatusStyle
+                  if(data.StatusType !== "false") {
+                    status = data.StatusType
+                  }
+                  if(data.Background === "default") {
+                    background = "default"
+                  } else {
+                    background = data.Background
+                  }
+                } else {
+                  await guildRankcard.findOne({ Guild: message.guild.id }, async(err, data) => {
+                    if(data) {
+                      if(data.ProgressOption === true) {
+                        progresscolor = data.ProgressBar
+                      }
+                      if(data.BackgroundOption === true) {
+                        if(data.Background === "default") {
+                          background = "default"
+                        } else {
+                          background = data.Background
+                        }
+                      }
+                      statustype = data.StatusStyle
+                    } else {
+                      progresscolor = "#FFFFFF"
+                      background = "default"
+                    }
+                  })
+                }
+              })
               const user = await Levels.fetch(message.author.id, message.guild.id, true)
               if (!user) return message.reply("You dont have xp. try to send some messages.")
-              const rank = new canvacord.Rank()
+              let rank;
+              if(background !== "default") {
+                rank = new canvacord.Rank()
+                  .setAvatar(message.author.displayAvatarURL({format: 'png', size: 512}))
+                  .setBackground("IMAGE", background)
+                  .setCurrentXP(user.xp)
+                  .setRequiredXP(Levels.xpFor(user.level + 1))
+                  .setRank(user.position)
+                  .setLevel(user.level)
+                  .setStatus(status, statustype)
+                  .setProgressBar(progresscolor)
+                  .setOverlay("#FFFFFF", 0, false)
+                  .renderEmojis(true)
+                  .setUsername(message.author.username)
+                  .setDiscriminator(message.author.discriminator);
+              } else {
+                rank = new canvacord.Rank()
                   .setAvatar(message.author.displayAvatarURL({format: 'png', size: 512}))
                   .setCurrentXP(user.xp)
                   .setRequiredXP(Levels.xpFor(user.level + 1))
                   .setRank(user.position)
                   .setLevel(user.level)
-                  .setStatus(status)
-                  .setProgressBar("#FFFFFF")
+                  .setStatus(status, statustype)
+                  .setProgressBar(progresscolor)
+                  .renderEmojis(true)
                   .setUsername(message.author.username)
                   .setDiscriminator(message.author.discriminator);
+              }
               rank.build()
-                .then(data => {
-                  const attachment = new MessageAttachment(data, "RankCard.png");
-                  message.channel.send({ files: [attachment] });
-                })
+              .then(data => {
+                const attachment = new MessageAttachment(data, "RankCard.png");
+                message.channel.send({ files: [attachment] });
+              })
             }
           } else {
             return message.reply("XP system is disabled on this server!");

@@ -29,4 +29,7 @@ client.on("ready", async() => {
   // Giveaway
   //Nuggies.giveaways.startAgain(client);
 
+  // Dashboard
+  require("../dashboard/index.js")(client);
+
 });

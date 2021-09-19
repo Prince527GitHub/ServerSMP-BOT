@@ -1,5 +1,6 @@
 const { Client, Collection, MessageEmbed, WebhookClient } = require("discord.js");
 const fetch = require('node-fetch').default;
+const chalk = require('chalk');
 require('dotenv').config()
 
 // Settings check
@@ -55,6 +56,7 @@ const logs = require('discord-logs');
 logs(client);
 
 // Global Variables
+client.invites = new Collection();
 client.commands = new Collection();
 client.slashCommands = new Collection();
 client.config = process.env;
@@ -196,25 +198,29 @@ const player = new DisTube.DisTube(client, {
 	emptyCooldown: 0,
 	leaveOnFinish: true,
 	leaveOnStop: true,
+  youtubeDL: true,
 	plugins: [new SoundCloudPlugin(), new SpotifyPlugin()],
 });
 
 player
-  .on("playSong", (queue, song) => queue.textChannel.send({ embeds: [
-    new MessageEmbed()
-        .setDescription(`▶ **|** Started playing: **[${song.name}](${song.url})**`)
-        .setThumbnail(`${song.thumbnail}`)
-        .setColor("#5400FF")
-  ]}))
+  .on("playSong", (queue, song) => {
+    queue.textChannel.send({ embeds: [
+      new MessageEmbed()
+          .setDescription(`▶ **|** Started playing: **[${song.name}](${song.url})**`)
+          .setThumbnail(`${song.thumbnail}`)
+          .setColor("#5400FF")
+    ]});
+    console.log(chalk.green(`[Music]: "${song.name}" on ${queue.guild} has started`));
+  })
   .on("addSong", (queue, song) => queue.textChannel.send({ embeds: [
     new MessageEmbed()
-        .setDescription(`✔️ **|** **[${song.name}](${song.url})** has been added to the queue`)
+        .setDescription(`✅ **|** **[${song.name}](${song.url})** has been added to the queue`)
         .setThumbnail(`${song.thumbnail}`)
         .setColor("#5400FF")
   ]}))
   .on("playList", (message, queue, playlist, song) => message.channel.send({ embeds: [
     new MessageEmbed()
-        .setDescription(`✔️ **|** All videos in **[${playlist.name}](${playlist.url})** playlist has been added to the queue`)
+        .setDescription(`✅ **|** All videos in **[${playlist.name}](${playlist.url})** playlist has been added to the queue`)
         .setThumbnail(playlist.thumbnail)
         .setColor("#5400FF")
   ]}))
@@ -266,7 +272,8 @@ player
         new MessageEmbed()
             .setDescription(`⏹ **|** The music has ended, use **\`play\`** to play some music`)
             .setColor("5400FF")
-    ]})
+    ]});
+    console.log(chalk.green(`[Music]: Music has stopped on ${queue.guild}`));
   })
   .on("empty", (queue) => {
     queue.textChannel.send({ embeds: [

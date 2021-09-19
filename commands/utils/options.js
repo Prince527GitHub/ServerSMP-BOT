@@ -10,7 +10,6 @@ const prefixSchema = require('../../models/prefix');
 const SchemaGlobal = require('../../models/global');
 const SchemaCMD = require('../../models/command');
 const Schema = require('../../models/invites');
-const { pagination } = require('reconlx');
 const db = require('quick.db');
 
 module.exports = {
@@ -32,39 +31,6 @@ module.exports = {
 
     if(!query) {
         const embed = new MessageEmbed()
-            .setTitle("Options - Schema")
-            .setDescription(`
-                **Options**:
-                \`${prefix}options list\`
-                **Prefix**:
-                \`${prefix}options prefix [ set | reset ] [ new prefix | nothing ]\`
-                **Invite**:
-                \`${prefix}options invite [ remove | set ] [ nothing | #channel ]\`
-                **XP**:
-                \`${prefix}options xp [ off | on | channel ] [ set | remove ] [ #channel | nothing ]\`
-                **Captcha**:
-                \`${prefix}options captcha [ on | off ]\`
-                **NSFW**:
-                \`${prefix}options nsfw [ on | off | channel ] [ set | remove ] [ | #channel | nothing ]\`
-                **Chatbot**:
-                \`${prefix}options chatbot [ set | remove ] [ #channel | nothing ]\`
-                **ModLogs**:
-                \`${prefix}options modlogs [ remove | set | options ] [ nothing | #channel | nothing ]\`
-                **Global**:
-                \`${prefix}options global [ set | remove ] [ #channel | nothing ]\`
-                **Blacklist**:
-                \`${prefix}options blacklist [ add | remove | display ] [ word | word | nothng ]\`
-                **Goodbye**:
-                \`${prefix}options goodbye [ set | remove | show ] [ { subtitle | title | { dark | sakura | blue | bamboo | desert | code } } | nothing | nothing ] [ text | text | #channel ]\`
-                **Welcome**:
-                \`${prefix}options welcome [ set | remove ] [ { simple | custom } | nothing ] [ #channel | { dark | sakura | blue | bamboo | desert | code } ] [ nothing | #channel ]\`
-                **CMD**:
-                \`${prefix}options cmd [ enable | disable ] [ cmd name ]\`
-                **Autorole**:
-                \`${prefix}options autorole [ on | off ] [ @role | nothing ]\`
-            `)
-            .setColor("RANDOM")
-        const embed2 = new MessageEmbed()
             .setTitle("Options - Exsemple")
             .setDescription(`
                 **Options**: list
@@ -176,13 +142,7 @@ module.exports = {
                 \`${prefix}options autorole off\`
             `)
             .setColor("RANDOM")
-        return pagination({
-            embeds: [embed, embed2],
-            message: message,
-            channel: message.channel,
-            author: message.author,
-            time: 50000,
-        })
+        return message.channel.send({ embeds: [embed] });
     }
 
         if(query === "invite") {
@@ -307,6 +267,19 @@ module.exports = {
                   new SchemaModLogs({
                     Guild: message.guild.id,
                     Channel: channel.id,
+                    chc: false,
+                    chd: false,
+                    chpu: false,
+                    chu: false,
+                    ed: false,
+                    ec: false,
+                    eu: false,
+                    gba: false,
+                    gbr: false,
+                    gma: false,
+                    gmr: false,
+                    gmc: false,
+                    gmu: false,
                   }).save();
                   message.channel.send(`${channel} has been saved as the modlogs channel!;`)
                 })
@@ -314,19 +287,6 @@ module.exports = {
                 SchemaModLogs.findOne({ Guild: message.guild.id }, async(err, data) => {
                     if(data) {
                       data.delete();
-                      if(await client.mongo_quick.has(`modlog-chc-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-chc-${message.guild.id}`);
-                      if(await client.mongo_quick.has(`modlog-chd-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-chd-${message.guild.id}`);
-                      if(await client.mongo_quick.has(`modlog-chpu-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-chpu-${message.guild.id}`);
-                      if(await client.mongo_quick.has(`modlog-chu-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-chu-${message.guild.id}`);
-                      if(await client.mongo_quick.has(`modlog-ed-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-ed-${message.guild.id}`);
-                      if(await client.mongo_quick.has(`modlog-ec-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-ec-${message.guild.id}`);
-                      if(await client.mongo_quick.has(`modlog-eu-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-eu-${message.guild.id}`);
-                      if(await client.mongo_quick.has(`modlog-gba-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-gba-${message.guild.id}`);
-                      if(await client.mongo_quick.has(`modlog-gbr-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-gbr-${message.guild.id}`);
-                      if(await client.mongo_quick.has(`modlog-gma-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-gma-${message.guild.id}`);
-                      if(await client.mongo_quick.has(`modlog-gmr-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-gmr-${message.guild.id}`);
-                      if(await client.mongo_quick.has(`modlog-gmc-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-gmc-${message.guild.id}`);
-                      if(await client.mongo_quick.has(`modlog-gmu-${message.guild.id}`) === true) await client.mongo_quick.remove(`modlog-gmu-${message.guild.id}`);
                       message.channel.send("Deleted modlogs channel!");
                     }
                     if(!data) return message.reply("This server has no modlogs channel!");
@@ -434,6 +394,7 @@ module.exports = {
                 const res = args[2]
                 if(!res) return message.channel.send('Please specify a prefix to change to.')
                 if (res.match(/^(?:<@!?)?(\d{16,22})>/gi) || res.match(/^(?:<#?)?(\d{16,22})>$/gi) || res.match(/^(?:<:(?![\n])[()#$@-\w]+:?)?(\d{16,22})>$/gi)) return message.reply({content: `if u break me i will kill you`});
+                if(res.content.length > 10) return message.reply("No prefix longer then 10.")
                 prefixSchema.findOne({ Guild : message.guild.id }, async(err, data) => {
                     if(err) throw err;
                     if(data) {
