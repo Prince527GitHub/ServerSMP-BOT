@@ -1,0 +1,56 @@
+```
+					Check the wiki for more info!
+   _____ _                              _               ___    ___   ___  
+  / ____| |                            | |             |__ \  / _ \ / _ \ 
+ | |    | |__   __ _ _ __   __ _  ___  | | ___   __ _     ) || | | | | | |
+ | |    | '_ \ / _` | '_ \ / _` |/ _ \ | |/ _ \ / _` |   / / | | | | | | |
+ | |____| | | | (_| | | | | (_| |  __/ | | (_) | (_| |  / /_ | |_| | |_| |
+  \_____|_| |_|\__,_|_| |_|\__, |\___| |_|\___/ \__, | |____(_)___(_)___/ 
+                            __/ |                __/ |                    
+                           |___/                |___/                     
+```
+**Commands:**
+
+`XP`
+Created command `rankcard`, it allows you to modify your RankCard.
+Changed `rank` command to have support for custom `RankCards` for the user and guild.
+
+`Music`
+All music commands now have a way to be turned off.
+
+`Utils`
+Change some stuff in the options command.
+
+**Events:**
+
+`Invite`
+Well it now work's kinda I changed the package a little bit so it would not crash.
+
+`Logs`
+Fix some of the checks.
+
+`NQN`
+So the bot now has an `BETA` nqn feature.
+
+**Other:**
+
+Changed the name of the catagory `custom commands` to `customcommands`.
+Changed `.env` to have the new stuff.
+> Added `MUSIC` to turn on or off music support.
+> Added `SECRET` this is your client secret for the dashboard.
+> Added `RANKIMAG` this needs to be a channel.
+>  - So `RANKIMAG` is for when a user wants a custom image in there `RankCard` it will send a requiest to that channel to approve or deny the image.
+Deleted the old website because we now have the dashboard.
+
+```
+╔═══╗         ╔╗  ╔╗                ╔╗
+╚╗╔╗║         ║║  ║║                ║║
+ ║║║║╔══╗ ╔══╗║╚═╗║╚═╗╔══╗╔══╗ ╔═╗╔═╝║
+ ║║║║╚ ╗║ ║══╣║╔╗║║╔╗║║╔╗║╚ ╗║ ║╔╝║╔╗║
+╔╝╚╝║║╚╝╚╗╠══║║║║║║╚╝║║╚╝║║╚╝╚╗║║ ║╚╝║
+╚═══╝╚═══╝╚══╝╚╝╚╝╚══╝╚══╝╚═══╝╚╝ ╚══╝
+```
+Yep the bot now has a dashboard!
+
+It will allow the guild to change some stuff (Still in BETA).
+https://prince527.reeee.ee/5aoAvuGQq.png
