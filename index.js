@@ -74,20 +74,16 @@ mongoose.connection.on('connected', () => console.log('MongoDB ✔️'));
 mongoose.connection.on('disconnected', () => console.log('MongoDB ❌'));
 mongoose.connection.on('error', (err) => {
   console.log(err);
-  if(process.env.WEBHOOK || process.env.WEBHOOK !== false) {
-    fetch(process.env.WEBHOOK)
-    .then(response => response.json())
-    .then(data => {
-      const embedMongo = new MessageEmbed()
-        .setAuthor(`An error occurred | MongoDB`, "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F9%2F97%2FDialog-error-round.svg%2F768px-Dialog-error-round.svg.png&f=1&nofb=1")
-        .setDescription(`\`\`\`${err}\`\`\``)
-        .setColor("RED")
-        .setTimestamp()
+  if(process.env.WEBHOOK !== false) {
+    const embedMongo = new MessageEmbed()
+      .setAuthor(`An error occurred | MongoDB`, "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F9%2F97%2FDialog-error-round.svg%2F768px-Dialog-error-round.svg.png&f=1&nofb=1")
+      .setDescription(`\`\`\`${err}\`\`\``)
+      .setColor("RED")
+      .setTimestamp()
 
-      simplydjs.webhooks(client, {
-        chid: data.channel_id, // required
-        embed: embedMongo,
-      });
+    simplydjs.webhooks(client, {
+      chid: data.channel_id, // required
+      embed: embedMongo,
     });
   }
 });
@@ -109,12 +105,8 @@ const db_mongo_quick = require('@prince527/beta.mdb')
 client.mongo_quick = new db_mongo_quick.Database(process.env.MONGO, { keepAliveInitialDelay: 300000 })
 
 // WebHook (this is for errors)
-if(process.env.WEBHOOK || process.env.WEBHOOK !== false) {
-  fetch(process.env.WEBHOOK)
-  .then(response => response.json())
-  .then(data => {
-    client.webhookError = new WebhookClient({ id: data.id, token: data.token });
-  })
+if(process.env.WEBHOOK !== false) {
+  client.webhookError = new WebhookClient({ url: process.env.WEBHOOK });
 }
 
 // Nuggies

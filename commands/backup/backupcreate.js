@@ -20,7 +20,7 @@ module.exports = {
             message.author.send("The backup has been created! To load it, type this command on the server of your choice: `"+p+"backupload "+backupData.id+"`!");
             message.channel.send(":white_check_mark: Backup successfully created. The backup ID was sent in dm!");
         }).catch((err) => {
-          if(!process.env.WEBHOOK || process.env.WEBHOOK === false) return message.reply("An error occurred, please check if the bot is administrator!");
+          if(process.env.WEBHOOK === false) return message.reply("An error occurred, please check if the bot is administrator!");
           client.webhookError.send({
             username: message.client.user.username,
             avatarURL: message.client.user.displayAvatarURL(),
@@ -35,7 +35,7 @@ module.exports = {
           return message.reply("An error occurred and a report was sent to the owner but also check if the bot is administrator!.")
         });
       } catch (err) {
-        if(!process.env.WEBHOOK || process.env.WEBHOOK === false) return message.reply("An error occurred, please check if the bot is administrator!");
+        if(process.env.WEBHOOK === false) return message.reply("An error occurred, please check if the bot is administrator!");
         client.webhookError.send({
           username: message.client.user.username,
           avatarURL: message.client.user.displayAvatarURL(),

@@ -19,7 +19,7 @@ module.exports = {
             new MessageEmbed()
                 .setAuthor(`${user_find.user.tag}`)
                 .setColor("RANDOM")
-                .setImage(user_find.user.displayAvatarURL({ dynamic: true }))
+                .setImage(user_find.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         ]});
     },
 };

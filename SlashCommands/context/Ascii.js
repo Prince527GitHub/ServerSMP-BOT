@@ -11,9 +11,7 @@ module.exports = {
    * @param {String[]} args
    */
   run: async (client, interaction, args) => {
-    const msg = await interaction.channel.messages.fetch(
-      interaction.targetId
-    );
+    const msg = await interaction.channel.messages.fetch(interaction.targetId);
 
     figlet.text(
       `${msg.content}`,
@@ -21,8 +19,9 @@ module.exports = {
         font: "Standard"
       },
       async (err, data) => {
-        interaction.followUp({ content: `\`\`\`${data}\`\`\`` });
+        interaction.followUp({ content: `\`\`\`${data.slice(0, 1975)}\`\`\`` });
       }
     );
+
   },
 };

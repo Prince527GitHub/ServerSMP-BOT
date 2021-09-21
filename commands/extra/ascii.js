@@ -2,7 +2,7 @@ const { MessageEmbed, Message, Client } = require('discord.js');
 const figlet = require('figlet');
 
 module.exports = {
-    name: 'text-art',
+    name: 'ascii',
     usage: '[ text ]',
     description : "Change your text to ascii art.",
     /**
@@ -17,7 +17,7 @@ module.exports = {
                 font: "",
             }, async(err, data) => {
                 message.channel.send(`\`\`\`${data.slice(0, 1980)}\`\`\``).catch((err) => {
-                    if(!process.env.WEBHOOK || process.env.WEBHOOK === false) return message.reply("An error occurred.");
+                    if(process.env.WEBHOOK === false) return message.reply("An error occurred.");
                     client.webhookError.send({
                         username: message.client.user.username,
                         avatarURL: message.client.user.displayAvatarURL(),
@@ -33,7 +33,7 @@ module.exports = {
                 });
             });
         } catch (err) {
-            if(!process.env.WEBHOOK || process.env.WEBHOOK === false) return message.reply("An error occurred.");
+            if(process.env.WEBHOOK === false) return message.reply("An error occurred.");
             client.webhookError.send({
                 username: message.client.user.username,
                 avatarURL: message.client.user.displayAvatarURL(),
