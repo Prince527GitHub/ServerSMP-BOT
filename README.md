@@ -2,7 +2,7 @@
 
 This bot is not for help! When you dm this bot it will get you in contact with a mod so that he can not help.
 
-![banner](https://github.com/Prince527GitHub/ServerSMP/blob/web/assets/banner-t.n.s.h.b.png?raw=true)
+![banner](https://github.com/Prince527GitHub/ServerSMP/blob/ServerSMP-Web/assets/banner-t.n.s.h.b.png?raw=true)
 
 ## Wiki
 
