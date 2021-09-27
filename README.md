@@ -21,4 +21,5 @@ Welcome To ServerSMP Github!
 
 **Other**
  - [`Wiki`](https://github.com/Prince527GitHub/ServerSMP/wiki)
- - [`Website`](https://serversmp.arpismp.ml/)
+ - [`Website`](https://serversmp.xyz/)
+ - [`API`](https://api.serversmp.xyz/)
