@@ -1,20 +1,27 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "This template provides an easy way to use NodeJS v16 on Replit! As of writing, NodeJS repls have Node v12, which is several years out of date.",
+  "description": "ServerSMP's API.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ."
   },
   "keywords": [],
-  "author": "",
+  "author": "Prince527",
   "license": "ISC",
   "dependencies": {
+    "bad-words": "^3.0.4",
+    "canvas": "^2.8.0",
     "discord.js": "^13.1.0",
     "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "request": "^2.88.2"
+    "express-rate-limit": "^5.4.0",
+    "jimp": "^0.16.1",
+    "mongoose": "^6.0.8",
+    "node-osu": "^2.2.1",
+    "request": "^2.88.2",
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "node": "^16.9.1"
