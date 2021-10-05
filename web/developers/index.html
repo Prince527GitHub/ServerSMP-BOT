@@ -89,11 +89,6 @@
             width: 25px;
         }
 
-        img {
-            image-rendering: pixelated;
-            image-rendering: -moz-crisp-edges;
-        }
-
         .download-button {
             padding-top: 15px;
         }
@@ -111,8 +106,6 @@
             margin-top: 34px;
             padding-top: 30px;
             padding-bottom: 30px;
-            image-rendering: pixelated;
-            image-rendering: -moz-crisp-edges;
         }
 
         ::-webkit-scrollbar {
@@ -142,27 +135,35 @@
 
         <div class="container-sm style-is-cool">
             <div class="row">
-                <div>
+                <div class="col-sm-6">
                     <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
                         <div class="card-body">
-                            <img src="./assets/image/prince.png" alt="Prince" width="180" height="180"></img>
-                            <h5 class="card-title" id="prince-name"></h5>
+                            <img src="./assets/image/prince.png" alt="Prince" width="128" height="128"></img>
+                            <h5 class="card-title">Prince527</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
                         <div class="card-body">
-                            <img src="./assets/image/arpi.png" alt="Arpi" width="180" height="180"></img>
-                            <h5 class="card-title" id="arpi-name"></h5>
+                            <img src="./assets/image/arpi.png" alt="Arpi" width="128" height="128"></img>
+                            <h5 class="card-title">Arpi</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
                         <div class="card-body">
-                            <img src="./assets/image/wam.png" alt="Wam" width="180" height="180"></img>
-                            <h5 class="card-title" id="wam-name"></h5>
+                            <img src="./assets/image/wam.png" alt="Wam" width="128" height="128"></img>
+                            <h5 class="card-title">Wam25</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
+                        <div class="card-body">
+                            <img src="./assets/image/txtur.png" alt="Wam" width="128" height="128"></img>
+                            <h5 class="card-title">txtur</h5>
                         </div>
                     </div>
                 </div>
@@ -185,23 +186,6 @@
 
         function appendData(data) {
             document.getElementById("nav-bar").innerHTML = data.navbar;
-        }
-
-        fetch('https://api.serversmp.xyz/bot')
-            .then(function (response2) {
-                return response2.json();
-            })
-            .then(function (data2) {
-                appendData2(data2);
-            })
-            .catch(function (err2) {
-                console.log('error: ' + err);
-            });
-
-        function appendData2(data2) {
-            document.getElementById("arpi-name").innerHTML = data2.arpi;
-            document.getElementById("prince-name").innerHTML = data2.prince;
-            document.getElementById("wam-name").innerHTML = data2.wam;
         }
     </script>
 
