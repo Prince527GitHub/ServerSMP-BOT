@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="ServerSMP" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://serversmp.xyz" />
+  <meta property="og:image" content="https://serversmp.xyz/assets/image/banner/banner-smp.png" />
+  <meta property="og:description" content="ServerSMP has many projects." />
+  <meta name="description" content="ServerSMP has many projects.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ServerSMP">
+  <meta name="twitter:description" content="ServerSMP has many projects.">
+  <meta name="twitter:image" content="https://serversmp.xyz/assets/image/banner/banner-smp.png">
+  <meta name="theme-color" content="#030303">
+  <title>ServerSMP</title>
+
+
+  <link rel="shortcut icon" href="../../assets/image/page/logo.png">
+
+  <link rel="apple-touch-icon" sizes="144x144" href="../../assets/image/page/logo.png">
+
+  <link rel="apple-touch-icon" sizes="114x114" href="../../assets/image/page/logo.png">
+
+  <link rel="apple-touch-icon" sizes="72x72" href="../../assets/image/page/logo.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="../../assets/image/page/logo.png">
+
+	<link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+  <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+  <link href="../../assets/css/style.css" rel="stylesheet">
+</head>
+
+<div id="nav-bar"></div>
+
+<body style="padding-bottom:30px">
+  <div class="container-sm">
+
+    <div style="padding-top: 5px;">
+      <h1>8ball</h1>
+
+      <h2>
+        <span id="ball-emoji"></span>
+        <span id="ball-text"></span>
+      </h2>
+    </div>
+    
+  <div style="padding-top:5px;" class="container-sm style-is-cool">
+    <h5 style="color:orange;">HTML</h5>
+    <pre><code style="text-align:left;">
+      &lth3&gt
+        &ltspan id="ball-emoji"&gt&lt/span&gt
+        &ltspan id="ball-text"&gt&lt/span&gt
+      &lt/h3&gt
+    </code></pre>
+    <h5 style="color:yellow;">Javascript</h5>
+    <pre><code style="text-align:left;">
+      async function dataNew() {
+        const data = await fetchUrl('https://api.serversmp.xyz/8ball');
+        document.getElementById("ball-emoji").innerHTML = data.emoji;
+        document.getElementById("ball-text").innerHTML = data.text;
+        document.getElementById('ball-text').style.color = data.color;
+      }
+      dataNew()
+    </code></pre>
+    <h6>Code may not work if you copy it.</h6>
+  </div>
+
+  </div>
+  <script src="../../assets/js/fetch.js"></script>
+  <script>
+    async function dataNew() {
+      const data = await fetchUrl('https://api.serversmp.xyz/8ball');
+      document.getElementById("ball-emoji").innerHTML = data.emoji;
+      document.getElementById("ball-text").innerHTML = data.text;
+      document.getElementById('ball-text').style.color = data.color;
+    }
+    dataNew()
+    async function dataNew2() {
+      const data = await fetchUrl('https://api.serversmp.xyz/assets/json/navbar.json');
+      document.getElementById("nav-bar").innerHTML = data.navbar;
+    }
+    dataNew2()
+  </script>
+
+</body>
+
+</html>
