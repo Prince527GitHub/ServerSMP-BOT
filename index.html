@@ -69,7 +69,7 @@
 <script src="./assets/js/fetch.js"></script>
 <script>
 	async function dataNew() {
-		const data = await fetchUrl('https://api.serversmp.xyz/assets/json/navbar.json');
+		const data = await fetchUrl('./assets/json/navbar.json');
 		document.getElementById("nav-bar").innerHTML = data.navbar;
 	}
 	dataNew()
