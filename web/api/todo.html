@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- ================= Discord web embed & description/title & twitter ================== -->
+
+	<meta property="og:locale" content="en_US">
+	<meta property="og:title" content="ServerSMP - API" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://api.serversmp.xyz" />
+	<meta property="og:image" content="https://api.serversmp.xyz/assets/image/banner-smp.png" />
+	<meta property="og:description" content="ServerSMP - API, is an api!" />
+	<meta name="description" content="ServerSMP - API, is an api!">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="ServerSMP - API">
+	<meta name="twitter:description" content="ServerSMP - API, is an api!">
+	<meta name="twitter:image" content="https://api.serversmp.xyz/assets/image/banner-smp.png">
+	<meta name="theme-color" content="#030303">
+	<title>ServerSMP - API</title>
+
+	<!-- ================= Favicon ================== -->
+
+	<!-- Standard -->
+	<link rel="shortcut icon" href="https://api.serversmp.xyz/assets/image/icon.png">
+
+	<!-- Retina iPad Touch Icon -->
+	<link rel="apple-touch-icon" sizes="144x144" href="https://api.serversmp.xyz/assets/image/icon.png">
+
+	<!-- Retina iPhone Touch Icon -->
+	<link rel="apple-touch-icon" sizes="114x114" href="https://api.serversmp.xyz/assets/image/icon.png">
+
+	<!-- Standard iPad Touch Icon -->
+	<link rel="apple-touch-icon" sizes="72x72" href="https://api.serversmp.xyz/assets/image/icon.png">
+
+	<!-- Standard iPhone Touch Icon -->
+	<link rel="apple-touch-icon" sizes="57x57" href="https://api.serversmp.xyz/assets/image/icon.png">
+
+	<!-- ================= Styles & bootstrap ================== -->
+
+	<link href="https://serversmp.xyz/assets/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://serversmp.xyz/assets/js/bootstrap.bundle.min.js"></script>
+	<link href="https://serversmp.xyz/assets/css/style.css" rel="stylesheet">
+
+	<style>
+		/* latin-ext */
+		@font-face {
+			font-family: 'Concert One';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTsjP6yuQ.woff2") format('woff2');
+			unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+		}
+
+		/* latin */
+		@font-face {
+			font-family: 'Concert One';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTijP4.woff2") format('woff2');
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+
+    input[type=text] {
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      background-color: #0C0B1A;
+      resize: none;
+    }
+    input[type=submit] {
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+	</style>
+
+</head>
+
+<!-- ================= Some stuff ================== -->
+
+<div id="nav-bar"></div>
+
+<body style="padding-bottom:30px">
+	<div class="container-sm">
+
+		<!-- ================= Name & logo ================== -->
+
+		<h1>ServerSMP - API</h1>
+		<img src="https://api.serversmp.xyz/assets/image/icon.png" alt="ServerSMP - API" width="180" height="180" ></img>
+
+  <!-- ================= APIs ================== -->
+
+  <div class="container-sm style-is-cool">
+  <div class="row">
+    <div>
+      <div class="card text-white bg-dark mb-3"class="card text-white bg-dark mb-3">
+        <h5>ToDo</h5>
+        <div class="card-body">
+          <ul id="todos" style="list-style-position: inside;"></ul>
+          <form> 
+            <input name="todo" type="text" placeholder="Enter todo..." required>
+            <input type="submit" value="Add Todo" class="btn">
+            <a class="btn" onclick="clearList()">Clear</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</div>
+
+<script>
+	fetch('/assets/json/navbar.json')
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			appendData(data);
+		})
+		.catch(function (err) {
+			console.log('error: ' + err);
+		});
+
+	function appendData(data) {
+		document.getElementById("nav-bar").innerHTML = data.navbar;
+	}
+
+  const form  = document.querySelector('form');
+  const input = document.querySelector("[name='todo']");
+  const todoList = document.getElementById('todos');
+
+  const existingTodos = JSON.parse(localStorage.getItem('todos')) || [];
+
+  const todoData = [];
+        
+  existingTodos.forEach(todo => {
+    addTodo(todo);
+  });
+
+  function addTodo(todoText) {
+    todoData.push(todoText);
+    const li = document.createElement('li');
+    li.innerHTML = todoText;
+    todoList.appendChild(li);
+    localStorage.setItem('todos', JSON.stringify(todoData));
+    input.value = ''
+  }
+
+  form.onsubmit = (event) => {
+    event.preventDefault();
+    addTodo(input.value);
+  }
+
+  function clearList() {
+    localStorage.removeItem('todos');
+    document.getElementById('todos').innerHTML = "";
+    document.getElementById('sharestuff').innerHTML = "";
+  }
+</script>
+
+</body>
+</html>
