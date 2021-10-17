@@ -109,6 +109,7 @@
         const start = document.getElementById("start");
         const stop = document.getElementById("stop");
         let time = 0;
+        let isButtonUsed = 0;
         let Interval;
         const stopper = () => {
             clearInterval(Interval)
@@ -128,6 +129,8 @@
             return ret;
         }
         start.addEventListener("click", () => {
+            if(isButtonUsed === 1) return;
+            isButtonUsed = 1;
             Interval = setInterval(() => {
                 starter()
             }, 10)
@@ -135,6 +138,7 @@
         stop.addEventListener("click", stopper)
         const starter = async () => {
             time++;
+            isButtonUsed = 0;
             document.getElementById("timer").innerHTML = format(time);
         }
     </script>
