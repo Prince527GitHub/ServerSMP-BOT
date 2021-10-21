@@ -61,7 +61,7 @@
         <h5 style="color:yellow;">Javascript</h5>
         <pre><code style="text-align:left;">
           async function dataNew() {
-            const data = await fetchUrl('https://api.serversmp.xyz/joke');
+            const data = await fetchUrl('https://api.serversmp.xyz/api/joke');
             document.getElementById("jokes").innerHTML = data.joke;
           }
           dataNew()
@@ -74,8 +74,10 @@
   <script src="../../assets/js/fetch.js"></script>
   <script>
     async function dataNew() {
-      const data = await fetchUrl('https://api.serversmp.xyz/joke');
-      document.getElementById("jokes").innerHTML = data.joke;
+      const data2 = await fetchUrl('./assets/json/joke.json');
+      const list = data2.list;
+      const randomNumber = Math.floor(Math.random() * list.length);
+      document.getElementById("jokes").innerHTML = list[randomNumber];
     }
     dataNew()
     async function dataNew2() {

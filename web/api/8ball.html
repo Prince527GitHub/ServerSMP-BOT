@@ -67,7 +67,7 @@
     <h5 style="color:yellow;">Javascript</h5>
     <pre><code style="text-align:left;">
       async function dataNew() {
-        const data = await fetchUrl('https://api.serversmp.xyz/8ball');
+        const data = await fetchUrl('https://api.serversmp.xyz/api/8ball');
         document.getElementById("ball-emoji").innerHTML = data.emoji;
         document.getElementById("ball-text").innerHTML = data.text;
         document.getElementById('ball-text').style.color = data.color;
@@ -82,10 +82,14 @@
   <script src="../../assets/js/fetch.js"></script>
   <script>
     async function dataNew() {
-      const data = await fetchUrl('https://api.serversmp.xyz/8ball');
-      document.getElementById("ball-emoji").innerHTML = data.emoji;
-      document.getElementById("ball-text").innerHTML = data.text;
-      document.getElementById('ball-text').style.color = data.color;
+      const data2 = await fetchUrl('./assets/json/8ball.json');
+      const list = data2.list;
+      const randomNumber = Math.floor(Math.random() * list.length);
+      const json = JSON.stringify(list[randomNumber]);
+      const newJson = JSON.parse(json);
+      document.getElementById("ball-emoji").innerHTML = newJson.emoji;
+      document.getElementById("ball-text").innerHTML = newJson.text;
+      document.getElementById('ball-text').style.color = newJson.color;
     }
     dataNew()
     async function dataNew2() {
