@@ -20,7 +20,7 @@
         "  ~ If you are not in the same vc as bot then you can't do cmds\n",
         " > Cmd-stats",
         "  ~ Shows the users that have used the most cmds\n",
-        "- Slashcommands",
+        "- Slashcommands\n",
         " > Added DuckDungeon commands",
         "  ~ ['game-info', 'info', 'instagram', 'reddit']\n",
         " > 8ball",
