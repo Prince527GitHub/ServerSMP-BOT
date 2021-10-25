@@ -15,16 +15,16 @@ module.exports = {
         const msg = await interaction.channel.messages.fetch(
             interaction.targetId
           );
-    
+
           const translated = await translate(msg.content, { to: 'en' });
           const embed = new MessageEmbed()
           .setFooter(`${interaction.user.tag}`)
           .setTimestamp()
-          .addField("Text To Translate:", `\`\`\`${msg.content}\`\`\``)
-          .addField("Translateted Text:", `\`\`\`${translated.text}\`\`\``)
+          .addField("Text To Translate:", `\`\`\`${msg.content.slice(0, 950)}\`\`\``)
+          .addField("Translateted Text:", `\`\`\`${translated.text.slice(0, 950)}\`\`\``)
           .setColor('BLUE')
-    
+
           interaction.followUp({ embeds: [embed] })
-     
+
     },
 };

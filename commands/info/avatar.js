@@ -20,7 +20,7 @@ module.exports = {
 
            const embed = new MessageEmbed()
               .setColor("#542a58")
-              .setImage(message.author.displayAvatarURL({ size: 1024, dynamic: true })) // appears gif dynamically.
+              .setImage(message.author.displayAvatarURL({ size: 4096, dynamic: true })) // appears gif dynamically.
               .setAuthor(message.author.username)
 
            message.channel.send({ embeds: [embed] });
@@ -34,14 +34,14 @@ module.exports = {
                  const embed = new MessageEmbed()
                     .setColor("#542a58")
                     .setAuthor(mentioned[0].username)
-                    .setImage(mentioned[0].displayAvatarURL({ size: 1024, dynamic: true })) // appears gif dynamically.
+                    .setImage(mentioned[0].displayAvatarURL({ size: 4096, dynamic: true })) // appears gif dynamically.
 
                  message.channel.send({ embeds: [embed] });
               });
            } else { // If a user ID was mentioned instead.
 
                  const embed = new MessageEmbed()
-                    .setImage(mentioned.displayAvatarURL({ size: 1024, dynamic: true }))
+                    .setImage(mentioned.displayAvatarURL({ size: 4096, dynamic: true }))
                     .setColor("#542a58")
                     .setAuthor(mentioned.username)
 

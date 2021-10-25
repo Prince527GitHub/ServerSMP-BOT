@@ -5,6 +5,7 @@ const Levels = require('discord-xp');
 const db = require('quick.db');
 const guildRankcard = require("../../models/guild-rankcard");
 const userRankcard = require("../../models/user-rankcard");
+const TextEssence = require('text-essence');
 
 module.exports = {
     name: "rank",
@@ -77,6 +78,7 @@ module.exports = {
                 })
                 const user = await Levels.fetch(mentioned_user.id, message.guild.id, true)
                 if (!user) return message.reply("That user dont have xp.")
+                const name = TextEssence.essence(mentioned_user.user.username);
                 let rank;
                 if(background !== "default") {
                   rank = new canvacord.Rank()
@@ -90,7 +92,7 @@ module.exports = {
                     .setProgressBar(progresscolor)
                     .renderEmojis(true)
                     .setOverlay("#FFFFFF", 0, false)
-                    .setUsername(mentioned_user.user.username)
+                    .setUsername(name)
                     .setDiscriminator(mentioned_user.user.discriminator);
                 } else {
                   rank = new canvacord.Rank()
@@ -102,7 +104,7 @@ module.exports = {
                     .setStatus(status, statustype)
                     .setProgressBar(progresscolor)
                     .renderEmojis(true)
-                    .setUsername(mentioned_user.user.username)
+                    .setUsername(name)
                     .setDiscriminator(mentioned_user.user.discriminator);
                 }
                 rank.build()
@@ -155,6 +157,7 @@ module.exports = {
               })
               const user = await Levels.fetch(message.author.id, message.guild.id, true)
               if (!user) return message.reply("You dont have xp. try to send some messages.")
+              const name = TextEssence.essence(message.author.username);
               let rank;
               if(background !== "default") {
                 rank = new canvacord.Rank()
@@ -168,7 +171,7 @@ module.exports = {
                   .setProgressBar(progresscolor)
                   .setOverlay("#FFFFFF", 0, false)
                   .renderEmojis(true)
-                  .setUsername(message.author.username)
+                  .setUsername(name)
                   .setDiscriminator(message.author.discriminator);
               } else {
                 rank = new canvacord.Rank()
@@ -180,7 +183,7 @@ module.exports = {
                   .setStatus(status, statustype)
                   .setProgressBar(progresscolor)
                   .renderEmojis(true)
-                  .setUsername(message.author.username)
+                  .setUsername(name)
                   .setDiscriminator(message.author.discriminator);
               }
               rank.build()

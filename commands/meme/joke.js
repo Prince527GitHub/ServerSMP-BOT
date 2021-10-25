@@ -1,5 +1,5 @@
 const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require("discord.js");
-const oneLinerJoke = require('one-liner-joke');
+const jokes = require("../../assets/js/joke");
 
 module.exports = {
     name: "joke",
@@ -11,10 +11,10 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, message, args) => {
-        var joke = oneLinerJoke.getRandomJoke();
+        const randomNumber = Math.floor(Math.random() * jokes.length);
         const embed = new MessageEmbed()
             .setColor("RANDOM")
-            .setDescription(joke.body)
+            .setDescription(jokes[randomNumber])
         message.channel.send({ embeds: [embed] });
     },
 };

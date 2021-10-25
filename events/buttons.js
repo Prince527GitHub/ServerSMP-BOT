@@ -1,3 +1,4 @@
+const rankCardRequest = require('../models/rankcard-request');
 const userRankcard = require("../models/user-rankcard");
 const SchemaModLogs = require("../models/modlogs");
 const simplydjs = require('simply-djs');
@@ -214,34 +215,47 @@ client.on("interactionCreate", async (interaction) => {
           });
 
       } else if(interaction.customId === "rank-card-yes") {
-            if(interaction.channel.id !== process.env.RANKIMAG) return interaction.reply("HELP - Channel id")
-            if(await client.db_json.has(`rankcard-${interaction.message.id}`) === true) {
-                const userId = await client.db_json.get(`rankcard-${interaction.message.id}`);
-                userRankcard.findOne({ User: userId }, async(err, data) => {
-                    if(!data) return interaction.reply("HELP - No data in Mongoose")
-                    if(data) {
-                        if(await client.db_json.has(`rank-card-${userId}`) === true) {
-                            data.Background = await client.db_json.get(`rank-card-${userId}`);
-                            data.save().then(async() => {
-                                client.users.cache.get(userId).send("Your RankCard image was accepted!");
-                                await client.db_json.delete(`rankcard-${interaction.message.id}`);
-                                await client.db_json.delete(`rank-card-${userId}`);
-                                interaction.message.delete(interaction.message.id);
-                            });
-                        }
-                    }
-                })
-            } else return interaction.reply("HELP - No data in json")
+            if(interaction.channel.id !== process.env.RANKIMAG) return interaction.reply("ERROR - Channel id")
+            rankCardRequest.findOne({ Mesaage: interaction.message.id }, async(mainErr, mainData) => {
+              if(!mainData) return interaction.reply("ERROR - No data in json");
+              if(mainData) {
+                userRankcard.findOne({ User: mainData.User }, async(err, data) => {
+                  if(!data) return interaction.reply("ERROR - No data in Mongoose");
+                  if(data) {
+                    data.Background = mainData.Background;
+                    data.save().then(async() => {
+                      client.users.cache.get(mainData.User).send("Your RankCard image was accepted!");
+                      await mainData.delete();
+                      await interaction.message.delete(interaction.message.id);
+                    });
+                  }
+                });
+              }
+            });
 
         } else if(interaction.customId === "rank-card-deny") {
-            if(interaction.channel.id !== process.env.RANKIMAG) return interaction.reply("HELP - Channel id")
-            if(await client.db_json.has(`rankcard-${interaction.message.id}`) === true) {
-                const userId = await client.db_json.get(`rankcard-${interaction.message.id}`);
-                await client.users.cache.get(userId).send("Your RankCard image was denyed!");
-                await client.db_json.delete(`rankcard-${interaction.message.id}`);
-                await client.db_json.delete(`rank-card-${userId}`);
-                interaction.channel.fetchMessage(interaction.message.id).then(msg => msg.delete());
-            } else return interaction.reply("HELP - No data in json")
+            if(interaction.channel.id !== process.env.RANKIMAG) return interaction.reply("ERROR - Channel id")
+            rankCardRequest.findOne({ Mesaage: interaction.message.id }, async(err, data) => {
+              if(!data) return interaction.reply("ERROR - No data in json");
+              if(data) {
+                await client.users.cache.get(data.User).send("Your RankCard image was denyed!");
+                await data.delete();
+                await interaction.message.delete(interaction.message.id);
+              }
+            });
+
+        } else if(interaction.customId === "rank-card-delete") {
+          if(interaction.channel.id !== process.env.RANKIMAG) return interaction.reply("ERROR - Channel id")
+          await rankCardRequest.findOne({ Mesaage: interaction.message.id }, async(err, data) => {
+            if(!data) return interaction.reply("ERROR - No data in json");
+            if(data) {
+              await data.delete();
+              await interaction.message.delete(interaction.message.id);
+            }
+          });
+
+        } else if(interaction.customId === "delete-current-message") {
+            interaction.channel.fetchMessage(interaction.message.id).then(msg => msg.delete());
 
         }
 

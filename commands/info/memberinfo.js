@@ -1,5 +1,5 @@
 const { Message, Client, MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
-const { DiscordBanners } = require('discord-banners');
+//const { DiscordBanners } = require('discord-banners');
 const moment = require('moment');
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
      */
     run: async (client, message, args) => {
 
-        const discordBanners = new DiscordBanners(client);
+        //const discordBanners = new DiscordBanners(client);
 
         let userArray = message.content.split(" ");
         let userArgs = userArray.slice(1);
@@ -29,7 +29,7 @@ module.exports = {
         }
         let banner;
         const roleColor = message.guild.me.displayHexColor === "#000000" ? "#ffffff" : message.guild.me.displayHexColor;
-  
+
         if(message.mentions.members.first() || message.guild.members.cache.get(userArgs[0]) || message.guild.members.cache.find(x => x.user.username.toLowerCase() === userArgs.slice(0).join(" ") || x.user.username === userArgs[0])) {
                 const embed = new MessageEmbed()
                     .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
@@ -69,13 +69,13 @@ module.exports = {
                     )
                     await message.channel.send({ embeds: [embed] })
         } else {
-            banner = await discordBanners.getBanner(message.author.id, { size: 2048, format: "png", dynamic: true })
-            if (member.presence.status === 'dnd') member.presence.status = 'Do Not Disturb';
-            if (member.presence.status === 'online') member.presence.status = 'Online';
-            if (member.presence.status === 'idle') member.presence.status = 'Idle';
-            if (member.presence.status === 'offline') member.presence.status = 'offline';
-            let status = member.presence.status;
-            if(!banner) {
+            //banner = await discordBanners.getBanner(message.author.id, { size: 2048, format: "png", dynamic: true })
+            // if (member.presence.status === 'dnd') member.presence.status = 'Do Not Disturb';
+            // if (member.presence.status === 'online') member.presence.status = 'Online';
+            // if (member.presence.status === 'idle') member.presence.status = 'Idle';
+            // if (member.presence.status === 'offline') member.presence.status = 'offline';
+            // let status = member.presence.status;
+            // if(!banner) {
                 const embed = new MessageEmbed()
                     .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
                     .setColor(roleColor)
@@ -113,51 +113,51 @@ module.exports = {
                         }
                     )
                     await message.channel.send({ embeds: [embed] })
-              } else {
-                const embed = new MessageEmbed()
-                    .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
-                    .setColor(roleColor)
-                    .setTitle(`${member.user.tag}`)
-                    .addFields(
-                        {
-                            name: "🧍 Username: ",
-                            value: member.user.tag,
-                            inline: false
-                        },
-                        {
-                            name: "🧍 Nickname: ",
-                            value: nickname,
-                            inline: false
-                        },
-                        {
-                            name: "🧍 Member ID: ",
-                            value: member.id,
-                            inline: false
-                        },
-                        {
-                            name: "✨ Roles: ",
-                            value: `<@&${member._roles.join('> <@&')}>`,
-                            inline: false
-                        },
-                        {
-                            name: "🎈 Creation Date: ",
-                            value: ` ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`,
-                            inline: false
-                        },
-                        {
-                            name: "🎈 Joined the server At: ",
-                            value: `${joineddate} \n> ${joined} day(S) Ago`,
-                            inline: false,
-                        },
-                        {
-                            name: "💡 Status: ",
-                            value: status,
-                            inline: false
-                        }
-                    )
-                    .setImage(banner)
-                    await message.channel.send({ embeds: [embed] })
-              }
+              // } else {
+              //   const embed = new MessageEmbed()
+              //       .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
+              //       .setColor(roleColor)
+              //       .setTitle(`${member.user.tag}`)
+              //       .addFields(
+              //           {
+              //               name: "🧍 Username: ",
+              //               value: member.user.tag,
+              //               inline: false
+              //           },
+              //           {
+              //               name: "🧍 Nickname: ",
+              //               value: nickname,
+              //               inline: false
+              //           },
+              //           {
+              //               name: "🧍 Member ID: ",
+              //               value: member.id,
+              //               inline: false
+              //           },
+              //           {
+              //               name: "✨ Roles: ",
+              //               value: `<@&${member._roles.join('> <@&')}>`,
+              //               inline: false
+              //           },
+              //           {
+              //               name: "🎈 Creation Date: ",
+              //               value: ` ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`,
+              //               inline: false
+              //           },
+              //           {
+              //               name: "🎈 Joined the server At: ",
+              //               value: `${joineddate} \n> ${joined} day(S) Ago`,
+              //               inline: false,
+              //           },
+              //           {
+              //               name: "💡 Status: ",
+              //               value: status,
+              //               inline: false
+              //           }
+              //       )
+              //       .setImage(banner)
+              //       await message.channel.send({ embeds: [embed] })
+              // }
         }
     },
 };

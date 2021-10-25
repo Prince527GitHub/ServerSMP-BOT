@@ -1,15 +1,6 @@
 const { MessageEmbed, Message, Client, MessageAttachment } = require('discord.js');
 const { createCanvas, loadImage } = require('canvas');
-const osu = require('node-osu');
-
-let osuApi
-if(process.env.OSU_API !== "false") {
-  osuApi = new osu.Api(process.env.OSU_API, {
-    notFoundAsError: true,
-    completeScores: false,
-    parseNumeric: false
-  });
-}
+const osuApi = require("../../assets/js/osu.js");
 
 module.exports = {
     name: 'osu-user',
@@ -34,7 +25,7 @@ module.exports = {
         ctx.drawImage(userdisplay, 15, 15, 128, 128)
 
         // Background
-        const background = await loadImage('./assets/osu.png')
+        const background = await loadImage('./assets/image/osu.png')
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
 
         // Username and rank

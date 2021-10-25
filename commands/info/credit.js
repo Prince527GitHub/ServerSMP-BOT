@@ -48,7 +48,7 @@ module.exports = {
             .setThumbnail("https://avatars.githubusercontent.com/u/59381835?v=4")
 
         const embeds = [embed0, embed1, embed2, embed3, embed4, embed5, embed6]
-        
+
         pagination({
             embeds: embeds,
             message: message,

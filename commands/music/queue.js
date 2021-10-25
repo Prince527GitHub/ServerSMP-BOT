@@ -21,6 +21,14 @@ module.exports = {
                 .setDescription("Sorry, but you need to be in a voice channel to do that")
                 .setColor("YELLOW")
         ]})
+        let voiceChannel = message.guild.me.voice.channel
+        if(voiceChannel) {
+          if(voiceChannel.id && message.member.voice.channel.id !== voiceChannel.id) return message.channel.send({ embeds: [
+            new MessageEmbed()
+                .setDescription("You are not in my voice channel")
+                .setColor("YELLOW")
+          ]});
+        }
         let queue = client.player.getQueue(message);
         if (!queue) return message.channel.send({ embeds: [
             new MessageEmbed()

@@ -16,32 +16,36 @@ if (!process.env.TOKEN) {
 } else if (!process.env.OWNER) {
   console.error("Please provide owner id.");
   process.exit(1);
-} else if (!process.env.BOTDASH) {
-  console.error("Please provide your botdash api token.");
+} else if (!process.env.STATUS_TYPE) {
+  console.error("Please provide a status type for the bot.")
   process.exit(1);
-} else if (!process.env.DISTOKEN) {
-  console.error("Please provide your disbot token or false on distoken.");
+} else if (!process.env.STATUS) {
+  console.error("Please provide a status for the bot.")
+  process.exit(1);
+} else if (!process.env.OSU_API) {
+  console.error("Please provide your osu api key or false.")
   process.exit(1);
 } else if (!process.env.REPORT) {
   console.error("Please setup reports.")
   process.exit(1);
-} else if (!process.env.FORTNITE_TRACKER) {
-  console.error("Please provide your fortnite tracker api key or false.")
+} else if (!process.env.CHAT_BOT) {
+  console.error("Please provide your monkey dev api key or false.")
   process.exit(1);
-}
-
-// Disbots.net
-if (process.env.DISTOKEN !== "false") {
-  const DISBOT = require("disbots.net");
-  const disbot = new DISBOT(distoken, {
-    statsInterval: 4000000
-  }, client);
-  disbot.on("postServers", () => {
-    console.log("Server count ✔️");
-  });
-  disbot.on("postShards", () => {
-    console.log("Shards count ✔️");
-  });
+} else if (!process.env.WEBHOOK) {
+  console.error("Please provide a discord webhook url or false.")
+  process.exit(1);
+} else if (!process.env.MUSIC) {
+  console.error("Please specify true (music on) or false (music off).")
+  process.exit(1);
+} else if (!process.env.SECRET) {
+  console.error("Please provide your client secret.")
+  process.exit(1);
+} else if (!process.env.RANKIMAG) {
+  console.error("Please provide a channel id for rankcard images suggestions.")
+  process.exit(1);
+} else if (!process.env.PORT) {
+  console.error("Please provide a port for the web api.")
+  process.exit(1);
 }
 
 // Discord.js client
@@ -50,6 +54,9 @@ const client = new Client({
     partials: ["CHANNEL", "MESSAGE", "GUILD_MEMBER", "REACTION", "GUILD_INVITES"],
 });
 module.exports = client;
+
+// AntiCrash
+require("./assets/logs/anticrash")(client)
 
 // Discord log
 const logs = require('discord-logs');
@@ -75,6 +82,8 @@ mongoose.connection.on('disconnected', () => console.log('MongoDB ❌'));
 mongoose.connection.on('error', (err) => {
   console.log(err);
   if(process.env.WEBHOOK !== false) {
+    const simplydjs = require('simply-djs');
+
     const embedMongo = new MessageEmbed()
       .setAuthor(`An error occurred | MongoDB`, "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F9%2F97%2FDialog-error-round.svg%2F768px-Dialog-error-round.svg.png&f=1&nofb=1")
       .setDescription(`\`\`\`${err}\`\`\``)
@@ -96,8 +105,15 @@ Levels.setURL(process.env.MONGO);
 // DB Ark.db
 const { MongoDB, Database } = require("ark.db");
 
+let db_mongo_stuff;
+if(process.env.NEWMONGO) {
+  db_mongo_stuff =  process.env.NEWMONGO
+} else {
+  db_mongo_stuff = process.env.MONGO
+}
+
 client.db_json = new Database();
-client.db_mongo = new MongoDB(process.env.MONGO, "ark.db");
+client.db_mongo = new MongoDB(db_mongo_stuff, "ark.db");
 
 // DB Beta.mdb
 const db_mongo_quick = require('@prince527/beta.mdb')
@@ -196,13 +212,13 @@ const player = new DisTube.DisTube(client, {
 
 player
   .on("playSong", (queue, song) => {
+    console.log(chalk.green(`[Music] "${song.name}" on ${queue.clientMember.guild.name} has started`));
     queue.textChannel.send({ embeds: [
       new MessageEmbed()
           .setDescription(`▶ **|** Started playing: **[${song.name}](${song.url})**`)
           .setThumbnail(`${song.thumbnail}`)
           .setColor("#5400FF")
     ]});
-    console.log(chalk.green(`[Music]: "${song.name}" on ${queue.guild} has started`));
   })
   .on("addSong", (queue, song) => queue.textChannel.send({ embeds: [
     new MessageEmbed()
@@ -232,9 +248,6 @@ player
             .setColor("#5400FF")
     ]})})
   .on("searchCancel", (message) => {
-    const { music } = require('./collection/index');
-    music.delete(message.guild.id);
-    music.delete(`music-${message.guild.id}`);
     message.channel.send({ embeds: [
         new MessageEmbed()
             .setDescription("None or invalid value entered, the music selection has canceled")
@@ -260,12 +273,12 @@ player
     queue.volume = 50;
   })
   .on("finish", async(queue) => {
+    console.log(chalk.green(`[Music] Music has stopped on ${queue.clientMember.guild.name}`));
     queue.textChannel.send({ embeds: [
         new MessageEmbed()
             .setDescription(`⏹ **|** The music has ended, use **\`play\`** to play some music`)
             .setColor("5400FF")
     ]});
-    console.log(chalk.green(`[Music]: Music has stopped on ${queue.guild}`));
   })
   .on("empty", (queue) => {
     queue.textChannel.send({ embeds: [

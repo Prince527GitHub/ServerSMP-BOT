@@ -713,14 +713,32 @@ module.exports = {
             SchemaChatBot.findOne({ Guild: message.guild.id }, async(err, data) => {
               if(data) chatbot = `<#${data.Channel}>`
               if(!data) chatbot = "`no channel set`"
-              if(err) invite = "`error`"
+              if(err) chatbot = "`error`"
             });
 
             let modlogs;
+            let modlogsoptions;
             SchemaModLogs.findOne({ Guild: message.guild.id }, async(err, data) => {
-              if(data) modlogs = `<#${data.Channel}>`
+              if(data) {
+                modlogs = `<#${data.Channel}>`
+                modlogsoptions = [
+                    `*chc*: \`${data.chc}\``,
+                    `*chd*: \`${data.chd}\``,
+                    `*chpu*: \`${data.chpu}\``,
+                    `*chu*: \`${data.chu}\``,
+                    `*ed*: \`${data.ed}\``,
+                    `*ec*: \`${data.ec}\``,
+                    `*eu*: \`${data.eu}\``,
+                    `*gba*: \`${data.gba}\``,
+                    `*gbr*: \`${data.gbr}\``,
+                    `*gma*: \`${data.gma}\``,
+                    `*gmr*: \`${data.gmr}\``,
+                    `*gmc*: \`${data.gmc}\``,
+                    `*gmu*: \`${data.gmu}\``
+                ]
+              }
               if(!data) modlogs = "`no channel set`"
-              if(err) invite = "`error`"
+              if(err) modlogs = "`error`"
             });
 
             let global;
@@ -791,6 +809,8 @@ module.exports = {
                 **Captcha** - \`${await db.has(`captcha-${message.guild.id}`)}\`
                 **Chatbot** - ${chatbot}
                 **ModLogs** - ${modlogs}
+                **ModLogsOptions:**
+                    ${modlogsoptions.join("\n")}
                 **Global** - ${global}
                 **Prefix** - \`${await client.prefix(message)}\`
                 **Goodbye** - ${goodbye}

@@ -11,15 +11,14 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-
-        const guild = client.guilds.cache.get(interaction.guild.id)
-        const user_find = guild.members.cache.get(interaction.targetId)
-
-        interaction.followUp({ embeds: [
-            new MessageEmbed()
-                .setAuthor(`${user_find.user.tag}`)
-                .setColor("RANDOM")
-                .setImage(user_find.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-        ]});
+      const { user } = interaction.guild.members.cache.get(interaction.targetId);
+      let str = `[jpg](${user.displayAvatarURL({ format: 'jpg' })}) | [webp](${user.displayAvatarURL()}) | [png](${user.displayAvatarURL({ format: 'png' })})`;
+      if (user.displayAvatarURL({ dynamic: true }).endsWith('.gif')) str += ` [gif](${user.displayAvatarURL({ dynamic: true })})`;
+      const embed = new MessageEmbed()
+          .setTitle(`${user.username}'s avatar`)
+          .setDescription(str)
+          .setImage(user.displayAvatarURL({ dynamic: true, size: 4096 }))
+          .setColor("RANDOM")
+      interaction.followUp({ embeds: [embed] });
     },
 };

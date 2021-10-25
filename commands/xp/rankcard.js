@@ -1,9 +1,11 @@
 const { Message, Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require('discord.js');
 const userRankcard = require('../../models/user-rankcard');
+const rankCardRequest = require('../../models/rankcard-request');
 const { isColor } = require("coloras");
 
 module.exports = {
     name: 'rankcard',
+    usage: "list",
     description : "Options for user rankcards.",
     /**
      * @param {Client} client
@@ -12,7 +14,38 @@ module.exports = {
      */
     run: async(client, message, args) => {
         if(!args[0]) return message.reply("You need a color!");
-        if(!args[1]) return message.reply("You need a style (true or false)!");
+
+        if(args[0] === "list") return message.reply({ embeds: [
+            new MessageEmbed()
+              .setTitle("RankCard Command")
+              .setColor("RANDOM")
+              .addField(
+                "Basic Colors",
+                "🟢: `#008000`\n🟡: `#ffff00`\n🟠: `#ffa500`\n🔴: `#ff0000`\n🟣: `#800080`\n🔵: `#0000ff`\n⚫: `#000000`\n⚪: `#ffffff`"
+              )
+              .addField(
+                "Status Style",
+                "🔴: `true`\n⭕: `false`"
+              )
+              .addField(
+                "Status Type",
+                "🟢: `online`\n🟡: `idle`\n🔴: `dnd`\n⚫: `offline`\n🟣: `streaming`\n🌈: `false`"
+              )
+              .addField(
+                "URL",
+                "Just add the url after status type or not."
+              )
+              .addField(
+                "Example",
+                `\`${await client.prefix(message)}rankcard #ffff00 false idle https://prince527.reeee.ee/5ajFfZxeS.png\``
+              )
+              .addField(
+                "Schema",
+                `\`${await client.prefix(message)}rankcard [ #color ] [ true or false ] [ status or false ] [ image url or not ]\``
+              )
+        ]});
+
+        if(!args[1]) return message.reply("You need a status style (true or false)!");
         if(!args[2]) return message.reply("You need a status (dnd, idle, offline, online, streaming)!");
 
         const isHexColor = color => /^#([0-9A-F]{3}|[0-9A-F]{4}|[0-9A-F]{6}|[0-9A-F]{8})$/i.test(color);
@@ -45,8 +78,7 @@ module.exports = {
         if(process.env.RANKIMAG) {
             const image = args[3];
             if(image) {
-                if(image.startsWith("http") && image.endsWith(".png")) {
-                    await client.db_json.set(`rank-card-${message.author.id}`, image);
+                if(image.startsWith("http") && image.endsWith(".png") || image.endsWith(".jpeg")) {
                     const row = new MessageActionRow()
                         .addComponents(
                             new MessageButton()
@@ -56,18 +88,41 @@ module.exports = {
                             new MessageButton()
                                 .setCustomId("rank-card-deny")
                                 .setLabel("Deny")
-                                .setStyle("DANGER")
+                                .setStyle("DANGER"),
+                            new MessageButton()
+                                .setCustomId("rank-card-delete")
+                                .setLabel("Delete")
+                                .setStyle("SECONDARY")
                         )
                     const embed = new MessageEmbed()
                         .setTitle(`${message.member.user.username}'s RankCard Image`)
                         .setDescription("Just click one of the buttons to accept or deny the user's rankcard image.")
-                        .addField("ImageURL", await client.db_json.get(`rank-card-${message.author.id}`))
+                        .addField("ImageURL", image)
                         .addField("UserID", message.author.id)
                         .setColor("RANDOM")
-                    client.channels.cache.get(process.env.RANKIMAG).send({ embeds: [embed], components: [row] }).then(async(msg) => {
-                        await client.db_json.set(`rankcard-${msg.id}`, message.author.id)
-                    });
-                } else return message.reply("If you want a image it has to start with `http` and end with `.png`");
+                    rankCardRequest.findOne({ User: message.author.id }, async(err, data) => {
+                      if(!data) {
+                        client.channels.cache.get(process.env.RANKIMAG).send({ embeds: [embed], components: [row] }).then(async(msg) => {
+                          new rankCardRequest({
+                            Mesaage: msg.id,
+                            User: message.author.id,
+                            Background: image,
+                          }).save();
+                        });
+                        if(data) {
+                          await client.channels.cache.get(process.env.RANKIMAG).messages.fetch(data.Message).then((msg) => msg.delete());
+                          await data.delete();
+                          client.channels.cache.get(process.env.RANKIMAG).send({ embeds: [embed], components: [row] }).then(async(msg) => {
+                            new rankCardRequest({
+                              Mesaage: msg.id,
+                              User: message.author.id,
+                              Background: image,
+                            }).save();
+                          });
+                        }
+                      }
+                    })
+                } else return message.reply("If you want a image it has to start with `http` and end with `.png` or `.jpeg`");
             }
         }
 

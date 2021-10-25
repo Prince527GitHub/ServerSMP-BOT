@@ -2,6 +2,7 @@ const { glob } = require("glob");
 const { promisify } = require("util");
 const { Client } = require("discord.js");
 const { fstat } = require("fs");
+const customCommandModel = require("../models/cc-slash");
 
 const globPromise = promisify(glob);
 
@@ -42,12 +43,22 @@ module.exports = async (client) => {
     });
     client.on("ready", async () => {
         // Register for a single guild
-        //await client.guilds.cache
-        //    .get("697984979568820344")
+        // await client.guilds.cache
+        //    .get("831513803488624730")
         //    .commands.set(arrayOfSlashCommands);
 
         // Register for all the guilds the bot is in
         await client.application.commands.set(arrayOfSlashCommands);
+
+        customCommandModel.find().then(data => {
+          data.forEach((cmd) => {
+            const guild = client.guilds.cache.get(cmd.guildId);
+            guild?.commands.create({
+              name: cmd.commandName,
+              description: "a custom command",
+            });
+          });
+        });
     });
 
 };

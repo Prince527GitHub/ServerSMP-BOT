@@ -3,8 +3,10 @@ const premiumGSchema = require('../models/premium-guild');
 const premiumUSchema = require('../models/premium-user');
 const blacklistserver = require('../models/blacklist');
 const commandstoggle = require('../models/command');
+const Userstats = require("../models/user-stats");
 const prefixSchema = require('../models/prefix');
 const customcom = require('../models/cc');
+const CMDCooldown = new Collection();
 const client = require("../index");
 const Timeout = new Collection();
 const ms = require("ms");
@@ -32,6 +34,12 @@ client.on("messageCreate", async (message) => {
         }
       const p = await prefix(message);
 
+      const mentionRegex = new RegExp(`^<@!?${client.user.id}>( |)$`);
+
+      if (message.content.match(mentionRegex)) {
+        return message.channel.send({ content: `Prefix: \`${await p}\`` });
+      }
+
       if(!message.content.toLowerCase().startsWith(p)) return;
 
     const [cmd, ...args] = message.content
@@ -46,13 +54,26 @@ client.on("messageCreate", async (message) => {
 
     if (!command) return;
     if (command) {
-        
+
+        Userstats.findOne({ User: message.author.id }, async(err, data) => {
+          if(data) {
+            data.CmdUsed = `${Number(data.CmdUsed) + 1}`;
+            data.save();
+          }
+          if(!data) {
+            new Userstats({
+              User: message.author.id,
+              CmdUsed: "1",
+            }).save();
+          }
+        });
+
         const blacklisted = await blacklistserver.findOne({ Server: message.guild.id });
         if(blacklisted) return message.reply("This server has been blacklisted.");
 
         if(!message.member.permissions.has(command.userPermission || [])) return message.channel.send("You do not have permission to use this command!");
         if(!message.guild.me.permissions.has(command.botPermission || [])) return message.channel.send("I do not have permission to use this command!");
-        
+
         if (command.owner) {
             if (!process.env.OWNER.split(', ').includes(message.author.id))
             return message.channel.send({ embeds: [
@@ -61,12 +82,12 @@ client.on("messageCreate", async (message) => {
                     .setDescription( "This command can only be used by the owners!" )
             ]})
         }
-        
+
         const check = await commandstoggle.findOne({ Guild: message.guild.id })
         if(check) {
           if(check.Cmds.includes(command.name)) return message.channel.send('This command has been disabled by admins.');
         }
-        
+
         if(command.userPremium && !(await premiumUSchema.findOne({ User: message.author.id }))) return message.reply("You need to upgrade to premium to use this command!");
 
         if (command.cooldown) {
@@ -86,6 +107,8 @@ client.on("messageCreate", async (message) => {
             }, command.cooldown);
         }
 
+        // CMDCooldown.set(`${message.author.id}-${command.name}`, 1)
+
         if(command.guildPremium) {
             await premiumGSchema.findOne({ Guild: message.guild.id }, async(err, data) => {
               if(!data) return message.reply('This is a premium command!');
@@ -96,6 +119,10 @@ client.on("messageCreate", async (message) => {
               await command.run(client, message, args);
           })
         } else await command.run(client, message, args);
+
+        if(await client.db_mongo.has(`${client.user.username}-cmdUsed`) === true) {
+          await client.db_mongo.set(`${client.user.username}-cmdUsed`, `${Number(await client.db_mongo.get(`${client.user.username}-cmdUsed`)) + 1}`);
+        }
 
     }
 });

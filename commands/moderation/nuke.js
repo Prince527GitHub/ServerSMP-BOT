@@ -13,7 +13,12 @@ module.exports = {
      * @param {String[]} args
      */
     run: async(client, message, args) => {
+      message.channel.clone({ position: message.channel.rawPosition }).then(channel => {
+        channel.send({ content: "Channel has been nuked." })
         message.channel.delete()
-        message.channel.clone()
+        .catch (e => {
+          return message.followUp({content: 'Something went wrong! If you think this is a bug, make sure to report it to our devs by joining the support server!'})
+        });
+      });
     }
 }

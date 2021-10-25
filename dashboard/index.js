@@ -1,6 +1,6 @@
 const DBD = require('discord-dashboard');
 const CaprihamTheme = require('dbd-capriham-theme');
-const settings = require("./setting.json");
+const settings = require("../setting.json");
 const prefixSchema = require("../models/prefix");
 const { readdirSync } = require('fs');
 const guildRankcard = require("../models/guild-rankcard");

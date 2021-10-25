@@ -15,5 +15,9 @@
         "domain": "http://localhost",
         "redirectUri": "http://localhost:8000/discord/callback",
         "port": 8000
+    },
+    "api": {
+      "port": "3000",
+      "url": "http://localhost:3000"
     }
 }

@@ -31,7 +31,7 @@ module.exports = {
         ctx.drawImage(userdisplay, 32, 32, 150, 150)
 
         // Background
-        const background = await loadImage('./assets/instagram.png')
+        const background = await loadImage('./assets/image/instagram.png')
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
 
         // name

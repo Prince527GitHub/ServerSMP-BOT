@@ -1,0 +1,28 @@
+{
+    "good":
+        [
+            "word",
+            "word"
+        ],
+    "bad":
+        [
+            "theft",
+            "vandalism",
+            "fraud",
+            "tax evasion",
+            "tax fraud",
+            "sexual assault",
+            "rape",
+            "kidnapping",
+            "arson",
+            "pyramid schemes",
+            "murder",
+            "card fraud",
+            "debit card fraud",
+            "debit fraud",
+            "credit card fraud",
+            "credit fraud",
+            "robbery",
+            "hacking"
+        ]
+}

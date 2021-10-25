@@ -18,9 +18,15 @@ module.exports = {
         if(query === "current") {
             try {
                 const version = ver_file.version;
-                fetch(`https://raw.githubusercontent.com/Prince527GitHub/ServerSMP/ServerSMP-BOT-(Change-Log)/patch-notes-${version}.txt`)
-                .then(res => res.text())
-                .then(body => message.channel.send(body));
+                fetch(`https://raw.githubusercontent.com/Prince527GitHub/ServerSMP/ServerSMP-BOT-(Change-Log)/patch-notes-${version}.json`)
+                .then(res => res.json())
+                .then(body => message.channel.send({ embeds: [
+                  new MessageEmbed()
+                    .setTitle(body.Title)
+                    .setDescription(body.Description.join("\n"))
+                    .setColor("RANDOM")
+                    .setImage(body.Image)
+                ]}));
             } catch(err) {
                 return message.channel.send(`Unable to get patch notes for version ${version}, sorry.`)
             }
@@ -31,9 +37,15 @@ module.exports = {
                 .then(version => version.json())
                 .then(async(data) => {
                     const latest_version = data.version;
-                    fetch(`https://raw.githubusercontent.com/Prince527GitHub/ServerSMP/ServerSMP-BOT-(Change-Log)/patch-notes-${await latest_version}.txt`)
-                    .then(res => res.text())
-                    .then(body => message.channel.send(body));
+                    fetch(`https://raw.githubusercontent.com/Prince527GitHub/ServerSMP/ServerSMP-BOT-(Change-Log)/patch-notes-${await latest_version}.json`)
+                    .then(res => res.json())
+                    .then(body => message.channel.send({ embeds: [
+                      new MessageEmbed()
+                        .setTitle(body.Title)
+                        .setDescription(body.Description.join("\n"))
+                        .setColor("RANDOM")
+                        .setImage(body.Image)
+                    ]}));
                 })
             } catch(err) {
                 return message.channel.send(`Unable to get latest patch notes, sorry.`)
