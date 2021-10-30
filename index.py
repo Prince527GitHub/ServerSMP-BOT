@@ -14,7 +14,6 @@ intents.members = True
 
 client = discord.Client()
 
-
 # ========================= EVENTS =========================
 
 @client.event
