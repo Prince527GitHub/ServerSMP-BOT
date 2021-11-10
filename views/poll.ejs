@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- ================= Discord web embed & description/title & twitter ================== -->
+
+	<meta property="og:locale" content="en_US">
+	<meta property="og:title" content="ServerSMP - API" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="<%= url %>" />
+	<meta property="og:image" content="<%= url %>/assets/image/banner-smp.png" />
+	<meta property="og:description" content="ServerSMP - API, is an api!" />
+	<meta name="description" content="ServerSMP - API, is an api!">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="ServerSMP - API">
+	<meta name="twitter:description" content="ServerSMP - API, is an api!">
+	<meta name="twitter:image" content="<%= url %>/assets/image/banner-smp.png">
+	<meta name="theme-color" content="#030303">
+	<title>ServerSMP - API</title>
+
+	<!-- ================= Favicon ================== -->
+
+	<!-- Standard -->
+	<link rel="shortcut icon" href="/assets/image/icon.png">
+
+	<!-- Retina iPad Touch Icon -->
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/image/icon.png">
+
+	<!-- Retina iPhone Touch Icon -->
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/image/icon.png">
+
+	<!-- Standard iPad Touch Icon -->
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/image/icon.png">
+
+	<!-- Standard iPhone Touch Icon -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/image/icon.png">
+
+	<!-- ================= Styles & bootstrap ================== -->
+
+	<link href="https://serversmp.xyz/assets/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://serversmp.xyz/assets/js/bootstrap.bundle.min.js"></script>
+	<link href="https://serversmp.xyz/assets/css/style.css" rel="stylesheet">
+
+	<style>
+		/* latin-ext */
+		@font-face {
+			font-family: 'Concert One';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTsjP6yuQ.woff2") format('woff2');
+			unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+		}
+
+		/* latin */
+		@font-face {
+			font-family: 'Concert One';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTijP4.woff2") format('woff2');
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+
+    input[type=text] {
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      background-color: #0C0B1A;
+      resize: none;
+    }
+    
+    input[type=submit] {
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    input[type=password] {
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      background-color: #0C0B1A;
+      resize: none;
+    }
+
+    .input_text {
+      resize: none;
+    }
+	</style>
+
+</head>
+
+<!-- ================= Some stuff ================== -->
+
+<div id="nav-bar"></div>
+
+<body style="padding-bottom:30px">
+	<div class="container-sm">
+
+  <!-- ================= APIs ================== -->
+
+  <div class="container-sm style-is-cool">
+  <div class="row">
+    <div>
+    <div class="card text-white bg-dark mb-3"class="card text-white bg-dark mb-3">
+      <div class="card-body" id="option_poll">
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- ================= error ================== -->
+
+  <div class="modal fade" id="error" tabindex="-1" aria-labelledby="errorLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #0C0B1A;">
+          <h5 class="modal-title" id="errorLabel">An error has occurred.</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= exist ================== -->
+
+  <div class="modal fade" id="exist" tabindex="-1" aria-labelledby="existLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #0C0B1A;">
+          <h5 class="modal-title" id="existLabel">Poll does not exist.</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+	fetch('https://serversmp.xyz/assets/json/navbar.json')
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			appendData(data);
+		})
+		.catch(function (err) {
+			console.log('error: ' + err);
+		});
+
+	function appendData(data) {
+		document.getElementById("nav-bar").innerHTML = data.navbar;
+	}
+
+  if(<%= error %> === true) {
+    var error = new bootstrap.Modal(document.getElementById('error'), {
+      keyboard: false
+    });
+    error.show();
+  }
+
+  var errorEvent = document.getElementById('error')
+  errorEvent.addEventListener('hidden.bs.modal', function (event) {
+    location.href = '<%= url %>/poll/<%= id_error %>';
+  });
+
+  if(<%= exist %> === true) {
+    var exist = new bootstrap.Modal(document.getElementById('exist'), {
+      keyboard: false
+    });
+    exist.show();
+  }
+
+  var existEvent = document.getElementById('exist')
+  existEvent.addEventListener('hidden.bs.modal', function (event) {
+    location.href = '<%= url %>/poll/<%= id_error %>';
+  });
+
+  if("<%= option %>" === "vote") {
+  
+    document.getElementById("option_poll").innerHTML = "<h6 style='background-color:#f8d7da;color:#721c24;'><span style='font-weight:bold;color:#721c24;'>WARNING:</span> Voting will save your IP to the DB for rate-limiting reasons. </h6><h5 class='card-title'>Poll - <code><%= id %></code></h5><h6>Question: <%= question %></h6><form method='get' action='/api/poll/add'><input readonly='readonly' type='hidden' id='id' name='id' value='<%= id %>'><label for='fname'>Enter to vote!</label><br><input type='radio' id='false' name='option' value='False' required><label for='false'>False</label><br><input type='radio' id='true' name='option' value='true' required><label for='true'>True</label><div></div><input type='submit' value='Submit' class='btn'></form>";
+
+  } else if("<%= option %>" === "create") {
+
+    document.getElementById("option_poll").innerHTML = "<h5 class='card-title'>Poll</h5><form method='get' action='/api/poll/create'><label for='fname'>Question:</label><br><input type='text' name='question' placeholder='Enter question...' required><br><label for='lname'>Password:</label><br><input type='password' name='password' placeholder='Enter password...' required><br><br><input type='submit' value='Create' class='btn'><a href='/poll/login' class='btn btn-primary'>Login</a></form>"
+
+  } else if("<%= option %>" === "login") {
+    
+    document.getElementById("option_poll").innerHTML = "<h5 class='card-title'>Poll</h5><h6>Login to view data and stop poll</h6><form method='get' action='/api/poll/login'><label for='lname'>Password:</label><br><input type='password' name='password' placeholder='Enter password...' required><br><label for='lname'>Code:</label><br><input type='text' name='id' placeholder='Enter code/id...' required><br><br><input type='submit' value='Login' class='btn'></form>"
+
+  } else if("<%= option %>" === "dashboard") {
+  
+    document.getElementById("option_poll").innerHTML = "<h5 class='card-title'>Poll - <code><%= id %></code></h5><form method='get' action='/api/poll/delete'><h6>Question: <%= question %></h6><input type='hidden' id='password' name='password' value='<%= passcode %>'><h4>False: <code><%= votesFalse %> votes</code></h4><h4>True: <code><%= votesTrue %> votes</code></h4><input type='hidden' id='id' name='id' value='<%= id %>' readonly='readonly'><br><input type='submit' value='Delete' class='btn'></form>"
+
+  } else if("<%= option %>" === "votes") {
+  
+    document.getElementById("option_poll").innerHTML = "<h5 class='card-title'>Poll - <code><%= id %></code></h5><h6>Question: <%= question %></h6><h3>False: <code><%= votesFalse %> votes</code></h3><h3>True: <code><%= votesTrue %> votes</code></h3>"
+
+  }
+</script>
+
+</body>
+</html>

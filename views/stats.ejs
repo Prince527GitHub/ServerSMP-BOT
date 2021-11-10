@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- ================= Discord web embed & description/title & twitter ================== -->
+
+	<meta property="og:locale" content="en_US">
+	<meta property="og:title" content="ServerSMP" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://serversmp.xyz" />
+	<meta property="og:image" content="https://serversmp.xyz/assets/image/banner/banner-smp.png" />
+	<meta property="og:description" content="ServerSMP has many projects." />
+	<meta name="description" content="ServerSMP has many projects.">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="ServerSMP">
+	<meta name="twitter:description" content="ServerSMP has many projects.">
+	<meta name="twitter:image" content="https://serversmp.xyz/assets/image/banner/banner-smp.png">
+	<meta name="theme-color" content="#030303">
+	<title>ServerSMP</title>
+
+	<!-- ================= Favicon ================== -->
+
+	<!-- Standard -->
+	<link rel="shortcut icon" href="/assets/image/icon.png">
+
+	<!-- Retina iPad Touch Icon -->
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/image/icon.png">
+
+	<!-- Retina iPhone Touch Icon -->
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/image/icon.png">
+
+	<!-- Standard iPad Touch Icon -->
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/image/icon.png">
+
+	<!-- Standard iPhone Touch Icon -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/image/icon.png">
+
+	<!-- ================= Styles & bootstrap ================== -->
+
+	<link href="https://serversmp.xyz/assets/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://serversmp.xyz/assets/js/bootstrap.bundle.min.js"></script>
+	<link href="https://serversmp.xyz/assets/css/style.css" rel="stylesheet">
+
+	<style>
+		/* latin-ext */
+		@font-face {
+			font-family: 'Concert One';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTsjP6yuQ.woff2") format('woff2');
+			unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+		}
+
+		/* latin */
+		@font-face {
+			font-family: 'Concert One';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTijP4.woff2") format('woff2');
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+	</style>
+
+</head>
+
+<!-- ================= Some stuff ================== -->
+
+<div id="nav-bar"></div>
+
+<body style="padding-bottom:30px">
+	<div class="container-sm">
+
+		<!-- ================= Name & logo ================== -->
+
+		<h1>ServerSMP Stats</h1>
+		<img src="/assets/image/icon.png" alt="ServerSMP - BOT" width="180" height="180" ></img>
+
+  <!-- ================= APIs ================== -->
+
+  <div class="container-sm style-is-cool">
+  <div class="row">
+    <div>
+      <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Servers</h5>
+          <p class="card-text" style="color:#00ffff;font-size:45px;"><%= servers %></p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Users</h5>
+          <p class="card-text" style="color:#65fe08;font-size:45px;"><%= users %></p>
+        </div>
+      </div>
+    </div>
+    <div>
+    <div>
+      <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title">NPM</h5>
+          <p class="card-text" style="color:#cb00f5;font-size:45px;"><%= npm %></p>
+        </div>
+      </div>
+    </div>
+    <div>
+		<div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
+		  <div class="card-body">
+			<h5 class="card-title">Channels</h5>
+			<p class="card-text" style="color:#cb3837;font-size:45px;"><%= channels %></p>
+		  </div>
+		</div>
+	  </div>
+    <div>
+		<div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
+		  <div class="card-body">
+			<h5 class="card-title">Commands</h5>
+			<p class="card-text" style="color:#ffff00;font-size:45px;"><%= commands %></p>
+		  </div>
+		</div>
+	  </div>
+    <div>
+		<div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
+		  <div class="card-body">
+			<h5 class="card-title">Commands Used</h5>
+			<p class="card-text" style="color:#4169e1;font-size:45px;"><%= cmdsUsed %></p>
+		  </div>
+		</div>
+	  </div>
+    <div>
+      <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Codebin</h5>
+          <p class="card-text" style="color:#ff8b00;font-size:45px;"><%= codebin %></p>
+        </div>
+      </div>
+    </div>
+    <div>
+    <div>
+      <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Shortener</h5>
+          <p class="card-text" style="color:#e6ff9a;font-size:45px;"><%= shorten %></p>
+        </div>
+      </div>
+    </div>
+    <div>
+    <div>
+      <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Polls created</h5>
+          <p class="card-text" style="color:#80dbf7;font-size:45px;"><%= polls %></p>
+        </div>
+      </div>
+    </div>
+    <div>
+    <div>
+      <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Current polls</h5>
+          <p class="card-text" style="color:#e1fde8;font-size:45px;"><%= poll %></p>
+        </div>
+      </div>
+    </div>
+    <div>
+  </div>
+  </div>
+
+</div>
+
+<script>
+	fetch('https://serversmp.xyz/assets/json/navbar.json')
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			appendData(data);
+		})
+		.catch(function (err) {
+			console.log('error: ' + err);
+		});
+
+	function appendData(data) {
+		document.getElementById("nav-bar").innerHTML = data.navbar;
+	}
+</script>
+
+</body>
+</html>

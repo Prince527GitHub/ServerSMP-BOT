@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- ================= Discord web embed & description/title & twitter ================== -->
+
+	<meta property="og:locale" content="en_US">
+	<meta property="og:title" content="ServerSMP - API" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="<%= url %>" />
+	<meta property="og:image" content="<%= url %>/assets/image/banner-smp.png" />
+	<meta property="og:description" content="ServerSMP - API, is an api!" />
+	<meta name="description" content="ServerSMP - API, is an api!">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="ServerSMP - API">
+	<meta name="twitter:description" content="ServerSMP - API, is an api!">
+	<meta name="twitter:image" content="<%= url %>/assets/image/banner-smp.png">
+	<meta name="theme-color" content="#030303">
+	<title>ServerSMP - API</title>
+
+	<!-- ================= Favicon ================== -->
+
+	<!-- Standard -->
+	<link rel="shortcut icon" href="/assets/image/icon.png">
+
+	<!-- Retina iPad Touch Icon -->
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/image/icon.png">
+
+	<!-- Retina iPhone Touch Icon -->
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/image/icon.png">
+
+	<!-- Standard iPad Touch Icon -->
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/image/icon.png">
+
+	<!-- Standard iPhone Touch Icon -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/image/icon.png">
+
+	<!-- ================= Styles & bootstrap ================== -->
+
+	<link href="https://serversmp.xyz/assets/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://serversmp.xyz/assets/js/bootstrap.bundle.min.js"></script>
+	<link href="https://serversmp.xyz/assets/css/style.css" rel="stylesheet">
+
+	<style>
+		/* latin-ext */
+		@font-face {
+			font-family: 'Concert One';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTsjP6yuQ.woff2") format('woff2');
+			unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+		}
+
+		/* latin */
+		@font-face {
+			font-family: 'Concert One';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTijP4.woff2") format('woff2');
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+	</style>
+
+</head>
+
+<!-- ================= Some stuff ================== -->
+
+<div id="nav-bar"></div>
+
+<body style="padding-bottom:30px">
+	<div class="container-sm">
+
+  <!-- ================= Data ================== -->
+
+  <div class="container-sm style-is-cool">
+  <h1><%= name %></h1>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card text-white bg-dark mb-3"class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Users</h5>
+          <p class="card-text"><%= users %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-white bg-dark mb-3"class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Roles</h5>
+          <p class="card-text"><%= roles %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-white bg-dark mb-3"class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Channels</h5>
+          <p class="card-text"><%= channels %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-white bg-dark mb-3"class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Messages</h5>
+          <p class="card-text"><%= msg %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-white bg-dark mb-3"class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Messages Deleted</h5>
+          <p class="card-text"><%= msgdel %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-white bg-dark mb-3"class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Messages Edited</h5>
+          <p class="card-text"><%= msgedit %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="col">
+      <div class="card text-white bg-dark mb-3"class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <div id="channel" style="height: 300px; width: 100%;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-white bg-dark mb-3"class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <div id="emoji" style="height: 300px; width: 100%;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-white bg-dark mb-3"class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <div id="member" style="height: 300px; width: 100%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+	fetch('https://serversmp.xyz/assets/json/navbar.json')
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			appendData(data);
+		})
+		.catch(function (err) {
+			console.log('error: ' + err);
+		});
+
+	function appendData(data) {
+		document.getElementById("nav-bar").innerHTML = data.navbar;
+	}
+</script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'Channels Created', 'Channels Deleted', 'Channels Pin Update', 'Channels Update'],
+          ['January', Number(<%= cc.january.length %>), Number(<%= cd.january.length %>), Number(<%= cpu.january.length %>), Number(<%= cu.january.length %>)],
+          ['February', Number(<%= cc.february.length %>), Number(<%= cd.february.length %>), Number(<%= cpu.february.length %>), Number(<%= cu.february.length %>)],
+          ['March', Number(<%= cc.march.length %>), Number(<%= cd.march.length %>), Number(<%= cpu.march.length %>), Number(<%= cu.march.length %>)],
+          ['April', Number(<%= cc.april.length %>), Number(<%= cd.april.length %>), Number(<%= cpu.april.length %>), Number(<%= cu.april.length %>)],
+          ['May', Number(<%= cc.may.length %>), Number(<%= cd.may.length %>), Number(<%= cpu.may.length %>), Number(<%= cu.may.length %>)],
+          ['June', Number(<%= cc.june.length %>), Number(<%= cd.june.length %>), Number(<%= cpu.june.length %>), Number(<%= cu.june.length %>)],
+          ['July', Number(<%= cc.july.length %>), Number(<%= cd.july.length %>), Number(<%= cpu.july.length %>), Number(<%= cu.july.length %>)],
+          ['August', Number(<%= cc.august.length %>), Number(<%= cd.august.length %>), Number(<%= cpu.august.length %>), Number(<%= cu.august.length %>)],
+          ['September', Number(<%= cc.september.length %>), Number(<%= cd.september.length %>), Number(<%= cpu.september.length %>), Number(<%= cu.september.length %>)],
+          ['October', Number(<%= cc.october.length %>), Number(<%= cd.october.length %>), Number(<%= cpu.october.length %>), Number(<%= cu.october.length %>)],
+          ['November', Number(<%= cc.november.length %>), Number(<%= cd.november.length %>), Number(<%= cpu.november.length %>), Number(<%= cu.november.length %>)],
+          ['December', Number(<%= cc.december.length %>), Number(<%= cd.december.length %>), Number(<%= cpu.december.length %>), Number(<%= cu.december.length %>)],
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Channel Data',
+            subtitle: '<%= name %>',
+          },
+          hAxis: {
+            titleTextStyle: {color: '#607d8b'}, 
+            gridlines: { count:0}, 
+            textStyle: { color: '#b0bec5', fontName: 'Concert One', fontSize: '12', bold: true}
+          },
+          vAxis: {
+            minValue: 0, 
+            gridlines: {color:'#37474f', count:4}, 
+            baselineColor: 'transparent'
+          },
+          legend: {position: 'top', alignment: 'center', textStyle: {color:'#607d8b', fontName: 'Concert One', fontSize: '12'} },
+          colors: ["#3f51b5","#2196f3","#03a9f4","#00bcd4","#009688","#4caf50","#8bc34a","#cddc39"],
+          areaOpacity: 0.24,
+          lineWidth: 1,
+          backgroundColor: 'transparent',
+          chartArea: {
+            backgroundColor: "transparent",
+            width: '100%',
+            height: '80%'
+          },
+          pieSliceBorderColor: '#263238',
+          pieSliceTextStyle:  {color:'#607d8b' },
+          pieHole: 0.9,
+          bar: {groupWidth: "40" },
+          colorAxis: {colors: ["#3f51b5","#2196f3","#03a9f4","#00bcd4"] },
+          backgroundColor: 'transparent',
+          datalessRegionColor: '#37474f',
+          displayMode: 'regions'
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('channel'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+</script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data2 = google.visualization.arrayToDataTable([
+        ['Month', 'Emoji Created', 'Emoji Deleted', 'Emoji Update'],
+        ['January', Number(<%= ec.january.length %>), Number(<%= ed.january.length %>), Number(<%= eu.january.length %>)],
+        ['February', Number(<%= ec.february.length %>), Number(<%= ed.february.length %>), Number(<%= eu.february.length %>)],
+        ['March', Number(<%= ec.march.length %>), Number(<%= ed.march.length %>), Number(<%= eu.march.length %>)],
+        ['April', Number(<%= ec.april.length %>), Number(<%= ed.april.length %>), Number(<%= eu.april.length %>)],
+        ['May', Number(<%= ec.may.length %>), Number(<%= ed.may.length %>), Number(<%= eu.may.length %>)],
+        ['June', Number(<%= ec.june.length %>), Number(<%= ed.june.length %>), Number(<%= eu.june.length %>)],
+        ['July', Number(<%= ec.july.length %>), Number(<%= ed.july.length %>), Number(<%= eu.july.length %>)],
+        ['August', Number(<%= ec.august.length %>), Number(<%= ed.august.length %>), Number(<%= eu.august.length %>)],
+        ['September', Number(<%= ec.september.length %>), Number(<%= ed.september.length %>), Number(<%= eu.september.length %>)],
+        ['October', Number(<%= ec.october.length %>), Number(<%= ed.october.length %>), Number(<%= eu.october.length %>)],
+        ['November', Number(<%= ec.november.length %>), Number(<%= ed.november.length %>), Number(<%= eu.november.length %>)],
+        ['December', Number(<%= ec.december.length %>), Number(<%= ed.december.length %>), Number(<%= eu.december.length %>)],
+      ]);
+
+      var options2 = {
+        chart: {
+          title: 'Emoji Data',
+          subtitle: '<%= name %>',
+        },
+        hAxis: {
+          titleTextStyle: {color: '#607d8b'}, 
+          gridlines: { count:0}, 
+          textStyle: { color: '#b0bec5', fontName: 'Concert One', fontSize: '12', bold: true}
+        },
+        vAxis: {
+          minValue: 0, 
+          gridlines: {color:'#37474f', count:4}, 
+          baselineColor: 'transparent'
+        },
+        legend: {position: 'top', alignment: 'center', textStyle: {color:'#607d8b', fontName: 'Concert One', fontSize: '12'} },
+        colors: ["#3f51b5","#2196f3","#03a9f4","#00bed4","#009688","#4caf50","#8bc34a","#eddc39"],
+        areaOpacity: 0.24,
+        lineWidth: 1,
+        backgroundColor: 'transparent',
+        chartArea: {
+          backgroundColor: "transparent",
+          width: '100%',
+          height: '80%'
+        },
+        pieSliceBorderColor: '#263238',
+        pieSliceTextStyle:  {color:'#607d8b' },
+        pieHole: 0.9,
+        bar: {groupWidth: "40" },
+        colorAxis: {colors: ["#3f51b5","#2196f3","#03a9f4","#00bed4"] },
+        backgroundColor: 'transparent',
+        datalessRegionColor: '#37474f',
+        displayMode: 'regions'
+      };
+
+      var chart2 = new google.charts.Bar(document.getElementById('emoji'));
+
+      chart2.draw(data2, google.charts.Bar.convertOptions(options2));
+    }
+</script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data3 = google.visualization.arrayToDataTable([
+        ['Month', 'Members Joined', 'Members Left', 'Members Update', 'Members Banned', 'Members Unbanned'],
+        ['January', Number(<%= ma.january.length %>), Number(<%= mr.january.length %>), Number(<%= mu.january.length %>), Number(<%= ba.january.length %>), Number(<%= br.january.length %>)],
+        ['February', Number(<%= ma.february.length %>), Number(<%= mr.february.length %>), Number(<%= mu.february.length %>), Number(<%= ba.february.length %>), Number(<%= br.february.length %>)],
+        ['March', Number(<%= ma.march.length %>), Number(<%= mr.march.length %>), Number(<%= mu.march.length %>), Number(<%= ba.march.length %>), Number(<%= br.march.length %>)],
+        ['April', Number(<%= ma.april.length %>), Number(<%= mr.april.length %>), Number(<%= mu.april.length %>), Number(<%= ba.april.length %>), Number(<%= br.april.length %>)],
+        ['May', Number(<%= ma.may.length %>), Number(<%= mr.may.length %>), Number(<%= mu.may.length %>), Number(<%= ba.may.length %>), Number(<%= br.may.length %>)],
+        ['June', Number(<%= ma.june.length %>), Number(<%= mr.june.length %>), Number(<%= mu.june.length %>), Number(<%= ba.june.length %>), Number(<%= br.june.length %>)],
+        ['July', Number(<%= ma.july.length %>), Number(<%= mr.july.length %>), Number(<%= mu.july.length %>), Number(<%= ba.july.length %>), Number(<%= br.july.length %>)],
+        ['August', Number(<%= ma.august.length %>), Number(<%= mr.august.length %>), Number(<%= mu.august.length %>), Number(<%= ba.august.length %>), Number(<%= br.august.length %>)],
+        ['September', Number(<%= ma.september.length %>), Number(<%= mr.september.length %>), Number(<%= mu.september.length %>), Number(<%= ba.september.length %>), Number(<%= br.september.length %>)],
+        ['October', Number(<%= ma.october.length %>), Number(<%= mr.october.length %>), Number(<%= mu.october.length %>), Number(<%= ba.october.length %>), Number(<%= br.october.length %>)],
+        ['November', Number(<%= ma.november.length %>), Number(<%= mr.november.length %>), Number(<%= mu.november.length %>), Number(<%= ba.november.length %>), Number(<%= br.november.length %>)],
+        ['December', Number(<%= ma.december.length %>), Number(<%= mr.december.length %>), Number(<%= mu.december.length %>), Number(<%= ba.december.length %>), Number(<%= br.december.length %>)],
+      ]);
+
+      var options3 = {
+        chart: {
+          title: 'Member Data',
+          subtitle: '<%= name %>',
+        },
+        hAxis: {
+          titleTextStyle: {color: '#607d8b'}, 
+          gridlines: { count:0}, 
+          textStyle: { color: '#b0bec5', fontName: 'Concert One', fontSize: '12', bold: true}
+        },
+        vAxis: {
+          minValue: 0, 
+          gridlines: {color:'#37474f', count:4}, 
+          baselineColor: 'transparent'
+        },
+        legend: {position: 'top', alignment: 'center', textStyle: {color:'#607d8b', fontName: 'Concert One', fontSize: '12'} },
+        colors: ["#3f51b5","#2196f3","#03a9f4","#00bed4","#009688","#4caf50","#8bc34a","#eddc39"],
+        areaOpacity: 0.24,
+        lineWidth: 1,
+        backgroundColor: 'transparent',
+        chartArea: {
+          backgroundColor: "transparent",
+          width: '100%',
+          height: '80%'
+        },
+        pieSliceBorderColor: '#263238',
+        pieSliceTextStyle:  {color:'#607d8b' },
+        pieHole: 0.9,
+        bar: {groupWidth: "40" },
+        colorAxis: {colors: ["#3f51b5","#2196f3","#03a9f4","#00bed4"] },
+        backgroundColor: 'transparent',
+        datalessRegionColor: '#37474f',
+        displayMode: 'regions'
+      };
+
+      var chart3 = new google.charts.Bar(document.getElementById('member'));
+
+      chart3.draw(data3, google.charts.Bar.convertOptions(options3));
+    }
+</script>
+
+</body>
+</html>

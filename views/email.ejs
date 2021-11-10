@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- ================= Discord web embed & description/title & twitter ================== -->
+
+	<meta property="og:locale" content="en_US">
+	<meta property="og:title" content="ServerSMP - API" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="<%= url %>" />
+	<meta property="og:image" content="<%= url %>/assets/image/banner-smp.png" />
+	<meta property="og:description" content="ServerSMP - API, is an api!" />
+	<meta name="description" content="ServerSMP - API, is an api!">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="ServerSMP - API">
+	<meta name="twitter:description" content="ServerSMP - API, is an api!">
+	<meta name="twitter:image" content="<%= url %>/assets/image/banner-smp.png">
+	<meta name="theme-color" content="#030303">
+	<title>ServerSMP - API</title>
+
+	<!-- ================= Favicon ================== -->
+
+	<!-- Standard -->
+	<link rel="shortcut icon" href="/assets/image/icon.png">
+
+	<!-- Retina iPad Touch Icon -->
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/image/icon.png">
+
+	<!-- Retina iPhone Touch Icon -->
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/image/icon.png">
+
+	<!-- Standard iPad Touch Icon -->
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/image/icon.png">
+
+	<!-- Standard iPhone Touch Icon -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/image/icon.png">
+
+	<!-- ================= Styles & bootstrap ================== -->
+
+	<link href="https://serversmp.xyz/assets/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://serversmp.xyz/assets/js/bootstrap.bundle.min.js"></script>
+	<link href="https://serversmp.xyz/assets/css/style.css" rel="stylesheet">
+
+	<style>
+		/* latin-ext */
+		@font-face {
+			font-family: 'Concert One';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTsjP6yuQ.woff2") format('woff2');
+			unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+		}
+
+		/* latin */
+		@font-face {
+			font-family: 'Concert One';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTijP4.woff2") format('woff2');
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+
+    input[type=text] {
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      background-color: #0C0B1A;
+      resize: none;
+    }
+
+    input[type=submit] {
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    textarea {
+      width: 100%;
+      height: 500px;
+      padding: 12px 20px;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      background-color: #0C0B1A;
+      resize: none;
+      text-align:left;
+    }
+	</style>
+
+</head>
+
+<!-- ================= Some stuff ================== -->
+
+<div id="nav-bar"></div>
+
+<h6 style="background-color:#f8d7da;color:#721c24;"><span style="font-weight:bold;color:#721c24;">WARNING:</span> This email sender has a 15 minute rate limiter for every 25 emails sent per ip.</h6>
+
+<body style="padding-bottom:30px">
+	<div class="container-sm">
+
+		<!-- ================= Name & logo ================== -->
+
+		<h1>ServerSMP - API</h1>
+		<img src="/assets/image/icon.png" alt="ServerSMP - API" width="180" height="180" ></img>
+
+  <!-- ================= APIs ================== -->
+
+  <div class="container-sm style-is-cool">
+  <div class="row">
+    <div>
+    <div class="card text-white bg-dark mb-3"class="card text-white bg-dark mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Email</h5>
+          <form method="get" action="/email/send">
+            <label for="fname">Sender:</label><br>
+            <input type="text" value="serversmpsmtp@gmail.com" readonly><br>
+            <label for="fname">Receiver:</label><br>
+            <input type="text" name="sender" placeholder="Enter email..." required><br>
+            <label for="lname">Subject:</label><br>
+            <input type="text" name="subject" placeholder="Enter subject..." required><br>
+            <label for="lname">Text:</label><br>
+            <textarea name="text" class="input_type" maxlength="2000" placeholder="Enter text..." spellcheck="false" required></textarea>
+            <input type="submit" value="Submit" class="btn">
+          </form> 
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- ================= error ================== -->
+
+  <div class="modal fade" id="error" tabindex="-1" aria-labelledby="errorLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #0C0B1A;">
+          <h5 class="modal-title" id="errorLabel">An error has occurred.</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= success ================== -->
+
+  <div class="modal fade" id="success" tabindex="-1" aria-labelledby="successLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #0C0B1A;">
+          <h5 class="modal-title" id="successLabel">Email sent!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+	fetch('https://serversmp.xyz/assets/json/navbar.json')
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			appendData(data);
+		})
+		.catch(function (err) {
+			console.log('error: ' + err);
+		});
+
+	function appendData(data) {
+		document.getElementById("nav-bar").innerHTML = data.navbar;
+	}
+
+  if(<%= error %> === true) {
+    var error = new bootstrap.Modal(document.getElementById('error'), {
+      keyboard: false
+    });
+    error.show();
+  }
+
+  if(<%= success %> === true) {
+    var success = new bootstrap.Modal(document.getElementById('success'), {
+      keyboard: false
+    });
+    success.show();
+  }
+
+  var errorEvent = document.getElementById('error')
+  errorEvent.addEventListener('hidden.bs.modal', function (event) {
+    location.href = '<%= url %>/email';
+  });
+
+  var successEvent = document.getElementById('success')
+  successEvent.addEventListener('hidden.bs.modal', function (event) {
+    location.href = '<%= url %>/email';
+  });
+  
+</script>
+
+</body>
+</html>

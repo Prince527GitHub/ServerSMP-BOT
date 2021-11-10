@@ -10,18 +10,32 @@
   "author": "Prince527",
   "license": "ISC",
   "dependencies": {
+    "@popovmp/req-log": "^1.0.1",
+    "@supercharge/strings": "^1.22.0",
+    "ark.db": "^2.7.1",
+    "axios": "^0.23.0",
     "bad-words": "^3.0.4",
+    "body-parser": "^1.19.0",
+    "canvacord": "^5.2.3",
     "canvas": "^2.8.0",
+    "chalk": "^4.1.2",
+    "cors": "^2.8.5",
+    "dayjs": "^1.10.7",
     "discord.js": "^13.1.0",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-rate-limit": "^5.4.0",
+    "express-requests-logger-newrelic": "^1.0.5",
     "jimp": "^0.16.1",
     "mongoose": "^6.0.8",
     "node-osu": "^2.2.1",
+    "popcat-wrapper": "^1.4.9",
     "request": "^2.88.2",
-    "shortid": "^2.2.16"
+    "serve-index": "^1.9.1",
+    "shortid": "^2.2.16",
+    "string-progressbar": "^1.0.4",
+    "text-essence": "^1.0.13"
   },
   "devDependencies": {
     "node": "^16.9.1"

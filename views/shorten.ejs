@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- ================= Discord web embed & description/title & twitter ================== -->
+
+	<meta property="og:locale" content="en_US">
+	<meta property="og:title" content="ServerSMP - API" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="<%= url %>" />
+	<meta property="og:image" content="<%= url %>/assets/image/banner-smp.png" />
+	<meta property="og:description" content="ServerSMP - API, is an api!" />
+	<meta name="description" content="ServerSMP - API, is an api!">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="ServerSMP - API">
+	<meta name="twitter:description" content="ServerSMP - API, is an api!">
+	<meta name="twitter:image" content="<%= url %>/assets/image/banner-smp.png">
+	<meta name="theme-color" content="#030303">
+	<title>ServerSMP - API</title>
+
+	<!-- ================= Favicon ================== -->
+
+	<!-- Standard -->
+	<link rel="shortcut icon" href="/assets/image/icon.png">
+
+	<!-- Retina iPad Touch Icon -->
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/image/icon.png">
+
+	<!-- Retina iPhone Touch Icon -->
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/image/icon.png">
+
+	<!-- Standard iPad Touch Icon -->
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/image/icon.png">
+
+	<!-- Standard iPhone Touch Icon -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/image/icon.png">
+
+	<!-- ================= Styles & bootstrap ================== -->
+
+	<link href="https://serversmp.xyz/assets/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://serversmp.xyz/assets/js/bootstrap.bundle.min.js"></script>
+	<link href="https://serversmp.xyz/assets/css/style.css" rel="stylesheet">
+
+	<style>
+		/* latin-ext */
+		@font-face {
+			font-family: 'Concert One';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTsjP6yuQ.woff2") format('woff2');
+			unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+		}
+
+		/* latin */
+		@font-face {
+			font-family: 'Concert One';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTijP4.woff2") format('woff2');
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+
+    input[type=text] {
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      background-color: #0C0B1A;
+      resize: none;
+    }
+    input[type=submit] {
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+	</style>
+
+</head>
+
+<!-- ================= Some stuff ================== -->
+
+<div id="nav-bar"></div>
+
+<h6 style="background-color:#f8d7da;color:#721c24;"><span style="font-weight:bold;color:#721c24;">WARNING:</span> This url shortener has a 15 minute rate limiter for every 50 shorten urls made per ip.</h6>
+
+<body style="padding-bottom:30px">
+	<div class="container-sm">
+
+		<!-- ================= Name & logo ================== -->
+
+		<h1>ServerSMP - API</h1>
+		<img src="/assets/image/icon.png" alt="ServerSMP - API" width="180" height="180" ></img>
+
+  <!-- ================= APIs ================== -->
+
+  <div class="container-sm style-is-cool">
+  <div class="row">
+    <div>
+    <div class="card text-white bg-dark mb-3"class="card text-white bg-dark mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Shorten</h5>
+          <form method="post" action="/shorten/create">
+            <label for="fname">Url:</label><br>
+            <input type="text" name="url" placeholder="Enter url..." required><br>
+            <label for="lname">Extension:</label><br>
+            <input type="text" name="code" placeholder="Enter extension..." required><br><br>
+            <input type="submit" value="Submit" class="btn">
+          </form> 
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- ================= allready ================== -->
+
+  <div class="modal fade" id="allready" tabindex="-1" aria-labelledby="allreadyLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #0C0B1A;">
+          <h5 class="modal-title" id="allreadyLabel">Shorten url extension allready exist.</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= error ================== -->
+
+  <div class="modal fade" id="error" tabindex="-1" aria-labelledby="errorLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #0C0B1A;">
+          <h5 class="modal-title" id="errorLabel">An error has occurred.</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= isurl ================== -->
+
+  <div class="modal fade" id="isurl" tabindex="-1" aria-labelledby="isurlLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #0C0B1A;">
+          <h5 class="modal-title" id="isurlLabel">Shorten url is not a valid url.</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= done ================== -->
+
+  <div class="modal fade" id="done" tabindex="-1" aria-labelledby="doneLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #0C0B1A;">
+          <h5 class="modal-title" id="doneLabel">Shorten url maked at <code><%= url %>/shorten/<%= extension %></code> or <code><%= url2 %>/s/<%= extension %></code></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+	fetch('https://serversmp.xyz/assets/json/navbar.json')
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			appendData(data);
+		})
+		.catch(function (err) {
+			console.log('error: ' + err);
+		});
+
+	function appendData(data) {
+		document.getElementById("nav-bar").innerHTML = data.navbar;
+	}
+
+  if(<%= allready %> === true) {
+    var allready = new bootstrap.Modal(document.getElementById('allready'), {
+      keyboard: false
+    });
+    allready.show();
+  }
+
+  if(<%= error %> === true) {
+    var error = new bootstrap.Modal(document.getElementById('error'), {
+      keyboard: false
+    });
+    error.show();
+  }
+
+  if(<%= isurl %> === true) {
+    var isurl = new bootstrap.Modal(document.getElementById('isurl'), {
+      keyboard: false
+    });
+    isurl.show();
+  }
+
+  if(<%= done %> === true) {
+    var done = new bootstrap.Modal(document.getElementById('done'), {
+      keyboard: false
+    });
+    done.show();
+  }
+
+  var allreadyEvent = document.getElementById('allready')
+  allreadyEvent.addEventListener('hidden.bs.modal', function (event) {
+    location.href = '<%= url %>/shorten';
+  });
+
+  var errorEvent = document.getElementById('error')
+  errorEvent.addEventListener('hidden.bs.modal', function (event) {
+    location.href = '<%= url %>/shorten';
+  });
+
+  var isurlEvent = document.getElementById('isurl')
+  isurlEvent.addEventListener('hidden.bs.modal', function (event) {
+    location.href = '<%= url %>/shorten';
+  });
+
+  var doneEvent = document.getElementById('done')
+  doneEvent.addEventListener('hidden.bs.modal', function (event) {
+    location.href = '<%= url %>/shorten';
+  });
+  
+</script>
+
+</body>
+</html>

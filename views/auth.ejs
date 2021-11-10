@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- ================= Discord web embed & description/title & twitter ================== -->
+
+	<meta property="og:locale" content="en_US">
+	<meta property="og:title" content="ServerSMP - Auth" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="<%= url %>" />
+	<meta property="og:image" content="<%= url %>/assets/image/icon.png" />
+	<meta property="og:description" content="ServerSMP - Auth, is a mongodb auth!" />
+	<meta name="description" content="ServerSMP - Auth, is a mongodb auth!">
+	<meta name="theme-color" content="#030303">
+	<title>ServerSMP - Auth</title>
+
+	<!-- ================= Favicon ================== -->
+
+	<!-- Standard -->
+	<link rel="shortcut icon" href="/assets/image/icon.png">
+
+	<!-- Retina iPad Touch Icon -->
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/image/icon.png">
+
+	<!-- Retina iPhone Touch Icon -->
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/image/icon.png">
+
+	<!-- Standard iPad Touch Icon -->
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/image/icon.png">
+
+	<!-- Standard iPhone Touch Icon -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/image/icon.png">
+
+	<!-- ================= Styles & bootstrap ================== -->
+
+	<link href="https://serversmp.xyz/assets/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://serversmp.xyz/assets/js/bootstrap.bundle.min.js"></script>
+	<link href="https://serversmp.xyz/assets/css/style.css" rel="stylesheet">
+
+	<style>
+		/* latin-ext */
+		@font-face {
+			font-family: 'Concert One';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTsjP6yuQ.woff2") format('woff2');
+			unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+		}
+
+		/* latin */
+		@font-face {
+			font-family: 'Concert One';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTijP4.woff2") format('woff2');
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+
+    input[type=text] {
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      background-color: #0C0B1A;
+      resize: none;
+    }
+
+    input[type=password] {
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      background-color: #0C0B1A;
+      resize: none;
+    }
+
+    input[type=submit] {
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .link_text {
+      color: #20b2aa;
+    }
+
+    .link_text:hover {
+      color: #add8e6;
+      cursor: pointer;
+    }
+	</style>
+
+</head>
+
+<!-- ================= Some stuff ================== -->
+
+<div id="nav-bar"></div>
+
+<body style="padding-bottom:30px">
+	<div class="container-sm">
+
+	<!-- ================= Name & logo ================== -->
+
+		<h1>ServerSMP - Auth</h1>
+		<img src="/assets/image/icon.png" alt="ServerSMP - API" width="180" height="180" ></img>
+
+  <!-- ================= Login/create ================== -->
+
+  <div class="container-sm style-is-cool">
+  <div class="row" id="menu">
+    <div>
+      <div class="card text-white bg-dark mb-3"class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Login</h5>
+          <p class="card-text">
+            <form method="post" action="/auth/login">
+              <label for="fname">Username:</label><br>
+              <input type="text" name="username" placeholder="Enter username..." maxlength="100" required><br>
+              <label for="lname">Password:</label><br>
+              <input type="password" name="password" placeholder="Enter password..." required><br>
+              <input type='hidden' name='web' value="true" readonly required>
+              <a class='link_text' onclick="create_account()">Don't have an account?</a><br>
+              <input type="submit" value="Submit" class="btn">
+            </form>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- ================= error ================== -->
+
+  <div class="modal fade" id="error" tabindex="-1" aria-labelledby="errorLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #0C0B1A;">
+          <h5 class="modal-title" id="errorLabel"><%= errorText %></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= delete_account ================== -->
+
+  <div class="modal fade" id="delete_account" tabindex="-1" aria-labelledby="delete_accountLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #0C0B1A;">
+          <h5 class="modal-title" id="delete_accountLabel">
+            <form method='post' action='/auth/delete'>
+              <input type='hidden' name='username' id="delete_name" readonly required>
+              <input type='hidden' name='password' value="<%= password %>" readonly required>
+              <input type='hidden' name='web' value="true" readonly required>
+              <input type='submit' value='Delete' class='btn'>
+            </form>
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+	fetch('https://serversmp.xyz/assets/json/navbar.json')
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			appendData(data);
+		})
+		.catch(function (err) {
+			console.log('error: ' + err);
+		});
+
+	function appendData(data) {
+		document.getElementById("nav-bar").innerHTML = data.navbar;
+	}
+
+  if(<%= error %> === true) {
+    var error = new bootstrap.Modal(document.getElementById('error'), {
+      keyboard: false
+    });
+    error.show();
+  }
+
+  var errorEvent = document.getElementById('error')
+  errorEvent.addEventListener('hidden.bs.modal', function (event) {
+    location.href = '<%= url %>/auth/';
+  });
+
+  function create_account() {
+    document.getElementById("menu").innerHTML = "<div><div class='card text-white bg-dark mb-3'class='card text-white bg-dark mb-3'><div class='card-body'><h5 class='card-title'>Create</h5><p class='card-text'><form method='post' action='/auth/create'><input type='hidden' name='web' value='true' readonly required><label for='fname'>Username:</label><br><input type='text' name='username' placeholder='Enter username...' maxlength='100' required><br><label for='lname'>Password:</label><br><input type='text' name='password' placeholder='Enter password...' required><br><a class='link_text' onclick='login_account()'>Have an account?</a><br><input type='submit' value='Submit' class='btn'></form></p></div></div></div>";
+  }
+
+  function login_account() {
+    document.getElementById("menu").innerHTML = "<div><div class='card text-white bg-dark mb-3'class='card text-white bg-dark mb-3'><div class='card-body'><h5 class='card-title'>Login</h5><p class='card-text'><form method='post' action='/auth/login'><input type='hidden' name='web' value='true' readonly required><label for='fname'>Username:</label><br><input type='text' name='username' placeholder='Enter username...' maxlength='100' required><br><label for='lname'>Password:</label><br><input type='text' name='password' placeholder='Enter password...' required><br><a class='link_text' onclick='create_account()'>Don't have an account?</a><br><input type='submit' value='Submit' class='btn'></form></p></div></div></div>"
+  }
+
+  function delete_function() {
+    var delete_account = new bootstrap.Modal(document.getElementById('delete_account'), {
+      keyboard: false
+    });
+    delete_account.show();
+  }
+
+  if(<%= login %> === true) {
+    fetch('<%= url %>/auth/get?token=<%= token %>')
+		  .then(function (response) {
+			  return response.json();
+		  })
+		  .then(function (data) {
+			  document.getElementById("menu").innerHTML = "<div><div class='card text-white bg-dark mb-3' class='card text-white bg-dark mb-3'><div class='card-body'><h5 class='card-title'>Login</h5><p class='card-text'><h5 id='username_data'></h5><code id='token_data'></code><br><br><a onclick='delete_function()' class='btn btn-primary'>Delete</a></p></div></div></div>"
+        document.getElementById("username_data").innerHTML = data.username
+        document.getElementById("delete_name").innerHTML = data.username
+        document.getElementById("token_data").innerHTML = data.token
+		  })
+		  .catch(function (err) {
+			  console.log('error: ' + err);
+		  });
+  }
+</script>
+
+</body>
+</html>
