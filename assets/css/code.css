@@ -88,3 +88,20 @@ textarea {
 .btn:hover {
     background-color: #83E5FF;
 }
+
+html {
+	scroll-width: thin;
+	scroll-color: #00566B #003D4C;
+}
+
+html::-webkit-scrollbar {
+	width: 2vw;
+}
+
+html::-webkit-scrollbar-thumb {
+	background-color: #003D4C;
+}
+
+html::-webkit-scrollbar-track {
+	background-color: #00566B;
+}

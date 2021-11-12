@@ -63,6 +63,10 @@ body {
     width: 0;
 }
 
+html {
+	scroll-width: none;
+}
+
 .link-h6 {
     margin-top: 10px;
 }
