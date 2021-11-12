@@ -90,18 +90,9 @@ textarea {
 }
 
 html {
-	scroll-width: thin;
-	scroll-color: #00566B #003D4C;
+	scroll-width: none;
 }
 
-html::-webkit-scrollbar {
-	width: 2vw;
-}
-
-html::-webkit-scrollbar-thumb {
-	background-color: #003D4C;
-}
-
-html::-webkit-scrollbar-track {
-	background-color: #00566B;
+::-webkit-scrollbar {
+    width: 0;
 }
