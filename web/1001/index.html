@@ -37,6 +37,7 @@
 
     <link href="https://serversmp.xyz/assets/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://serversmp.xyz/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link href="https://serversmp.xyz/assets/css/style.css" rel="stylesheet">
 
     <style>
@@ -60,14 +61,45 @@
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
 
-        .center_div {
-            height: 200px;
-            width: 400px;
+        #header {
+            height: 100px;
+            float: left;
+            margin: 11.2px;
+            position: absolute;
+        }
+
+        #header2 {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            margin-top: -100px;
-            margin-left: -200px;
+            float: right;
+            right: 0;
+            margin: 11.2px;
+        }
+
+        .block {
+            background-color: transparent;
+            border: 10px solid #fffff2;
+            margin: 16px;
+            width: 208px;
+            height: 208px;
+            font-size: 80px;
+        }
+
+        .block:hover {
+            background-color: rgba(0, 0, 0, 0.250);
+        }
+
+        .block_small {
+            display: block;
+            float: right;
+            top: 0;
+            background-color: transparent;
+            border: 5px solid #fffff2;
+            width: 80px;
+            font-size: 16px;
+        }
+
+        .block_small:hover {
+            background-color: rgba(0, 0, 0, 0.250);
         }
     </style>
 
@@ -76,31 +108,49 @@
 <body><noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="nav-bar"></div>
 
-    <h6 style="background-color:#f8d7da;color:#721c24;"><span style="font-weight:bold;color:#721c24;">WARNING:</span> This is a terrible version of 1001 a game from Arpi <img src="https://serversmp.xyz/web/developers/assets/image/arpi.png" height="16px" width="16px"> <span style="color:gray;">(you can play the better version <a href="https://adrianoalasia.com/">here</a>)</span></h6>
+    <h6 style="background-color:#f8d7da;color:#721c24;"><span style="font-weight:bold;color:#721c24;">WARNING:</span>
+        This is a terrible version of 1001 a game from Arpi <img
+            src="https://serversmp.xyz/web/developers/assets/image/arpi.png" height="16px" width="16px"> <span
+            style="color:gray;">(you can play the better version <a href="https://adrianoalasia.com/">here</a>)</span>
+    </h6>
 
-    <div class="center_div">
-        <h2 style="color:#90ee90;" id="realnumber"></h2>
-        <h2 id="number"></h2>
-        <button class="btn" id="remove">-</button>
-        <button class="btn" id="add">+</button>
-        <button class="btn" id="random">↩</button>
+    <div id="header">
+        <h2>Goal: <span id="realnumber"></span></h2>
+    </div>
+
+    <div id="header2">
+        <button class="btn block_small" id="random">↩</button>
+    </div>
+
+    <div>
+        <h1 style="font-size: 150px; padding: 80px;" id="number"></h1>
+        <button class="btn block" id="remove">-</button>
+        <button class="btn block" id="add">+</button>
+        <button class="btn block" id="random">↩</button>
     </div>
 
     <script>
         let finalNumber;
 
+        // make all number 6 digits long
+        function pad(num, size) {
+            var s = num + "";
+            while (s.length < size) s = "0" + s;
+            return s;
+        }
+
         // random number then change the dom element
         function randomNumber() {
-            var number = Math.floor(Math.random() * 100000);
-            document.getElementById('number').innerHTML = number;
+            var number = Math.floor(Math.random() * 1000000);
+            document.getElementById('number').innerHTML = pad(number, 6);
         }
         randomNumber();
 
         // set final number
         function finalNumberFunction() {
-            var number = Math.floor(Math.random() * 100000);
+            var number = Math.floor(Math.random() * 1000000);
             finalNumber = number;
-            document.getElementById('realnumber').innerHTML = number;
+            document.getElementById('realnumber').innerHTML = pad(number, 6);
         }
         finalNumberFunction();
 
@@ -119,6 +169,23 @@
             }
         });
 
+        // when keyboard a is pressed
+        document.addEventListener('keydown', function (e) {
+            if (e.keyCode == 65) {
+                // get number element
+                var number = document.getElementById('number');
+                // get current number
+                var current = parseInt(number.innerHTML);
+                // add 1000 to current number
+                number.innerHTML = current + 1000;
+                // check local storage
+                var number = document.getElementById('number').innerHTML;
+                if (number == finalNumber) {
+                    document.getElementById('number').innerHTML = 'You Win!';
+                }
+            }
+        });
+
         // get button element by id and add event listener
         document.getElementById('remove').addEventListener('click', function () {
             // get number element
@@ -134,10 +201,27 @@
             }
         });
 
+        // when keyboard s is pressed
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode == 83) {
+                // get number element
+                var number = document.getElementById('number');
+                // get current number
+                var current = parseInt(number.innerHTML);
+                // remove 1000 to current number
+                number.innerHTML = current - 1000;
+                // check local storage
+                var number = document.getElementById('number').innerHTML;
+                if (number == finalNumber) {
+                    document.getElementById('number').innerHTML = 'You Win!';
+                }
+            }
+        });
+
         // get button element by id and add event listener
         document.getElementById('random').addEventListener('click', function () {
-            var number = Math.floor(Math.random() * 100000);
-            document.getElementById('number').innerHTML = number;
+            var number = Math.floor(Math.random() * 1000000);
+            document.getElementById('number').innerHTML = pad(number, 6);
             // check local storage
             var number = document.getElementById('number').innerHTML;
             if (number == finalNumber) {
@@ -145,20 +229,30 @@
             }
         });
 
+        // when keyboard hit enter
+        document.addEventListener('keydown', function (e) {
+            if (e.keyCode == 13) {
+                var number = Math.floor(Math.random() * 1000000);
+                document.getElementById('number').innerHTML = pad(number, 6);
+                // check local storage
+                var number = document.getElementById('number').innerHTML;
+                if (number == finalNumber) {
+                    document.getElementById('number').innerHTML = 'You Win!';
+                }
+            }
+        });
+
+        // fetch navbar
         fetch('https://serversmp.xyz/assets/json/navbar.json')
             .then(function (response) {
                 return response.json();
             })
             .then(function (data) {
-                appendData(data);
+                document.getElementById("nav-bar").innerHTML = data.navbar;
             })
             .catch(function (err) {
                 console.log('error: ' + err);
             });
-
-        function appendData(data) {
-            document.getElementById("nav-bar").innerHTML = data.navbar;
-        }
     </script>
 </body>
 
