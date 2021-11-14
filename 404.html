@@ -47,55 +47,74 @@
 	<style>
 		/* latin-ext */
 		@font-face {
-			font-family: 'Concert One';
+			font-family: 'Roboto Mono';
 			font-style: normal;
-			font-weight: 400;
+			font-weight: 100;
 			font-display: swap;
-			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTsjP6yuQ.woff2") format('woff2');
+			src: url("https://serversmp.xyz/assets/font/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vu_SuW4Ep0.woff2") format('woff2');
 			unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 		}
 
 		/* latin */
 		@font-face {
-			font-family: 'Concert One';
+			font-family: 'Roboto Mono';
 			font-style: normal;
-			font-weight: 400;
+			font-weight: 100;
 			font-display: swap;
-			src: url("https://serversmp.xyz/assets/font/VEM1Ro9xs5PjtzCu-srDqSTijP4.woff2") format('woff2');
+			src: url("https://serversmp.xyz/assets/font/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vu_ROW4.woff2") format('woff2');
 			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+
+		h2 {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -80%);
+			font-family: 'Roboto Mono', monospace;
+			font-size: 10rem;
+			font-weight: 400;
+			overflow: hidden;
+			white-space: nowrap;
+			color: rgb(194, 194, 194);
+			animation: typing 5s steps(4), blink 1s ease-in-out 6s infinite;
+			border-right: 4px solid rgb(194, 194, 194);
+			width: 4ch;
+		}
+
+		@keyframes typing {
+			0% {
+				width: 0ch;
+			}
+
+			100% {
+				width: 4ch;
+			}
+		}
+
+		@keyframes blink {
+			0% {
+				border-right: 4px solid rgba(255, 255, 255, 0);
+			}
+
+			100% {
+				border-right: 4px solid rgb(194, 194, 194);
+			}
+		}
+
+		body {
+			background-image: url('https://serversmp.xyz/assets/image/page/404.gif');
+			background-size: cover;
+			height: 100vh;
+			padding: 0;
+			margin: 0;
 		}
 	</style>
 
 </head>
 
-<!-- ================= Some stuff ================== -->
+<body>
 
-<div id="nav-bar"></div>
-
-<body style="padding-bottom:30px">
-	<div class="container-sm">
-
-		<!-- ================= Name & logo ================== -->
-
-		<h1>ServerSMP</h1>
-		<img src="https://serversmp.xyz/assets/image/page/logo.png" alt="ServerSMP" width="180" height="180"></img>
-
-		<!-- ================= Description of ServerSMP ================== -->
-
-		<h4 style="color:#6c8285;">ServerSMP has many project.</h4>
-
-		<a href="https://serversmp.xyz/web/project.html" class="btn btn-primary">Projects</a>
-
-	</div>
-
-	<script src="https://serversmp.xyz/assets/js/fetch.js"></script>
-	<script>
-		async function dataNew() {
-			const data = await fetchUrl('https://serversmp.xyz/assets/json/navbar.json');
-			document.getElementById("nav-bar").innerHTML = data.navbar;
-		}
-		dataNew()
-	</script>
+	<h2>404</h2>
 
 </body>
 
