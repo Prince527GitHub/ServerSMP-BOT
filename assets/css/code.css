@@ -91,6 +91,8 @@ textarea {
 
 html {
 	scroll-width: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
