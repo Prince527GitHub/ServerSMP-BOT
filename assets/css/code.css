@@ -90,11 +90,17 @@ textarea {
 }
 
 html {
-	scroll-width: none;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    scroll-width: none;
 }
 
 ::-webkit-scrollbar {
     width: 0;
+}
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+#content browser {
+    margin-right: -14px !important;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
