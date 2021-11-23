@@ -42,6 +42,7 @@
 
     <style>
         input[type=text] {
+            color: white;
             box-sizing: border-box;
             border: 2px solid #ccc;
             border-radius: 4px;
@@ -50,6 +51,7 @@
         }
 
         input[type=password] {
+            color: white;
             box-sizing: border-box;
             border: 2px solid #ccc;
             border-radius: 4px;
@@ -71,6 +73,33 @@
             color: #add8e6;
             cursor: pointer;
         }
+
+        .visibility:hover {
+            cursor: pointer;
+        }
+
+        .input-container {
+            display: flex;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .icon {
+            padding: 10px;
+            color: white;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            outline: none;
+        }
+
+        .input-field:focus {
+            border: 2px solid dodgerblue;
+        }
     </style>
 
 </head>
@@ -89,17 +118,32 @@
                 <div>
                     <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
                         <div class="card-body">
-                            <h5 class="card-title" id="stuff_title_game">Login</h5>
+                            <h5 class="card-title" id="form_title">Login</h5>
                             <p class="card-text">
-                                <form method="post" action="https://api.serversmp.xyz/1001/set" id="simple_form_login_pls">
-                                    <label for="fname">Username:</label><br>
-                                    <input type="text" name="username" placeholder="Enter username..." maxlength="100" required><br>
-                                    <label for="lname">Password:</label><br>
-                                    <input type="password" name="password" placeholder="Enter password..." required><br>
-                                    <input type='hidden' name='id' id="id_true_yes" value="0" readonly required>
-                                    <input type='hidden' name='type' id="type_true_yes" value="login" readonly required>
-                                    <a class='link_text' id="link_text_change_stuff" onclick="create_account()">Don't have an account?</a><br>
-                                    <input type="submit" value="Submit" class="btn">
+                                <form method="post" action="https://api.serversmp.xyz/1001/set" id="auth_form">
+                                    <!-- Form username -->
+                                    <div class="mb-3 input-container">
+                                        <i class="material-icons user icon">account_box</i>
+                                        <input style="text-align: left;" type="text" class="form-control input-field" id="username" placeholder="Username" maxlength="100" required>
+                                    </div>
+
+                                    <!-- Form password -->
+                                    <div class="mb-3 input-container">
+                                        <i class="material-icons visibility icon" onclick="show()">visibility</i>
+                                        <input style="text-align: left;" type="password" class="form-control input-field" id="password" placeholder="Password" required>
+                                    </div>
+
+                                    <!-- Hidden stuff -->
+                                    <input type='hidden' name='id' id="time" value="0" readonly required>
+                                    <input type='hidden' name='type' id="auth_type" value="login" readonly required>
+
+                                    <!-- Change auth type -->
+                                    <a class='link_text' id="auth_type_change" onclick="create_account()">Don't have an
+                                        account?</a><br>
+
+                                    <!-- Form submit button -->
+                                    <button type="submit" class="btn btn-primary" value="Sign in"
+                                        id="submit_button">Sign in</button>
                                 </form>
                             </p>
                         </div>
@@ -125,29 +169,43 @@
         function getID() {
             const urlSearchParams = new URLSearchParams(window.location.search);
             const params = Object.fromEntries(urlSearchParams.entries());
-            if(!params.id) {
+            if (!params.id) {
                 window.location.href = "https://serversmp.xyz/web/1001/index.html";
             } else {
-                document.getElementById("id_true_yes").value = params.id;
+                document.getElementById("time").value = params.id;
             }
         }
         getID();
 
         function create_account() {
-            document.getElementById("simple_form_login_pls").action = "https://api.serversmp.xyz/auth/create";
-            document.getElementById('link_text_change_stuff').setAttribute( "onClick", "login_account()" );
-            document.getElementById("link_text_change_stuff").innerText = "Have an account?";
-            document.getElementById("stuff_title_game").innerText = "Create";
-            document.getElementById("id_true_yes").value = "create";
+            document.getElementById("auth_form").action = "https://api.serversmp.xyz/auth/create";
+            document.getElementById('auth_type_change').setAttribute("onClick", "login_account()");
+            document.getElementById("auth_type_change").innerText = "Have an account?";
+            document.getElementById("submit_button").innerText = "Sign up";
+            document.getElementById("form_title").innerText = "Create"
+            document.getElementById("auth_type").value = "create";
         }
 
         function login_account() {
-            document.getElementById("simple_form_login_pls").action = "https://api.serversmp.xyz/auth/login";
-            document.getElementById('link_text_change_stuff').setAttribute( "onClick", "create_account()" );
-            document.getElementById("link_text_change_stuff").innerText = "Don't have an account?";
-            document.getElementById("stuff_title_game").innerText = "Login";
-            document.getElementById("id_true_yes").value = "login";
+            document.getElementById("auth_form").action = "https://api.serversmp.xyz/auth/login";
+            document.getElementById('auth_type_change').setAttribute("onClick", "create_account()");
+            document.getElementById("auth_type_change").innerText = "Don't have an account?";
+            document.getElementById("submit_button").innerText = "Sign in";
+            document.getElementById("form_title").innerText = "Login"
+            document.getElementById("auth_type").value = "login";
         }
+
+        const show = () => {
+            let password = document.getElementById("password");
+            let visibility = document.querySelector(".visibility");
+            if (password.type === "password") {
+                password.type = "text";
+                visibility.style.color = "rgb(128, 0, 122)";
+            } else {
+                password.type = "password";
+                visibility.style.color = "#fff";
+            }
+        };
     </script>
 
 </body>
