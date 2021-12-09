@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Villes et communautés durables</title>
+  <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="icon" type="image/png" href="./assets/image/icon.jpg" />
+</head>
+
+<body class="scale-up-ver-top">
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin: 0px;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="https://www.un.org/">
+          <img style="float: right;" src="./assets/image/navbanner.png">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"> </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"> </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#"> </a></li>
+                <li><a class="dropdown-item" href="#"> </a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#"> </a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"> </a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input style="margin: 0px;float: left;border-radius: 0px;" class="form-control me-2"
+              class="justify-content-between" type="search" placeholder="Recherche" aria-label="Search">
+            <a style="margin: 0px;float: left;border-radius: 0px;" class="justify-content-between" type="submit"><img
+                src="./assets/image/search.jpg"></a>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-light text-white"
+      style="padding: 0px;margin-left: -12px;background-color: #4d4d4d;">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a style="padding-left: 15px;padding-right: 15px; color: white;background-color: #4d4d4d;"
+                class="nav-link" aria-current="page" href="#">Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a style="padding-left: 15px;padding-right: 15px; color: white;background-color: #4d4d4d;"
+                class="nav-link" href="#">Contexte ↓</a>
+            </li>
+            <li class="nav-item">
+              <a style="padding-left: 15px;padding-right: 15px; color: white;background-color: #4d4d4d;"
+                class="nav-link" href="#">Compagnes ↓</a>
+            </li>
+            <li class="nav-item">
+              <a style="padding-left: 15px;padding-right: 15px; color: black;background-color: white;" class="nav-link"
+                href="#">Objectifs ↓</a>
+            </li>
+            <li class="nav-item">
+              <a style="padding-left: 15px;padding-right: 15px; color: white;background-color: #4d4d4d;"
+                class="nav-link" href="#">Actions ↓</a>
+            </li>
+            <li class="nav-item">
+              <a style="padding-left: 15px;padding-right: 15px; color: white;background-color: #4d4d4d;"
+                class="nav-link" href="#">Partenariats ↓</a>
+            </li>
+            <li class="nav-item">
+              <a style="padding-left: 15px;padding-right: 15px; color: white;background-color: #4d4d4d;"
+                class="nav-link" href="#">Actualités & multimédia ↓</a>
+            </li>
+            <li class="nav-item">
+              <a style="padding-left: 15px;padding-right: 15px; color: white;background-color: #4d4d4d;"
+                class="nav-link" href="#">En savoir plus ↓</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Main body -->
+
+  <!-- Navigation -->
+  <div class="card text-center" id="navigation"></div>
+</body>
+
+<footer>
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="https://www.un.org/sustainabledevelopment/fr/cities/">ONU</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="https://www.fao.org/sustainable-development-goals/goals/goal-11/fr/">FAO</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="https://fr.wikipedia.org/wiki/Objectif_de_d%C3%A9veloppement_durable_no_11_des_Nations_Unies">Wiki</a>
+    </li>
+  </ul>
+</footer>
+
+</html>
+
+<script>
+  function setInfo() {
+    document.getElementById("navigation").innerHTML =
+      `<div class="card-header"><ul class="nav nav-pills card-header-pills"><li class="nav-item"><a class="nav-link active" href="#" onclick="setInfo()">Information</a></li><li class="nav-item"><a class="nav-link" href="#" onclick="setStats()">Statistiques</a></li><li class="nav-item"><a class="nav-link" href="#" onclick="setImage()">Image / Autre</a></li><li class="nav-item"><a class="nav-link" href="#" onclick="setBiblio()">Bibliographie</a></li></ul></div><div class="card-body"><div align="center"><h1 style="color:#f99d26;font-weight: bold;">Villes et communautés durables</h1><img src="./assets/image/icon.jpg" height="256" width="256"></div><h2 style="color:#f99d26;font-weight: bold;">Objectif</h2><h3>L'objectif c'est de fait des vile acceptent, sécure et un développement durable.</h3><h2 style="color:#f99d26;font-weight: bold;">Pourquoi?</h2><h3>Comme tu le savez de plus en plus de personne vie dans des vile, mais dans beaucoup de vile en développement ont des problèmes avec l'éducation, santé, pauvreté. Aussi, n'oublie pas le plus grand problème changement climatique. Pour ajouter, il y a une augmentation de personne vie dans les bidonvilles et une augmentation de population.</h3><h2 style="color:#f99d26;font-weight: bold;">Que puis-je faire</h2><h3>o Tu peux faire une liste des choses qui sont bien et non bien dans votre ville.</h3><h3>o Suivre comment votre ville est gérer ou le gouvernement.</h3></div>`;
+  }
+
+  setInfo();
+
+  function setStats() {
+    document.getElementById("navigation").innerHTML =
+      `<div class="card-header"><ul class="nav nav-pills card-header-pills"><li class="nav-item"><a class="nav-link" href="#" onclick="setInfo()">Information</a></li><li class="nav-item"><a class="nav-link active" href="#" onclick="setStats()">Statistiques</a></li><li class="nav-item"><a class="nav-link" href="#" onclick="setImage()">Image / Autre</a></li><li class="nav-item"><a class="nav-link" href="#" onclick="setBiblio()">Bibliographie</a></li></ul></div><div class="card-body"> <div class="container"><div class="row"><div class="col"><img src="./assets/image/population-stats-1.png" height="512" width="512"></div><div class="col" style="display:flex;align-items:center;justify-content:center"><h3>50% de la population vie dans les villes, sa devrait augmenter à 5 milliards d'ici 2030.</h3></div></div></div> <div class="container"><div class="row"><div class="col" style="display: flex; align-items: center; justify-content: center;"><h3>Ici 2030 95% d'augmentation de population urbaine seront dans des pays en développement.</h3></div><div class="col"><div id="donutchart" style="width:512px;height:512px"></div></div></div></div> <div class="container"><div class="row"><div class="col"><img src="./assets/image/asie-stats-2.png" height="464" width="600"></div><div class="col" style="display:flex;align-items:center;justify-content:center"><h3>Il y a 883 millions de personne qui vie dans les bidonvilles, mais il y plusieurs en Asie.</h3></div></div></div> <div class="container"><div class="row"><div class="col" style="display:flex;align-items:center;justify-content:center"><h3>Plusieurs fois les villes occupons 3% du pays, mais il fait 70% de dioxyde de carbone et consomme entre 60% et 80% d'électricité.</h3></div><div class="col"><img src="./assets/image/ville-stats-3.png" height="464" width="600"></div></div></div> <div class="container"><div class="row"><div class="col"><div id="piechart" style="width:512px;height:512px"></div></div><div class="col" style="display:flex;align-items:center;justify-content:center"><h3>En 2019, 4.2 millions de personne sont mort de la pollution dans l'aire. Aussi, plus que le demi du monde respire d'aire 2.5 fois plus polluer que la recommandation.</h3></div></div></div> </div>`;
+    chart95();
+    piechart();
+  }
+
+  function setImage() {
+    document.getElementById("navigation").innerHTML =
+      `<div class="card-header"><ul class="nav nav-pills card-header-pills"><li class="nav-item"><a class="nav-link" href="#" onclick="setInfo()">Information</a></li><li class="nav-item"><a class="nav-link" href="#" onclick="setStats()">Statistiques</a></li><li class="nav-item"><a class="nav-link active" href="#" onclick="setImage()">Image / Autre</a></li><li class="nav-item"><a class="nav-link" href="#" onclick="setBiblio()">Bibliographie</a></li></ul></div><div class="card-body"><h1 style="color:#f99d26;font-weight: bold;">Images</h1><div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel"><div class="carousel-indicators"><button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button> <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button> <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button></div><div class="carousel-inner"><div class="carousel-item active"><img src="./assets/image/exsemple-1.jpg" class="d-block w-100" alt="exsemple-1"><div class="carousel-caption d-none d-md-block"><h5>Catastrophes naturelles</h5><p>Une des objective est de déminuer les dommages après une désastre naturelle, qui vont aider les personne à garder leur maison, le gouvernement va sauver d’argent et des vie sont sauver.</p></div></div><div class="carousel-item"><img src="./assets/image/exsemple-2.jpg" class="d-block w-100" alt="exsemple-2"><div class="carousel-caption d-none d-md-block"><h5>Pauvreté</h5><p>Dans des grandes villes qui ne sont pas trop développer (comme l'image), c'est la pauvreté beaucoup de personne dans c'est ville n'ont pas assez d'argent pour avoir une place à vivre ou acheter de la nourriture.</p></div></div><div class="carousel-item"><img src="./assets/image/exsemple-3.jpg" class="d-block w-100" alt="exsemple-3"><div class="carousel-caption d-none d-md-block"><h5>Pollution</h5><p>Le pollution est une problème qui est mentionner dans se enjeu et plus bonne exemple c'est Chine, si tu as lu les statistique tu s’avérait que beaucoup de personne sont morts de la pollution de l’aire.</p></div></div></div><button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="visually-hidden">Previous</span></button> <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="visually-hidden">Next</span></button></div></div><h1 style="color:#f99d26;font-weight:700">Médias</h1><div class="iframe-container"><div class="container"><div class="row"><div class="col" style="display:flex;align-items:center;justify-content:center"><video src="./assets/video/Développement Durable- Objectif N° 11 Villes et communautés durables.mp4" controls width="520" height="360"><a href="https://vimeo.com/265522289">Télécharger la vidéo</a></video></div><div class="col" style="display:flex;align-items:center;justify-content:center"><iframe src="https://www.youtube.com/embed/uSDsw1lSGxI?showinfo=0&rel=0" width="520" height="315" frameborder="0"></iframe></div></div></div></div><div style="display:flex;align-items:center;justify-content:center;padding-top:5px;"><iframe src="https://www.youtube.com/embed/TeeEaLpOays" width="560" height="315" frameborder="0"></iframe></div><h1 style="color:#f99d26;font-weight:700">Mythes</h1><h3>o Une des plus grands mythes c’est que sa seulement affect les pays / ville en voie de développement, mais ce n’est pas vrais se affect toute les pays / ville. Premièrement, la pollution est une des enjeux dans ce problème d’être plus spécifique je parle de la pollution d’aire qui est une des plus grands problèmes dans les places comme Chine. Juste la pollution d’aire a tué 4.2 millions de personne.</h3><h3>o Un grand nombre de personne pense que ce problème est seul mon pour pauvreté et les choses comme ça, mais ce n’est pas vrais. Sa aussi inclus le changement climatique et désastre naturelle.</h3><h1 style="color:#f99d26;font-weight:700">Actualités</h1><div class="container"><div class="row"><div class="col"><a href="https://www.fao.org/fao-stories/article/fr/c/1419671/">Actualités 1</a> <img src="./assets/image/actuels-1.jpg" width="384" height="216"></div><div class="col"><a href="https://www.fao.org/fao-stories/article/fr/c/1448050/">Actualités 2</a> <img src="./assets/image/actuels-2.jpg" width="384" height="216"></div><div class="col" style="padding-top:10px;"><a href="https://insa-lyon.fr/fr/objectif-developpement-durable-11-villes-et-communautes-durables">Actualités 3</a> <img src="./assets/image/actuels-3.jpg" width="384" height="216"></div></div></div><h1 style="color:#f99d26;font-weight:700">Questions personnelles</h1><h3>o Pourquoi est-ce que je n’ai pas entendu de "Villes et communautés durables", comme toute le monde c’est la pauvreté, changement climatique et manque de nourriture / eau, mais, presque personne sait de cette problème mondial?</h3><h3>o Pourquoi est-ce que cette problème sombre d’être les autres problèmes, mais pour les villes?</h3><h3>o Est-ce que se problème mondial a même reçu des progressions ou avait même aider des personne ou est-ce que c’est juste des mots?</h3>`;
+  }
+
+  function setBiblio() {
+    document.getElementById("navigation").innerHTML =
+      `<div class="card-header"><ul class="nav nav-pills card-header-pills"><li class="nav-item"><a class="nav-link" href="#" onclick="setInfo()">Information</a></li><li class="nav-item"><a class="nav-link" href="#" onclick="setStats()">Statistiques</a></li><li class="nav-item"><a class="nav-link" href="#" onclick="setImage()">Image / Autre</a></li><li class="nav-item"><a class="nav-link active" href="#" onclick="setBiblio()">Bibliographie</a></li></ul></div><div class="card-body"><h1 style="color:#f99d26;font-weight:700">Bibliographie</h1><h2 style="color:#f99d26;font-weight:700">Images</h2><div><a style="font-size:1.75rem" href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F4.bp.blogspot.com%2F-P1BWog_l0p4%2FWQOzoCRaoSI%2FAAAAAAAAHOo%2FBUOJToKuKAEAry3gMUrMEqOYIpSTbVgwACLcB%2Fs1600%2Fdesastre%252Bnatural.jpg&f=1&nofb=1">Lien</a></div><div><a style="font-size:1.75rem" href="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Farchives.lametropole.com%2Fassets%2Fapplication%2Fgallery%2Fadb472e6c73e17f_file.jpg&f=1&nofb=1">Lien</a></div><div><a style="font-size:1.75rem" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Beijing_smog_comparison_August_2005.png/300px-Beijing_smog_comparison_August_2005.png">Lien</a></div><div><a style="font-size:1.75rem" href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ficon-icons.com%2Ficons2%2F429%2FPNG%2F512%2Fcity16_42513.png&f=1&nofb=1">Lien</a></div><div><a style="font-size:1.75rem" href="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.timvandevall.com%2Fwp-content%2Fuploads%2Fasia-stencil.jpg&f=1&nofb=1">Lien</a></div><div><a style="font-size:1.75rem" href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn0.iconfinder.com%2Fdata%2Ficons%2Fpopulation-day-outline-32%2F32%2Fpopulation_populations_men_people_density-512.png&f=1&nofb=1">Lien</a></div><div><a style="font-size:1.75rem" href="https://www.un.org/sustainabledevelopment/fr/wp-content/uploads/sites/4/2020/05/SDG_website_banner_F_100px.png">Lien</a></div><div><a style="font-size:1.75rem" href="https://api.serversmp.xyz/upload/prince/nSBlHC3VJ9.jpg">Lien</a></div><div><a style="font-size:1.75rem" href="https://api.serversmp.xyz/upload/prince/05kFfI3xmi.png">Lien</a></div><div><a style="font-size:1.75rem" href="https://api.serversmp.xyz/upload/prince/tEFyRDjfOR.png">Lien</a></div><h2 style="color:#f99d26;font-weight:700">Hyperliens</h2><div><a style="font-size:1.75rem" href="https://fr.wikipedia.org/wiki/Objectif_de_d%C3%A9veloppement_durable_no_11_des_Nations_Unies">Wikipedia, "Objectif de développement durable n° 11 des Nations Unies"</a></div><div><a style="font-size:1.75rem" href="https://www.fao.org/sustainable-development-goals/goals/goal-11/fr/">Organisation des Nation Unies, "VILLES ET COMMUNAUTÉS DURABLES"</a></div><div><a style="font-size:1.75rem" href="https://www.un.org/sustainabledevelopment/fr/cities/">ONU, SITE "VILLES ET COMMUNAUTÉS DURABLES"</a></div><div><a style="font-size:1.75rem" href="https://insa-lyon.fr/fr/objectif-developpement-durable-11-villes-et-communautes-durables">INSA, "Objectif développement durable 11 : Villes et communautés durables"</a></div><div><a style="font-size:1.75rem" href="https://www.fao.org/fao-stories/article/fr/c/1419671/">Organisation des Nation Unies, "Alimentation et villes: cultiver notre avenir urbain"</a></div><div><a style="font-size:1.75rem" href="https://www.fao.org/fao-stories/article/fr/c/1448050/">Organisation des Nation Unies, "Les arbres urbains, pas seulement une question d’esthétique "</a></div><h2 style="color:#f99d26;font-weight:700">Vidéos</h2><div><a style="font-size:1.75rem" href="https://youtu.be/TeeEaLpOays">RATP, "Nos 3 engagements pour une ville plus durable"</a></div><div><a style="font-size:1.75rem" href="https://vimeo.com/265522289">dev.tv, "Développement Durable: Objectif N° 11 Villes et communautés durables"</a></div><div><a style="font-size:1.75rem" href="https://youtu.be/uSDsw1lSGxI">euronews (en français), "Villes intelligentes, humaines et durables : le modèle japonais"</a></div><h2 style="color:#f99d26;font-weight:700">Autre liens</h2><div><a style="font-size:1.75rem" href="https://www.un.org/sustainabledevelopment/fr/wp-content/uploads/sites/4/2016/10/Why_it_matters_Goal_11_French.pdf">ONU, PDF "VILLES ET COMMUNAUTÉS DURABLES"</a></div></div>`;
+  }
+
+  function chart95() {
+    google.charts.load("current", {
+      packages: ["corechart"]
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Statistiques', 'Développement dans les pays'],
+        ['Villes en pays en développement', 95],
+        ['Villes en pay développer', 5]
+      ]);
+
+      var options = {
+        title: 'Développement dans les pays',
+        pieHole: 0.4,
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+      chart.draw(data, options);
+    }
+  }
+
+  function piechart() {
+    google.charts.load('current', {
+      'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ["Type d'aire", 'Pourcentage'],
+        ['Aire pur', 10],
+        ['Aire polluer', 90]
+      ]);
+
+      var options = {
+        title: 'Type d\'aire que les personne dans ville respire.',
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+      chart.draw(data, options);
+    }
+  }
+</script>
