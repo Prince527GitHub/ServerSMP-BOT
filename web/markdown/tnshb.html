@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/md.css">
+    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/showdown.min.js"></script>
+    <title>T.N.S.H.B</title>
+    <link rel="shortcut icon" href="./assets/images/tnshb.jpg">
+    <link rel="apple-touch-icon" sizes="144x144" href="./assets/images/tnshb.jpg">
+    <link rel="apple-touch-icon" sizes="114x114" href="./assets/images/tnshb.jpg">
+    <link rel="apple-touch-icon" sizes="72x72" href="./assets/images/tnshb.jpg">
+    <link rel="apple-touch-icon" sizes="57x57" href="./assets/images/tnshb.jpg">
+</head>
+
+<body>
+    <div id="nav"></div>
+    <div class="container-xxl" id="body"></div>
+</body>
+
+<script src="../../assets/js/mdToHtml.js"></script>
+<script>
+    mdToHtml('https://raw.githubusercontent.com/Prince527GitHub/ServerSMP/T%C2%B7N%C2%B7S%C2%B7H%C2%B7B/README.md', document.getElementById('body'));
+
+    fetch('../../assets/json/light-navbar.json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('nav').innerHTML = data.navbar;
+        });
+</script>
+
+</html>
