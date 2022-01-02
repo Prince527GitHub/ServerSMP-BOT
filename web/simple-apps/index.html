@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/md.min.css">
+    <link rel="shortcut icon" href="./assets/image/logo.jpg">
+    <title>Simple Apps</title>
+</head>
+
+<body style="background-color:#f8f9fa;">
+    <div id="nav"></div>
+
+    <h1 style="font-size:15px;color:#000;background-color:#ebebeb;"><a href="../app-store/index.html" style="text-decoration:underline;color:#000;">NOTE: you can download all of the apps in the app store</a></h1>
+
+    <h1 style="color:#000;">Simple Apps</h1>
+
+    <br>
+
+    <h2 style="color:#000;"><a href="https://github.com/Prince527GitHub/Simple-Apps/blob/zips/Anime/anime-v1.0.zip?raw=true" style="text-decoration:underline;color:#000;">Anime Search</a></h2>
+
+    <h6 style="color:rgb(59, 59, 59);">A simple program to get info on an anime.</h6>
+
+    <img src="./assets/image/anime.jpg" width="50%" height="50%">
+
+    <br><br>
+
+    <h2 style="color:#000;"><a href="https://github.com/Prince527GitHub/Simple-Apps/blob/zips/Downloader/downloader-v1.0.zip?raw=true" style="text-decoration:underline;color:#000;">Downloader</a></h2>
+
+    <h6 style="color:rgb(59, 59, 59);">A simple program to downlaod files from the internet.</h6>
+
+    <img src="./assets/image/downloader.jpg" width="50%" height="50%">
+
+    <br><br>
+
+    <h2 style="color:#000;"><a href="https://github.com/Prince527GitHub/Simple-Apps/blob/zips/Music%20Player/music-player-v2.0.zip?raw=true" style="text-decoration:underline;color:#000;">Music Player</a></h2>
+
+    <h6 style="color:rgb(59, 59, 59);">A simple program to play music.</h6>
+
+    <img src="./assets/image/music-player.jpg" width="25%" height="25%">
+</body>
+
+<script>
+    fetch('../../assets/json/light-navbar.json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('nav').innerHTML = data.navbar;
+        });
+</script>
+
+</html>

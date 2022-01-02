@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="1; URL=page.html">
+    <title>NoRefs.com — Free service to remove real URL from HTTP_REFERER. Redirect to http://notarickroll.com/</title>
+    <style type="text/css">
+        body {
+            background-color: darkgray;
+        }
+
+        #panel {
+            width: 1024px;
+            height: 150px;
+            position: absolute;
+            margin-left: -512px;
+            left: 50%;
+            margin-top: -75px;
+            top: 50%;
+            background-color: #E4E4E4;
+            text-align: center;
+            -webkit-border-radius: 14px;
+            -moz-border-radius: 14px;
+            border-radius: 14px;
+            border: solid 1px black;
+        }
+
+        #panel h1 {
+            font-size: 18px;
+        }
+
+        #panel #redirect {
+            font-size: 24px;
+            background-color: white;
+            padding: 4px;
+        }
+
+        #panel #redirect a {}
+
+        h1 a {
+            background-color: white;
+            padding: 4px;
+            color: black;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="panel">
+        <h1>
+            <a href="http://norefs.com/" title="Free web service to remove real URL from HTTP_REFERER.">
+                NoRefs.com
+            </a> — 
+            Free service to remove real URL from HTTP_REFERER.
+        </h1>
+
+        <p id="redirect"><span id="t1">Redirect to</span> 
+            <a href="http://notarickroll.com/">
+                <span id="t2">http://notarickroll.com/</span>
+            </a>
+        </p>
+    </div>
+
+    <script>
+        var t1 = document.getElementById('t1');
+        var t2 = document.getElementById('t2');
+
+        var text1 = t1.innerText;
+        var text2 = t2.innerText;
+
+        t1.innerHTML = '';
+        t2.innerHTML = '';
+
+        var count1 = 0;
+        var count2 = 0;
+
+        var typing_timer1 = null;
+        var typing_timer2 = null;
+
+        function typing_1() {
+            t1.innerHTML = t1.innerHTML + text1.charAt(count1)
+            count1++;
+            typing_timer1 = setTimeout(typing_1, 20);
+
+            if (count1 == text1.length) {
+                clearTimeout(typing_timer1)
+                count1 = -1;
+            }
+        }
+
+        function typing_2() {
+            t2.innerHTML = t2.innerHTML + text2.charAt(count2)
+            count2++;
+            typing_timer2 = setTimeout(typing_2, 20);
+
+            if (count2 == text2.length) {
+                clearTimeout(typing_timer2)
+                count2 = -1;
+            }
+        }
+
+        typing_1();
+        setTimeout(typing_2, 250);
+    </script>
+
+    <script src="../../../../../assets/js/rocket-loader.min.js" data-cf-settings="22ada6d89ade24359742e890-|49" defer=""></script>
+
+</body>
+
+</html>
