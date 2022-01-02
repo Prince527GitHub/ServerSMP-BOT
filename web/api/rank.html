@@ -75,13 +75,9 @@
 
   </div>
   
-  <script src="../../assets/js/fetch.js"></script>
+  <script src="../../assets/js/navbar.js"></script>
   <script>
-    async function dataNew() {
-        const data = await fetchUrl('../../assets/json/navbar.json');
-        document.getElementById("nav-bar").innerHTML = data.navbar;
-    }
-    dataNew()
+    navbar("../../assets/txt/navbarLink.txt", 'nav-bar', 'normal');
   </script>
 
 </body>

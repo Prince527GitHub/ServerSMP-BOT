@@ -51,8 +51,14 @@
 
 <!-- ================= Some stuff ================== -->
 
-<body style="padding-top:100px;">
-	<div class="container-sm style-is-cool">
+<body>
+	<div id="nav"></div>
+
+	<div>
+		<h5>This is a modified version of the site for serversmp.</h5>
+	</div>
+
+	<div class="container-sm style-is-cool" style="padding-top:100px;">
 
 		<!-- ================= Name & logo ================== -->
 
@@ -104,6 +110,11 @@
 		<a href="https://discord.gg/P32tGtcvHs" style="padding-top:10px;"><img src="../arpismp/assets/image/discord.png" alt="discord" width="32" height="32"></img></a>
 
 	</div>
+
+	<script src="../../../assets/js/navbar.js"></script>
+	<script>
+		navbar("../../../assets/txt/navbarLink.txt", "nav", "custom-dark", "#ffff000");
+	</script>
 </body>
 
 </html>

@@ -91,17 +91,9 @@
 
 	</div>
 
+	<script src="../../assets/js/navbar.js"></script>
 	<script>
-		fetch('/assets/json/navbar.json')
-			.then(function (response) {
-				return response.json();
-			})
-			.then(function (data) {
-				appendData(data);
-			})
-			.catch(function (err) {
-				console.log('error: ' + err);
-			});
+		navbar("../../assets/txt/navbarLink.txt", 'nav-bar', 'normal');
 
 		function appendData(data) {
 			document.getElementById("nav-bar").innerHTML = data.navbar;

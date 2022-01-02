@@ -94,6 +94,7 @@
   </div>
   
   <script src="../../assets/js/fetch.js"></script>
+  <script src="../../assets/js/navbar.js"></script>
   <script>
     async function dataNew() {
       const data = await fetchUrl('https://duckdevs.me/assets/duckdungeon.json');
@@ -106,11 +107,7 @@
       document.getElementById("game-version-link").innerHTML = data.game.locallink;
     }
     dataNew()
-    async function dataNew2() {
-      const data = await fetchUrl('../../assets/json/navbar.json');
-      document.getElementById("nav-bar").innerHTML = data.navbar;
-    }
-    dataNew2()
+    navbar("../../assets/txt/navbarLink.txt", 'nav-bar', 'normal');
   </script>
 
 </body>

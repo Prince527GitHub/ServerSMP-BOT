@@ -41,6 +41,7 @@
 </body>
 
 <script src="../../assets/js/axios.min.js"></script>
+<script src="../../assets/js/navbar.js"></script>
 <script>
     if (!localStorage.getItem("darkmode")) localStorage.setItem("darkmode", "false");
 
@@ -64,7 +65,7 @@
         }
     }
 
-    async function fetch() {
+    async function fetchApps() {
         const fetchURL = await axios.get("https://prince527github.github.io/App-Store/apps.json");
         await fetchURL.data.apps.forEach(async (app) => {
             document.getElementById("body").innerHTML +=
@@ -72,15 +73,9 @@
         });
     }
 
-    fetch();
+    fetchApps();
 
-    async function navbar() {
-        const fetchURL = await fetch("../../assets/json/navbar.json");
-        const fetchJson = await fetchURL.json();
-        document.getElementById("nav-bar").innerHTML = fetchJson.navbar;
-    }
-
-    navbar();
+    navbar("../../assets/txt/navbarLink.txt", "nav-bar", "custom-dark", "#33383C");
 </script>
 
 </html>

@@ -97,13 +97,10 @@
 
 </div>
 
+<script src="../../assets/js/navbar.js"></script>
 <script src="../../assets/js/fetch.js"></script>
 <script>
-	async function dataNew() {
-		const data = await fetchUrl('../../assets/json/navbar.json');
-		document.getElementById("nav-bar").innerHTML = data.navbar;
-	}
-	dataNew()
+	navbar("../../assets/txt/navbarLink.txt", 'nav-bar', 'normal');
 	async function dataNew2() {
 		const data2 = await fetchUrl('https://api.modrinth.com/api/v1/mod/IYuK6lgn');
 		document.getElementById("download-number").innerHTML = data2.downloads;

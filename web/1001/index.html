@@ -108,6 +108,7 @@
         <button class="btn block" onclick="randomNumberButton()">↩</button>
     </div>
 
+    <script src="../../assets/js/navbar.js"></script>
     <script>
         let finalNumber;
 
@@ -277,16 +278,7 @@
         }
 
         // fetch navbar
-        fetch('https://serversmp.xyz/assets/json/navbar.json')
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                document.getElementById("nav-bar").innerHTML = data.navbar;
-            })
-            .catch(function (err) {
-                console.log('error: ' + err);
-            });
+        navbar("../../assets/txt/navbarLink.txt", 'nav-bar', 'normal');
     </script>
 </body>
 

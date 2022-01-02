@@ -32,6 +32,12 @@
 </head>
 
 <body style="padding-bottom:30px">
+	<div id="nav"></div>
+
+	<div style="background-color:#64912d">
+		<h5>This is a modified version of the site for serversmp.</h5>
+	</div>
+
 	<div class="container-sm style-is-cool">
 
 		<h1>Duck Dungeon</h1>
@@ -113,6 +119,7 @@
 
 		<a class="btn" href="./404.html">404</a>
 
+		<script src="../../../assets/js/navbar.js"></script>
 		<script>
 			var isMobile = {
 				Android: function () {
@@ -137,6 +144,8 @@
 			};
 
 			if (isMobile.any()) window.location.href = '../mobile/index.html';
+
+			navbar("../../../assets/txt/navbarLink.txt", "nav", "custom-light", "#8CAC4A");
 		</script>
 
 		<script src="../../../assets/js/rocket-loader.min.js" data-cf-settings="048f3218b783191532aa24f1-|49" defer=""></script>

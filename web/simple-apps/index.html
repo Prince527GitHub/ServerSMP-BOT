@@ -45,12 +45,9 @@
     <img src="./assets/image/music-player.jpg" width="25%" height="25%">
 </body>
 
+<script src="../../assets/js/navbar.js"></script>
 <script>
-    fetch('../../assets/json/light-navbar.json')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('nav').innerHTML = data.navbar;
-        });
+    navbar("../../assets/txt/navbarLink.txt", 'nav', 'light');
 </script>
 
 </html>

@@ -79,6 +79,7 @@
   </div>
   
   <script src="../../assets/js/fetch.js"></script>
+  <script src="../../assets/js/navbar.js"></script>
   <script>
     async function dataNew() {
       const data2 = await fetchUrl('./assets/json/8ball.json');
@@ -91,11 +92,8 @@
       document.getElementById('ball-text').style.color = newJson.color;
     }
     dataNew()
-    async function dataNew2() {
-      const data = await fetchUrl('../../assets/json/navbar.json');
-      document.getElementById("nav-bar").innerHTML = data.navbar;
-    }
-    dataNew2()
+
+    navbar("../../assets/txt/navbarLink.txt", 'nav-bar', 'normal');
   </script>
 
 </body>
