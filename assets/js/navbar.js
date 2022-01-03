@@ -27,6 +27,8 @@ async function navbar(file, id, type, color) {
         className = "navbar-light";
     }
 
+    if (type === "custom-dark-codebin") return navbarID.innerHTML = `<nav class='navbar navbar-expand-lg navbar-dark' style='background-color:${color};'><div class='container-fluid'><a class='navbar-brand' href='https://serversmp.xyz/index.html'>ServerSMP</a><button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavAltMarkup' aria-controls='navbarNavAltMarkup' aria-expanded='false' aria-label='Toggle navigation'><span class='navbar-toggler-icon'></span></button><div class='collapse navbar-collapse' id='navbarNavAltMarkup'><div class='navbar-nav'>${navText}<button class="btn" type="submit" style="top:1%;left:95%;position:absolute;">Save</button></div></div></div></nav>`;
+
     if (color) backgroundColor = "style='background-color:" + color + ";'";
 
     // create the navbar
