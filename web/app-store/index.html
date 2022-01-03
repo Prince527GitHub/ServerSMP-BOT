@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <h5 class="card-title">App Store</h5>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-white" style="background-color:#ffffff00;">
+                        <li class="list-group-item text-white" style="background-color:transparent;">
                             <img class="avatar_img" src="../developers/assets/image/prince527.jpg" alt="author-image">
                             <span class="author">Prince527</span>
                             <h6><i class="bi bi-twitter"></i> @Prince527gaming</h6>
@@ -47,20 +47,28 @@
 
     if (localStorage.getItem("darkmode") === "true") {
         document.getElementById("settings-btn").innerHTML = `<i class="bi bi-moon"></i>`;
-        document.getElementById("realbody").style.background = "#23272B";
+        document.body.style.background = "#23272B";
+        navbar("../../assets/txt/navbarLink.txt", "nav-bar", "custom-dark", "#33383C");
     } else {
         document.getElementById("settings-btn").innerHTML = `<i class="bi bi-sun"></i>`;
-        document.getElementById("realbody").style.background = "#ffffff";
+        document.body.style.background = "#ffffff";
+        navbar("../../assets/txt/navbarLink.txt", "nav-bar", "custom-dark", "#f8f9fa");
     }
 
     function mode() {
         if (localStorage.getItem("darkmode") === "true") {
             document.getElementById("settings-btn").innerHTML = `<i class="bi bi-sun"></i>`;
-            document.getElementById("realbody").style.background = "#ffffff";
+            document.body.style.background = "#ffffff";
+            document.body.classList.add("body-transition");
+            document.body.classList.toggle = "body-transition";
+            navbar("../../assets/txt/navbarLink.txt", "nav-bar", "custom-dark", "#f8f9fa");
             localStorage.setItem("darkmode", "false");
         } else {
             document.getElementById("settings-btn").innerHTML = `<i class="bi bi-moon"></i>`;
-            document.getElementById("realbody").style.background = "#23272B";
+            document.body.style.background = "#23272B";
+            document.body.classList.add("body-transition");
+            document.body.classList.toggle = "body-transition";
+            navbar("../../assets/txt/navbarLink.txt", "nav-bar", "custom-dark", "#33383C");
             localStorage.setItem("darkmode", "true");
         }
     }
@@ -74,8 +82,6 @@
     }
 
     fetchApps();
-
-    navbar("../../assets/txt/navbarLink.txt", "nav-bar", "custom-dark", "#33383C");
 </script>
 
 </html>

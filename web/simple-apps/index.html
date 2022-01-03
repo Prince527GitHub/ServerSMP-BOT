@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/bootstrap-icons.min.css">
     <script src="../../assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="../../assets/css/md.min.css">
@@ -13,41 +14,113 @@
     <title>Simple Apps</title>
 </head>
 
-<body style="background-color:#f8f9fa;">
+<body style="background-color:#ffffff;color:#000;">
     <div id="nav"></div>
 
-    <h1 style="font-size:15px;color:#000;background-color:#ebebeb;"><a href="../app-store/index.html" style="text-decoration:underline;color:#000;">NOTE: you can download all of the apps in the app store</a></h1>
+    <h1 id="header" style="font-size:15px;"><a id="header-text" href="../app-store/index.html" style="text-decoration:underline;">NOTE: you can download all of the apps in the app store</a></h1>
 
-    <h1 style="color:#000;">Simple Apps</h1>
+    <h1 id="title">Simple Apps</h1>
 
     <br>
 
-    <h2 style="color:#000;"><a href="https://github.com/Prince527GitHub/Simple-Apps/blob/zips/Anime/anime-v1.0.zip?raw=true" style="text-decoration:underline;color:#000;">Anime Search</a></h2>
+    <h2><a id="subtitle-1" href="https://github.com/Prince527GitHub/Simple-Apps/blob/zips/Anime/anime-v1.0.zip?raw=true" style="text-decoration:underline;">Anime Search</a></h2>
 
-    <h6 style="color:rgb(59, 59, 59);">A simple program to get info on an anime.</h6>
+    <h6 id="description-1">A simple program to get info on an anime.</h6>
 
     <img src="./assets/image/anime.jpg" width="50%" height="50%">
 
     <br><br>
 
-    <h2 style="color:#000;"><a href="https://github.com/Prince527GitHub/Simple-Apps/blob/zips/Downloader/downloader-v1.0.zip?raw=true" style="text-decoration:underline;color:#000;">Downloader</a></h2>
+    <h2><a id="subtitle-2" href="https://github.com/Prince527GitHub/Simple-Apps/blob/zips/Downloader/downloader-v1.0.zip?raw=true" style="text-decoration:underline;">Downloader</a></h2>
 
-    <h6 style="color:rgb(59, 59, 59);">A simple program to downlaod files from the internet.</h6>
+    <h6 id="description-2">A simple program to downlaod files from the internet.</h6>
 
     <img src="./assets/image/downloader.jpg" width="50%" height="50%">
 
     <br><br>
 
-    <h2 style="color:#000;"><a href="https://github.com/Prince527GitHub/Simple-Apps/blob/zips/Music%20Player/music-player-v2.0.zip?raw=true" style="text-decoration:underline;color:#000;">Music Player</a></h2>
+    <h2><a id="subtitle-3" href="https://github.com/Prince527GitHub/Simple-Apps/blob/zips/Music%20Player/music-player-v2.0.zip?raw=true" style="text-decoration:underline;">Music Player</a></h2>
 
-    <h6 style="color:rgb(59, 59, 59);">A simple program to play music.</h6>
+    <h6 id="description-3">A simple program to play music.</h6>
 
     <img src="./assets/image/music-player.jpg" width="25%" height="25%">
+    
+    <button type="button" class="btn btn-secondary bottom-right" onclick="mode()" id="settings-btn">
+        <i class="bi bi-gear"></i>
+    </button>
 </body>
 
 <script src="../../assets/js/navbar.js"></script>
 <script>
-    navbar("../../assets/txt/navbarLink.txt", 'nav', 'light');
+    if (!localStorage.getItem("darkmode")) localStorage.setItem("darkmode", "false");
+
+    if (localStorage.getItem("darkmode") === "true") {
+        document.getElementById("settings-btn").innerHTML = `<i class="bi bi-moon"></i>`;
+        document.getElementById("header").style.backgroundColor = "#1A1D20";
+        document.getElementById("header-text").style.color = "#ffffff";
+        document.getElementById("title").style.color = "#ffffff";
+        document.getElementById("subtitle-1").style.color = "#ffffff";
+        document.getElementById("subtitle-2").style.color = "#ffffff";
+        document.getElementById("subtitle-3").style.color = "#ffffff";
+        document.getElementById("description-1").style.color = "#ffffff";
+        document.getElementById("description-2").style.color = "#ffffff";
+        document.getElementById("description-3").style.color = "#ffffff";
+        document.body.style.background = "#23272B";
+        document.body.style.color = "#ffffff";
+        navbar("../../assets/txt/navbarLink.txt", "nav", "custom-dark", "#33383C");
+    } else {
+        document.getElementById("settings-btn").innerHTML = `<i class="bi bi-sun"></i>`;
+        document.getElementById("header").style.backgroundColor = "#ebebeb";
+        document.getElementById("header-text").style.color = "#000000";
+        document.getElementById("title").style.color = "#000000";
+        document.getElementById("subtitle-1").style.color = "#000000";
+        document.getElementById("subtitle-2").style.color = "#000000";
+        document.getElementById("subtitle-3").style.color = "#000000";
+        document.getElementById("description-1").style.color = "#000000";
+        document.getElementById("description-2").style.color = "#000000";
+        document.getElementById("description-3").style.color = "#000000";
+        document.body.style.background = "#ffffff";
+        document.body.style.color = "#000000";
+        navbar("../../assets/txt/navbarLink.txt", "nav", "custom-light", "#f8f9fa");
+    }
+
+    function mode() {
+        if (localStorage.getItem("darkmode") === "true") {
+            document.getElementById("settings-btn").innerHTML = `<i class="bi bi-sun"></i>`;
+            document.getElementById("header").style.backgroundColor = "#ebebeb";
+            document.getElementById("header-text").style.color = "#000000";
+            document.getElementById("title").style.color = "#000000";
+            document.getElementById("subtitle-1").style.color = "#000000";
+            document.getElementById("subtitle-2").style.color = "#000000";
+            document.getElementById("subtitle-3").style.color = "#000000";
+            document.getElementById("description-1").style.color = "#000000";
+            document.getElementById("description-2").style.color = "#000000";
+            document.getElementById("description-3").style.color = "#000000";
+            document.body.style.background = "#ffffff";
+            document.body.style.color = "#000000";
+            document.body.classList.add("body-transition");
+            document.body.classList.toggle = "body-transition";
+            navbar("../../assets/txt/navbarLink.txt", "nav", "custom-light", "#f8f9fa");
+            localStorage.setItem("darkmode", "false");
+        } else {
+            document.getElementById("settings-btn").innerHTML = `<i class="bi bi-moon"></i>`;
+            document.getElementById("header").style.backgroundColor = "#1A1D20";
+            document.getElementById("header-text").style.color = "#ffffff";
+            document.getElementById("title").style.color = "#ffffff";
+            document.getElementById("subtitle-1").style.color = "#ffffff";
+            document.getElementById("subtitle-2").style.color = "#ffffff";
+            document.getElementById("subtitle-3").style.color = "#ffffff";
+            document.getElementById("description-1").style.color = "#ffffff";
+            document.getElementById("description-2").style.color = "#ffffff";
+            document.getElementById("description-3").style.color = "#ffffff";
+            document.body.style.background = "#23272B";
+            document.body.style.color = "#ffffff";
+            document.body.classList.add("body-transition");
+            document.body.classList.toggle = "body-transition";
+            navbar("../../assets/txt/navbarLink.txt", "nav", "custom-dark", "#33383C");
+            localStorage.setItem("darkmode", "true");
+        }
+    }
 </script>
 
 </html>
