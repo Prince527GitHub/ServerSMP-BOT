@@ -1,4 +1,4 @@
-### This Github repo for the bot is depricated, for the new repo go [here](https://github.com/Prince527GitHub/ServerSMP-BOT/tree/updates)
+### This Github repo for the bot's change log is depricated, for the new repo go [here](https://github.com/Prince527GitHub/ServerSMP-BOT/tree/updates)
 
 # ServerSMP - BOT (Change Log)
 
