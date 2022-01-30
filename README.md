@@ -1,3 +1,5 @@
+### This Github repo for the bot is depricated, for the new repo go [here](https://github.com/Prince527GitHub/ServerSMP-BOT/)
+
 # ServerSMP - BOT
 
 This is a discord bot, that has a lot of stuff in it like meme's, economy, admin, extra, etc.
