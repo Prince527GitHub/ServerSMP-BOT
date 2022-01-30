@@ -1,3 +1,5 @@
+### This Github repo for the bot is depricated, for the new repo go [here](https://github.com/Prince527GitHub/ServerSMP-BOT/tree/updates)
+
 # ServerSMP - BOT (Change Log)
 
 This is where ServerSMP - BOT will get the patch notes / change logs.
