@@ -24,6 +24,7 @@
 
     <link rel="apple-touch-icon" sizes="57x57" href="./assets/images/icon.png">
 
+    <link rel="manifest" href="../../../assets/json/manifest.json">
     <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
     <script src="../../../assets/js/bootstrap.bundle.min.js" type="d639cb782f3568948befdb3c-text/javascript"></script>
     <link rel="preload" href="../../../assets/font/minecraft-webfont.woff2" as="font" type="font/woff2">
@@ -58,6 +59,9 @@
         <script src="../../../assets/js/navbar.js"></script>
         <script>
             navbar("../../../assets/txt/navbarLink.txt", "nav", "custom-light", "#8CAC4A");
+            if ('serviceWorker' in navigator) {
+		        navigator.serviceWorker.register('../../../assets/js/sw.js');
+	        }
         </script>
 
     </div>

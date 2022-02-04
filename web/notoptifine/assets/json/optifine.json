@@ -1,0 +1,526 @@
+{
+    "general": {
+        "name": "OptiFine",
+        "description": "OptiFine is a free mod that improves the graphics quality and FPS of Minecraft.",
+        "author": "sp614x",
+        "email": "optifinex@gmail.com",
+        "website": "https://optifine.net/",
+        "discord": "https://discord.gg/3mMpcwW",
+        "twitter": "https://twitter.com/OptiFineNews",
+        "reddit": "https://reddit.com/r/optifine",
+        "latest": "1.18.1",
+        "oldest": "b1.4"
+    },
+    "1.18.1": {
+        "version": "1.18.1",
+        "extension": "jar",
+        "name": "optifine-1.18.1",
+        "file": "optifine-1.18.1.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.18.1.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.18.1.jar"
+    },
+    "1.18": {
+        "version": "1.18",
+        "extension": "jar",
+        "name": "optifine-1.18.0",
+        "file": "optifine-1.18.0.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.18.0.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.18.0.jar"
+    },
+    "1.17.1": {
+        "version": "1.17.1",
+        "extension": "jar",
+        "name": "optifine-1.17.1",
+        "file": "optifine-1.17.1.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.17.1.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.17.1.jar"
+    },
+    "1.17": {
+        "version": "1.17",
+        "extension": "jar",
+        "name": "optifine-1.17.0",
+        "file": "optifine-1.17.0.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.17.0.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.17.0.jar"
+    },
+    "1.16.5": {
+        "version": "1.16.5",
+        "extension": "jar",
+        "name": "optifine-1.16.5",
+        "file": "optifine-1.16.5.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.16.5.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.16.5.jar"
+    },
+    "1.16.4": {
+        "version": "1.16.4",
+        "extension": "jar",
+        "name": "optifine-1.16.4",
+        "file": "optifine-1.16.4.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.16.4.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.16.4.jar"
+    },
+    "1.16.3": {
+        "version": "1.16.3",
+        "extension": "jar",
+        "name": "optifine-1.16.3",
+        "file": "optifine-1.16.3.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.16.3.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.16.3.jar"
+    },
+    "1.16.2": {
+        "version": "1.16.2",
+        "extension": "jar",
+        "name": "optifine-1.16.2",
+        "file": "optifine-1.16.2.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.16.2.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.16.2.jar"
+    },
+    "1.16.1": {
+        "version": "1.16.1",
+        "extension": "jar",
+        "name": "optifine-1.16.1",
+        "file": "optifine-1.16.1.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.16.1.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.16.1.jar"
+    },
+    "1.15.2": {
+        "version": "1.15.2",
+        "extension": "jar",
+        "name": "optifine-1.15.2",
+        "file": "optifine-1.15.2.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.15.2.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.15.2.jar"
+    },
+    "1.14.4": {
+        "version": "1.14.4",
+        "extension": "jar",
+        "name": "optifine-1.14.4",
+        "file": "optifine-1.14.4.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.14.4.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.14.4.jar"
+    },
+    "1.14.3": {
+        "version": "1.14.3",
+        "extension": "jar",
+        "name": "optifine-1.14.3",
+        "file": "optifine-1.14.3.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.14.3.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.14.3.jar"
+    },
+    "1.14.2": {
+        "version": "1.14.2",
+        "extension": "jar",
+        "name": "optifine-1.14.2",
+        "file": "optifine-1.14.2.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.14.2.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.14.2.jar"
+    },
+    "1.13.2": {
+        "version": "1.13.2",
+        "extension": "jar",
+        "name": "optifine-1.13.2",
+        "file": "optifine-1.13.2.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.13.2.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.13.2.jar"
+    },
+    "1.13.1": {
+        "version": "1.13.1",
+        "extension": "jar",
+        "name": "optifine-1.13.1",
+        "file": "optifine-1.13.1.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.13.1.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.13.1.jar"
+    },
+    "1.13": {
+        "version": "1.13",
+        "extension": "jar",
+        "name": "optifine-1.13.0",
+        "file": "optifine-1.13.0.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.13.0.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.13.0.jar"
+    },
+    "1.12.2": {
+        "version": "1.12.2",
+        "extension": "jar",
+        "name": "optifine-1.12.2",
+        "file": "optifine-1.12.2.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.12.2.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.12.2.jar"
+    },
+    "1.12.1": {
+        "version": "1.12.1",
+        "extension": "jar",
+        "name": "optifine-1.12.1",
+        "file": "optifine-1.12.1.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.12.1.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.12.1.jar"
+    },
+    "1.12": {
+        "version": "1.12",
+        "extension": "jar",
+        "name": "optifine-1.12.0",
+        "file": "optifine-1.12.0.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.12.0.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.12.0.jar"
+    },
+    "1.11.2": {
+        "version": "1.11.2",
+        "extension": "jar",
+        "name": "optifine-1.11.2",
+        "file": "optifine-1.11.2.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.11.2.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.11.2.jar"
+    },
+    "1.11": {
+        "version": "1.11",
+        "extension": "jar",
+        "name": "optifine-1.11.0",
+        "file": "optifine-1.11.0.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.11.0.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.11.0.jar"
+    },
+    "1.10.2": {
+        "version": "1.10.2",
+        "extension": "jar",
+        "name": "optifine-1.10.2",
+        "file": "optifine-1.10.2.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.10.2.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.10.2.jar"
+    },
+    "1.10": {
+        "version": "1.10",
+        "extension": "jar",
+        "name": "optifine-1.10.0",
+        "file": "optifine-1.10.0.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.10.0.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.10.0.jar"
+    },
+    "1.9.4": {
+        "version": "1.9.4",
+        "extension": "jar",
+        "name": "optifine-1.9.4",
+        "file": "optifine-1.9.4.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.9.4.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.9.4.jar"
+    },
+    "1.9.2": {
+        "version": "1.9.2",
+        "extension": "jar",
+        "name": "optifine-1.9.2",
+        "file": "optifine-1.9.2.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.9.2.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.9.2.jar"
+    },
+    "1.9": {
+        "version": "1.9",
+        "extension": "jar",
+        "name": "optifine-1.9.0",
+        "file": "optifine-1.9.0.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.9.0.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.9.0.jar"
+    },
+    "1.8.9": {
+        "version": "1.8.9",
+        "extension": "jar",
+        "name": "optifine-1.8.9",
+        "file": "optifine-1.8.9.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.8.9.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.8.9.jar"
+    },
+    "1.8.8": {
+        "version": "1.8.8",
+        "extension": "jar",
+        "name": "optifine-1.8.8",
+        "file": "optifine-1.8.8.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.8.8.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.8.8.jar"
+    },
+    "1.8.7": {
+        "version": "1.8.7",
+        "extension": "jar",
+        "name": "optifine-1.8.7",
+        "file": "optifine-1.8.7.jar",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.8.7.jar"
+    },
+    "1.8.4": {
+        "version": "1.8.4",
+        "extension": "jar",
+        "name": "optifine-1.8.4",
+        "file": "optifine-1.8.4.jar",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.8.4.jar"
+    },
+    "1.8.3": {
+        "version": "1.8.3",
+        "extension": "jar",
+        "name": "optifine-1.8.3",
+        "file": "optifine-1.8.3.jar",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.8.3.jar"
+    },
+    "1.8.1": {
+        "version": "1.8.1",
+        "extension": "jar",
+        "name": "optifine-1.8.1",
+        "file": "optifine-1.8.1.jar",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.8.1.jar"
+    },
+    "1.8": {
+        "version": "1.8",
+        "extension": "jar",
+        "name": "optifine-1.8.0",
+        "file": "optifine-1.8.0.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.8.0.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.8.0.jar"
+    },
+    "1.7.10": {
+        "version": "1.7.10",
+        "extension": "jar",
+        "name": "optifine-1.7.10",
+        "file": "optifine-1.7.10.jar",
+        "modded": "https://serversmp.xyz/web/notoptifine/assets/optifine/mod/optifine-1.7.10.jar",
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.7.10.jar"
+    },
+    "1.7.9": {
+        "version": "1.7.9",
+        "extension": "jar",
+        "name": "optifine-1.7.9",
+        "file": "optifine-1.7.9.jar",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.7.9.jar"
+    },
+    "1.7.5": {
+        "version": "1.7.5",
+        "extension": "jar",
+        "name": "optifine-1.7.5",
+        "file": "optifine-1.7.5.jar",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.7.5.jar"
+    },
+    "1.7.4": {
+        "version": "1.7.4",
+        "extension": "jar",
+        "name": "optifine-1.7.4",
+        "file": "optifine-1.7.4.jar",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.7.4.jar"
+    },
+    "1.7.2": {
+        "version": "1.7.2",
+        "extension": "jar",
+        "name": "optifine-1.7.2",
+        "file": "optifine-1.7.2.jar",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.7.2.jar"
+    },
+    "1.6.4": {
+        "version": "1.6.4",
+        "extension": "jar",
+        "name": "optifine-1.6.4",
+        "file": "optifine-1.6.4.jar",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.6.4.jar"
+    },
+    "1.6.2": {
+        "version": "1.6.2",
+        "extension": "jar",
+        "name": "optifine-1.6.2",
+        "file": "optifine-1.6.2.jar",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.6.2.jar"
+    },
+    "1.5.2": {
+        "version": "1.5.2",
+        "extension": "zip",
+        "name": "optifine-1.5.2",
+        "file": "optifine-1.5.2.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.5.2.zip"
+    },
+    "1.5.1": {
+        "version": "1.5.1",
+        "extension": "zip",
+        "name": "optifine-1.5.1",
+        "file": "optifine-1.5.1.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.5.1.zip"
+    },
+    "1.5": {
+        "version": "1.5",
+        "extension": "zip",
+        "name": "optifine-1.5.0",
+        "file": "optifine-1.5.0.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.5.0.zip"
+    },
+    "1.4.6": {
+        "version": "1.4.6",
+        "extension": "zip",
+        "name": "optifine-1.4.6",
+        "file": "optifine-1.4.6.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.4.6.zip"
+    },
+    "1.4.5": {
+        "version": "1.4.5",
+        "extension": "zip",
+        "name": "optifine-1.4.5",
+        "file": "optifine-1.4.5.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.4.5.zip"
+    },
+    "1.4.4": {
+        "version": "1.4.4",
+        "extension": "zip",
+        "name": "optifine-1.4.4",
+        "file": "optifine-1.4.4.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.4.4.zip"
+    },
+    "1.4.3": {
+        "version": "1.4.3",
+        "extension": "zip",
+        "name": "optifine-1.4.3",
+        "file": "optifine-1.4.3.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.4.3.zip"
+    },
+    "1.4.2": {
+        "version": "1.4.2",
+        "extension": "zip",
+        "name": "optifine-1.4.2",
+        "file": "optifine-1.4.2.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.4.2.zip"
+    },
+    "1.4.1": {
+        "version": "1.4.1",
+        "extension": "zip",
+        "name": "optifine-1.4.1",
+        "file": "optifine-1.4.1.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.4.1.zip"
+    },
+    "1.4": {
+        "version": "1.4",
+        "extension": "zip",
+        "name": "optifine-1.4.0",
+        "file": "optifine-1.4.0.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.4.0.zip"
+    },
+    "1.3.2": {
+        "version": "1.3.2",
+        "extension": "zip",
+        "name": "optifine-1.3.2",
+        "file": "optifine-1.3.2.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.3.2.zip"
+    },
+    "1.3.1": {
+        "version": "1.3.1",
+        "extension": "zip",
+        "name": "optifine-1.3.1",
+        "file": "optifine-1.3.1.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.3.1.zip"
+    },
+    "1.2.5": {
+        "version": "1.2.5",
+        "extension": "zip",
+        "name": "optifine-1.2.5",
+        "file": "optifine-1.2.5.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.2.5.zip"
+    },
+    "1.2.3": {
+        "version": "1.2.3",
+        "extension": "zip",
+        "name": "optifine-1.2.3",
+        "file": "optifine-1.2.3.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.2.3.zip"
+    },
+    "1.1": {
+        "version": "1.1",
+        "extension": "zip",
+        "name": "optifine-1.1.0",
+        "file": "optifine-1.1.0.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.1.0.zip"
+    },
+    "1.0": {
+        "version": "1.0",
+        "extension": "zip",
+        "name": "optifine-1.0.0",
+        "file": "optifine-1.0.0.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-1.0.0.zip"
+    },
+    "b1.9": {
+        "version": "b1.9",
+        "extension": "zip",
+        "name": "optifine-b1.9",
+        "file": "optifine-b1.9.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-b1.9.zip"
+    },
+    "b1.8.1": {
+        "version": "b1.8.1",
+        "extension": "zip",
+        "name": "optifine-b1.8.1",
+        "file": "optifine-b1.8.1.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-b1.8.1.zip"
+    },
+    "b1.7.3": {
+        "version": "b1.7.3",
+        "extension": "zip",
+        "name": "optifine-b1.7.3",
+        "file": "optifine-b1.7.3.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-b1.7.3.zip"
+    },
+    "b1.7.2": {
+        "version": "b1.7.2",
+        "extension": "zip",
+        "name": "optifine-b1.7.2",
+        "file": "optifine-b1.7.2.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-b1.7.2.zip"
+    },
+    "b1.6.6": {
+        "version": "b1.6.6",
+        "extension": "zip",
+        "name": "optifine-b1.6.6",
+        "file": "optifine-b1.6.6.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-b1.6.6.zip"
+    },
+    "b1.6.5": {
+        "version": "b1.6.5",
+        "extension": "zip",
+        "name": "optifine-b1.6.5",
+        "file": "optifine-b1.6.5.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-b1.6.5.zip"
+    },
+    "b1.5": {
+        "version": "b1.5",
+        "extension": "zip",
+        "name": "optifine-b1.5",
+        "file": "optifine-b1.5.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-b1.5.zip"
+    },
+    "b1.4": {
+        "version": "b1.4",
+        "extension": "zip",
+        "name": "optifine-b1.4",
+        "file": "optifine-b1.4.zip",
+        "modded": false,
+        "download": "https://serversmp.xyz/web/notoptifine/assets/optifine/download/optifine-b1.4.zip"
+    }
+}

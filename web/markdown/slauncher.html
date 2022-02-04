@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../assets/css/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../assets/css/md.min.css">
+    <link rel="manifest" href="../../assets/json/manifest.json">
     <script src="../../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/js/showdown.min.js"></script>
     <title>ServerSMP - Launcher</title>
@@ -70,6 +71,10 @@
             localStorage.setItem("darkmode", "true");
         }
     }
+
+    if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('../../assets/js/sw.js');
+	}
 </script>
 
 </html>

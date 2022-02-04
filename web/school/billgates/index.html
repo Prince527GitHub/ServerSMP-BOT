@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="./assets/css/w3.min.css">
   <link rel="stylesheet" href="./assets/css/w3-theme-blue-gray.min.css">
 
+  <link rel="manifest" href="../../../assets/json/manifest.json">
   <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
   <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
 
@@ -208,6 +209,10 @@
       } else {
         x.className = x.className.replace(" w3-show", "");
       }
+    }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('../../../assets/js/sw.js');
     }
   </script>
 

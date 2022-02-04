@@ -6,21 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="manifest" href="../../assets/json/manifest.json">
     <style>
-        @font-face {
-            font-family: 'Amongus';
-            src: url(../../assets/font/Amongus.woff2) format('woff2'), url(../../assets/font/Amongus.woff) format('woff');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap
-        }
-
         body {
             background-image: url(assets/image/background.jpg);
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
-            font-family: 'Amongus', sans-serif;
+            font-family: sans-serif;
         }
 
         .centerDIV {
@@ -54,6 +47,9 @@
 <script src="../../assets/js/navbar.js"></script>
 <script>
 	navbar("../../assets/txt/navbarLink.txt", 'nav', 'custom-dark', "#ffff000");
+    if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('../../assets/js/sw.js');
+	}
 </script>
 
 </html>

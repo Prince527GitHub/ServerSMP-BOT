@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="manifest" href="../../assets/json/manifest.json">
+    <link rel="stylesheet" href="./assets/css/style.min.css">
+    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="shortcut icon" href="./assets/image/icon.png">
+    <title>NotOptiFine</title>
+</head>
+
+<body>
+    <div id="nav"></div>
+    <div class="alert alert-light" role="alert">
+        <a href="https://optifine.net/home">I did not make this mod, so please go support the original creator of OptiFine.</a>
+    </div>
+    <div class="container-sm">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light" style="background-color:#313e7c;padding-top:0px;">
+            <div class="container-fluid" style="background-color:#313e7c;color:white;">
+                <a class="navbar-brand" style="color:white;font-size:30px;font-weight:bolder;" href="./index.html">NotOptiFine</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="d-flex">
+                            <a class="nav-link active" style="color:white;" aria-current="page" href="./index.html">Home</a>
+                        </li>
+                        <li class="d-flex">
+                            <a class="nav-link" style="color:white;" href="./download.html">Download</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <p style="text-align:left;padding-left:10px;">
+            NotOptiFine is a website where you can download versions of OptiFine.
+            <br>
+            Actually you cant download versions of OptiFine because copyright.
+            <br>
+            <br>
+            I did not make this mod, so please go support the original creator of OptiFine (<a href="https://optifine.net/home">Link</a>).
+            <br>
+            <br>
+            API:
+            <br>
+            So yes there is an API, to use it go <a href="./assets/json/optifine.json">here</a>.
+        </p>
+    </div>
+</body>
+
+<script src="../../assets/js/navbar.js"></script>
+<script>
+	navbar("../../assets/txt/navbarLink.txt", 'nav', 'custom-dark', "#313e7c");
+    if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('../../assets/js/sw.js');
+	}
+</script>
+
+</html>

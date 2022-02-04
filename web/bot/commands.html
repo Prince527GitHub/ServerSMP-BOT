@@ -38,6 +38,7 @@
     <!-- Standard iPhone Touch Icon -->
     <link rel="apple-touch-icon" sizes="57x57" href="./assets/image/icon.png">
 
+    <link rel="manifest" href="../../assets/json/manifest.json">
     <link rel="stylesheet" href="../../assets/css/style.css">
 
 </head>
@@ -1041,6 +1042,9 @@
     <script src="../../assets/js/navbar.js"></script>
     <script>
         navbar("../../assets/txt/navbarLink.txt", 'nav-bar', 'normal');
+        if ('serviceWorker' in navigator) {
+		    navigator.serviceWorker.register('../../assets/js/sw.js');
+	    }
     </script>
 
 </body>

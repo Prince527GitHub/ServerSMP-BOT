@@ -25,6 +25,8 @@
 
 	<link rel="apple-touch-icon" sizes="57x57" href="../images/icon.png">
 
+	<link rel="manifest" href="../../../../../assets/json/manifest.json">
+
 	<style>
 		video {
 			position: fixed;
@@ -68,6 +70,12 @@
 	</p>
 
 	<script src="../../../../../assets/js/rocket-loader.min.js" data-cf-settings="f5a3cd7011fb2592955dc7b5-|49" defer=""></script>
+
+	<script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('../../../../../assets/js/sw.js');
+		}
+	</script>
 </body>
 
 </html>

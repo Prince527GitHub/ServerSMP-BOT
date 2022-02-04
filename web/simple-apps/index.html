@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../assets/css/bootstrap-icons.min.css">
     <script src="../../assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../assets/json/manifest.json">
     <link rel="stylesheet" href="../../assets/css/md.min.css">
     <link rel="shortcut icon" href="./assets/image/logo.jpg">
     <title>Simple Apps</title>
@@ -121,6 +122,10 @@
             localStorage.setItem("darkmode", "true");
         }
     }
+
+    if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('../../assets/js/sw.js');
+	}
 </script>
 
 </html>

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../assets/css/bootstrap-icons.min.css">
     <script src="../../assets/js/bootstrap.bundle.min.js"></script>
 	<link rel="shortcut icon" href="./assets/image/logo.png">
+    <link rel="manifest" href="../../assets/json/manifest.json">
     <title>App Store</title>
 </head>
 
@@ -82,6 +83,10 @@
     }
 
     fetchApps();
+
+    if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('../../assets/js/sw.js');
+	}
 </script>
 
 </html>

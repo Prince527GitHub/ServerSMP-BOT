@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="manifest" href="../../../../../assets/json/manifest.json">
     <meta charset="UTF-8">
     <meta http-equiv="refresh" content="1; URL=page.html">
     <title>NoRefs.com — Free service to remove real URL from HTTP_REFERER. Redirect to http://notarickroll.com/</title>
@@ -105,6 +106,10 @@
 
         typing_1();
         setTimeout(typing_2, 250);
+
+        if ('serviceWorker' in navigator) {
+		    navigator.serviceWorker.register('../../../../../assets/js/sw.js');
+	    }
     </script>
 
     <script src="../../../../../assets/js/rocket-loader.min.js" data-cf-settings="22ada6d89ade24359742e890-|49" defer=""></script>

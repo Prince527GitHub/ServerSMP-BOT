@@ -6,6 +6,7 @@
     <title>Prince527's MC launcher</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/style.min.css">
+    <link rel="manifest" href="../../assets/json/manifest.json">
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
     <script src="../../assets/js/bootstrap.bundle.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -111,6 +112,9 @@
     <script src="../../assets/js/navbar.js"></script>
     <script>
 		navbar("../../assets/txt/navbarLink.txt", "nav", "custom-dark", "#fffff00");
+        if ('serviceWorker' in navigator) {
+		    navigator.serviceWorker.register('../../assets/js/sw.js');
+	    }
 	</script>
 </body>
 
