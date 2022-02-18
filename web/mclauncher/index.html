@@ -81,7 +81,9 @@
   if (isMobile.any()) window.location.href = './mobile.html';
 
   if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.register('../../assets/js/sw.js');
+    window.addEventListener('load', () => {
+		  navigator.serviceWorker.register('../../assets/js/sw.js');
+    });
 	}
 </script>
 

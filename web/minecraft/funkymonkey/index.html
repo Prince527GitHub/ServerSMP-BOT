@@ -116,7 +116,9 @@
 	<script>
 		navbar("../../../assets/txt/navbarLink.txt", "nav", "custom-dark", "#ffff000");
 		if ('serviceWorker' in navigator) {
-			navigator.serviceWorker.register('../../../assets/js/sw.js');
+			window.addEventListener('load', () => {
+				navigator.serviceWorker.register('../../../assets/js/sw.js');
+			});
 		}
 	</script>
 </body>

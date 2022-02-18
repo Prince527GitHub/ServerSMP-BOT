@@ -1,7 +1,7 @@
 {
     "name": "ServerSMP",
     "short_name": "ServerSMP",
-    "start_url": "https://serversmp.xyz/",
+    "start_url": "/?server=true",
     "icons": [{
             "src": "../image/page/icons/manifest-icon-192.maskable.png",
             "sizes": "192x192",

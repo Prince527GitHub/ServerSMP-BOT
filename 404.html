@@ -119,7 +119,9 @@
 
 <script>
 	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.register('https://serversmp.xyz/assets/js/sw.js');
+		window.addEventListener('load', () => {
+			navigator.serviceWorker.register('https://serversmp.xyz/assets/js/sw.js');
+		});
 	}
 </script>
 
