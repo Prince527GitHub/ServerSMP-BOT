@@ -67,7 +67,7 @@
     <h5 style="color:yellow;">Javascript</h5>
     <pre><code style="text-align:left;">
       async function dataNew() {
-        const data = await fetchUrl('https://api.serversmp.xyz/api/8ball');
+        const data = await fetchUrl('https://serversmp-api.herokuapp.com/api/8ball');
         document.getElementById("ball-emoji").innerHTML = data.emoji;
         document.getElementById("ball-text").innerHTML = data.text;
         document.getElementById('ball-text').style.color = data.color;

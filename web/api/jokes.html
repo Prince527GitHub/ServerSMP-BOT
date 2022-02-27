@@ -61,7 +61,7 @@
         <h5 style="color:yellow;">Javascript</h5>
         <pre><code style="text-align:left;">
           async function dataNew() {
-            const data = await fetchUrl('https://api.serversmp.xyz/api/joke');
+            const data = await fetchUrl('https://serversmp-api.herokuapp.com/api/joke');
             document.getElementById("jokes").innerHTML = data.joke;
           }
           dataNew()
