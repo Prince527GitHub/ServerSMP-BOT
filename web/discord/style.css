@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Pontano+Sans&display=swap');
+
+@font-face {
+    font-family: 'Filetto';
+    src: url('./font/Filetto-Bold.woff2') format('woff2'),
+        url('./font/Filetto-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tepeno Sans';
+    src: url('./font/TepenoSansBold.woff2') format('woff2'),
+        url('./font/TepenoSansBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tepeno Sans';
+    src: url('./font/TepenoSansBoldItalic.woff2') format('woff2'),
+        url('./font/TepenoSansBoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tepeno Sans';
+    src: url('./font/TepenoSansRegular.woff2') format('woff2'),
+        url('./font/TepenoSansRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tepeno Sans';
+    src: url('./font/TepenoSansLightItalic.woff2') format('woff2'),
+        url('./font/TepenoSansLightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tepeno Sans';
+    src: url('./font/TepenoSansLightRegular.woff2') format('woff2'),
+        url('./font/TepenoSansLightRegular.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tepeno Sans';
+    src: url('./font/TepenoSansItalic.woff2') format('woff2'),
+        url('./font/TepenoSansItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+:root {
+    --role-color: #ffffff;
+}
+
+body {
+    background-color: #36393f;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #18191c;
+    border-radius: 8px;
+    width: 300px;
+    height: 470px;
+}
+
+.background {
+    background-color: #18191c;
+    border-radius: 8px;
+    margin-top: -1px;
+}
+
+.banner {
+    background-image: url('./img/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    height: 120px;
+    width: 300px;
+}
+
+.top {
+    position: relative;
+    padding-left: 15px;
+    padding-top: 70px;
+}
+
+.color {
+    border-radius: 50%;
+    display: inline-block;
+    background-color: #18191c;
+}
+
+.avatar {
+    border: 6px solid #18191c;
+    border-radius: 50%;
+    height: 92px;
+    width: 92px;
+}
+
+.status {
+    position: absolute;
+    border: 6px solid #18191c;
+    background-color: #ed4245;
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    top: 140px;
+    left: 85px;
+}
+
+.body {
+    font-family: 'Pontano Sans', sans-serif;
+    color: #fff;
+}
+
+.name {
+    font-size: 20px;
+    padding-left: 16px;
+    margin-top: -1px;
+}
+
+.num {
+    color: #b9bbbe;
+    position: absolute;
+}
+
+.section {
+    opacity: 0.07;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.info {
+    margin-top: -10px;
+    font-family: 'Filetto', sans-serif;
+}
+
+.subtitle {
+    color: #b9bbbe;
+    font-weight: bolder;
+    padding-left: 16px;
+    margin-top: -1px;
+    font-size: 15px;
+}
+
+.about {
+    position: relative;
+    font-family: 'Tepeno Sans', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #afdad7;
+    padding-left: 16px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+a {
+    color: #07aff0;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.roles {
+    font-family: 'Filetto', sans-serif;
+}
+
+.grid {
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: -1px;
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+}
+
+.role {
+    position: relative;
+    background-color: #292b2f;
+    border-radius: 4px;
+    display: inline-block;
+    height: 22px;
+    width: auto;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.role-color {
+    position: relative;
+    background-color: var(--role-color);
+    display: inline-block;
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    bottom: -1px;
+    margin-right: 4px;
+}
+
+.role-name {
+    font-family: 'Pontano Sans', sans-serif;
+    position: relative;
+    font-weight: 300;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    margin-top: 2px;
+    align-items: center;
+}
+
+.message {
+    font-family: 'Tepeno Sans', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #45534e;
+    padding-left: 16px;
+    padding-right: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.input {
+    transition: border 0.3s ease-in-out;
+    background-color: #292b2f;
+    border-radius: 3px;
+    border: 1px solid #1d1e21;
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    color: #b0b1b3;
+}
+
+.input:hover {
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #000000;
+}
+
+.input:focus,
+.input:focus-visible,
+.input:focus-within {
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #00aff4;
+}

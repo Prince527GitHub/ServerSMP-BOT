@@ -121,7 +121,7 @@
                         <div class="card-body">
                             <h5 class="card-title" id="form_title">Login</h5>
                             <p class="card-text">
-                                <form method="post" action="https://api.serversmp.xyz/1001/set" id="auth_form">
+                                <form method="post" action="https://serversmp-api.herokuapp.com/1001/set" id="auth_form">
                                     <!-- Form username -->
                                     <div class="mb-3 input-container">
                                         <i class="material-icons user icon">account_box</i>
@@ -171,7 +171,7 @@
         getID();
 
         function create_account() {
-            document.getElementById("auth_form").action = "https://api.serversmp.xyz/auth/create";
+            document.getElementById("auth_form").action = "https://serversmp-api.herokuapp.com/auth/create";
             document.getElementById('auth_type_change').setAttribute("onClick", "login_account()");
             document.getElementById("auth_type_change").innerText = "Have an account?";
             document.getElementById("submit_button").innerText = "Sign up";
@@ -180,7 +180,7 @@
         }
 
         function login_account() {
-            document.getElementById("auth_form").action = "https://api.serversmp.xyz/auth/login";
+            document.getElementById("auth_form").action = "https://serversmp-api.herokuapp.com/auth/login";
             document.getElementById('auth_type_change').setAttribute("onClick", "create_account()");
             document.getElementById("auth_type_change").innerText = "Don't have an account?";
             document.getElementById("submit_button").innerText = "Sign in";
