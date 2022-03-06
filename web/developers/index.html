@@ -62,8 +62,8 @@
                 <div class="col-sm-6">
                     <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
                         <div class="card-body">
-                            <img src="./assets/image/prince527.jpg" class="rounded-circle" alt="Prince527" width="128" height="128"></img>
-                            <h5 class="card-title">Prince527</h5>
+                            <img id="pAvatar" src="./assets/image/prince527.jpg" class="rounded-circle" alt="Prince527" width="128" height="128"></img>
+                            <h5 id="pName" class="card-title">Prince527</h5>
                             <p class="card-text">Made the project.</p>
                             <a class="removelink" href="https://www.twitch.tv/prince527ttv"><i class="icons bi bi-twitch"></i></a>
                             <a class="removelink" href="https://twitter.com/Prince527gaming"><i class="icons bi bi-twitter"></i></a>
@@ -80,8 +80,8 @@
                 <div class="col-sm-6">
                     <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
                         <div class="card-body">
-                            <img src="./assets/image/arpidano.jpg" class="rounded-circle" alt="Arpidano" width="128" height="128"></img>
-                            <h5 class="card-title">Arpi</h5>
+                            <img id="aAvatar" src="./assets/image/arpidano.jpg" class="rounded-circle" alt="Arpidano" width="128" height="128"></img>
+                            <h5 id="aName" class="card-title">Arpi</h5>
                             <p class="card-text">Helped the project.</p>
                             <a class="removelink" href="https://www.twitch.tv/adrianodev"><i class="icons bi bi-twitch"></i></a>
                             <a class="removelink" href="https://twitter.com/AdrianoaDev"><i class="icons bi bi-twitter"></i></a>
@@ -96,8 +96,8 @@
                 <div class="col-sm-6">
                     <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
                         <div class="card-body">
-                            <img src="./assets/image/wam25.jpg" class="rounded-circle" alt="wam25" width="128" height="128"></img>
-                            <h5 class="card-title">Wam25</h5>
+                            <img id="wAvatar" src="./assets/image/wam25.jpg" class="rounded-circle" alt="wam25" width="128" height="128"></img>
+                            <h5 id="wName" class="card-title">Wam25</h5>
                             <p class="card-text">Helped the project.</p>
                             <a class="removelink" href="https://www.twitch.tv/the_25th_wam"><i class="icons bi bi-twitch"></i></a>
                             <a class="removelink" href="https://twitter.com/Wam2510"><i class="icons bi bi-twitter"></i></a>
@@ -113,8 +113,8 @@
                 <div class="col-sm-6">
                     <div class="card text-white bg-dark mb-3" class="card text-white bg-dark mb-3">
                         <div class="card-body">
-                            <img src="./assets/image/txtur.jpg" class="rounded-circle" alt="txtur" width="128" height="128"></img>
-                            <h5 class="card-title">txtur</h5>
+                            <img id="tAvatar" src="./assets/image/txtur.jpg" class="rounded-circle" alt="txtur" width="128" height="128"></img>
+                            <h5 id="tName" class="card-title">txtur</h5>
                             <p class="card-text">Made all the art.</p>
                             <a class="removelink" href="https://steamcommunity.com/profiles/76561198886724045"><i class="icons bi bi-steam"></i></a>
                             <a class="removelink" href="https://www.reddit.com/user/txtur/"><i class="icons bi bi-reddit"></i></a>
@@ -135,6 +135,24 @@
 		        navigator.serviceWorker.register('../../assets/js/sw.js');
             });
 	    }
+
+        fetch("https://serversmp-api.herokuapp.com/developers/api")
+        .then(res => res.json())
+        .then(data => {
+            if (data) {
+                document.getElementById("pAvatar").src = data.princeAvatar;
+                document.getElementById("pName").innerHTML = data.princeName;
+                document.getElementById("aAvatar").src = data.arpidanoAvatar;
+                document.getElementById("aName").innerHTML = data.arpidanoName;
+                document.getElementById("wAvatar").src = data.wamAvatar;
+                document.getElementById("wName").innerHTML = data.wamName;
+                document.getElementById("tAvatar").src = data.txturAvatar;
+                document.getElementById("tName").innerHTML = data.txturName;
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
     </script>
 
 </body>
