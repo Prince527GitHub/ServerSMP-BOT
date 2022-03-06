@@ -1,6 +1,6 @@
 <a class='nav-link' href='https://serversmp.xyz/index.html'>Home</a>
 <a class='nav-link active' href='https://serversmp-api.herokuapp.com/'>API</a>
 <a class='nav-link active' href='https://serversmp-api.herokuapp.com/stats'>Stats</a>
-<a class='nav-link active' href='https://serversmp.xyz/web/project.html'>Projects</a>
+<a class='nav-link active' href='https://serversmp-api.herokuapp.com/developers'>Projects</a>
 <a class='nav-link active' href='https://serversmp.xyz/web/developers/index.html'>Developers</a>
 <a class='nav-link active' href='https://discord.gg/Xajg63fyx6'>Discord</a>
