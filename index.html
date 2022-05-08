@@ -24,25 +24,26 @@
 	<!-- ================= Favicon ================== -->
 
 	<!-- Standard -->
-	<link rel="shortcut icon" href="./assets/image/page/logo.png">
+	<link rel="shortcut icon" href="/assets/image/page/logo.png">
 
 	<!-- Retina iPad Touch Icon -->
-	<link rel="apple-touch-icon" sizes="144x144" href="./assets/image/page/logo.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/image/page/logo.png">
 
 	<!-- Retina iPhone Touch Icon -->
-	<link rel="apple-touch-icon" sizes="114x114" href="./assets/image/page/logo.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/image/page/logo.png">
 
 	<!-- Standard iPad Touch Icon -->
-	<link rel="apple-touch-icon" sizes="72x72" href="./assets/image/page/logo.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/image/page/logo.png">
 
 	<!-- Standard iPhone Touch Icon -->
-	<link rel="apple-touch-icon" sizes="57x57" href="./assets/image/page/logo.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/image/page/logo.png">
 
 	<!-- ================= Styles & bootstrap ================== -->
 
-	<link rel="manifest" href="./assets/json/manifest.json">
-	<link href="./assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="./assets/css/style.css" rel="stylesheet">
+	<link rel="manifest" href="/assets/json/manifest.json">
+	<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+	<script src="/assets/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
@@ -56,22 +57,22 @@
 		<!-- ================= Name & logo ================== -->
 
 		<h1>ServerSMP</h1>
-		<img src="./assets/image/page/logo.png" alt="ServerSMP" width="180" height="180" ></img>
+		<img src="/assets/image/page/logo.png" alt="ServerSMP" width="180" height="180" ></img>
 
 	<!-- ================= Description of ServerSMP ================== -->
 
 	<h4 style="color:#6c8285;">ServerSMP has many projects.</h4>
 
-  <a href="./web/project.html" class="btn btn-primary">Projects</a>
+  <a href="/web/project.html" class="btn btn-primary">Projects</a>
 
 </div>
 
-<script src="./assets/js/navbar.js"></script>
+<script src="/assets/js/navbar.js"></script>
 <script>
 	navbar("./assets/txt/navbarLink.txt", "nav-bar", "normal");
 	if ('serviceWorker' in navigator) {
 		window.addEventListener('load', () => {
-			navigator.serviceWorker.register('./assets/js/sw.js');
+			navigator.serviceWorker.register('/assets/js/sw.js');
 		});
 	}
 </script>

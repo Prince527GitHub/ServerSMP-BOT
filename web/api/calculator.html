@@ -23,21 +23,21 @@
 
     <!-- ================= Favicon ================== -->
 
-    <link rel="shortcut icon" href="../../assets/image/page/logo.png">
+    <link rel="shortcut icon" href="/assets/image/page/logo.png">
 
-    <link rel="apple-touch-icon" sizes="144x144" href="../../assets/image/page/logo.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/image/page/logo.png">
 
-    <link rel="apple-touch-icon" sizes="114x114" href="../../assets/image/page/logo.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/image/page/logo.png">
 
-    <link rel="apple-touch-icon" sizes="72x72" href="../../assets/image/page/logo.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/image/page/logo.png">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="../../assets/image/page/logo.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/image/page/logo.png">
 
     <!-- ================= Styles & bootstrap ================== -->
 
-    <link rel="manifest" href="../../assets/json/manifest.json">
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
-    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="manifest" href="/assets/json/manifest.json">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
 
     <style>
         body {
@@ -159,7 +159,7 @@
             font-style: normal;
             font-weight: 400;
             font-display: swap;
-            src: url("../../assets/font/VEM1Ro9xs5PjtzCu-srDqSTsjP6yuQ.woff2") format('woff2');
+            src: url("/assets/font/VEM1Ro9xs5PjtzCu-srDqSTsjP6yuQ.woff2") format('woff2');
             unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
         }
 
@@ -169,7 +169,7 @@
             font-style: normal;
             font-weight: 400;
             font-display: swap;
-            src: url("../../assets/font/VEM1Ro9xs5PjtzCu-srDqSTijP4.woff2") format('woff2');
+            src: url("/assets/font/VEM1Ro9xs5PjtzCu-srDqSTijP4.woff2") format('woff2');
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
 
@@ -201,7 +201,7 @@
         <!-- ================= Name & logo ================== -->
 
         <h1>ServerSMP - API</h1>
-        <img src="../../assets/image/page/logo.png" alt="ServerSMP - API" width="180" height="180"></img>
+        <img src="/assets/image/page/logo.png" alt="ServerSMP - API" width="180" height="180"></img>
 
         <!-- ================= APIs ================== -->
 
@@ -264,9 +264,9 @@
 
     </div>
 
-    <script src="../../assets/js/navbar.js"></script>
+    <script src="/assets/js/navbar.js"></script>
     <script>
-        navbar("../../assets/txt/navbarLink.txt", 'nav-bar', 'normal');
+        navbar("/assets/txt/navbarLink.txt", 'nav-bar', 'normal');
 
         function appendData(data) {
             document.getElementById("nav-bar").innerHTML = data.navbar;
@@ -288,7 +288,7 @@
 
 		if ('serviceWorker' in navigator) {
 			window.addEventListener('load', () => {
-				navigator.serviceWorker.register('../../assets/js/sw.js');
+				navigator.serviceWorker.register('/assets/js/sw.js');
 			});
 		}
     </script>

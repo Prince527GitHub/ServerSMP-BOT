@@ -35,10 +35,10 @@
         
     <!-- ================= Styles & bootstrap ================== -->
     
-	<link rel="manifest" href="../../../assets/json/manifest.json">
-	<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../../assets/css/bootstrap-icons.min.css" rel="stylesheet">
-	<link rel="preload" href="../../../assets/font/minecraft-webfont.woff2" as="font" type="font/woff2">
+	<link rel="manifest" href="/assets/json/manifest.json">
+	<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/css/bootstrap-icons.min.css" rel="stylesheet">
+	<link rel="preload" href="/assets/font/minecraft-webfont.woff2" as="font" type="font/woff2">
 	<link href="./assets/css/style.min.css" rel="stylesheet">
 
 </head>
@@ -58,12 +58,12 @@
     <button class="btn" onclick="location.href='./index.html'">Get bread back!</button>
 	<h6 style="padding-top:10px" ></h6>
 	<footer>[ Duck Dungeon | ERROR 404 ]</footer>
-	<script src="../../../assets/js/navbar.js"></script>
+	<script src="/assets/js/navbar.js"></script>
 	<script>
-		navbar("../../../assets/txt/navbarLink.txt", "nav", "custom-light", "#8CAC4A");
+		navbar("/assets/txt/navbarLink.txt", "nav", "custom-light", "#8CAC4A");
 		if ('serviceWorker' in navigator) {
 			window.addEventListener('load', () => {
-				navigator.serviceWorker.register('../../../assets/js/sw.js');
+				navigator.serviceWorker.register('/assets/js/sw.js');
 			});
 		}
 	</script>

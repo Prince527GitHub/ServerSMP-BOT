@@ -24,11 +24,11 @@
 
 	<link rel="apple-touch-icon" sizes="57x57" href="./assets/images/icon.png">
 
-	<link rel="manifest" href="../../../assets/json/manifest.json">
-	<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="../../../assets/css/bootstrap-icons.min.css">
-	<script src="../../../assets/js/bootstrap.bundle.min.js"></script>
-	<link rel="preload" href="../../../assets/font/minecraft-webfont.woff2" as="font" type="font/woff2">
+	<link rel="manifest" href="/assets/json/manifest.json">
+	<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/css/bootstrap-icons.min.css">
+	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+	<link rel="preload" href="/assets/font/minecraft-webfont.woff2" as="font" type="font/woff2">
 	<link href="./assets/css/style.css" rel="stylesheet">
 </head>
 
@@ -97,7 +97,7 @@
 			<h6></h6>
 			<a class="btn" href="https://github.com/Prince527GitHub/Duck-Dungeon/blob/launcher/ddr-launcher.exe?raw=true">PC Download</a>
 			<a class="btn" href="https://github.com/Prince527GitHub/Duck-Dungeon/blob/launcher/Duck Dungeon Latest.apk?raw=true">Android Download</a>
-			<h6 class="link-h6" onclick="if (!window.__cfRLUnblockHandlers) return false; location.href='https://github.com/Prince527GitHub/Duck-Dungeon/releases'">More Versions</h6>
+			<h6 class="link-h6" onclick="window.location.href='https://github.com/Prince527GitHub/Duck-Dungeon/releases'">More Versions</h6>
 		</div>
 
 		<h6></h6>
@@ -120,7 +120,7 @@
 
 		<a class="btn" href="./404.html">404</a>
 
-		<script src="../../../assets/js/navbar.js"></script>
+		<script src="/assets/js/navbar.js"></script>
 		<script>
 			var isMobile = {
 				Android: function () {
@@ -146,13 +146,18 @@
 
 			if (isMobile.any()) window.location.href = '../mobile/index.html';
 
-			navbar("../../../assets/txt/navbarLink.txt", "nav", "custom-light", "#8CAC4A");
+			navbar("/assets/txt/navbarLink.txt", "nav", "custom-light", "#8CAC4A");
 
 			if ('serviceWorker' in navigator) {
 				window.addEventListener('load', () => {
-					navigator.serviceWorker.register('../../../assets/js/sw.js');
+					navigator.serviceWorker.register('/assets/js/sw.js');
 				});
 			}
+
+			var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+			var tooltipList = tooltipTriggerList.map(function (tooltipTriggerE1) {
+				return new bootstrap.Tooltip(tooltipTriggerE1);
+			});
 		</script>
 
 	</div>

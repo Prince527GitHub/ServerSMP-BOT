@@ -23,22 +23,22 @@
 
     <!-- ================= Favicon ================== -->
 
-    <link rel="shortcut icon" href="../../assets/image/page/logo.png">
+    <link rel="shortcut icon" href="/assets/image/page/logo.png">
 
-    <link rel="apple-touch-icon" sizes="144x144" href="../../assets/image/page/logo.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/image/page/logo.png">
 
-    <link rel="apple-touch-icon" sizes="114x114" href="../../assets/image/page/logo.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/image/page/logo.png">
 
-    <link rel="apple-touch-icon" sizes="72x72" href="../../assets/image/page/logo.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/image/page/logo.png">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="../../assets/image/page/logo.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/image/page/logo.png">
 
     <!-- ================= Styles & bootstrap ================== -->
 
-    <link rel="manifest" href="../../assets/json/manifest.json">
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
-    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
-    <link href="../../assets/css/style.css" rel="stylesheet">
+    <link rel="manifest" href="/assets/json/manifest.json">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <link href="/assets/css/style.css" rel="stylesheet">
 
     <style>
         input[type=text] {
@@ -68,7 +68,7 @@
         <!-- ================= Name & logo ================== -->
 
         <h1>ServerSMP - API</h1>
-        <img src="../../assets/image/page/logo.png" alt="ServerSMP - API" width="180" height="180"></img>
+        <img src="/assets/image/page/logo.png" alt="ServerSMP - API" width="180" height="180"></img>
 
         <!-- ================= APIs ================== -->
 
@@ -91,9 +91,9 @@
 
     </div>
 
-    <script src="../../assets/js/navbar.js"></script>
+    <script src="/assets/js/navbar.js"></script>
     <script>
-        navbar("../../assets/txt/navbarLink.txt", 'nav-bar', 'normal');
+        navbar("/assets/txt/navbarLink.txt", 'nav-bar', 'normal');
 
         function appendData(data) {
             document.getElementById("nav-bar").innerHTML = data.navbar;
@@ -133,7 +133,7 @@
 
 		if ('serviceWorker' in navigator) {
 			window.addEventListener('load', () => {
-				navigator.serviceWorker.register('../../assets/js/sw.js');
+				navigator.serviceWorker.register('/assets/js/sw.js');
 			});
 		}
     </script>
