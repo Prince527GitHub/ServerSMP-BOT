@@ -1,3 +1,5 @@
+### This Github repo for the website is depricated, for the new repo go [here](https://github.com/ServerSMP-Github/Website)
+
 # ServerSMP
 
 This is the website for ServerSMP!
