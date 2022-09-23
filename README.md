@@ -1,3 +1,5 @@
+### This Github repo is depricated, for the new repo go [here](https://github.com/ServerSMP-Github/)
+
 ```
   ______                                                 ______  __       __ _______  
  /      \                                               /      \|  \     /  \       \ 
